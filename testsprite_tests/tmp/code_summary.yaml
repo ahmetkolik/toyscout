@@ -1,0 +1,115 @@
+version: "2"
+type: frontend
+tech_stack:
+  - JavaScript
+  - React 18 (loaded from unpkg CDN at runtime)
+  - Babel Standalone (in-browser JSX/template compilation)
+  - Design Canvas (.dc.html) single-file document format with custom DCLogic runtime (support.js)
+  - Inline CSS styles with Nunito font
+routes:
+  - path: /
+    file: ToyScout Home.dc.html
+    auth_required: false
+    description: Single-page app. All navigation is client-side state (state.page), no URL routing. Views are home, shop, product, blog, post1, post2, post3, contact, privacy, terms, disclosure rendered as fixed overlays.
+features:
+  - name: Home page rendering
+    description: Landing page with NAV, HERO, trust strip, Top Picks product grid, category grid, Scout Process section, blog teasers, newsletter and footer sections
+    files:
+      - ToyScout Home.dc.html
+      - support.js
+    entry_route: /
+    user_interactions:
+      - Page loads and renders hero headline and hero image
+      - Scroll through Top Picks, Categories, Scout Process, Blog and Footer sections
+    api_calls: []
+    auth_required: false
+  - name: Client-side navigation
+    description: Nav bar links and buttons switch views by flipping state.page via openPage(), openCat(), openProduct(), goHome(). Sub-pages are position-fixed overlays.
+    files:
+      - ToyScout Home.dc.html
+    entry_route: /
+    user_interactions:
+      - Click nav links (Shop, Blog, Contact) to open the corresponding overlay view
+      - Click logo or Home controls to return to home view
+      - Click back controls inside sub-pages
+    api_calls: []
+    auth_required: false
+  - name: Shop / category browsing
+    description: Shop view lists 19 Amazon Toys & Games categories from catList(). Selecting a category shows its products via productsFor(catId) — real scraped products where products/<slug>/links.txt exists, otherwise hard-coded placeholder demo products.
+    files:
+      - ToyScout Home.dc.html
+      - products/fetch_products.py
+    entry_route: /
+    user_interactions:
+      - Open Shop view
+      - Click a category card to see its product list
+      - Click a product card to open the product detail view
+    api_calls: []
+    auth_required: false
+  - name: Product detail with Amazon affiliate CTA
+    description: Product view shows title, price, rating, review count, bullets and image. "View on Amazon" CTA binds to the product url (real affiliate link with Associates tag, or "#" for placeholder products).
+    files:
+      - ToyScout Home.dc.html
+    entry_route: /
+    user_interactions:
+      - Open a product from a category or Top Picks
+      - Verify title, price, rating and image are displayed
+      - Click "View on Amazon" (opens external amazon.com affiliate link)
+    api_calls: []
+    auth_required: false
+  - name: Blog section and posts
+    description: Blog view lists three articles; each opens a dedicated post view (post1-post3) with static content
+    files:
+      - ToyScout Home.dc.html
+    entry_route: /
+    user_interactions:
+      - Open Blog view
+      - Click a blog card to read the full post
+      - Navigate back to blog list or home
+    api_calls: []
+    auth_required: false
+  - name: Newsletter signup form
+    description: Email input plus subscribe button in the footer area. No backend — submitting only flips a local state flag that shows a success message.
+    files:
+      - ToyScout Home.dc.html
+    entry_route: /
+    user_interactions:
+      - Type an email address into the newsletter input
+      - Click subscribe button
+      - See local success confirmation message
+    api_calls: []
+    auth_required: false
+  - name: Contact form
+    description: Contact view with name/email/message fields. No backend — submit flips a local state flag showing a thank-you message.
+    files:
+      - ToyScout Home.dc.html
+    entry_route: /
+    user_interactions:
+      - Open Contact view
+      - Fill name, email and message fields
+      - Click send and see the local thank-you confirmation
+    api_calls: []
+    auth_required: false
+  - name: Legal pages
+    description: Privacy Policy, Terms of Service and Affiliate Disclosure static overlay pages reachable from the footer
+    files:
+      - ToyScout Home.dc.html
+    entry_route: /
+    user_interactions:
+      - Click footer links to open Privacy, Terms or Disclosure pages
+      - Read static legal content and navigate back
+    api_calls: []
+    auth_required: false
+known_limitations:
+  - issue: No URL routing — all views share the URL "/" and are driven by client state, so deep links, browser back/forward and page refresh on a sub-page do not work
+    location: ToyScout Home.dc.html (Component state.page)
+    impact: Refreshing always returns to home; back button exits the site instead of the previous view
+  - issue: Newsletter and contact forms have no backend
+    location: ToyScout Home.dc.html
+    impact: Submissions only flip local state flags; no data is sent or persisted
+  - issue: Runtime depends on unpkg CDN for React 18, ReactDOM and Babel standalone
+    location: support.js
+    impact: Site renders a blank page without internet access or if unpkg is unreachable
+  - issue: Categories without scraped data fall back to placeholder demo products whose "View on Amazon" links are "#"
+    location: ToyScout Home.dc.html (catNames()/productsFor())
+    impact: Some product CTAs do not lead to Amazon

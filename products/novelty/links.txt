@@ -1,0 +1,9 @@
+# Novelty & Gag Toys — Amazon urun linkleri
+# Her satira bir Amazon linki yapistir. Ornek:
+#   https://www.amazon.com/dp/B01N9Y1H0X
+# Istege bagli ek bilgiler | ile eklenebilir:
+#   https://www.amazon.com/dp/B01N9Y1H0X | age=3-5 | badge=TRENDING NOW
+#   (age secenekleri: 0-2, 3-5, 6-8, 9-12, Teen+)
+# Bir urunu siteden kaldirmak icin satiri sil veya basina # koy.
+# Duzenledikten sonra calistir:  python3 products/fetch_products.py
+

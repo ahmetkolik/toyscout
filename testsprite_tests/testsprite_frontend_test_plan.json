@@ -1,0 +1,735 @@
+[
+  {
+    "id": "TC001",
+    "title": "Browse the home page storefront",
+    "description": "This verifies that a visitor can land on the home page and see the main curated shopping content from top to bottom.",
+    "category": "Home page browsing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the hero section is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify curated shopping sections are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Scroll down the page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the footer content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Browse the home storefront and open a featured product",
+    "description": "This verifies that a shopper can evaluate the home page sections and open a featured product from the storefront.",
+    "category": "Product detail and Amazon affiliate link",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the home page sections"
+      },
+      {
+        "type": "action",
+        "description": "Click a featured product from the home page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product detail view is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product information is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Open a featured product from the home page",
+    "description": "This verifies that a visitor can move from the home page into a featured product detail view and see the product information needed to evaluate it.",
+    "category": "Home page browsing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click a featured product from the curated home content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product detail view is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product details are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Open the Shop view and return home",
+    "description": "This verifies that a visitor can open the shop experience from the home page and return to the main landing view afterward.",
+    "category": "Client-side navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the shop navigation control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the shop view is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the control to return home"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the home page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Inspect a shop category product and open the affiliate link",
+    "description": "This verifies that a shopper can browse Shop, open a category product, review its details, and follow the affiliate destination when available.",
+    "category": "Product detail and Amazon affiliate link",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the Shop view"
+      },
+      {
+        "type": "action",
+        "description": "Choose a toy category"
+      },
+      {
+        "type": "action",
+        "description": "Select a product from the category list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product detail view is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the affiliate call to action is available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Open a category product detail and view the affiliate link",
+    "description": "This verifies that a shopper can drill from a category product list into a product detail view and see the affiliate call to action.",
+    "category": "Shop category browsing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the shop navigation control"
+      },
+      {
+        "type": "action",
+        "description": "Select a category"
+      },
+      {
+        "type": "action",
+        "description": "Select a product from the category list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product detail view is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the affiliate call to action is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Open the Blog view and return home",
+    "description": "This verifies that a visitor can open the blog area from the home page and return to the main landing view afterward.",
+    "category": "Client-side navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the blog navigation control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog view is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the control to return home"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the home page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Review the full product details before buying",
+    "description": "This verifies that a user can open a product detail view and see the key shopping information needed to evaluate the item.",
+    "category": "Product detail and Amazon affiliate link",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the Shop view"
+      },
+      {
+        "type": "action",
+        "description": "Choose a toy category"
+      },
+      {
+        "type": "action",
+        "description": "Select a product from the category list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product title, price, rating, review count, bullets, and image are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product detail content is complete"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Open the Contact view and return home",
+    "description": "This verifies that a visitor can open the contact area from the home page and return to the main landing view afterward.",
+    "category": "Client-side navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the contact navigation control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact view is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the control to return home"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the home page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Open a featured home product detail",
+    "description": "This verifies that a visitor can move from the home page spotlight into a product detail view for a featured item.",
+    "category": "Product detail and Amazon affiliate link",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click a featured product from the home page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product detail view is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product information is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Browse products within a shop category",
+    "description": "This verifies that a shopper can open the shop view, choose a category, and see the matching product list.",
+    "category": "Shop category browsing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the shop navigation control"
+      },
+      {
+        "type": "action",
+        "description": "Select a category"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify category products are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Read a full blog post and return to the blog list",
+    "description": "This verifies that a reader can open a blog article, read the full post, and return to the blog listing afterward.",
+    "category": "Client-side navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the blog navigation control"
+      },
+      {
+        "type": "action",
+        "description": "Open a blog post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog post content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the control to return to the blog list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog list is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Open a blog post and read the full article",
+    "description": "This verifies that a reader can open Blog and access a full post from the article list.",
+    "category": "Blog reading",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the Blog view"
+      },
+      {
+        "type": "action",
+        "description": "Select a blog card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the full blog post is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the post content is readable"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Return from a blog post to the blog list",
+    "description": "This verifies that a reader can move from a full blog post back to the blog listing view.",
+    "category": "Blog reading",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the Blog view"
+      },
+      {
+        "type": "action",
+        "description": "Select a blog card"
+      },
+      {
+        "type": "action",
+        "description": "Return to the blog list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog list is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected post is no longer open"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Open a legal page from the footer and return home",
+    "description": "This verifies that a visitor can open a legal overlay from the footer and then return to the home page.",
+    "category": "Client-side navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the footer"
+      },
+      {
+        "type": "action",
+        "description": "Click a legal footer link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the legal page is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the control to return home"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the home page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Return from a blog post to the home page",
+    "description": "This verifies that a reader can move from a full blog post back to the home storefront.",
+    "category": "Blog reading",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the Blog view"
+      },
+      {
+        "type": "action",
+        "description": "Select a blog card"
+      },
+      {
+        "type": "action",
+        "description": "Return to the home view"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the home page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog post is no longer open"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Subscribe to the newsletter successfully",
+    "description": "This verifies that a visitor can submit the newsletter form and receive the on-page confirmation state.",
+    "category": "Newsletter signup",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Submit the newsletter form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the newsletter form shows a submitted state"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC018",
+    "title": "Open the affiliate disclosure from the footer",
+    "description": "A visitor can open the affiliate disclosure from the footer and read the disclosure content.",
+    "category": "Legal pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the affiliate disclosure from the footer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the affiliate disclosure content is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC019",
+    "title": "Open the privacy policy from the footer",
+    "description": "A visitor can open the privacy policy from the footer and read the static policy content.",
+    "category": "Legal pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the privacy policy from the footer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the privacy policy content is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC020",
+    "title": "Open the terms of service from the footer",
+    "description": "A visitor can open the terms page from the footer and read the static terms content.",
+    "category": "Legal pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the terms of service from the footer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the terms content is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC021",
+    "title": "Submit a contact message successfully",
+    "description": "A visitor can open the contact view, send a message, and see a local thank-you confirmation.",
+    "category": "Contact form",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the contact view"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in an email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a thank-you confirmation is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC022",
+    "title": "Send a contact message",
+    "description": "This verifies that a visitor can submit the contact form and receive the local thank-you confirmation.",
+    "category": "Client-side navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the contact navigation control"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a short inquiry"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a contact success confirmation is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC023",
+    "title": "Submit the newsletter signup form",
+    "description": "This verifies that a visitor can submit the newsletter form from the footer and receive the local success confirmation.",
+    "category": "Home page browsing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the footer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Submit the newsletter form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a newsletter success confirmation is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC024",
+    "title": "Prevent newsletter submission with an empty email",
+    "description": "This verifies that the newsletter form rejects an empty submission and shows a validation message.",
+    "category": "Newsletter signup",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Leave the email field empty"
+      },
+      {
+        "type": "action",
+        "description": "Submit the newsletter form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the success confirmation is not visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC025",
+    "title": "Show validation when contact fields are incomplete",
+    "description": "A visitor leaving required contact details empty sees validation feedback and the form is not submitted.",
+    "category": "Contact form",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the contact view"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify contact form validation feedback is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a thank-you confirmation is not visible"
+      }
+    ],
+    "priority": "Low"
+  }
+]
