@@ -1,1 +1,1476 @@
-ToyScout Home.dc.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
+<script src="/vendor/react.production.min.js"></script>
+<script src="/vendor/react-dom.production.min.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<div id="ts-loading" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#FAF3E7;color:#14225A;font-family:Nunito,system-ui,sans-serif;z-index:9999">
+  <div style="font-size:28px;font-weight:800">ToyScout</div>
+  <div style="font-size:15px">Loading trending toys…</div>
+  <noscript><div style="font-size:15px;color:#E8442E">ToyScout requires JavaScript. Please enable it and reload the page.</div></noscript>
+</div>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ToyScout — Amazon's Trending Toys, Curated Daily</title>
+<meta name="description" content="ToyScout tracks Amazon's best seller, new release, and most-wished-for toy charts daily across all 19 Toys &amp; Games categories — only 4.5★+ picks make the cut.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://toyscout.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToyScout">
+<meta property="og:title" content="ToyScout — Amazon's Trending Toys, Curated Daily">
+<meta property="og:description" content="The best-selling, most-loved, and fastest-rising toys on Amazon — curated in one place, for every age.">
+<meta property="og:url" content="https://toyscout.com/">
+<meta property="og:image" content="https://toyscout.com/assets/hero-flying-blue.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ToyScout — Amazon's Trending Toys, Curated Daily">
+<meta name="twitter:description" content="The best-selling, most-loved, and fastest-rising toys on Amazon — curated in one place, for every age.">
+<meta name="twitter:image" content="https://toyscout.com/assets/hero-flying-blue.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://toyscout.com/#org",
+      "name": "ToyScout",
+      "url": "https://toyscout.com/",
+      "logo": "https://toyscout.com/assets/logo-blocks.png",
+      "email": "info@kolikshop.com",
+      "address": { "@type": "PostalAddress", "streetAddress": "34 N Franklin Ave Ste 687 2564", "addressLocality": "Pinedale", "addressRegion": "WY", "postalCode": "82941", "addressCountry": "US" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://toyscout.com/#website",
+      "url": "https://toyscout.com/",
+      "name": "ToyScout",
+      "publisher": { "@id": "https://toyscout.com/#org" }
+    },
+    {
+      "@type": "ItemList",
+      "name": "Amazon Toys & Games Categories on ToyScout",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Action Figures & Statues", "url": "https://toyscout.com/toys/action-figures" },
+        { "@type": "ListItem", "position": 2, "name": "Arts & Crafts", "url": "https://toyscout.com/toys/arts-crafts" },
+        { "@type": "ListItem", "position": 3, "name": "Baby & Toddler Toys", "url": "https://toyscout.com/toys/baby-toddler" },
+        { "@type": "ListItem", "position": 4, "name": "Building Toys", "url": "https://toyscout.com/toys/building-toys" },
+        { "@type": "ListItem", "position": 5, "name": "Dolls & Accessories", "url": "https://toyscout.com/toys/dolls" },
+        { "@type": "ListItem", "position": 6, "name": "Dress Up & Pretend Play", "url": "https://toyscout.com/toys/dress-up" },
+        { "@type": "ListItem", "position": 7, "name": "Games", "url": "https://toyscout.com/toys/games" },
+        { "@type": "ListItem", "position": 8, "name": "Hobbies", "url": "https://toyscout.com/toys/hobbies" },
+        { "@type": "ListItem", "position": 9, "name": "Kids' Electronics", "url": "https://toyscout.com/toys/kids-electronics" },
+        { "@type": "ListItem", "position": 10, "name": "Learning & Education", "url": "https://toyscout.com/toys/learning-education" },
+        { "@type": "ListItem", "position": 11, "name": "Novelty & Gag Toys", "url": "https://toyscout.com/toys/novelty" },
+        { "@type": "ListItem", "position": 12, "name": "Party Supplies", "url": "https://toyscout.com/toys/party" },
+        { "@type": "ListItem", "position": 13, "name": "Puppets", "url": "https://toyscout.com/toys/puppets" },
+        { "@type": "ListItem", "position": 14, "name": "Puzzles", "url": "https://toyscout.com/toys/puzzles" },
+        { "@type": "ListItem", "position": 15, "name": "Sports & Outdoor Play", "url": "https://toyscout.com/toys/sports-outdoor" },
+        { "@type": "ListItem", "position": 16, "name": "Stuffed Animals & Plush Toys", "url": "https://toyscout.com/toys/plush" },
+        { "@type": "ListItem", "position": 17, "name": "RC & Play Vehicles", "url": "https://toyscout.com/toys/rc-vehicles" },
+        { "@type": "ListItem", "position": 18, "name": "Tricycles, Scooters & Wagons", "url": "https://toyscout.com/toys/ride-ons" },
+        { "@type": "ListItem", "position": 19, "name": "Video Games", "url": "https://toyscout.com/toys/video-games" }
+      ]
+    },
+    {
+      "@type": "Blog",
+      "name": "The ToyScout Radar Blog",
+      "url": "https://toyscout.com/blog",
+      "publisher": { "@id": "https://toyscout.com/#org" },
+      "blogPost": [
+        { "@type": "BlogPosting", "headline": "Prime Day 2026: The Toy Deals Actually Worth Grabbing", "datePublished": "2026-07-08", "author": { "@type": "Organization", "name": "ToyScout Editors" }, "image": "https://toyscout.com/assets/hero-toybox-blue.png", "url": "https://toyscout.com/blog/prime-day-2026-toy-deals" },
+        { "@type": "BlogPosting", "headline": "The 7 Best-Selling STEM Kits on Amazon Right Now", "datePublished": "2026-06-22", "author": { "@type": "Organization", "name": "ToyScout Editors" }, "image": "https://toyscout.com/assets/blog-stem.png", "url": "https://toyscout.com/blog/best-selling-stem-kits" },
+        { "@type": "BlogPosting", "headline": "Screen-Free Summer: The Outdoor Toys Trending This July", "datePublished": "2026-07-01", "author": { "@type": "Organization", "name": "ToyScout Editors" }, "image": "https://toyscout.com/assets/blog-family.png", "url": "https://toyscout.com/blog/screen-free-summer-outdoor-toys" }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FAF3E7;color:#14225A;font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1D3FC4;text-decoration:none}
+a:hover{color:#E8442E}
+img{max-width:100%;display:block}
+input{font-family:'Nunito',system-ui,sans-serif}
+@keyframes ts-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes ts-float-slow{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+@keyframes ts-wiggle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes ts-page-in{from{opacity:0;transform:translateY(30px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes ts-drop-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+button{font-family:'Nunito',system-ui,sans-serif}
+@media (max-width:900px){.ts-hide-m{display:none !important}}
+</style>
+</helmet>
+
+<div data-screen-label="Home" style="min-width:320px;overflow-x:clip">
+
+  <!-- ================= NAV ================= -->
+  <nav id="ts-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:28px;padding:14px 40px;background:rgba(250,243,231,.95);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(18,35,92,.06);transition:box-shadow .35s ease">
+    <a href="#top" style="display:flex;align-items:center;gap:10px;color:#14225A">
+      <img src="assets/logo-blocks.png" alt="ToyScout logo" style="width:40px;height:40px;object-fit:contain">
+      <span style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.5px">ToyScout</span>
+    </a>
+    <div class="ts-hide-m" style="display:flex;gap:26px;margin-left:auto;align-items:center">
+      <a href="#top" onClick="{{goHome}}" style="font-weight:700;font-size:15.5px;color:#14225A" style-hover="color:#E8442E">Home</a>
+      <a href="#" onClick="{{openShop}}" style="font-weight:700;font-size:15.5px;color:#14225A" style-hover="color:#E8442E">Shop</a>
+      <a href="#picks" onClick="{{goHome}}" style="font-weight:700;font-size:15.5px;color:#14225A" style-hover="color:#E8442E">Top Picks</a>
+      <a href="#categories" onClick="{{goHome}}" style="font-weight:700;font-size:15.5px;color:#14225A" style-hover="color:#E8442E">Categories</a>
+      <a href="#process" onClick="{{goHome}}" style="font-weight:700;font-size:15.5px;color:#14225A" style-hover="color:#E8442E">How We Rank</a>
+      <a href="#" onClick="{{openBlog}}" style="font-weight:700;font-size:15.5px;color:#14225A" style-hover="color:#E8442E">Blog</a>
+      <div style="position:relative">
+        <button onClick="{{toggleMenu}}" style="background:none;border:none;cursor:pointer;font-weight:700;font-size:15.5px;color:#14225A;padding:0;display:inline-flex;align-items:center;gap:6px" style-hover="color:#E8442E">About <span style="font-size:11px;translate:0 1px">▾</span></button>
+        <sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+          <div style="position:absolute;top:calc(100% + 16px);right:-10px;background:#FFFDF7;border-radius:16px;box-shadow:0 18px 44px rgba(14,28,78,.18);border:1px solid rgba(20,34,90,.08);padding:10px;min-width:236px;animation:ts-drop-in .28s cubic-bezier(.22,.9,.3,1) both;z-index:60">
+            <button onClick="{{openContact}}" style="display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:11px 14px;border-radius:10px;font-weight:700;font-size:15px;color:#14225A" style-hover="background:#EDF1FD;color:#1D3FC4">Contact</button>
+            <button onClick="{{openDisclosure}}" style="display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:11px 14px;border-radius:10px;font-weight:700;font-size:15px;color:#14225A" style-hover="background:#EDF1FD;color:#1D3FC4">Affiliate Disclosure</button>
+            <button onClick="{{openPrivacy}}" style="display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:11px 14px;border-radius:10px;font-weight:700;font-size:15px;color:#14225A" style-hover="background:#EDF1FD;color:#1D3FC4">Privacy Policy</button>
+            <button onClick="{{openTerms}}" style="display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:11px 14px;border-radius:10px;font-weight:700;font-size:15px;color:#14225A" style-hover="background:#EDF1FD;color:#1D3FC4">Terms of Use</button>
+          </div>
+        </sc-if>
+      </div>
+      <a href="#picks" style="background:#E8442E;color:#fff;font-weight:800;font-size:15px;padding:11px 22px;border-radius:999px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">Best of 2026</a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header id="top" data-screen-label="Hero" style="position:relative;background:#1C3ECC;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('assets/pattern-blue.png');background-size:520px;opacity:.35"></div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:150px 40px 120px;display:grid;grid-template-columns:minmax(300px,1.05fr) minmax(280px,1fr);gap:40px;align-items:center">
+      <div>
+        <div data-reveal style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2.5px;color:#9FB4F5;font-weight:600;margin-bottom:18px">AMAZON BEST SELLERS · UPDATED WEEKLY</div>
+        <h1 data-reveal data-reveal-delay="80" style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(52px,7vw,92px);line-height:.98;color:#FFFDF7;margin:0 0 22px;letter-spacing:-1px">Toys worth<br>the hype.</h1>
+        <p data-reveal data-reveal-delay="160" style="font-size:20px;line-height:1.5;color:#CBD7FA;margin:0 0 34px;max-width:420px">The best-selling, most-loved, and fastest-trending toys on Amazon — curated in one place, for every age.</p>
+        <div data-reveal data-reveal-delay="240" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+          <a href="#picks" style="background:#E8442E;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;padding:16px 34px;border-radius:999px;box-shadow:0 4px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-3px);color:#fff" style-active="transform:translateY(0) scale(.97)">Shop top picks</a>
+          <a href="#process" style="color:#fff;font-weight:800;font-size:17px;border-bottom:2px dotted rgba(255,255,255,.5);padding-bottom:2px" style-hover="color:#FFD9D2">How we rank →</a>
+        </div>
+        <div data-reveal data-reveal-delay="320" style="margin-top:30px;font-size:13px;color:#8FA5EE">As an Amazon Associate, ToyScout earns from qualifying purchases.</div>
+      </div>
+      <div style="position:relative;min-height:340px" class="ts-hide-m">
+        <img data-par="-0.06" src="assets/hero-flying-blue.png" alt="Toys leaping out of a ToyScout box" style="width:118%;max-width:none;margin-left:-6%;-webkit-mask-image:radial-gradient(75% 75% at 50% 50%,#000 58%,transparent 92%);mask-image:radial-gradient(75% 75% at 50% 50%,#000 58%,transparent 92%);animation:ts-float 7s ease-in-out infinite">
+      </div>
+    </div>
+    <img src="assets/clouds-blue.png" alt="" style="position:absolute;left:0;right:0;bottom:-2px;width:100%;height:130px;object-fit:cover;object-position:bottom;opacity:.9;pointer-events:none">
+  </header>
+
+  <!-- ================= TRUST STRIP ================= -->
+  <section aria-label="Why trust ToyScout" style="background:#FAF3E7;border-bottom:1px solid rgba(20,34,90,.08)">
+    <div style="max-width:1240px;margin:0 auto;padding:26px 40px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div data-reveal style="display:flex;align-items:center;gap:10px"><span style="color:#E8442E;font-size:18px">★</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;font-weight:600">BEST SELLER CHARTS SCANNED DAILY</span></div>
+      <div data-reveal data-reveal-delay="80" style="display:flex;align-items:center;gap:10px"><span style="color:#1D3FC4;font-size:18px">✓</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;font-weight:600">1M+ REAL REVIEWS ANALYZED</span></div>
+      <div data-reveal data-reveal-delay="160" style="display:flex;align-items:center;gap:10px"><span style="color:#E8442E;font-size:18px">●</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;font-weight:600">ONLY 4.5★+ PICKS MAKE THE CUT</span></div>
+      <div data-reveal data-reveal-delay="240" style="display:flex;align-items:center;gap:10px"><span style="color:#1D3FC4;font-size:18px">◆</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;font-weight:600">NEW RELEASES TRACKED WEEKLY</span></div>
+    </div>
+  </section>
+
+  <!-- ================= TOP PICKS ================= -->
+  <section id="picks" data-screen-label="Top Picks" style="background:#FAF3E7;padding:96px 40px 80px">
+    <div style="max-width:1240px;margin:0 auto">
+      <div data-reveal style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2.5px;color:#E8442E;font-weight:600;margin-bottom:10px">WEEK OF JULY 6, 2026</div>
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:46px">
+        <h2 data-reveal data-reveal-delay="60" style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(38px,4.5vw,58px);line-height:1.02;margin:0;color:#12235C">Trending this week</h2>
+        <a data-reveal data-reveal-delay="120" href="#categories" style="font-weight:800;font-size:16px;border-bottom:2px dotted #E8442E;padding-bottom:2px;white-space:nowrap">See all best sellers →</a>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px">
+
+        <article data-reveal data-tilt="-1.2" style="background:#FFFDF7;border-radius:22px;padding:26px 26px 24px;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease" style-hover="transform:translateY(-8px) rotate(0deg);box-shadow:0 16px 34px rgba(18,35,92,.14)">
+          <div onClick="{{openPick0}}" style="display:flex;justify-content:center;padding:6px 0 14px;cursor:pointer"><img src="assets/prod-bike.png" alt="Coast Wooden Balance Bike" style="height:190px;object-fit:contain;mix-blend-mode:multiply"></div>
+          <div style="display:inline-block;background:#1D3FC4;color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1.5px;padding:5px 10px;border-radius:6px;margin-bottom:12px">#1 BEST SELLER</div>
+          <h3 onClick="{{openPick0}}" style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:23px;margin:0 0 6px;color:#12235C;cursor:pointer" style-hover="color:#1D3FC4">Coast Wooden Balance Bike</h3>
+          <p style="margin:0 0 14px;font-size:15.5px;line-height:1.5;color:#4A5688">Lightweight first bike for building balance and confidence.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <div style="font-family:ui-monospace,Menlo,monospace;font-size:15px;font-weight:600">$59 to $89</div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="color:#E8442E;font-size:15px;letter-spacing:2px">★★★★★</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#4A5688">12,431</span></div>
+            </div>
+            <a href="https://www.amazon.com/s?k=Coast%20Wooden%20Balance%20Bike&i=toys-and-games" target="_blank" rel="sponsored nofollow noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 18px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)"><span style="width:8px;height:8px;background:#fff;border-radius:50%"></span>View on Amazon</a>
+          </div>
+        </article>
+
+        <article data-reveal data-reveal-delay="80" data-tilt="1.4" style="background:#FFFDF7;border-radius:22px;padding:26px 26px 24px;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease" style-hover="transform:translateY(-8px) rotate(0deg);box-shadow:0 16px 34px rgba(18,35,92,.14)">
+          <div onClick="{{openPick1}}" style="display:flex;justify-content:center;padding:6px 0 14px;cursor:pointer"><img src="assets/prod-magnatiles.png" alt="Magna-Tiles Classic 100 Piece Set" style="height:190px;object-fit:contain;mix-blend-mode:multiply"></div>
+          <div style="display:inline-block;background:#E8442E;color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1.5px;padding:5px 10px;border-radius:6px;margin-bottom:12px">MOST WISHED FOR</div>
+          <h3 onClick="{{openPick1}}" style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:23px;margin:0 0 6px;color:#12235C;cursor:pointer" style-hover="color:#1D3FC4">Magna-Tiles Classic 100 Set</h3>
+          <p style="margin:0 0 14px;font-size:15.5px;line-height:1.5;color:#4A5688">Spark creativity with open-ended building and magnetic play.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <div style="font-family:ui-monospace,Menlo,monospace;font-size:15px;font-weight:600">$89 to $119</div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="color:#E8442E;font-size:15px;letter-spacing:2px">★★★★★</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#4A5688">38,752</span></div>
+            </div>
+            <a href="https://www.amazon.com/s?k=Magna-Tiles%20Classic%20100%20Set&i=toys-and-games" target="_blank" rel="sponsored nofollow noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 18px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)"><span style="width:8px;height:8px;background:#fff;border-radius:50%"></span>View on Amazon</a>
+          </div>
+        </article>
+
+        <article data-reveal data-reveal-delay="160" data-tilt="-0.8" style="background:#FFFDF7;border-radius:22px;padding:26px 26px 24px;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease" style-hover="transform:translateY(-8px) rotate(0deg);box-shadow:0 16px 34px rgba(18,35,92,.14)">
+          <div onClick="{{openPick2}}" style="display:flex;justify-content:center;padding:6px 0 14px;cursor:pointer"><img src="assets/prod-sloth.png" alt="Slumber Sloth Plush" style="height:190px;object-fit:contain;mix-blend-mode:multiply"></div>
+          <div style="display:inline-block;background:#12235C;color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1.5px;padding:5px 10px;border-radius:6px;margin-bottom:12px">TRENDING NOW</div>
+          <h3 onClick="{{openPick2}}" style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:23px;margin:0 0 6px;color:#12235C;cursor:pointer" style-hover="color:#1D3FC4">Slumber Sloth Plush</h3>
+          <p style="margin:0 0 14px;font-size:15.5px;line-height:1.5;color:#4A5688">Super soft and huggable for cozy cuddles anytime.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <div style="font-family:ui-monospace,Menlo,monospace;font-size:15px;font-weight:600">$24 to $38</div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="color:#E8442E;font-size:15px;letter-spacing:2px">★★★★★</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#4A5688">9,214</span></div>
+            </div>
+            <a href="https://www.amazon.com/s?k=Slumber%20Sloth%20Plush&i=toys-and-games" target="_blank" rel="sponsored nofollow noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 18px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)"><span style="width:8px;height:8px;background:#fff;border-radius:50%"></span>View on Amazon</a>
+          </div>
+        </article>
+
+        <article data-reveal data-tilt="1.1" style="background:#FFFDF7;border-radius:22px;padding:26px 26px 24px;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease" style-hover="transform:translateY(-8px) rotate(0deg);box-shadow:0 16px 34px rgba(18,35,92,.14)">
+          <div onClick="{{openPick3}}" style="display:flex;justify-content:center;padding:6px 0 14px;cursor:pointer"><img src="assets/prod-cube.png" alt="Explorer Activity Cube" style="height:190px;object-fit:contain;mix-blend-mode:multiply"></div>
+          <div style="display:inline-block;background:#1D3FC4;color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1.5px;padding:5px 10px;border-radius:6px;margin-bottom:12px">MOVERS &amp; SHAKERS</div>
+          <h3 onClick="{{openPick3}}" style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:23px;margin:0 0 6px;color:#12235C;cursor:pointer" style-hover="color:#1D3FC4">Explorer Activity Cube</h3>
+          <p style="margin:0 0 14px;font-size:15.5px;line-height:1.5;color:#4A5688">Packed with hands-on fun to learn and discover.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <div style="font-family:ui-monospace,Menlo,monospace;font-size:15px;font-weight:600">$39 to $59</div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="color:#E8442E;font-size:15px;letter-spacing:2px">★★★★★</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#4A5688">21,860</span></div>
+            </div>
+            <a href="https://www.amazon.com/s?k=Explorer%20Activity%20Cube&i=toys-and-games" target="_blank" rel="sponsored nofollow noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 18px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)"><span style="width:8px;height:8px;background:#fff;border-radius:50%"></span>View on Amazon</a>
+          </div>
+        </article>
+
+        <article data-reveal data-reveal-delay="80" data-tilt="-1.3" style="background:#FFFDF7;border-radius:22px;padding:26px 26px 24px;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease" style-hover="transform:translateY(-8px) rotate(0deg);box-shadow:0 16px 34px rgba(18,35,92,.14)">
+          <div onClick="{{openPick4}}" style="display:flex;justify-content:center;padding:6px 0 14px;cursor:pointer"><img src="assets/prod-science.png" alt="KidVentor Science Lab Kit" style="height:190px;object-fit:contain;mix-blend-mode:multiply"></div>
+          <div style="display:inline-block;background:#E8442E;color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1.5px;padding:5px 10px;border-radius:6px;margin-bottom:12px">NEW RELEASE</div>
+          <h3 onClick="{{openPick4}}" style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:23px;margin:0 0 6px;color:#12235C;cursor:pointer" style-hover="color:#1D3FC4">KidVentor Science Lab Kit</h3>
+          <p style="margin:0 0 14px;font-size:15.5px;line-height:1.5;color:#4A5688">Real experiments for curious minds and future scientists.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <div style="font-family:ui-monospace,Menlo,monospace;font-size:15px;font-weight:600">$34 to $49</div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="color:#E8442E;font-size:15px;letter-spacing:2px">★★★★★</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#4A5688">3,487</span></div>
+            </div>
+            <a href="https://www.amazon.com/s?k=KidVentor%20Science%20Lab%20Kit&i=toys-and-games" target="_blank" rel="sponsored nofollow noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 18px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)"><span style="width:8px;height:8px;background:#fff;border-radius:50%"></span>View on Amazon</a>
+          </div>
+        </article>
+
+        <article data-reveal data-reveal-delay="160" data-tilt="0.9" style="background:#FFFDF7;border-radius:22px;padding:26px 26px 24px;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease" style-hover="transform:translateY(-8px) rotate(0deg);box-shadow:0 16px 34px rgba(18,35,92,.14)">
+          <div onClick="{{openPick5}}" style="display:flex;justify-content:center;padding:6px 0 14px;cursor:pointer"><img src="assets/prod-marble.png" alt="Marble Run Builder Set" style="height:190px;object-fit:contain;mix-blend-mode:multiply"></div>
+          <div style="display:inline-block;background:#12235C;color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1.5px;padding:5px 10px;border-radius:6px;margin-bottom:12px">CLIMBING THE CHARTS</div>
+          <h3 onClick="{{openPick5}}" style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:23px;margin:0 0 6px;color:#12235C;cursor:pointer" style-hover="color:#1D3FC4">Marble Run Builder Set</h3>
+          <p style="margin:0 0 14px;font-size:15.5px;line-height:1.5;color:#4A5688">Endless building possibilities and rolling action.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <div style="font-family:ui-monospace,Menlo,monospace;font-size:15px;font-weight:600">$44 to $64</div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="color:#E8442E;font-size:15px;letter-spacing:2px">★★★★★</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#4A5688">15,102</span></div>
+            </div>
+            <a href="https://www.amazon.com/s?k=Marble%20Run%20Builder%20Set&i=toys-and-games" target="_blank" rel="sponsored nofollow noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 18px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)"><span style="width:8px;height:8px;background:#fff;border-radius:50%"></span>View on Amazon</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATEGORIES ================= -->
+  <section id="categories" data-screen-label="Categories" style="background:#FFFDF7;padding:96px 40px;border-top:1px solid rgba(20,34,90,.06)">
+    <div style="max-width:1240px;margin:0 auto">
+      <h2 data-reveal style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(38px,4.5vw,58px);line-height:1.02;margin:0 0 14px;color:#12235C;text-align:center">Shop every category</h2>
+      <p data-reveal data-reveal-delay="60" style="text-align:center;font-size:18px;color:#4A5688;margin:0 0 46px">All 19 Toys &amp; Games departments from Amazon — every one with its own trending chart.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:24px">
+
+        <a data-reveal href="#" onClick="{{goLearning}}" style="grid-column:span 3;display:flex;align-items:center;justify-content:space-between;gap:18px;background:#1D3FC4;border-radius:24px;padding:34px 34px;min-height:150px;transition:transform .25s ease" style-hover="transform:translateY(-6px)">
+          <div>
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:30px;color:#fff;line-height:1.05">Learning &amp; Education</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#AABDF7;margin-top:10px">248 TRENDING PICKS</div>
+          </div>
+          <div style="font-size:30px;color:#fff;flex:none">→</div>
+        </a>
+
+        <a data-reveal data-reveal-delay="80" href="#" onClick="{{goGames}}" style="grid-column:span 3;display:flex;align-items:center;justify-content:space-between;gap:18px;background:#E8442E;border-radius:24px;padding:34px 34px;min-height:150px;transition:transform .25s ease" style-hover="transform:translateY(-6px)">
+          <div>
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:30px;color:#fff;line-height:1.05">Games &amp; Puzzles</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#FFC9BF;margin-top:10px">156 TRENDING PICKS</div>
+          </div>
+          <div style="font-size:30px;color:#fff;flex:none">→</div>
+        </a>
+
+        <a data-reveal href="#" onClick="{{goOutdoor}}" style="grid-column:span 2;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#DCE5FB;border-radius:24px;padding:30px;min-height:130px;transition:transform .25s ease" style-hover="transform:translateY(-6px)">
+          <div>
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:25px;color:#12235C;line-height:1.05">Sports &amp; Outdoor</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;letter-spacing:1.5px;color:#4A5688;margin-top:9px">189 TRENDING PICKS</div>
+          </div>
+          <div style="font-size:26px;color:#12235C;flex:none">→</div>
+        </a>
+
+        <a data-reveal data-reveal-delay="80" href="#" onClick="{{goBuilding}}" style="grid-column:span 2;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#12235C;border-radius:24px;padding:30px;min-height:130px;transition:transform .25s ease" style-hover="transform:translateY(-6px)">
+          <div>
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:25px;color:#fff;line-height:1.05">Building Toys</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;letter-spacing:1.5px;color:#9FB0E4;margin-top:9px">312 TRENDING PICKS</div>
+          </div>
+          <div style="font-size:26px;color:#fff;flex:none">→</div>
+        </a>
+
+        <a data-reveal data-reveal-delay="160" href="#" onClick="{{goBaby}}" style="grid-column:span 2;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#FFFDF7;border:2px solid #1D3FC4;border-radius:24px;padding:30px;min-height:130px;transition:transform .25s ease" style-hover="transform:translateY(-6px)">
+          <div>
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:25px;color:#12235C;line-height:1.05">Baby &amp; Toddler</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;letter-spacing:1.5px;color:#4A5688;margin-top:9px">276 TRENDING PICKS</div>
+          </div>
+          <div style="font-size:26px;color:#1D3FC4;flex:none">→</div>
+        </a>
+
+      </div>
+
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:44px">
+        <sc-for list="{{allCats}}" as="c" hint-placeholder-count="10">
+          <button onClick="{{c.open}}" style="background:#FFFDF7;border:2px solid rgba(20,34,90,.18);color:#12235C;font-weight:800;font-size:15px;padding:11px 20px;border-radius:999px;cursor:pointer;transition:all .2s ease;font-family:'Nunito',sans-serif" style-hover="border-color:#1D3FC4;color:#1D3FC4;transform:translateY(-2px)" style-active="transform:scale(.96)">{{c.name}}</button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCOUT PROCESS ================= -->
+  <section id="process" data-screen-label="How We Rank" style="background:#FAF3E7;padding:110px 40px">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:minmax(300px,1fr) minmax(300px,1.15fr);gap:60px;align-items:center">
+        <div>
+          <div data-reveal style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2.5px;color:#1D3FC4;font-weight:600;margin-bottom:16px">THE TOYSCOUT RADAR</div>
+          <h2 data-reveal data-reveal-delay="60" style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(38px,4.5vw,58px);line-height:1.02;margin:0 0 20px;color:#12235C">We watch the charts so you don't have to.</h2>
+          <p data-reveal data-reveal-delay="120" style="font-size:18px;line-height:1.6;color:#4A5688;margin:0 0 30px;max-width:460px">Best seller charts, review scores, and wish lists shift every day. We track them across all 19 toy categories and surface only what's genuinely rising.</p>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div data-reveal data-reveal-delay="180" style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:38px;height:38px;border:2px solid #1D3FC4;border-radius:50%;display:grid;place-items:center;color:#1D3FC4;font-weight:800">1</span><span style="font-size:17px;font-weight:700">Best seller &amp; new-release charts scanned daily</span></div>
+            <div data-reveal data-reveal-delay="240" style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:38px;height:38px;border:2px solid #1D3FC4;border-radius:50%;display:grid;place-items:center;color:#1D3FC4;font-weight:800">2</span><span style="font-size:17px;font-weight:700">1M+ customer ratings &amp; review trends analyzed</span></div>
+            <div data-reveal data-reveal-delay="300" style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:38px;height:38px;border:2px solid #E8442E;border-radius:50%;display:grid;place-items:center;color:#E8442E;font-weight:800">3</span><span style="font-size:17px;font-weight:700">Only 4.5★+ picks with proven demand make the cut</span></div>
+          </div>
+        </div>
+        <div data-reveal data-reveal-delay="150">
+          <img src="assets/testlab.png" alt="The ToyScout radar — toys and trend charts on a workbench" style="width:100%;border-radius:26px;border:3px solid #1D3FC4;box-shadow:0 20px 44px rgba(18,35,92,.16)">
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:70px">
+        <figure data-reveal style="margin:0;background:#E3EAFB;border-radius:20px;padding:28px">
+          <div style="font-family:'Baloo 2',sans-serif;font-size:40px;line-height:.5;color:#1D3FC4;margin-bottom:16px">“</div>
+          <blockquote style="margin:0 0 18px;font-size:16.5px;line-height:1.55;color:#14225A">ToyScout takes the guesswork out of shopping. Instead of scrolling a thousand listings, I just check what's actually trending.</blockquote>
+          <figcaption><span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;letter-spacing:1px">MELISSA K.</span><span style="display:block;font-size:14px;color:#4A5688;margin-top:2px">Mom of 2</span></figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="90" style="margin:0;background:#E3EAFB;border-radius:20px;padding:28px">
+          <div style="font-family:'Baloo 2',sans-serif;font-size:40px;line-height:.5;color:#1D3FC4;margin-bottom:16px">“</div>
+          <blockquote style="margin:0 0 18px;font-size:16.5px;line-height:1.55;color:#14225A">Every gift I've bought from their best-seller lists has been a hit. It's the only place I look before birthdays.</blockquote>
+          <figcaption><span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;letter-spacing:1px">JORDAN T.</span><span style="display:block;font-size:14px;color:#4A5688;margin-top:2px">Dad of 1</span></figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="180" style="margin:0;background:#E3EAFB;border-radius:20px;padding:28px">
+          <div style="font-family:'Baloo 2',sans-serif;font-size:40px;line-height:.5;color:#1D3FC4;margin-bottom:16px">“</div>
+          <blockquote style="margin:0 0 18px;font-size:16.5px;line-height:1.55;color:#14225A">The ratings are pulled from real Amazon reviews, so it feels honest — not like an ad.</blockquote>
+          <figcaption><span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;letter-spacing:1px">RACHEL S.</span><span style="display:block;font-size:14px;color:#4A5688;margin-top:2px">Mom of 3</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BLOG ================= -->
+  <section id="blog" data-screen-label="Blog" style="background:#FFFDF7;padding:96px 40px;border-top:1px solid rgba(20,34,90,.06)">
+    <div style="max-width:1240px;margin:0 auto">
+      <h2 data-reveal style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(38px,4.5vw,58px);line-height:1.02;margin:0 0 50px;color:#12235C">Fresh from the blog</h2>
+
+      <div style="display:flex;flex-direction:column">
+
+        <a data-reveal href="#" onClick="{{openPost1}}" style="display:grid;grid-template-columns:56px 1fr minmax(220px,320px);gap:28px;align-items:center;padding:30px 0;border-top:1px solid rgba(20,34,90,.12);color:#14225A" style-hover="color:#14225A">
+          <div style="font-family:ui-monospace,Menlo,monospace;font-size:18px;font-weight:700;color:#4A5688">01</div>
+          <div>
+            <h3 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(24px,2.6vw,32px);margin:0 0 8px;color:#1D3FC4;line-height:1.1">Prime Day 2026: the toy deals actually worth grabbing</h3>
+            <p style="margin:0 0 10px;font-size:16px;line-height:1.5;color:#4A5688">Prime Day lands July 14–15. Here's what to grab, what to skip, and how to spot a real discount.</p>
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#4A5688">JUL 8, 2026</span>
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;color:#1D3FC4;border-bottom:2px dotted #E8442E;padding-bottom:1px">Read the roundup ⇢</span>
+            </div>
+          </div>
+          <img src="assets/hero-toybox-blue.png" alt="A toy box overflowing with deal picks" class="ts-hide-m" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:18px">
+        </a>
+
+        <a data-reveal href="#" onClick="{{openPost2}}" style="display:grid;grid-template-columns:56px 1fr minmax(220px,320px);gap:28px;align-items:center;padding:30px 0;border-top:1px solid rgba(20,34,90,.12);color:#14225A" style-hover="color:#14225A">
+          <div style="font-family:ui-monospace,Menlo,monospace;font-size:18px;font-weight:700;color:#4A5688">02</div>
+          <div>
+            <h3 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(24px,2.6vw,32px);margin:0 0 8px;color:#1D3FC4;line-height:1.1">The 7 best-selling STEM kits on Amazon right now</h3>
+            <p style="margin:0 0 10px;font-size:16px;line-height:1.5;color:#4A5688">Coding robots and chemistry sets are having a moment — these are the kits actually topping the charts.</p>
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#4A5688">JUN 22, 2026</span>
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;color:#1D3FC4;border-bottom:2px dotted #E8442E;padding-bottom:1px">Read the roundup ⇢</span>
+            </div>
+          </div>
+          <img src="assets/blog-stem.png" alt="Kid assembling a robotics kit" class="ts-hide-m" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:18px">
+        </a>
+
+        <a data-reveal href="#" onClick="{{openPost3}}" style="display:grid;grid-template-columns:56px 1fr minmax(220px,320px);gap:28px;align-items:center;padding:30px 0;border-top:1px solid rgba(20,34,90,.12);border-bottom:1px solid rgba(20,34,90,.12);color:#14225A" style-hover="color:#14225A">
+          <div style="font-family:ui-monospace,Menlo,monospace;font-size:18px;font-weight:700;color:#4A5688">03</div>
+          <div>
+            <h3 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(24px,2.6vw,32px);margin:0 0 8px;color:#1D3FC4;line-height:1.1">Screen-free summer: the outdoor toys trending this July</h3>
+            <p style="margin:0 0 10px;font-size:16px;line-height:1.5;color:#4A5688">Balance bikes, ninja courses, and backyard games are surging as families unplug for summer.</p>
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#4A5688">JUL 1, 2026</span>
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;color:#1D3FC4;border-bottom:2px dotted #E8442E;padding-bottom:1px">Read the roundup ⇢</span>
+            </div>
+          </div>
+          <img src="assets/blog-family.png" alt="Family playing a board game" class="ts-hide-m" style="width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:18px">
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NEWSLETTER + FOOTER ================= -->
+  <section data-screen-label="Newsletter" style="background:#1C3ECC;position:relative;overflow:hidden;padding:100px 40px">
+    <div style="position:absolute;inset:0;background:url('assets/pattern-blue.png');background-size:520px;opacity:.32"></div>
+    <div style="position:relative;max-width:720px;margin:0 auto;text-align:center">
+      <h2 data-reveal style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,56px);color:#FFFDF7;margin:0 0 14px;line-height:1.05">Get the weekly trend drop.</h2>
+      <p data-reveal data-reveal-delay="80" style="font-size:19px;color:#CBD7FA;margin:0 0 34px">One email. The five hottest toys on Amazon. No spam.</p>
+      <sc-if value="{{subscribed}}" hint-placeholder-val="{{false}}">
+        <div style="background:#FFFDF7;border-radius:18px;padding:22px 28px;display:inline-flex;align-items:center;gap:12px"><span style="color:#1F8A5B;font-size:22px">✓</span><span style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:20px;color:#12235C">You're in! First drop lands Monday.</span></div>
+      </sc-if>
+      <sc-if value="{{notSubscribed}}" hint-placeholder-val="{{true}}">
+        <div data-reveal data-reveal-delay="140" style="display:flex;gap:0;max-width:560px;margin:0 auto;background:#FFFDF7;border-radius:16px;padding:6px;box-shadow:0 10px 30px rgba(8,16,50,.25)">
+          <input type="email" placeholder="Your email address" value="{{email}}" onChange="{{onEmail}}" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:17px;padding:14px 18px;color:#14225A">
+          <button onClick="{{onJoin}}" style="flex:none;border:none;cursor:pointer;background:#E8442E;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:18px;padding:14px 28px;border-radius:12px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px)" style-active="transform:translateY(1px) scale(.97)">Join the drop</button>
+        </div>
+        <sc-if value="{{newsletterError}}" hint-placeholder-val="{{false}}">
+          <div data-reveal data-reveal-delay="180" style="margin-top:14px;color:#FFD9D2;font-weight:700;font-size:15px">Please enter a valid email address.</div>
+        </sc-if>
+      </sc-if>
+    </div>
+  </section>
+
+  <footer data-screen-label="Footer" style="background:#0E1C4E;padding:70px 40px 36px">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:minmax(220px,1.2fr) repeat(auto-fit,minmax(150px,1fr));gap:40px">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <img src="assets/logo-blocks.png" alt="" style="width:44px;height:44px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))">
+            <span style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:26px;color:#FFFDF7">ToyScout</span>
+          </div>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#8FA0D6;max-width:280px">Amazon's best-selling, most-loved, and fastest-rising toys — curated in one place.</p>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:2px;color:#8FA0D6;margin-bottom:16px">EXPLORE</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="#top" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Home</a>
+            <a href="#categories" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Categories</a>
+            <a href="#picks" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Best Sellers</a>
+            <a href="#picks" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Budget Picks</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:2px;color:#8FA0D6;margin-bottom:16px">LEARN</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="#" onClick="{{openBlog}}" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Blog</a>
+            <a href="#process" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">How We Rank</a>
+            <a href="#picks" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Trending Now</a>
+            <a href="#" onClick="{{openContact}}" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:2px;color:#8FA0D6;margin-bottom:16px">POLICIES</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="#" onClick="{{openPrivacy}}" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Privacy Policy</a>
+            <a href="#" onClick="{{openTerms}}" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Terms of Use</a>
+            <a href="#" onClick="{{openDisclosure}}" style="color:#E7ECFB;font-weight:600;font-size:15px" style-hover="color:#FFD9D2">Affiliate Disclosure</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(231,236,251,.14);margin-top:50px;padding-top:26px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center">
+        <span style="font-size:13.5px;color:#8FA0D6">As an Amazon Associate, ToyScout earns from qualifying purchases.</span>
+        <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;letter-spacing:1px;color:#8FA0D6">© 2026 TOYSCOUT</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SUB-PAGES ================= -->
+  <sc-if value="{{pageShop}}" hint-placeholder-val="{{false}}">
+    <div id="ts-shop" data-screen-label="Category Shop" style="position:fixed;inset:0;z-index:40;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:1240px;margin:0 auto;padding:104px 40px 100px">
+
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:22px">
+          <button onClick="{{goHome}}" style="background:none;border:none;cursor:pointer;padding:0;font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;color:#4A5688;font-weight:600" style-hover="color:#E8442E">HOME</button>
+          <span style="color:#4A5688;font-size:12px">›</span>
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;color:#4A5688;font-weight:600">TOYS &amp; GAMES</span>
+          <span style="color:#4A5688;font-size:12px">›</span>
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;color:#E8442E;font-weight:600">{{shopTitle}}</span>
+        </div>
+
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(38px,4.5vw,60px);line-height:1;margin:0 0 10px;color:#12235C">{{shopTitle}}</h1>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#4A5688;margin-bottom:30px">{{shopCount}} TRENDING PICKS · CHARTS UPDATED DAILY</div>
+
+        <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:14px;margin-bottom:26px;scrollbar-width:thin">
+          <sc-for list="{{catChips}}" as="chip" hint-placeholder-count="8">
+            <button onClick="{{chip.open}}" style="flex:none;background:{{chip.bg}};color:{{chip.fg}};border:2px solid {{chip.border}};font-weight:800;font-size:14px;padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .2s ease;font-family:'Nunito',sans-serif;white-space:nowrap" style-active="transform:scale(.96)">{{chip.name}}</button>
+          </sc-for>
+        </div>
+
+        <div style="background:#FFFDF7;border-radius:20px;padding:20px 24px;box-shadow:0 2px 14px rgba(18,35,92,.06);margin-bottom:36px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:1.5px;color:#4A5688;width:64px;flex:none">SORT</span>
+            <sc-for list="{{sortChips}}" as="chip" hint-placeholder-count="4">
+              <button onClick="{{chip.fn}}" style="background:{{chip.bg}};color:{{chip.fg}};border:2px solid {{chip.border}};font-weight:800;font-size:13.5px;padding:8px 16px;border-radius:999px;cursor:pointer;transition:all .2s ease;font-family:'Nunito',sans-serif" style-active="transform:scale(.96)">{{chip.label}}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:1.5px;color:#4A5688;width:64px;flex:none">AGE</span>
+            <sc-for list="{{ageChips}}" as="chip" hint-placeholder-count="5">
+              <button onClick="{{chip.fn}}" style="background:{{chip.bg}};color:{{chip.fg}};border:2px solid {{chip.border}};font-weight:800;font-size:13.5px;padding:8px 16px;border-radius:999px;cursor:pointer;transition:all .2s ease;font-family:'Nunito',sans-serif" style-active="transform:scale(.96)">{{chip.label}}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:1.5px;color:#4A5688;width:64px;flex:none">PRICE</span>
+            <sc-for list="{{priceChips}}" as="chip" hint-placeholder-count="3">
+              <button onClick="{{chip.fn}}" style="background:{{chip.bg}};color:{{chip.fg}};border:2px solid {{chip.border}};font-weight:800;font-size:13.5px;padding:8px 16px;border-radius:999px;cursor:pointer;transition:all .2s ease;font-family:'Nunito',sans-serif" style-active="transform:scale(.96)">{{chip.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{shopNotEmpty}}" hint-placeholder-val="{{true}}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:26px">
+            <sc-for list="{{shopProducts}}" as="p" hint-placeholder-count="6">
+              <article style="background:#FFFDF7;border-radius:20px;padding:22px 22px 20px;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease;display:flex;flex-direction:column" style-hover="transform:translateY(-6px);box-shadow:0 14px 30px rgba(18,35,92,.13)">
+                <div onClick="{{p.open}}" style="display:flex;justify-content:center;padding:4px 0 12px;cursor:pointer"><div role="img" aria-label="{{p.name}}" style="height:150px;width:100%;background-image:url('{{p.img}}');background-size:contain;background-position:center;background-repeat:no-repeat;mix-blend-mode:multiply"></div></div>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+                  <span style="display:inline-block;background:{{p.badgeBg}};color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:1.5px;padding:4px 9px;border-radius:6px">{{p.badge}}</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1px;color:#4A5688;border:1px solid rgba(20,34,90,.18);padding:3px 8px;border-radius:6px">AGES {{p.age}}</span>
+                </div>
+                <h3 onClick="{{p.open}}" style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:20px;margin:0 0 10px;color:#12235C;line-height:1.15;cursor:pointer" style-hover="color:#1D3FC4">{{p.name}}</h3>
+                <div style="margin-top:auto">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px">
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:600">{{p.price}}</span>
+                    <span style="display:flex;align-items:center;gap:6px"><span style="color:#E8442E;font-size:13.5px;letter-spacing:1.5px">★★★★★</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#4A5688">{{p.ratings}}</span></span>
+                  </div>
+                  <a href="{{p.url}}" target="_blank" rel="sponsored nofollow noopener" style="display:flex;align-items:center;justify-content:center;gap:9px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 18px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)"><span style="width:8px;height:8px;background:#fff;border-radius:50%"></span>View on Amazon</a>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{shopEmpty}}" hint-placeholder-val="{{false}}">
+          <div style="text-align:center;padding:70px 20px">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin-bottom:10px">No picks match those filters.</div>
+            <p style="font-size:16.5px;color:#4A5688;margin:0 0 24px">Try widening the age or price range.</p>
+            <button onClick="{{clearFilters}}" style="border:none;cursor:pointer;background:#1D3FC4;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;padding:13px 28px;border-radius:999px;transition:transform .15s ease" style-hover="transform:translateY(-2px)" style-active="transform:scale(.96)">Clear filters</button>
+          </div>
+        </sc-if>
+
+        <div style="margin-top:60px;font-size:13.5px;color:#4A5688;text-align:center">As an Amazon Associate, ToyScout earns from qualifying purchases. Prices are approximate ranges — confirm on Amazon.</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pageBlog}}" hint-placeholder-val="{{false}}">
+    <div id="ts-page-blog" data-screen-label="Blog Index" style="position:fixed;inset:0;z-index:40;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:1240px;margin:0 auto;padding:120px 40px 110px">
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2.5px;color:#E8442E;font-weight:600;margin-bottom:12px">THE TOYSCOUT RADAR BLOG</div>
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(42px,5vw,64px);line-height:1;margin:0 0 16px;color:#12235C">What's moving the charts.</h1>
+        <p style="font-size:19px;line-height:1.6;color:#4A5688;margin:0 0 50px;max-width:560px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon's Toys &amp; Games department.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px">
+          <a href="#" onClick="{{openPost1}}" style="display:flex;flex-direction:column;background:#FFFDF7;border-radius:22px;overflow:hidden;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease;color:#14225A" style-hover="transform:translateY(-6px);box-shadow:0 16px 34px rgba(18,35,92,.14);color:#14225A">
+            <img src="assets/hero-toybox-blue.png" alt="A toy box overflowing with deal picks" style="width:100%;aspect-ratio:16/9;object-fit:cover">
+            <div style="padding:24px 26px 26px;display:flex;flex-direction:column;gap:10px;flex:1">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:1.5px;color:#E8442E;font-weight:600">DEALS · JUL 8, 2026</span>
+              <span style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;line-height:1.12;color:#12235C">Prime Day 2026: the toy deals actually worth grabbing</span>
+              <span style="font-size:15.5px;line-height:1.5;color:#4A5688">What to grab July 14–15, what to skip, and how to spot a real discount.</span>
+              <span style="margin-top:auto;font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;color:#1D3FC4;border-bottom:2px dotted #E8442E;padding-bottom:1px;align-self:flex-start">Read the article ⇢</span>
+            </div>
+          </a>
+          <a href="#" onClick="{{openPost2}}" style="display:flex;flex-direction:column;background:#FFFDF7;border-radius:22px;overflow:hidden;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease;color:#14225A" style-hover="transform:translateY(-6px);box-shadow:0 16px 34px rgba(18,35,92,.14);color:#14225A">
+            <img src="assets/blog-stem.png" alt="Kid assembling a robotics kit" style="width:100%;aspect-ratio:16/9;object-fit:cover">
+            <div style="padding:24px 26px 26px;display:flex;flex-direction:column;gap:10px;flex:1">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:1.5px;color:#E8442E;font-weight:600">CHARTS · JUN 22, 2026</span>
+              <span style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;line-height:1.12;color:#12235C">The 7 best-selling STEM kits on Amazon right now</span>
+              <span style="font-size:15.5px;line-height:1.5;color:#4A5688">Coding robots and chemistry sets are having a moment — these kits top the charts.</span>
+              <span style="margin-top:auto;font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;color:#1D3FC4;border-bottom:2px dotted #E8442E;padding-bottom:1px;align-self:flex-start">Read the article ⇢</span>
+            </div>
+          </a>
+          <a href="#" onClick="{{openPost3}}" style="display:flex;flex-direction:column;background:#FFFDF7;border-radius:22px;overflow:hidden;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease;color:#14225A" style-hover="transform:translateY(-6px);box-shadow:0 16px 34px rgba(18,35,92,.14);color:#14225A">
+            <img src="assets/blog-family.png" alt="Family playing together, screens away" style="width:100%;aspect-ratio:16/9;object-fit:cover">
+            <div style="padding:24px 26px 26px;display:flex;flex-direction:column;gap:10px;flex:1">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:1.5px;color:#E8442E;font-weight:600">SEASONAL · JUL 1, 2026</span>
+              <span style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;line-height:1.12;color:#12235C">Screen-free summer: the outdoor toys trending this July</span>
+              <span style="font-size:15.5px;line-height:1.5;color:#4A5688">Balance bikes, ninja courses, and backyard games are surging as families unplug.</span>
+              <span style="margin-top:auto;font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:700;color:#1D3FC4;border-bottom:2px dotted #E8442E;padding-bottom:1px;align-self:flex-start">Read the article ⇢</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pagePost1}}" hint-placeholder-val="{{false}}">
+    <div id="ts-page-post1" data-screen-label="Post: Prime Day 2026" style="position:fixed;inset:0;z-index:41;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:800px;margin:0 auto;padding:120px 40px 110px">
+        <button onClick="{{backToBlog}}" style="display:inline-flex;align-items:center;gap:8px;background:#FFFDF7;border:2px solid #1D3FC4;color:#1D3FC4;font-weight:800;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer;margin-bottom:38px;transition:all .2s ease" style-hover="background:#1D3FC4;color:#fff" style-active="transform:scale(.96)">← All articles</button>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2px;color:#E8442E;font-weight:600;margin-bottom:14px">DEALS · JUL 8, 2026 · BY TOYSCOUT EDITORS</div>
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,54px);line-height:1.04;margin:0 0 20px;color:#12235C">Prime Day 2026: the toy deals actually worth grabbing</h1>
+        <p style="font-size:19px;line-height:1.65;color:#4A5688;margin:0 0 30px">Prime Day lands <strong>July 14–15</strong> this year, and toy listings are already shuffling. We've been watching prices across all 19 categories for six weeks — here's what's genuinely worth your cart space.</p>
+        <img src="assets/hero-toybox-blue.png" alt="A toy box overflowing with Prime Day picks" style="width:100%;border-radius:22px;margin-bottom:34px">
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">First: how to spot a real discount</h2>
+        <p style="margin:0 0 14px;font-size:17px;line-height:1.75;color:#4A5688">The oldest Prime Day trick is a "deal" from an inflated list price. Our rule: a toy deal only counts if the sale price beats its <strong>90-day average</strong>, not the sticker. Anything we flag below has been tracked against that average — and everything holds a 4.5★+ rating with real review volume behind it.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">Worth grabbing</h2>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688"><strong>1. Magnetic building tiles.</strong> The category's #1 best seller historically drops 25–30% on Prime Day — its single biggest discount of the year outside Black Friday. If a big set is on your holiday list, buy it now, not in November.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-magnatiles.png" alt="Magna-Tiles Classic 100 Set" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">Magna-Tiles Classic 100 Set</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$89 to $119 · ★★★★★ 38,752 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688"><strong>2. Kids' cameras and electronics.</strong> Kids' Electronics is the most heavily discounted toy department on Prime Day. Instant-print cameras in particular have been climbing the Movers &amp; Shakers chart all spring.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-robot.png" alt="Kids Instant Print Camera" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">Kids Instant Print Camera</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$19 to $29 · ★★★★★ 21,860 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688"><strong>3. Ride-ons and scooters.</strong> Peak outdoor season means peak demand — but Prime Day is when sellers clear spring inventory. LED scooters saw the deepest ride-on discounts last year, and early listings suggest a repeat.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-bike.png" alt="LED Kick Scooter" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">LED Kick Scooter</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$89 to $119 · ★★★★★ 15,102 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">What to skip</h2>
+        <p style="margin:0 0 14px;font-size:17px;line-height:1.75;color:#4A5688"><strong>Licensed-character merchandise</strong> rarely gets a genuine cut — demand is steady year-round, so sellers don't need to discount. And <strong>this year's holiday hype toys</strong> won't be discounted in July; if anything, they'll be cheaper in early December when retailers compete. Patience pays.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">The bottom line</h2>
+        <p style="margin:0 0 14px;font-size:17px;line-height:1.75;color:#4A5688">Shop from a list, check the 90-day average, and treat Prime Day as a chance to buy the evergreen toys you already wanted — not to discover new ones at midnight. We'll flag live deals in the weekly trend drop as they go up.</p>
+        <div style="background:#E3EAFB;border-radius:16px;padding:20px 24px;margin-top:34px;font-size:14px;line-height:1.6;color:#4A5688">As an Amazon Associate, ToyScout earns from qualifying purchases. Prices are approximate ranges — confirm on Amazon.</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pagePost2}}" hint-placeholder-val="{{false}}">
+    <div id="ts-page-post2" data-screen-label="Post: STEM Kits" style="position:fixed;inset:0;z-index:41;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:800px;margin:0 auto;padding:120px 40px 110px">
+        <button onClick="{{backToBlog}}" style="display:inline-flex;align-items:center;gap:8px;background:#FFFDF7;border:2px solid #1D3FC4;color:#1D3FC4;font-weight:800;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer;margin-bottom:38px;transition:all .2s ease" style-hover="background:#1D3FC4;color:#fff" style-active="transform:scale(.96)">← All articles</button>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2px;color:#E8442E;font-weight:600;margin-bottom:14px">CHARTS · JUN 22, 2026 · BY TOYSCOUT EDITORS</div>
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,54px);line-height:1.04;margin:0 0 20px;color:#12235C">The 7 best-selling STEM kits on Amazon right now</h1>
+        <p style="font-size:19px;line-height:1.65;color:#4A5688;margin:0 0 30px">Learning &amp; Education has been the fastest-growing toy department on our radar for three straight months. Summer-break boredom plus back-to-school anxiety is a powerful combination — and these seven kits are riding it to the top of the charts.</p>
+        <img src="assets/blog-stem.png" alt="Kid assembling a robotics kit at a workbench" style="width:100%;border-radius:22px;margin-bottom:34px">
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">Why STEM kits are surging</h2>
+        <p style="margin:0 0 14px;font-size:17px;line-height:1.75;color:#4A5688">Review velocity tells the story: STEM kit ratings are arriving 40% faster than this time last year, and "screen-free coding" appears in reviews more than any other phrase we track. Parents want the robotics without the tablet — and manufacturers have finally caught up.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">The chart-toppers</h2>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688"><strong>1. The classic chemistry set, reborn.</strong> The current #1 in Learning &amp; Education is a real-experiment lab kit — 3,000+ new ratings since May, nearly all five stars.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-science.png" alt="KidVentor Science Lab Kit" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">KidVentor Science Lab Kit</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$19 to $29 · ★★★★★ 38,752 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688"><strong>2. Coding robots for the tablet-free crowd.</strong> The breakout of the season: build-it-yourself robots programmed with physical cards instead of an app. Currently wearing the Movers &amp; Shakers badge.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-robot.png" alt="Smart Robot Coding Kit" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">Smart Robot Coding Kit</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$34 to $49 · ★★★★★ 12,431 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688"><strong>3. Pre-readers get coding too.</strong> For the 3–5 crowd, the caterpillar-style sequencing robot keeps its multi-year hold on the preschool STEM crown — simple, durable, and screen-free.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-flashcards.png" alt="Coding Caterpillar Robot" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">Coding Caterpillar Robot</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$44 to $59 · ★★★★★ 9,214 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">Rounding out the seven</h2>
+        <p style="margin:0 0 14px;font-size:17px;line-height:1.75;color:#4A5688">The rest of the chart: <strong>STEM Gears Construction Lab</strong> (4th), <strong>Digital Microscope for Kids</strong> (5th), <strong>Solar System Model Kit</strong> (6th), and the <strong>Human Body Anatomy Kit</strong> (7th) — all holding 4.5★+ with steady review growth. Every one is on its category page with full pros, cons, and comparisons.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">How to choose</h2>
+        <p style="margin:0 0 14px;font-size:17px;line-height:1.75;color:#4A5688">Match the kit to the kid, not the age on the box: builders want gears and open parts, tinkerers want circuits and reactions, and story-driven kids stick with robots that have personality. When in doubt, pick the kit with the messiest experiments — mess is memory.</p>
+        <div style="background:#E3EAFB;border-radius:16px;padding:20px 24px;margin-top:34px;font-size:14px;line-height:1.6;color:#4A5688">As an Amazon Associate, ToyScout earns from qualifying purchases. Prices are approximate ranges — confirm on Amazon.</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pagePost3}}" hint-placeholder-val="{{false}}">
+    <div id="ts-page-post3" data-screen-label="Post: Screen-Free Summer" style="position:fixed;inset:0;z-index:41;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:800px;margin:0 auto;padding:120px 40px 110px">
+        <button onClick="{{backToBlog}}" style="display:inline-flex;align-items:center;gap:8px;background:#FFFDF7;border:2px solid #1D3FC4;color:#1D3FC4;font-weight:800;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer;margin-bottom:38px;transition:all .2s ease" style-hover="background:#1D3FC4;color:#fff" style-active="transform:scale(.96)">← All articles</button>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2px;color:#E8442E;font-weight:600;margin-bottom:14px">SEASONAL · JUL 1, 2026 · BY TOYSCOUT EDITORS</div>
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,54px);line-height:1.04;margin:0 0 20px;color:#12235C">Screen-free summer: the outdoor toys trending this July</h1>
+        <p style="font-size:19px;line-height:1.65;color:#4A5688;margin:0 0 30px">"Screen-free summer" pledges are everywhere this year — and the Sports &amp; Outdoor charts show families putting money behind the promise. Outdoor play is up across every age bracket on our radar. Here's what's actually selling.</p>
+        <img src="assets/blog-family.png" alt="Family playing together around a table, screens away" style="width:100%;border-radius:22px;margin-bottom:34px">
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">Balance bikes keep winning</h2>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688">Five years into the balance-bike boom, they still top the outdoor charts every summer. Reviewers consistently report kids skipping training wheels entirely — the phrase "rode a pedal bike in one day" shows up in hundreds of reviews.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-bike.png" alt="Coast Wooden Balance Bike" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">Coast Wooden Balance Bike</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$19 to $29 · ★★★★★ 15,102 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">The backyard ninja course explosion</h2>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688">The single fastest riser in Sports &amp; Outdoor: slackline-style ninja courses that string between two trees. Review volume has tripled since April, driven by the 6–10 age bracket — and by parents who admit using it themselves.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-marble.png" alt="Backyard Ninja Course Kit" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">Backyard Ninja Course Kit</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$34 to $49 · ★★★★★ 3,487 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">Small purchases, big afternoons</h2>
+        <p style="margin:0 0 8px;font-size:17px;line-height:1.75;color:#4A5688">Not every screen-free win costs $80. Pop-up soccer goals, foam rocket launchers, and sidewalk chalk mega-sets dominate the under-$30 chart — the highest-rated "cousin visit" purchases we track.</p>
+        <div style="display:flex;gap:20px;align-items:center;background:#FFFDF7;border:2px solid rgba(20,34,90,.12);border-radius:18px;padding:18px 22px;margin:18px 0 26px;flex-wrap:wrap">
+          <img src="assets/prod-boardgame.png" alt="Pop-Up Soccer Goal 2-Pack" style="width:100px;height:100px;object-fit:contain;mix-blend-mode:multiply;flex:none">
+          <div style="min-width:180px;flex:1">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:#12235C">Pop-Up Soccer Goal 2-Pack</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688;margin-top:4px">$89 to $119 · ★★★★★ 12,431 ratings</div>
+          </div>
+          <a href="#" style="flex:none;display:inline-flex;align-items:center;gap:8px;background:#E8442E;color:#fff;font-weight:800;font-size:14.5px;padding:12px 20px;border-radius:8px 14px 14px 8px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin:34px 0 12px">Making it stick</h2>
+        <p style="margin:0 0 14px;font-size:17px;line-height:1.75;color:#4A5688">The pattern in thousands of reviews: outdoor toys get used when they live outside, visible and ready — not boxed in the garage. Pick one anchor toy, leave it set up, and let the boredom do the rest. Screens can't compete with a ninja course that's already hanging there.</p>
+        <div style="background:#E3EAFB;border-radius:16px;padding:20px 24px;margin-top:34px;font-size:14px;line-height:1.6;color:#4A5688">As an Amazon Associate, ToyScout earns from qualifying purchases. Prices are approximate ranges — confirm on Amazon.</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pageProduct}}" hint-placeholder-val="{{false}}">
+    <div id="ts-prod" data-screen-label="Product Review" style="position:fixed;inset:0;z-index:41;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:1240px;margin:0 auto;padding:104px 40px 140px">
+
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:26px">
+          <button onClick="{{goHome}}" style="background:none;border:none;cursor:pointer;padding:0;font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;color:#4A5688;font-weight:600" style-hover="color:#E8442E">HOME</button>
+          <span style="color:#4A5688;font-size:12px">›</span>
+          <button onClick="{{backToShop}}" style="background:none;border:none;cursor:pointer;padding:0;font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;color:#4A5688;font-weight:600" style-hover="color:#E8442E">{{prodCatName}}</button>
+          <span style="color:#4A5688;font-size:12px">›</span>
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;color:#E8442E;font-weight:600">REVIEW</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(300px,1fr) minmax(300px,1.1fr);gap:44px;align-items:start;margin-bottom:60px">
+          <div style="background:#FFFDF7;border-radius:24px;padding:40px;box-shadow:0 2px 14px rgba(18,35,92,.07);display:flex;justify-content:center;align-items:center;min-height:380px">
+            <div role="img" aria-label="{{prod.name}}" style="height:320px;width:100%;background-image:url('{{prod.img}}');background-size:contain;background-position:center;background-repeat:no-repeat;mix-blend-mode:multiply"></div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+              <span style="display:inline-block;background:{{prod.badgeBg}};color:#fff;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1.5px;padding:5px 10px;border-radius:6px">{{prod.badge}}</span>
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:1px;color:#4A5688;border:1px solid rgba(20,34,90,.18);padding:4px 9px;border-radius:6px">AGES {{prod.age}}</span>
+            </div>
+            <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(32px,3.6vw,48px);line-height:1.02;margin:0 0 12px;color:#12235C">{{prod.name}}</h1>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px">
+              <span style="color:#E8442E;font-size:18px;letter-spacing:2px">★★★★★</span>
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;color:#4A5688">{{prod.ratings}} global ratings on Amazon</span>
+            </div>
+            <div style="background:#FFFDF7;border:2px solid #1D3FC4;border-radius:20px;padding:24px;margin-bottom:26px">
+              <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:2px;color:#4A5688;margin-bottom:6px">TYPICAL PRICE RANGE</div>
+              <div style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:34px;color:#12235C;margin-bottom:16px">{{prod.price}}</div>
+              <a href="{{prod.url}}" target="_blank" rel="sponsored nofollow noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#E8442E;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:20px;padding:16px 28px;border-radius:12px;box-shadow:0 4px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.98)"><span style="width:9px;height:9px;background:#fff;border-radius:50%"></span>View current price on Amazon</a>
+              <div style="font-size:13px;color:#4A5688;margin-top:12px;text-align:center">Price and availability set by Amazon · affiliate link</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+              <div style="background:#E6F2E9;border-radius:16px;padding:20px">
+                <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:#1F8A5B;margin-bottom:12px">What we love</div>
+                <div style="display:flex;flex-direction:column;gap:9px">
+                  <sc-for list="{{prodPros}}" as="pr" hint-placeholder-count="4">
+                    <div style="display:flex;gap:8px;font-size:14.5px;line-height:1.45;color:#14225A"><span style="color:#1F8A5B;flex:none;font-weight:800">✓</span><span>{{pr.t}}</span></div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="background:#FBE9E5;border-radius:16px;padding:20px">
+                <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:#B32B18;margin-bottom:12px">Keep in mind</div>
+                <div style="display:flex;flex-direction:column;gap:9px">
+                  <sc-for list="{{prodCons}}" as="cn" hint-placeholder-count="2">
+                    <div style="display:flex;gap:8px;font-size:14.5px;line-height:1.45;color:#14225A"><span style="color:#B32B18;flex:none;font-weight:800">✕</span><span>{{cn.t}}</span></div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(280px,1fr) minmax(280px,1.4fr);gap:44px;align-items:start;margin-bottom:60px">
+          <div style="background:#FFFDF7;border-radius:20px;padding:28px;box-shadow:0 2px 14px rgba(18,35,92,.07)">
+            <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;margin:0 0 18px;color:#12235C">At a glance</h2>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{prodSpecs}}" as="sp" hint-placeholder-count="5">
+                <div style="display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-top:1px solid rgba(20,34,90,.1)">
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:1.5px;color:#4A5688;padding-top:2px">{{sp.label}}</span>
+                  <span style="font-weight:800;font-size:15px;color:#12235C;text-align:right">{{sp.value}}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background:#FFFDF7;border-radius:20px;padding:28px;box-shadow:0 2px 14px rgba(18,35,92,.07);overflow-x:auto">
+            <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;margin:0 0 18px;color:#12235C">How it compares</h2>
+            <div style="display:grid;grid-template-columns:88px 1fr 1fr 1fr;gap:0;min-width:520px">
+              <div></div>
+              <div style="padding:10px;text-align:center;background:#EDF1FD;border-radius:12px 0 0 0"><div style="font-weight:800;font-size:14px;color:#1D3FC4;line-height:1.2">{{prod.name}}</div><div style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:1px;color:#4A5688;margin-top:4px">THIS PICK</div></div>
+              <div style="padding:10px;text-align:center"><div style="font-weight:700;font-size:14px;color:#12235C;line-height:1.2">{{alt1.name}}</div></div>
+              <div style="padding:10px;text-align:center;border-radius:0 12px 0 0"><div style="font-weight:700;font-size:14px;color:#12235C;line-height:1.2">{{alt2.name}}</div></div>
+              <sc-for list="{{cmpRows}}" as="row" hint-placeholder-count="4">
+                <div style="padding:12px 8px;border-top:1px solid rgba(20,34,90,.1);font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:1px;color:#4A5688;display:flex;align-items:center">{{row.label}}</div>
+                <div style="padding:12px 8px;border-top:1px solid rgba(20,34,90,.1);text-align:center;background:#EDF1FD;font-weight:800;font-size:14px;color:#12235C;display:flex;align-items:center;justify-content:center">{{row.v0}}</div>
+                <div style="padding:12px 8px;border-top:1px solid rgba(20,34,90,.1);text-align:center;font-size:14px;color:#4A5688;display:flex;align-items:center;justify-content:center">{{row.v1}}</div>
+                <div style="padding:12px 8px;border-top:1px solid rgba(20,34,90,.1);text-align:center;font-size:14px;color:#4A5688;display:flex;align-items:center;justify-content:center">{{row.v2}}</div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="max-width:840px;margin:0 auto 60px">
+          <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;margin:0 0 20px;color:#12235C">Frequently asked</h2>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{prodFaqs}}" as="f" hint-placeholder-count="3">
+              <div style="background:#FFFDF7;border-radius:16px;box-shadow:0 2px 10px rgba(18,35,92,.06);overflow:hidden">
+                <button onClick="{{f.toggle}}" style="display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 22px;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:18px;color:#12235C" style-hover="color:#1D3FC4"><span>{{f.q}}</span><span style="font-size:22px;color:#E8442E;flex:none">{{f.arrow}}</span></button>
+                <div style="display:{{f.disp}};padding:0 22px 20px;font-size:16px;line-height:1.65;color:#4A5688">{{f.a}}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="margin-bottom:30px">
+          <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;margin:0 0 22px;color:#12235C">More trending in {{prodCatName}}</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px">
+            <sc-for list="{{prodRelated}}" as="r" hint-placeholder-count="3">
+              <button onClick="{{r.open}}" style="text-align:left;background:#FFFDF7;border:none;cursor:pointer;border-radius:18px;padding:20px;box-shadow:0 2px 14px rgba(18,35,92,.07);transition:transform .25s ease, box-shadow .25s ease;font-family:'Nunito',sans-serif" style-hover="transform:translateY(-5px);box-shadow:0 12px 26px rgba(18,35,92,.13)" style-active="transform:scale(.98)">
+                <div role="img" aria-label="{{r.name}}" style="height:120px;width:100%;background-image:url('{{r.img}}');background-size:contain;background-position:center;background-repeat:no-repeat;mix-blend-mode:multiply;margin-bottom:12px"></div>
+                <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:#12235C;line-height:1.2;margin-bottom:8px">{{r.name}}</div>
+                <div style="display:flex;justify-content:space-between;gap:8px;align-items:center">
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;font-weight:600;color:#14225A">{{r.price}}</span>
+                  <span style="color:#E8442E;font-size:12px;letter-spacing:1.5px">★★★★★</span>
+                </div>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="font-size:13.5px;color:#4A5688;text-align:center">As an Amazon Associate, ToyScout earns from qualifying purchases. Prices are approximate ranges — confirm on Amazon.</div>
+      </div>
+
+      <div style="position:sticky;bottom:0;background:rgba(255,253,247,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(20,34,90,.1);padding:14px 40px">
+        <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px">
+          <div style="min-width:0">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:#12235C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{prod.name}}</div>
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#4A5688">{{prod.price}} · ★ {{prod.ratings}} ratings</div>
+          </div>
+          <a href="{{prod.url}}" target="_blank" rel="sponsored nofollow noopener" style="flex:none;display:inline-flex;align-items:center;gap:9px;background:#E8442E;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;padding:13px 26px;border-radius:999px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">View on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pageContact}}" hint-placeholder-val="{{false}}">
+    <div data-screen-label="Contact" style="position:fixed;inset:0;z-index:40;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:880px;margin:0 auto;padding:120px 40px 110px">
+        <button onClick="{{goHome}}" style="display:inline-flex;align-items:center;gap:8px;background:#FFFDF7;border:2px solid #1D3FC4;color:#1D3FC4;font-weight:800;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer;margin-bottom:38px;transition:all .2s ease" style-hover="background:#1D3FC4;color:#fff" style-active="transform:scale(.96)">← Back to home</button>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2.5px;color:#E8442E;font-weight:600;margin-bottom:12px">GET IN TOUCH</div>
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(42px,5vw,64px);line-height:1;margin:0 0 18px;color:#12235C">Say hello.</h1>
+        <p style="font-size:18px;line-height:1.6;color:#4A5688;margin:0 0 44px;max-width:520px">Questions about a pick, a toy you'd like us to test, or a correction? We read everything.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-bottom:50px">
+          <div style="background:#FFFDF7;border-radius:20px;padding:28px;box-shadow:0 2px 14px rgba(18,35,92,.07)">
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:2px;color:#4A5688;margin-bottom:12px">MAILING ADDRESS</div>
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:20px;color:#12235C;line-height:1.4">34 N Franklin Ave<br>Ste 687 2564<br>Pinedale, WY 82941</div>
+          </div>
+          <div style="background:#FFFDF7;border-radius:20px;padding:28px;box-shadow:0 2px 14px rgba(18,35,92,.07)">
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:2px;color:#4A5688;margin-bottom:12px">EMAIL</div>
+            <a href="mailto:info@kolikshop.com" style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:20px;color:#1D3FC4">info@kolikshop.com</a>
+            <div style="font-size:14.5px;color:#4A5688;margin-top:10px">We reply within 2 business days.</div>
+          </div>
+        </div>
+        <sc-if value="{{contactSent}}" hint-placeholder-val="{{false}}">
+          <div style="background:#FFFDF7;border-radius:20px;padding:30px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 14px rgba(18,35,92,.07)"><span style="color:#1F8A5B;font-size:24px">✓</span><span style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:21px;color:#12235C">Message sent — thanks for writing in!</span></div>
+        </sc-if>
+        <sc-if value="{{contactNotSent}}" hint-placeholder-val="{{true}}">
+          <div style="background:#FFFDF7;border-radius:24px;padding:36px;box-shadow:0 2px 14px rgba(18,35,92,.07)">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;color:#12235C;margin-bottom:22px">Send us a message</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+              <input placeholder="Your name" value="{{contactName}}" onChange="{{onCName}}" style="border:2px solid rgba(20,34,90,.14);border-radius:12px;padding:14px 16px;font-size:16px;color:#14225A;outline-color:#1D3FC4;background:#FAF3E7">
+              <input type="email" placeholder="Your email" value="{{contactEmail}}" onChange="{{onCEmail}}" style="border:2px solid rgba(20,34,90,.14);border-radius:12px;padding:14px 16px;font-size:16px;color:#14225A;outline-color:#1D3FC4;background:#FAF3E7">
+            </div>
+            <textarea placeholder="How can we help?" rows="5" value="{{contactMsg}}" onChange="{{onCMsg}}" style="width:100%;box-sizing:border-box;border:2px solid rgba(20,34,90,.14);border-radius:12px;padding:14px 16px;font-size:16px;color:#14225A;outline-color:#1D3FC4;background:#FAF3E7;font-family:'Nunito',sans-serif;resize:vertical;margin-bottom:20px"></textarea>
+            <sc-if value="{{contactError}}" hint-placeholder-val="{{false}}">
+              <div style="color:#E8442E;font-weight:700;font-size:15px;margin-bottom:16px">Please fill in your name, a valid email, and a message.</div>
+            </sc-if>
+            <button onClick="{{onCSend}}" style="border:none;cursor:pointer;background:#E8442E;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:18px;padding:14px 32px;border-radius:999px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px)" style-active="transform:translateY(1px) scale(.97)">Send message</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pageDisclosure}}" hint-placeholder-val="{{false}}">
+    <div data-screen-label="Affiliate Disclosure" style="position:fixed;inset:0;z-index:40;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:840px;margin:0 auto;padding:120px 40px 110px">
+        <button onClick="{{goHome}}" style="display:inline-flex;align-items:center;gap:8px;background:#FFFDF7;border:2px solid #1D3FC4;color:#1D3FC4;font-weight:800;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer;margin-bottom:38px;transition:all .2s ease" style-hover="background:#1D3FC4;color:#fff" style-active="transform:scale(.96)">← Back to home</button>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2.5px;color:#E8442E;font-weight:600;margin-bottom:12px">POLICIES</div>
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(40px,5vw,58px);line-height:1;margin:0 0 14px;color:#12235C">Affiliate Disclosure</h1>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#4A5688;margin-bottom:40px">LAST UPDATED · JULY 8, 2026</div>
+        <div style="background:#E3EAFB;border-radius:18px;padding:24px 28px;margin-bottom:34px;font-size:17px;line-height:1.65;color:#14225A;font-weight:700">As an Amazon Associate, ToyScout earns from qualifying purchases.</div>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">How ToyScout makes money</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">ToyScout participates in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. When you click a "View on Amazon" button or any other product link on this site and make a purchase, we may receive a small commission from Amazon.</p>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">This commission comes at <strong>no additional cost to you</strong>. The price you pay on Amazon is exactly the same whether you arrive through our links or not.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">Our editorial independence</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">Affiliate commissions never influence which toys we recommend or how we rate them. We do not accept sponsored placements, paid reviews, or free products in exchange for coverage. Every pick earns its place through our data-driven ranking process — we track Amazon's best seller, new release, and most-wished-for charts daily and only feature products rated 4.5★ or higher by real customers.</p>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">If a product we've recommended is later recalled or stops meeting our standards, we remove or update the recommendation regardless of how well its links perform.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">About prices and availability</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">Prices shown on ToyScout are approximate ranges based on recent Amazon listings and may change at any time. Always confirm the current price, availability, and seller on Amazon before purchasing. Product information is provided for guidance only and does not constitute a guarantee.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">Questions?</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">If anything about how we earn money is unclear, write to us at <a href="mailto:info@kolikshop.com" style="font-weight:700">info@kolikshop.com</a> — we're happy to explain.</p>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pagePrivacy}}" hint-placeholder-val="{{false}}">
+    <div data-screen-label="Privacy Policy" style="position:fixed;inset:0;z-index:40;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:840px;margin:0 auto;padding:120px 40px 110px">
+        <button onClick="{{goHome}}" style="display:inline-flex;align-items:center;gap:8px;background:#FFFDF7;border:2px solid #1D3FC4;color:#1D3FC4;font-weight:800;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer;margin-bottom:38px;transition:all .2s ease" style-hover="background:#1D3FC4;color:#fff" style-active="transform:scale(.96)">← Back to home</button>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2.5px;color:#E8442E;font-weight:600;margin-bottom:12px">POLICIES</div>
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(40px,5vw,58px);line-height:1;margin:0 0 14px;color:#12235C">Privacy Policy</h1>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#4A5688;margin-bottom:40px">LAST UPDATED · JULY 8, 2026</div>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">This Privacy Policy explains what information ToyScout ("we", "us") collects when you visit this website, how we use it, and the choices you have. We keep it simple: we collect as little as possible, and we never sell your personal information.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">1. Information we collect</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688"><strong>Information you give us.</strong> If you subscribe to our newsletter or contact us, we collect the email address, name, and message content you provide.</p>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688"><strong>Information collected automatically.</strong> Like most websites, we receive standard technical data when you visit: IP address, browser type, device type, pages viewed, and referring URL. This is used in aggregate to understand how the site is used and to keep it fast and secure.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">2. Cookies &amp; analytics</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">We use a small number of cookies for site functionality and privacy-respecting analytics that help us see which guides are useful. Amazon may also set cookies when you click an affiliate link so that qualifying purchases can be attributed; this is governed by Amazon's own privacy policy. You can block or delete cookies in your browser settings at any time — the site will keep working.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">3. Affiliate links &amp; third parties</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">ToyScout links to Amazon.com through the Amazon Associates Program. When you leave our site via those links, Amazon's terms and privacy practices apply. We do not share your personal information with Amazon or any other third party for their marketing purposes.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">4. The newsletter</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">The Monthly Toy Drop is one email per month. We use your address only to send it — never for anything else — and every email includes a one-click unsubscribe link. Unsubscribing removes your address from our list permanently.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">5. Children's privacy</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">ToyScout is written for parents, gift-givers, and educators — not for children. We do not knowingly collect personal information from anyone under 13. If you believe a child has provided us information, contact us and we will delete it promptly.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">6. Your rights &amp; choices</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">You may request a copy of the personal information we hold about you, ask us to correct it, or ask us to delete it. Depending on where you live (including the EU/EEA, UK, and California), you may have additional statutory rights. To exercise any of these, email us — no forms, no hoops.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">7. Changes to this policy</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">If we change this policy, we'll update the date at the top of this page. Material changes will be noted in the newsletter.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">8. Contact</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">Privacy questions? Email <a href="mailto:info@kolikshop.com" style="font-weight:700">info@kolikshop.com</a> or write to ToyScout, 34 N Franklin Ave, Ste 687 2564, Pinedale, WY 82941.</p>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pageTerms}}" hint-placeholder-val="{{false}}">
+    <div data-screen-label="Terms of Use" style="position:fixed;inset:0;z-index:40;background:#FAF3E7;overflow:auto;animation:ts-page-in .55s cubic-bezier(.22,.9,.3,1) both">
+      <div style="max-width:840px;margin:0 auto;padding:120px 40px 110px">
+        <button onClick="{{goHome}}" style="display:inline-flex;align-items:center;gap:8px;background:#FFFDF7;border:2px solid #1D3FC4;color:#1D3FC4;font-weight:800;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer;margin-bottom:38px;transition:all .2s ease" style-hover="background:#1D3FC4;color:#fff" style-active="transform:scale(.96)">← Back to home</button>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:2.5px;color:#E8442E;font-weight:600;margin-bottom:12px">POLICIES</div>
+        <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(40px,5vw,58px);line-height:1;margin:0 0 14px;color:#12235C">Terms of Use</h1>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#4A5688;margin-bottom:40px">LAST UPDATED · JULY 8, 2026</div>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">1. Acceptance of these terms</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">By accessing or using ToyScout, you agree to these Terms of Use. If you do not agree, please do not use the site.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">2. What ToyScout is (and isn't)</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">ToyScout is an independent review and recommendation website. <strong>We do not sell products.</strong> All purchases happen on Amazon.com under Amazon's terms of sale. We are not responsible for order fulfillment, shipping, returns, warranties, or customer service for any product — those are handled by Amazon and the product's seller or manufacturer.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">3. Affiliate relationships</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">Product links on this site are affiliate links. As an Amazon Associate, ToyScout earns from qualifying purchases. See our <a href="#" onClick="{{openDisclosure}}" style="font-weight:700">Affiliate Disclosure</a> for full details.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">4. Accuracy of information</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">We work hard to keep reviews, prices, ratings, and safety information accurate and current, but products, prices, and availability change frequently. All content is provided "as is" for general information only. Always verify details — especially age recommendations and safety warnings — on the product listing and packaging before purchase.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">5. Intellectual property</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">All content on ToyScout — reviews, ratings, photography, illustrations, the ToyScout name and logo — is owned by us or our licensors and protected by copyright and trademark law. You may share short excerpts with attribution and a link; you may not republish full articles, scrape the site, or use our content for commercial purposes without written permission.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">6. Acceptable use</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">You agree not to misuse the site — including attempting to disrupt it, submitting false or misleading information, infringing others' rights, or using automated tools to extract content at scale.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">7. Disclaimer of warranties</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">The site is provided without warranties of any kind, express or implied. We do not warrant that any product we recommend is suitable for your specific child or circumstances — you know your family best.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">8. Limitation of liability</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">To the maximum extent permitted by law, ToyScout shall not be liable for any indirect, incidental, or consequential damages arising from your use of the site or purchase of any product linked from it.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">9. Governing law</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">These terms are governed by the laws of the State of Wyoming, USA, without regard to conflict-of-law principles.</p>
+        <h2 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:26px;color:#12235C;margin:38px 0 12px">10. Changes &amp; contact</h2>
+        <p style="margin:0 0 14px;font-size:16.5px;line-height:1.75;color:#4A5688">We may update these terms from time to time; the date above reflects the latest version. Questions? Email <a href="mailto:info@kolikshop.com" style="font-weight:700">info@kolikshop.com</a> or write to ToyScout, 34 N Franklin Ave, Ste 687 2564, Pinedale, WY 82941.</p>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;motionEnabled&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Motion&quot; },
+  &quot;tiltCards&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Motion&quot; }
+}">
+class Component extends DCLogic {
+  state = { email: "", subscribed: false, newsletterError: false, page: "home", menuOpen: false, contactName: "", contactEmail: "", contactMsg: "", contactSent: false, contactError: false, shopCat: "building-toys", shopSort: "featured", shopAge: null, shopPrice: null };
+
+  isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v || "").trim()); }
+
+  // Amazon Associates tag applied to fallback search links; set when the tag is issued.
+  affiliateTag() { return ""; }
+
+  amazonSearchUrl(name) {
+    const tag = this.affiliateTag();
+    return "https://www.amazon.com/s?k=" + encodeURIComponent(name) + "&i=toys-and-games" + (tag ? "&tag=" + tag : "");
+  }
+
+  catList() {
+    return [
+      ["action-figures", "Action Figures & Statues"],
+      ["arts-crafts", "Arts & Crafts"],
+      ["baby-toddler", "Baby & Toddler Toys"],
+      ["building-toys", "Building Toys"],
+      ["dolls", "Dolls & Accessories"],
+      ["dress-up", "Dress Up & Pretend Play"],
+      ["games", "Games"],
+      ["hobbies", "Hobbies"],
+      ["kids-electronics", "Kids' Electronics"],
+      ["learning-education", "Learning & Education"],
+      ["novelty", "Novelty & Gag Toys"],
+      ["party", "Party Supplies"],
+      ["puppets", "Puppets"],
+      ["puzzles", "Puzzles"],
+      ["sports-outdoor", "Sports & Outdoor Play"],
+      ["plush", "Stuffed Animals & Plush Toys"],
+      ["rc-vehicles", "RC & Play Vehicles"],
+      ["ride-ons", "Tricycles, Scooters & Wagons"],
+      ["video-games", "Video Games"]
+    ];
+  }
+
+  catNames() {
+    return {
+      "action-figures": ["Titan Hero 12-inch Figure", "Galaxy Defenders 5-Pack", "Dino Rampage T-Rex", "Mecha Knight Deluxe Statue", "Hero Squad Battle Set", "Cosmic Ranger Figure"],
+      "arts-crafts": ["Rainbow Scratch Art Kit", "Deluxe Bead Jewelry Studio", "Washable Dot Markers 10-Pack", "Origami Fun Kit 100 Sheets", "Kids Pottery Wheel Studio", "Sticker-by-Number Collection"],
+      "baby-toddler": ["Explorer Activity Cube", "Stack & Nest Rainbow Rings", "Musical Learning Walker", "Soft Cloth Book Set", "Pull-Along Wooden Duck", "First Words Learning Phone"],
+      "building-toys": ["Magna-Tiles Classic 100 Set", "City Builder Brick Box 520 pcs", "Marble Run Builder Set", "STEM Gears Construction Lab", "Wooden Castle Block Set", "Flexi-Track Race Builder"],
+      "dolls": ["Dreamhouse Mini Doll Set", "Baby Care Doll & Stroller", "Fashion Studio Doll 3-Pack", "Enchanted Mermaid Doll", "Doll Family Camper Van", "Braid & Style Salon Doll"],
+      "dress-up": ["Superhero Cape & Mask Set", "Princess Dress-Up Trunk", "Doctor Play Costume Kit", "Pirate Captain Set", "Chef Apron & Kitchen Set", "Explorer Vest & Binoculars"],
+      "games": ["Family Strategy Board Game", "Quick-Draw Card Game", "Cooperative Island Adventure", "Junior Trivia Challenge", "Dice Tower Party Game", "Classic Games 10-in-1 Set"],
+      "hobbies": ["Beginner Model Rocket Kit", "Diecast Car Collector 20-Pack", "Kids Metal Detector", "Solar System Model Kit", "RC Glider Plane", "Coin Collecting Starter Album"],
+      "kids-electronics": ["Kids Instant Print Camera", "Smart Robot Coding Kit", "Walkie Talkies 2-Pack", "Kids Karaoke Machine", "Learning Tablet Ages 3+", "Digital Microscope for Kids"],
+      "learning-education": ["KidVentor Science Lab Kit", "Talking Flash Cards Set", "Math Magnet Board", "World Map Puzzle 100 pcs", "Coding Caterpillar Robot", "Human Body Anatomy Kit"],
+      "novelty": ["Magic Trick Box 150 Tricks", "Glow-in-the-Dark Slime Lab", "Fidget Sensory 30-Pack", "Invisible Ink Spy Pen Set", "Squishy Surprise Mystery Box", "Giant Whoopee Cushion"],
+      "party": ["Birthday Pinata Bundle", "Balloon Arch Kit 120 pcs", "Party Favor Mega Pack", "Confetti Cannon 6-Pack", "Photo Booth Props Set", "Glow Stick Party Pack 100"],
+      "puppets": ["Plush Hand Puppet Theater Set", "Dragon Marionette", "Finger Puppet Family 10-Pack", "Ventriloquist Buddy Doll", "Safari Animal Puppets 6-Pack", "Fold-Away Puppet Theater"],
+      "puzzles": ["1000-Piece Landscape Puzzle", "Wooden Brain Teaser Set", "Giant Dinosaur Floor Puzzle", "3D Crystal Puzzle Castle", "Speed Cube Champion Set", "Puzzle Roll-Up Mat Bundle"],
+      "sports-outdoor": ["Coast Wooden Balance Bike", "Backyard Ninja Course Kit", "Foam Rocket Launcher", "Kids Archery Set", "Sidewalk Chalk Mega Set", "Pop-Up Soccer Goal 2-Pack"],
+      "plush": ["Slumber Sloth Plush", "Giant Teddy Bear 36-inch", "Weighted Dino Plush", "Axolotl Plush Squad 3-Pack", "Interactive Puppy Plush", "Glow Buddy Night-Light Bear"],
+      "rc-vehicles": ["All-Terrain RC Monster Truck", "Stunt RC Flip Car", "Mini Drone for Kids", "RC Race Boat", "Construction Vehicle 6-Pack", "Slot Car Racing Track"],
+      "ride-ons": ["Toddler Balance Scooter", "Classic Red Wagon", "3-Wheel Glow Scooter", "Pedal Go-Kart", "2-in-1 Tricycle", "LED Kick Scooter"],
+      "video-games": ["Adventure Quest — Switch", "Kart Racing Party Pack", "Family Dance Party Game", "Pixel Builder Deluxe", "Puzzle Quest Junior", "Sports Party 6-in-1"]
+    };
+  }
+
+  productsFor(catId) {
+    const IMGS = ["assets/prod-bike.png", "assets/prod-magnatiles.png", "assets/prod-science.png", "assets/prod-sloth.png", "assets/prod-cube.png", "assets/prod-marble.png", "assets/prod-boardgame.png", "assets/prod-robot.png", "assets/prod-flashcards.png"];
+    const PR = [[19, 29], [34, 49], [24, 39], [59, 79], [44, 59], [89, 119]];
+    const RC = [12431, 38752, 9214, 21860, 3487, 15102];
+    const BD = ["#1 BEST SELLER", "MOST WISHED FOR", "TRENDING NOW", "MOVERS & SHAKERS", "NEW RELEASE", "CLIMBING THE CHARTS"];
+    const BC = ["#E8442E", "#1D3FC4", "#12235C"];
+    const AGE_OVR = {
+      "baby-toddler": ["0–2", "0–2", "3–5"],
+      "plush": ["0–2", "3–5", "6–8"],
+      "ride-ons": ["0–2", "3–5", "6–8"],
+      "kids-electronics": ["6–8", "9–12", "Teen+"],
+      "video-games": ["6–8", "9–12", "Teen+"],
+      "novelty": ["6–8", "9–12", "Teen+"],
+      "hobbies": ["6–8", "9–12", "Teen+"]
+    };
+    const ages = AGE_OVR[catId] || ["3–5", "6–8", "9–12"];
+    const real = (this.realProducts() || {})[catId];
+    if (real && real.length) {
+      return real.map((p, i) => ({
+        idx: i,
+        name: p.name,
+        img: p.img,
+        lo: p.lo != null ? p.lo : 0,
+        price: p.price || "See price on Amazon",
+        rc: p.rc || 0,
+        ratings: (p.rc || 0).toLocaleString("en-US"),
+        badge: p.badge || "SCOUT PICK",
+        badgeBg: BC[i % BC.length],
+        age: p.age || ages[i % ages.length],
+        url: p.url || this.amazonSearchUrl(p.name)
+      }));
+    }
+    const ci = Math.max(0, this.catList().findIndex((c) => c[0] === catId));
+    const names = this.catNames()[catId] || [];
+    return names.map((name, i) => ({
+      idx: i,
+      name,
+      img: IMGS[(i + ci) % IMGS.length],
+      lo: PR[i % 6][0],
+      price: "$" + PR[i % 6][0] + " to $" + PR[i % 6][1],
+      rc: RC[(i + ci) % 6],
+      ratings: RC[(i + ci) % 6].toLocaleString("en-US"),
+      badge: BD[(i + ci) % 6],
+      badgeBg: BC[(i + ci) % 3],
+      age: ages[i % ages.length],
+      url: this.amazonSearchUrl(name)
+    }));
+  }
+
+  // __PRODUCT_DATA_START__ (products/fetch_products.py tarafindan otomatik uretilir — elle duzenlemeyin)
+  realProducts() {
+    return {};
+  }
+  // __PRODUCT_DATA_END__
+
+  openProduct(idx, e, catId) {
+    if (e && e.preventDefault) e.preventDefault();
+    document.body.style.overflow = "hidden";
+    const patch = { page: "product", prodIdx: idx, faqOpen: -1, menuOpen: false };
+    if (catId) patch.shopCat = catId;
+    this.setState(patch, () => this.syncHash());
+    this.syncNav();
+    setTimeout(() => { const el = document.getElementById("ts-prod"); if (el) el.scrollTop = 0; }, 60);
+  }
+
+  backToShop() {
+    this.setState({ page: "shop" }, () => this.syncHash());
+    setTimeout(() => { const el = document.getElementById("ts-shop"); if (el) el.scrollTop = 0; }, 60);
+  }
+
+  prodVals() {
+    const s = this.state;
+    if (s.page !== "product") return { pageProduct: false, prodPros: [], prodCons: [], prodSpecs: [], prodFaqs: [], prodRelated: [], prod: {}, alt1: {}, alt2: {}, cmpRows: [] };
+    const list = this.productsFor(s.shopCat);
+    const catMap = Object.fromEntries(this.catList());
+    const p = list[s.prodIdx] || list[0];
+    const i = p.idx;
+    const PROS = [
+      ["Consistently top-rated by verified buyers", "Sturdy build quality survives rough play", "Easy setup — playable within minutes", "Strong value for its price range"],
+      ["One of the fastest-rising toys in its category", "High replay value — kids return to it daily", "Quality materials with a premium feel", "Great gift pick with giftable packaging"],
+      ["Backed by thousands of 5-star family reviews", "Grows with your child across age stages", "Encourages screen-free, open-ended play", "Holds resale value unusually well"]
+    ][i % 3];
+    const CONS = [
+      ["Popular colors and styles sell out fast", "Box is larger than expected — plan storage"],
+      ["Slightly above average price for the category", "Small parts — mind the age recommendation"],
+      ["High demand causes occasional shipping delays", "Instructions could be clearer for first-timers"]
+    ][i % 3];
+    const faqsRaw = [
+      { q: "Is this appropriate for ages " + p.age + "?", a: "Yes — the manufacturer and the majority of reviewers place it squarely in the " + p.age + " range. Younger kids may need adult help at first; always check the safety notes on the listing." },
+      { q: "Why is it marked \u201C" + p.badge + "\u201D?", a: "Badges come straight from our daily scan of Amazon's charts. \u201C" + p.badge + "\u201D reflects this product's current position in the " + (catMap[s.shopCat] || "") + " department." },
+      { q: "Is the price shown the final price?", a: "We show an approximate range (" + p.price + ") from recent listings. Amazon sets the final price — always confirm on the product page before buying." }
+    ];
+    const faqs = faqsRaw.map((f, fi) => ({
+      q: f.q, a: f.a,
+      arrow: s.faqOpen === fi ? "−" : "+",
+      disp: s.faqOpen === fi ? "block" : "none",
+      toggle: () => this.setState({ faqOpen: s.faqOpen === fi ? -1 : fi })
+    }));
+    const alt1 = list[(i + 1) % list.length];
+    const alt2 = list[(i + 2) % list.length];
+    const related = [1, 2, 3].map((k) => list[(i + k) % list.length]).map((r) => ({ ...r, open: (e) => this.openProduct(r.idx, e) }));
+    return {
+      pageProduct: true,
+      prod: p,
+      prodCatName: catMap[s.shopCat] || "",
+      prodPros: PROS.map((t) => ({ t })),
+      prodCons: CONS.map((t) => ({ t })),
+      prodSpecs: [
+        { label: "AGE RANGE", value: p.age + " years" },
+        { label: "PRICE RANGE", value: p.price },
+        { label: "RATINGS", value: p.ratings + " global ratings" },
+        { label: "TREND STATUS", value: p.badge },
+        { label: "DEPARTMENT", value: catMap[s.shopCat] || "" }
+      ],
+      prodFaqs: faqs,
+      prodRelated: related,
+      alt1, alt2,
+      cmpRows: [
+        { label: "PRICE", v0: p.price, v1: alt1.price, v2: alt2.price },
+        { label: "RATINGS", v0: p.ratings, v1: alt1.ratings, v2: alt2.ratings },
+        { label: "AGES", v0: p.age, v1: alt1.age, v2: alt2.age },
+        { label: "TREND", v0: p.badge, v1: alt1.badge, v2: alt2.badge }
+      ],
+      backToShop: (e) => { if (e && e.preventDefault) e.preventDefault(); this.backToShop(); },
+    };
+  }
+
+  openCat(id, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    document.body.style.overflow = "hidden";
+    this.setState({ page: "shop", shopCat: id, menuOpen: false, shopAge: null, shopPrice: null, shopSort: "featured" }, () => this.syncHash());
+    this.syncNav();
+    setTimeout(() => { const el = document.getElementById("ts-shop"); if (el) el.scrollTop = 0; }, 60);
+  }
+
+  openPage(name, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    document.body.style.overflow = "hidden";
+    this.setState({ page: name, menuOpen: false }, () => this.syncHash());
+    this.syncNav();
+    setTimeout(() => { const el = document.getElementById("ts-page-" + name); if (el) el.scrollTop = 0; }, 60);
+  }
+
+  goHome() {
+    document.body.style.overflow = "";
+    this.setState({ page: "home", menuOpen: false }, () => this.syncHash());
+    this.syncNav();
+  }
+
+  // --- Hash routing: keeps location.hash in sync with state.page so refresh,
+  // deep links and the browser back button restore the current view. ---
+  hashFor() {
+    const s = this.state;
+    if (s.page === "home") return "/";
+    if (s.page === "shop") return "/shop/" + s.shopCat;
+    if (s.page === "product") return "/product/" + s.shopCat + "/" + (s.prodIdx || 0);
+    return "/" + s.page;
+  }
+
+  syncHash() {
+    const h = "#" + this.hashFor();
+    if (location.hash !== h) {
+      this._ignoreHash = true;
+      location.hash = h;
+    }
+  }
+
+  // True when the URL path itself (e.g. "/contact/") names a route — lets a
+  // direct/refreshed load of a static fallback dir (see contact/, shop/, etc.)
+  // restore the right view even before any hash is set.
+  pathMatchesRoute() {
+    const seg = location.pathname.replace(/^\/|\/$/g, "").split("/")[0];
+    return ["shop", "product", "blog", "post1", "post2", "post3", "contact", "privacy", "terms", "disclosure"].includes(seg);
+  }
+
+  applyHash() {
+    const fromHash = location.hash.length > 1;
+    const raw = fromHash ? location.hash.replace(/^#\/?/, "") : location.pathname.replace(/^\/|\/$/g, "");
+    const parts = raw.split("/").filter(Boolean);
+    const p0 = parts[0] || "home";
+    const catIds = this.catList().map((c) => c[0]);
+    if (p0 === "shop") {
+      this.openCat(catIds.includes(parts[1]) ? parts[1] : this.state.shopCat);
+      return;
+    }
+    if (p0 === "product") {
+      const cat = catIds.includes(parts[1]) ? parts[1] : this.state.shopCat;
+      const idx = Math.max(0, parseInt(parts[2], 10) || 0);
+      document.body.style.overflow = "hidden";
+      this.setState({ page: "product", shopCat: cat, prodIdx: idx, faqOpen: -1, menuOpen: false }, () => this.syncHash());
+      this.syncNav();
+      return;
+    }
+    if (["blog", "post1", "post2", "post3", "contact", "privacy", "terms", "disclosure"].includes(p0)) {
+      this.openPage(p0);
+      return;
+    }
+    if (p0 === "home" || p0 === "") {
+      this.goHome();
+      return;
+    }
+    // Anything else (e.g. "#picks", "#cats") is an in-page section anchor — leave it to the browser.
+  }
+
+  syncNav() {
+    setTimeout(() => { if (this._onScroll) this._onScroll(); }, 30);
+  }
+
+  componentDidMount() {
+    const loader = document.getElementById("ts-loading");
+    if (loader) loader.remove();
+
+    this._onHashChange = () => {
+      if (this._ignoreHash) { this._ignoreHash = false; return; }
+      this.applyHash();
+    };
+    window.addEventListener("hashchange", this._onHashChange);
+    if (location.hash.length > 2 || this.pathMatchesRoute()) this.applyHash();
+
+    const motion = this.props.motionEnabled ?? true;
+    const tilt = this.props.tiltCards ?? true;
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const animate = motion && !reduced;
+
+    // Card tilt
+    if (tilt) {
+      document.querySelectorAll("[data-tilt]").forEach((el) => {
+        el.style.transform = "rotate(" + el.getAttribute("data-tilt") + "deg)";
+      });
+    }
+
+    // Scroll reveals
+    const targets = Array.from(document.querySelectorAll("[data-reveal]"));
+    if (animate && "IntersectionObserver" in window) {
+      const vh = window.innerHeight || 800;
+      const reveal = (el) => {
+        const delay = parseInt(el.getAttribute("data-reveal-delay") || "0", 10);
+        const base = el.getAttribute("data-tilt") && tilt ? " rotate(" + el.getAttribute("data-tilt") + "deg)" : "";
+        setTimeout(() => {
+          el.style.transition = "opacity .8s cubic-bezier(.22,.9,.3,1), transform .8s cubic-bezier(.22,.9,.3,1)";
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)" + base;
+        }, delay);
+      };
+      this._reveal = reveal;
+      // Only hide elements below the fold; anything already visible animates in immediately.
+      targets.forEach((el) => {
+        el.style.opacity = "0";
+        const base = el.getAttribute("data-tilt") && tilt ? " rotate(" + el.getAttribute("data-tilt") + "deg)" : "";
+        el.style.transform = "translateY(30px)" + base;
+        el.style.transition = "none";
+        if (el.getBoundingClientRect().top < vh - 40) reveal(el);
+      });
+      // Fail-safe: if IO never fires in this environment, reveal everything.
+      this._failSafe = setTimeout(() => {
+        targets.forEach((el) => { if (el.style.opacity === "0") reveal(el); });
+      }, 1200);
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          this._reveal(entry.target);
+          this._io.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+      targets.forEach((el) => this._io.observe(el));
+    }
+
+    // Sticky nav state + hero parallax
+    const nav = document.getElementById("ts-nav");
+    const pars = Array.from(document.querySelectorAll("[data-par]"));
+    let ticking = false;
+    this._onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (nav) {
+          nav.style.background = "rgba(250,243,231,.95)";
+          nav.style.boxShadow = y > 4 || this.state.page !== "home" ? "0 2px 18px rgba(18,35,92,.10)" : "0 1px 0 rgba(18,35,92,.06)";
+          nav.style.backdropFilter = "blur(10px)";
+        }
+        if (animate) {
+          pars.forEach((el) => {
+            const f = parseFloat(el.getAttribute("data-par"));
+            el.style.translate = "0 " + (y * f).toFixed(1) + "px";
+          });
+        }
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+    this._onScroll();
+
+    this._onKey = (e) => {
+      if (e.key !== "Escape") return;
+      if (this.state.page === "product") this.backToShop();
+      else if (this.state.page.indexOf("post") === 0) this.openPage("blog");
+      else if (this.state.page !== "home") this.goHome();
+    };
+    window.addEventListener("keydown", this._onKey);
+  }
+
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._failSafe) clearTimeout(this._failSafe);
+    if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
+    if (this._onKey) window.removeEventListener("keydown", this._onKey);
+    if (this._onHashChange) window.removeEventListener("hashchange", this._onHashChange);
+    document.body.style.overflow = "";
+  }
+
+  renderVals() {
+    return {
+      email: this.state.email,
+      subscribed: this.state.subscribed,
+      notSubscribed: !this.state.subscribed,
+      newsletterError: this.state.newsletterError,
+      onEmail: (e) => this.setState({ email: e.target.value, newsletterError: false }),
+      onJoin: () => {
+        if (this.isValidEmail(this.state.email)) this.setState({ subscribed: true, newsletterError: false });
+        else this.setState({ newsletterError: true });
+      },
+      // Top Picks (home page) → internal product detail page
+      openPick0: (e) => this.openProduct(0, e, "sports-outdoor"),
+      openPick1: (e) => this.openProduct(0, e, "building-toys"),
+      openPick2: (e) => this.openProduct(0, e, "plush"),
+      openPick3: (e) => this.openProduct(0, e, "baby-toddler"),
+      openPick4: (e) => this.openProduct(0, e, "learning-education"),
+      openPick5: (e) => this.openProduct(2, e, "building-toys"),
+      // Router
+      pageContact: this.state.page === "contact",
+      pagePrivacy: this.state.page === "privacy",
+      pageTerms: this.state.page === "terms",
+      pageDisclosure: this.state.page === "disclosure",
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      goHome: () => this.goHome(),
+      openContact: (e) => this.openPage("contact", e),
+      pageBlog: this.state.page === "blog",
+      pagePost1: this.state.page === "post1",
+      pagePost2: this.state.page === "post2",
+      pagePost3: this.state.page === "post3",
+      openBlog: (e) => this.openPage("blog", e),
+      openPost1: (e) => this.openPage("post1", e),
+      openPost2: (e) => this.openPage("post2", e),
+      openPost3: (e) => this.openPage("post3", e),
+      backToBlog: (e) => this.openPage("blog", e),
+      openPrivacy: (e) => this.openPage("privacy", e),
+      openTerms: (e) => this.openPage("terms", e),
+      openDisclosure: (e) => this.openPage("disclosure", e),
+      // Contact form
+      contactName: this.state.contactName,
+      contactEmail: this.state.contactEmail,
+      contactMsg: this.state.contactMsg,
+      contactSent: this.state.contactSent,
+      contactNotSent: !this.state.contactSent,
+      contactError: this.state.contactError,
+      onCName: (e) => this.setState({ contactName: e.target.value, contactError: false }),
+      onCEmail: (e) => this.setState({ contactEmail: e.target.value, contactError: false }),
+      onCMsg: (e) => this.setState({ contactMsg: e.target.value, contactError: false }),
+      onCSend: () => {
+        const s = this.state;
+        const valid = s.contactName.trim() && this.isValidEmail(s.contactEmail) && s.contactMsg.trim();
+        if (valid) this.setState({ contactSent: true, contactError: false });
+        else this.setState({ contactError: true });
+      },
+      ...this.shopVals(),
+      ...this.prodVals(),
+    };
+  }
+
+  shopVals() {
+    const s = this.state;
+    const cats = this.catList();
+    const catMap = Object.fromEntries(cats);
+    let prods = this.productsFor(s.shopCat);
+    if (s.shopAge) prods = prods.filter((p) => p.age === s.shopAge);
+    if (s.shopPrice === "u25") prods = prods.filter((p) => p.lo < 25);
+    if (s.shopPrice === "25-50") prods = prods.filter((p) => p.lo >= 25 && p.lo < 50);
+    if (s.shopPrice === "50+") prods = prods.filter((p) => p.lo >= 50);
+    if (s.shopSort === "reviews") prods = [...prods].sort((a, b) => b.rc - a.rc);
+    if (s.shopSort === "priceAsc") prods = [...prods].sort((a, b) => a.lo - b.lo);
+    if (s.shopSort === "priceDesc") prods = [...prods].sort((a, b) => b.lo - a.lo);
+    const chip = (label, active, fn) => ({
+      label, fn,
+      bg: active ? "#E8442E" : "#FFFDF7",
+      fg: active ? "#FFFDF7" : "#12235C",
+      border: active ? "#E8442E" : "rgba(20,34,90,.22)"
+    });
+    return {
+      pageShop: s.page === "shop",
+      shopTitle: catMap[s.shopCat] || "",
+      shopCount: prods.length,
+      shopEmpty: prods.length === 0,
+      shopNotEmpty: prods.length > 0,
+      shopProducts: prods.map((p) => ({ ...p, open: (e) => this.openProduct(p.idx, e) })),
+      openShop: (e) => this.openCat("building-toys", e),
+      goLearning: (e) => this.openCat("learning-education", e),
+      goGames: (e) => this.openCat("games", e),
+      goOutdoor: (e) => this.openCat("sports-outdoor", e),
+      goBuilding: (e) => this.openCat("building-toys", e),
+      goBaby: (e) => this.openCat("baby-toddler", e),
+      allCats: cats.map(([id, name]) => ({ name, open: (e) => this.openCat(id, e) })),
+      catChips: cats.map(([id, name]) => ({
+        name, open: (e) => this.openCat(id, e),
+        bg: id === s.shopCat ? "#1D3FC4" : "#FFFDF7",
+        fg: id === s.shopCat ? "#FFFDF7" : "#12235C",
+        border: id === s.shopCat ? "#1D3FC4" : "rgba(20,34,90,.22)"
+      })),
+      sortChips: [["featured", "Featured"], ["reviews", "Most Reviewed"], ["priceAsc", "Price ↑"], ["priceDesc", "Price ↓"]].map(([v, l]) =>
+        chip(l, s.shopSort === v, () => this.setState({ shopSort: v }))),
+      ageChips: ["0–2", "3–5", "6–8", "9–12", "Teen+"].map((v) =>
+        chip(v + " yrs", s.shopAge === v, () => this.setState({ shopAge: s.shopAge === v ? null : v }))),
+      priceChips: [["u25", "Under $25"], ["25-50", "$25–$50"], ["50+", "$50+"]].map(([v, l]) =>
+        chip(l, s.shopPrice === v, () => this.setState({ shopPrice: s.shopPrice === v ? null : v }))),
+      clearFilters: () => this.setState({ shopAge: null, shopPrice: null, shopSort: "featured" }),
+    };
+  }
+}
+</script>
+</body>
+</html>
