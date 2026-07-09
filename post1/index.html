@@ -1232,17 +1232,32 @@ class Component extends DCLogic {
     }
   }
 
+  // Site root path (e.g. "/" at a domain root, "/toyscout/" under a GitHub
+  // Pages project site) as computed by the inline <base> script in <head>.
+  // Used to strip the deployment prefix before reading route segments.
+  siteRootPath() {
+    const base = document.querySelector("base");
+    return base ? new URL(base.getAttribute("href"), location.origin).pathname : "/";
+  }
+
+  pathBelowRoot() {
+    const root = this.siteRootPath();
+    let p = location.pathname;
+    if (p.startsWith(root)) p = p.slice(root.length);
+    return p.replace(/^\/|\/$/g, "");
+  }
+
   // True when the URL path itself (e.g. "/contact/") names a route — lets a
   // direct/refreshed load of a static fallback dir (see contact/, shop/, etc.)
   // restore the right view even before any hash is set.
   pathMatchesRoute() {
-    const seg = location.pathname.replace(/^\/|\/$/g, "").split("/")[0];
+    const seg = this.pathBelowRoot().split("/")[0];
     return ["shop", "product", "blog", "post1", "post2", "post3", "contact", "privacy", "terms", "disclosure"].includes(seg);
   }
 
   applyHash() {
     const fromHash = location.hash.length > 1;
-    const raw = fromHash ? location.hash.replace(/^#\/?/, "") : location.pathname.replace(/^\/|\/$/g, "");
+    const raw = fromHash ? location.hash.replace(/^#\/?/, "") : this.pathBelowRoot();
     const parts = raw.split("/").filter(Boolean);
     const p0 = parts[0] || "home";
     const catIds = this.catList().map((c) => c[0]);
