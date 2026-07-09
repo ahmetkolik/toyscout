@@ -3,10 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="/">
-<script src="/vendor/react.production.min.js"></script>
-<script src="/vendor/react-dom.production.min.js"></script>
-<script src="/support.js"></script>
+<script>
+// Computes the site root so relative asset/script paths resolve correctly
+// whether the site is served at a domain root (localhost, custom domain) or
+// under a subpath (e.g. GitHub Pages project sites: /repo-name/). Works by
+// stripping the current filename, then one more segment if that segment is
+// a known static-fallback route dir (see contact/, shop/, etc.).
+(function () {
+  var dir = location.pathname.replace(/[^/]*$/, "");
+  var routes = ["contact", "shop", "blog", "post1", "post2", "post3", "privacy", "terms", "disclosure"];
+  var seg = dir.replace(/\/$/, "").split("/").pop();
+  if (routes.indexOf(seg) !== -1) dir = dir.slice(0, dir.length - seg.length - 1);
+  document.write('<base href="' + dir + '">');
+})();
+</script>
+<script src="vendor/react.production.min.js"></script>
+<script src="vendor/react-dom.production.min.js"></script>
+<script src="support.js"></script>
 </head>
 <body>
 <div id="ts-loading" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#FAF3E7;color:#14225A;font-family:Nunito,system-ui,sans-serif;z-index:9999">
