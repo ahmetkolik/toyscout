@@ -1,9 +1,5 @@
-# Baby & Toddler Toys — Amazon urun linkleri
-# Her satira bir Amazon linki yapistir. Ornek:
-#   https://www.amazon.com/dp/B01N9Y1H0X
-# Istege bagli ek bilgiler | ile eklenebilir:
-#   https://www.amazon.com/dp/B01N9Y1H0X | age=3-5 | badge=TRENDING NOW
-#   (age secenekleri: 0-2, 3-5, 6-8, 9-12, Teen+)
-# Bir urunu siteden kaldirmak icin satiri sil veya basina # koy.
-# Duzenledikten sonra calistir:  python3 products/fetch_products.py
-
+# Amazon Toys & Games Best Sellers (2026-07-10)
+# rank 25: Infinno Baby Wrist Rattle Socks and Foot Finder Set, Perfect Baby Toys for 0-12 
+https://www.amazon.com/dp/B0B21ZM7LJ | age=0-2
+# rank 48: Kikidex Magnetic Drawing Board, Toddler Girl Toys for 1-3 Year Old, Doodle Board
+https://www.amazon.com/dp/B0BGN1YDJH | age=0-2

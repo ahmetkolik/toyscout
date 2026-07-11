@@ -1,9 +1,17 @@
-# Party Supplies — Amazon urun linkleri
-# Her satira bir Amazon linki yapistir. Ornek:
-#   https://www.amazon.com/dp/B01N9Y1H0X
-# Istege bagli ek bilgiler | ile eklenebilir:
-#   https://www.amazon.com/dp/B01N9Y1H0X | age=3-5 | badge=TRENDING NOW
-#   (age secenekleri: 0-2, 3-5, 6-8, 9-12, Teen+)
-# Bir urunu siteden kaldirmak icin satiri sil veya basina # koy.
-# Duzenledikten sonra calistir:  python3 products/fetch_products.py
-
+# Amazon Toys & Games Best Sellers (2026-07-10)
+# rank 1: PartyWoo White Balloons 140 pcs Different Sizes of 18 12 10 5 Inch White Balloon
+https://www.amazon.com/dp/B0BDQXLT4C | age=3-5 | badge=#1 BEST SELLER
+# rank 6: Bezente Assorted Rainbow Latex Balloons, 100 Pack 12 inch Round Helium Bright Co
+https://www.amazon.com/dp/B0BZCHMVTK | age=3-5 | badge=BEST SELLER
+# rank 12: PartySticks Glow Sticks Party Supplies 100pk - 8 Inch Glow in the Dark Light Up 
+https://www.amazon.com/dp/B00N1QPNMA | age=6-8
+# rank 21: 40 Inch Beige Number 1 Balloon for 1st Birthday Decoration, Large Self Inflating
+https://www.amazon.com/dp/B0BJZRS4KR | age=0-2
+# rank 32: PartyWoo Pastel Balloons 100pcs 12 Inch Pastel Rainbow Latex Balloons for Baby S
+https://www.amazon.com/dp/B0D82WS2G7 | age=3-5
+# rank 38: 100Pcs clear 260 Balloons Clear Long Skinny Latex Balloon for Animal Ballons, Pr
+https://www.amazon.com/dp/B09L7MDNH6 | age=6-8
+# rank 40: RUBFAC Gold Balloons 129pcs Different Sizes 18 12 10 5 Inch, Metallic Gold Ballo
+https://www.amazon.com/dp/B09T6QFR2J | age=3-5
+# rank 43: PartyWoo Gold Balloons 50pcs 12 Inch Gold Latex Helium Balloons for Birthday Wed
+https://www.amazon.com/dp/B0991XM8YL | age=3-5

@@ -1,9 +1,13 @@
-# Games — Amazon urun linkleri
-# Her satira bir Amazon linki yapistir. Ornek:
-#   https://www.amazon.com/dp/B01N9Y1H0X
-# Istege bagli ek bilgiler | ile eklenebilir:
-#   https://www.amazon.com/dp/B01N9Y1H0X | age=3-5 | badge=TRENDING NOW
-#   (age secenekleri: 0-2, 3-5, 6-8, 9-12, Teen+)
-# Bir urunu siteden kaldirmak icin satiri sil veya basina # koy.
-# Duzenledikten sonra calistir:  python3 products/fetch_products.py
-
+# Amazon Toys & Games Best Sellers (2026-07-10)
+# rank 5: Bicycle Standard Playing Cards, Standard Poker Size Deck of Cards, Red & Blue (2
+https://www.amazon.com/dp/B00E4AMFKK | age=9-12 | badge=BEST SELLER
+# rank 14: 50+ Official Pokemon Cards Collection with 5 Foils in Any Combination and at Lea
+https://www.amazon.com/dp/B0829FT44S | age=6-8
+# rank 19: Mattel Games UNO Card Game for Kid, Adult & Family Nights & Parties, Travel & Va
+https://www.amazon.com/dp/B07P6MZPK3 | age=6-8
+# rank 20: USAOPOLY Flip 7, The Ultimate Blend of Press Your Luck & Strategy, Fast-Paced Ad
+https://www.amazon.com/dp/B0DWGVM7RY | age=9-12
+# rank 22: Hoyle Waterproof Playing Cards, Clear Plastic Deck of Cards for Outdoor Card Gam
+https://www.amazon.com/dp/B000J3Z7TC | age=9-12
+# rank 49: Taco Cat Goat Cheese Pizza Wildly Entertaining Card Game for Family and Group Ga
+https://www.amazon.com/dp/B077Z1R28P | age=9-12

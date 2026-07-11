@@ -9,3 +9,5 @@ testsprite_tests/tmp/config.json
 
 # Design Canvas editor preview artifact, not site source
 .thumbnail
+.vercel
+.env*

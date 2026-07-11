@@ -1,9 +1,19 @@
-# Novelty & Gag Toys — Amazon urun linkleri
-# Her satira bir Amazon linki yapistir. Ornek:
-#   https://www.amazon.com/dp/B01N9Y1H0X
-# Istege bagli ek bilgiler | ile eklenebilir:
-#   https://www.amazon.com/dp/B01N9Y1H0X | age=3-5 | badge=TRENDING NOW
-#   (age secenekleri: 0-2, 3-5, 6-8, 9-12, Teen+)
-# Bir urunu siteden kaldirmak icin satiri sil veya basina # koy.
-# Duzenledikten sonra calistir:  python3 products/fetch_products.py
-
+# Amazon Toys & Games Best Sellers (2026-07-10)
+# rank 2: Schylling NeeDoh Nice Ice Baby - Sensory Squeeze Toy - Super Solid Squish - 1.25
+https://www.amazon.com/dp/B0D9ZTW7PS | age=3-5 | badge=BEST SELLER
+# rank 3: Schylling NeeDoh Nice Cube - Sensory Squeeze Toy with Super Solid Squish - 2.25"
+https://www.amazon.com/dp/B0BQZFVJTB | age=3-5 | badge=BEST SELLER
+# rank 7: 30 Pack Squishy Toys, Kawaii Squishies Party Favors for Kids 4-8 8-12 Treasure B
+https://www.amazon.com/dp/B0DG2VRFV7 | age=6-8 | badge=BEST SELLER
+# rank 8: Minecraft SLIMYGLOOP® Gelli Gels Creeper, Green Slow-Flow Glitter Squishy Sensor
+https://www.amazon.com/dp/B0GZ4ZZ4QS | age=6-8 | badge=BEST SELLER
+# rank 23: Dumpling Squishy Mystery Box, Random 1 of 14 Colors, Cute Squishy Dumpling Toy, 
+https://www.amazon.com/dp/B0GVM6394K | age=6-8
+# rank 24: Schylling NeeDoh Original - Sensory Fidget Toy - Pink - Ages 3 to Adult , 1 Coun
+https://www.amazon.com/dp/B0FH7PXPKK | age=3-5
+# rank 28: 160 Pcs Fidget Toys Party Favors Pack, Randomly Selected Pop Sensory Set Gifts S
+https://www.amazon.com/dp/B0G3P428LL | age=6-8
+# rank 39: Butter Slow Rising Squishy，Squishy Toy,Dumpling Stress Balls，PU Materia Fidget T
+https://www.amazon.com/dp/B0F7M16P52 | age=9-12
+# rank 42: Halloween Spooky Glitter Dumpling Squishies Toys, Dumplings Stress Balls for Adu
+https://www.amazon.com/dp/B0H7HV7QX8 | age=6-8

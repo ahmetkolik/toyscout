@@ -1,9 +1,23 @@
-# Sports & Outdoor Play — Amazon urun linkleri
-# Her satira bir Amazon linki yapistir. Ornek:
-#   https://www.amazon.com/dp/B01N9Y1H0X
-# Istege bagli ek bilgiler | ile eklenebilir:
-#   https://www.amazon.com/dp/B01N9Y1H0X | age=3-5 | badge=TRENDING NOW
-#   (age secenekleri: 0-2, 3-5, 6-8, 9-12, Teen+)
-# Bir urunu siteden kaldirmak icin satiri sil veya basina # koy.
-# Duzenledikten sonra calistir:  python3 products/fetch_products.py
-
+# Amazon Toys & Games Best Sellers (2026-07-10)
+# rank 17: Aqua 4-in-1 Monterey Hammock Pool Float & Water Hammocks – 2-3-4 Multipacks – Mu
+https://www.amazon.com/dp/B0D68VRKS2 | age=Teen+
+# rank 18: Original Bunch O Balloons Tropical Party 330+ Rapid-Filling Self-Sealing Water B
+https://www.amazon.com/dp/B0B459CY9W | age=6-8
+# rank 26: Bunch O Balloons Tropical Party (6 Pack) by ZURU, 200+ Rapid-Filling Self-Sealin
+https://www.amazon.com/dp/B0B44PDCLC | age=6-8
+# rank 29: 12Pcs Reusable Water Balloons, Pool Beach water Toys for Boys and Girls, Outdoor
+https://www.amazon.com/dp/B0BRZXJFHM | age=6-8
+# rank 30: Max Liquidator 6-Pack Water Blaster Set, Multicolor
+https://www.amazon.com/dp/B0796JVBJ8 | age=6-8
+# rank 33: Inflatable Tanning Pool Lounger Float - Jasonwell 4 in 1 Sun Tan Tub Sunbathing 
+https://www.amazon.com/dp/B09NVFT7HP | age=Teen+
+# rank 35: SplashEZ 3-in-1 Splash Pad, Sprinkler for Kids & Baby Pool for Learning – Toddle
+https://www.amazon.com/dp/B07MNMT3M7 | age=0-2
+# rank 37: Step2 Rain Showers Splash Pond Water Table, Kids Water and Sand Activity Sensory
+https://www.amazon.com/dp/B01K1K0K6M | age=0-2
+# rank 41: SwimWays Rainbow Reef Shark Toy, Finn Diesel Kids Shark Pool Toy and Swimming Ac
+https://www.amazon.com/dp/B0FKP2JKR9 | age=6-8
+# rank 44: VISTOP 67" Non-Slip Splash Pad for Kids and Dogs, Thickened Sprinkler Pool for T
+https://www.amazon.com/dp/B0899WTH85 | age=0-2
+# rank 45: Little Kids Bubbles by Fubbles | Made in The USA | 64oz Non Toxic Bubble Solutio
+https://www.amazon.com/dp/B09TK9JGRH | age=3-5

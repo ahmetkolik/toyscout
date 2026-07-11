@@ -232,6 +232,14 @@ def build_site_entry(asin, url, meta, data):
         entry["lo"] = data["lo"]
     if "rc" in data:
         entry["rc"] = data["rc"]
+    if "rating" in data:
+        entry["rating"] = data["rating"]
+    if data.get("bsr"):
+        entry["bsr"] = data["bsr"]
+    if data.get("gallery"):
+        entry["gallery"] = data["gallery"]
+    if data.get("reviews"):
+        entry["reviews"] = data["reviews"]
     if data.get("bullets"):
         entry["bullets"] = data["bullets"]
     if data.get("description"):

@@ -1,9 +1,19 @@
-# Arts & Crafts — Amazon urun linkleri
-# Her satira bir Amazon linki yapistir. Ornek:
-#   https://www.amazon.com/dp/B01N9Y1H0X
-# Istege bagli ek bilgiler | ile eklenebilir:
-#   https://www.amazon.com/dp/B01N9Y1H0X | age=3-5 | badge=TRENDING NOW
-#   (age secenekleri: 0-2, 3-5, 6-8, 9-12, Teen+)
-# Bir urunu siteden kaldirmak icin satiri sil veya basina # koy.
-# Duzenledikten sonra calistir:  python3 products/fetch_products.py
-
+# Amazon Toys & Games Best Sellers (2026-07-10)
+# rank 9: Animals Habitat 500+ Kids Sticker Book by Cupkin Toddler Airplane Travel Activit
+https://www.amazon.com/dp/B098PMWSVS | age=0-2 | badge=BEST SELLER
+# rank 11: Play Doh Modeling Compound 10-Pack Case of Assorted Colors, Non-Toxic 2 oz. Cans
+https://www.amazon.com/dp/B00JM5GW10 | age=3-5
+# rank 13: Crayola Broad Line Markers (12 Count), Washable Markers for Kids, Assorted Color
+https://www.amazon.com/dp/B003HGGPLW | age=3-5
+# rank 15: Horizon Group USA Bluey Aqua Art - Reusable Water Reveal Activity Pages With Wat
+https://www.amazon.com/dp/B09PGVGCH5 | age=3-5
+# rank 16: Crayola Colored Pencils (36ct), Kids Pencil Set, Pre-Sharpened Coloring Book Pen
+https://www.amazon.com/dp/B00006RVTS | age=6-8
+# rank 31: Play-Doh Jewel Colors Bulk 12-Pack of 4-Ounce Cans, Holiday Stocking Stuffers, P
+https://www.amazon.com/dp/B07BC44JFC | age=3-5
+# rank 46: Crayola Mini Twistables Crayons for Kids (50ct), Cute Back to School Supplies fo
+https://www.amazon.com/dp/B07D4T2XKB | age=3-5
+# rank 47: Elmer's White Liquid School Glue, 1 Gallon, Safe, Washable, 1 Count, - #1 Teache
+https://www.amazon.com/dp/B0006HUJJO | age=6-8
+# rank 50: Crayola Erasable Colored Pencils (24ct), Kids Coloring Pencils for Coloring Book
+https://www.amazon.com/dp/B000PCWKBA | age=6-8
