@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/:path((?!googlea71b328d538ede18\\.html$).*)",
+      "has": [{ "type": "host", "value": "toyscout.vercel.app" }],
+      "destination": "https://www.toyscout.net/:path",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!googlea71b328d538ede18\\.html$).*)",
+      "has": [{ "type": "host", "value": "toyscout-kolik.vercel.app" }],
+      "destination": "https://www.toyscout.net/:path",
+      "permanent": true
+    }
+  ]
+}
