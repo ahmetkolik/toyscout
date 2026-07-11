@@ -45,7 +45,7 @@ SSL_CTX = _ssl_context()
 
 # Amazon Associates etiketiniz (ör. "toyscout-20"). Bos birakilirsa
 # links.txt icindeki linkte varsa oradaki ?tag= parametresi kullanilir.
-AFFILIATE_TAG = ""
+AFFILIATE_TAG = "kolico-20"
 
 ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_DIR = ROOT / "products"

@@ -40,16 +40,22 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Scroll to the page bottom to reveal the footer and the newsletter signup form.
+        # -> Wait for the homepage to finish loading until the page renders and interactive elements (like the newsletter form) are visible, then reveal more content by scrolling.
         await page.mouse.wheel(0, 300)
         
-        # -> Fill the newsletter email field (placeholder 'Your email address') with a valid email and click the 'Join the drop' button to submit.
+        # -> Search the page for the newsletter signup text (look for 'newsletter' or 'subscribe') to locate the email input or subscription form on the homepage.
+        await page.mouse.wheel(0, 300)
+        
+        # -> Reveal the newsletter signup section by searching the page for 'newsletter' and scrolling to the footer so the email input and Subscribe button become visible.
+        await page.mouse.wheel(0, 300)
+        
+        # -> Fill the 'Your email address' field with a valid email and click the 'Join the drop' button to submit the newsletter signup.
         # Your email address email field
         elem = page.get_by_placeholder('Your email address', exact=True)
         await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("test@example.com")
+        await elem.fill("tester@example.com")
         
-        # -> Fill the newsletter email field (placeholder 'Your email address') with a valid email and click the 'Join the drop' button to submit.
+        # -> Fill the 'Your email address' field with a valid email and click the 'Join the drop' button to submit the newsletter signup.
         # Join the drop button
         elem = page.get_by_role('button', name='Join the drop', exact=True)
         await elem.click(timeout=10000)

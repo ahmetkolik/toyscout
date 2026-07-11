@@ -40,10 +40,13 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Scroll down to reveal the newsletter signup / subscription section so the email input and submit button become visible.
+        # -> Scroll down the homepage to reveal the newsletter email field and the 'Subscribe' (or similar) button.
         await page.mouse.wheel(0, 300)
         
-        # -> Scroll to reveal the newsletter / subscription form so the email input and 'Subscribe' (or similar) button become visible.
+        # -> Scroll to the bottom of the homepage to reveal the footer and newsletter form, then find the newsletter text (e.g., 'Subscribe') so the email input and 'Subscribe' button can be located.
+        await page.mouse.wheel(0, 300)
+        
+        # -> Scroll to the bottom of the page to reveal the newsletter form and list visible input fields (email field and related buttons).
         await page.mouse.wheel(0, 300)
         
         # -> Click the 'Join the drop' button to submit the newsletter form with the email field left empty.

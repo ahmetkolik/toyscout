@@ -40,21 +40,17 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Open the 'Contact' page by locating and clicking the Contact link (or button) in the site navigation/footer.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll down the homepage to reveal the footer and the 'Contact' link so the Contact view can be opened.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll down until the footer is visible and the 'Contact' link appears.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Click the 'Contact' link in the footer to open the Contact page.
-        # Contact link
-        elem = page.get_by_role('link', name='Contact', exact=True)
+        # -> Open the 'About' menu and click the 'Contact' link to open the contact view.
+        # About ▾ button
+        elem = page.get_by_role('button', name='About ▾', exact=True)
         await elem.click(timeout=10000)
         
-        # -> Click the 'Send message' button to submit the contact form with all required fields left empty.
+        # -> Click the 'Contact' menu item to open the Contact page.
+        # Contact button
+        elem = page.get_by_role('button', name='Contact', exact=True)
+        await elem.click(timeout=10000)
+        
+        # -> Click the 'Send message' button to submit the contact form with required fields left empty.
         # Send message button
         elem = page.get_by_role('button', name='Send message', exact=True)
         await elem.click(timeout=10000)

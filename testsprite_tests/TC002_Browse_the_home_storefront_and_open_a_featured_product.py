@@ -40,31 +40,35 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Scroll down to reveal the 'Trending this week' / Top Picks section and click the 'Coast Wooden Balance Bike' product image to open its product detail view.
+        # -> Scroll down to the 'Trending this week' (best sellers) home section and click the product title 'PartyWoo White Balloons 140 pcs...' to open the featured product.
         await page.mouse.wheel(0, 300)
         
-        # -> Scroll down to reveal the 'Trending this week' / Top Picks section and click the 'Coast Wooden Balance Bike' product image to open its product detail view.
-        # Coast Wooden Balance Bike
-        elem = page.locator('xpath=/html/body/div/div/div/section[2]/div/div[3]/article/div/img')
+        # -> Scroll down to the 'Trending this week' (best sellers) home section and click the product title 'PartyWoo White Balloons 140 pcs...' to open the featured product.
+        # PartyWoo White Balloons 140 pcs Different Sizes...
+        elem = page.get_by_text('PartyWoo White Balloons 140 pcs Different Sizes of 18 12 10…', exact=True)
         await elem.click(timeout=10000)
         
         # --> Assertions to verify final state
         
         # --> Verify the product detail view is displayed
-        # Assert: The URL shows the product detail path for the clicked item.
-        await expect(page).to_have_url(re.compile("\\#/product/sports\\-outdoor/0"), timeout=15000), "The URL shows the product detail path for the clicked item."
-        # Assert: The product detail page displays the 'View current price on Amazon' link.
-        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[2]/div[2]/div[3]/a").nth(0)).to_have_text("View current price on Amazon", timeout=15000), "The product detail page displays the 'View current price on Amazon' link."
-        # Assert: The product detail page shows the product ratings count '9,214'.
-        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[3]/div[2]/div/div[10]/span").nth(0)).to_have_text("9,214", timeout=15000), "The product detail page shows the product ratings count '9,214'."
+        # Assert: The URL contains '#/product/party/0', indicating the product detail view is open.
+        await expect(page).to_have_url(re.compile("\\#/product/party/0"), timeout=15000), "The URL contains '#/product/party/0', indicating the product detail view is open."
+        # Assert: The product price '$8.99' is visible on the product detail page.
+        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[3]/div[1]/div/div[2]/span[2]/span").nth(0)).to_have_text("$8.99", timeout=15000), "The product price '$8.99' is visible on the product detail page."
+        # Assert: The product rating '4.5' is displayed on the product detail page.
+        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[2]/div[2]/div[2]/span[2]/span[1]").nth(0)).to_have_text("4.5", timeout=15000), "The product rating '4.5' is displayed on the product detail page."
+        # Assert: The affiliate link 'View current price on Amazon' is present on the product detail page.
+        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[2]/div[2]/div[4]/a").nth(0)).to_have_text("View current price on Amazon", timeout=15000), "The affiliate link 'View current price on Amazon' is present on the product detail page."
         
         # --> Verify the product information is displayed
-        # Assert: The product age range '3–5' is displayed on the product detail page.
-        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[2]/div[2]/div[1]/span[2]/span").nth(0)).to_have_text("3\u20135", timeout=15000), "The product age range '3\u20135' is displayed on the product detail page."
-        # Assert: The product ratings count '9,214' is displayed on the product detail page.
-        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[2]/div/div/div[2]/span[2]").nth(0)).to_have_text("9,214", timeout=15000), "The product ratings count '9,214' is displayed on the product detail page."
-        # Assert: The 'View current price on Amazon' affiliate button is visible on the product detail page.
-        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[2]/div[2]/div[3]/a").nth(0)).to_have_text("View current price on Amazon", timeout=15000), "The 'View current price on Amazon' affiliate button is visible on the product detail page."
+        # Assert: Product price $8.99 is visible on the product page.
+        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[3]/div[1]/div/div[2]/span[2]/span").nth(0)).to_have_text("$8.99", timeout=15000), "Product price $8.99 is visible on the product page."
+        # Assert: Product rating 4.5 is visible on the product page.
+        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[2]/div[2]/div[2]/span[2]/span[1]").nth(0)).to_have_text("4.5", timeout=15000), "Product rating 4.5 is visible on the product page."
+        # Assert: Product ratings count 6,605 is visible on the product page.
+        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[1]/div[2]/div[2]/div[2]/span[2]/span[2]").nth(0)).to_have_text("6,605", timeout=15000), "Product ratings count 6,605 is visible on the product page."
+        # Assert: The affiliate 'View on Amazon' link is visible on the product page.
+        await expect(page.locator("xpath=/html/body/div[1]/div/div/div/div[2]/div/a").nth(0)).to_have_text("View on Amazon", timeout=15000), "The affiliate 'View on Amazon' link is visible on the product page."
         await asyncio.sleep(5)
 
     finally:

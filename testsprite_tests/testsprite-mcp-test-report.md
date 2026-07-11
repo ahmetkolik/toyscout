@@ -1,93 +1,115 @@
-# TestSprite AI Testing Report (MCP) — Final
+# TestSprite AI Testing Report(MCP)
 
 ---
 
 ## 1️⃣ Document Metadata
 - **Project Name:** Amazon Affiliate Website (ToyScout)
-- **Date:** 2026-07-08
-- **Prepared by:** TestSprite AI Team + Claude Code
-- **Runs:** 3 (initial full run of 17 tests → fix CDN bootstrap, re-run 11 blocked tests → fix 3 newly-surfaced issues, re-run those 3)
+- **Date:** 2026-07-11
+- **Prepared by:** TestSprite AI Team
+- **Run context:** Post-migration regression run. Since the previous full run (17/17 passing), the site migrated from `toyscout.vercel.app` to its permanent domain `https://www.toyscout.net` (all canonical/OG/JSON-LD/sitemap URLs swapped, `vercel.json` host redirects added) and the Amazon Associates tag `kolico-20` was wired into all product links. 10 representative tests were selected to cover every requirement group within the account's credit budget.
 
 ---
 
 ## 2️⃣ Requirement Validation Summary
 
 ### R1 — Home page storefront
-| Test | Title | Status |
-|---|---|---|
-| TC001 | Browse the home page storefront | ✅ Passed |
-| TC002 | Browse the home storefront and open a featured product | ✅ Passed (fixed) |
+#### Test TC001 Browse the home page storefront
+- **Test Code:** [TC001_Browse_the_home_page_storefront.py](./TC001_Browse_the_home_page_storefront.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/a2587f2b-9921-49aa-a979-f59d459cff7f
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Hero, trust strip, Top Picks, categories, Scout process, blog and newsletter sections all render; domain migration did not affect the storefront bootstrap (vendored React, no CDN dependency).
+---
 
-**TC002 finding & fix:** Originally failed — clicking a "Top Picks" card on the home page only opened the external "View on Amazon" link; there was no internal ToyScout product detail view reachable from the home page. Wired each of the 6 Top Picks cards' image + title to `openProduct(idx, e, catId)`, opening the matching internal product detail page (the external CTA button is untouched and still opens Amazon directly). Re-verified: passing.
+#### Test TC002 Browse the home storefront and open a featured product
+- **Test Code:** [TC002_Browse_the_home_storefront_and_open_a_featured_product.py](./TC002_Browse_the_home_storefront_and_open_a_featured_product.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/31abd85b-8d7e-4147-8027-f9994152b7f4
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Clicking a Top Picks card image/title opens the internal ToyScout product detail view (openPick0–openPick5 wiring), while the separate "View on Amazon" CTA links externally. The fix from the previous session remains intact.
+---
 
-### R2 — Client-side navigation & routing
-| Test | Title | Status |
-|---|---|---|
-| TC004 | Open the Shop view and return home | ✅ Passed |
-| TC007 | Open the Blog view and return home | ✅ Passed |
-| TC009 | Open the Contact view and return home | ✅ Passed |
-| TC015 | Open a legal page from the footer and return home | ✅ Passed |
-| TC018 | Open the affiliate disclosure from the footer | ✅ Passed |
-| TC019 | Open the privacy policy from the footer | ✅ Passed |
-| TC020 | Open the terms of service from the footer | ✅ Passed |
-| TC025 | Show validation when contact fields are incomplete | ✅ Passed (fixed) |
+### R2 — Shop category browsing & product detail
+#### Test TC005 Inspect a shop category product and open the affiliate link
+- **Test Code:** [TC005_Inspect_a_shop_category_product_and_open_the_affiliate_link.py](./TC005_Inspect_a_shop_category_product_and_open_the_affiliate_link.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/68a80835-f288-40db-bcd1-8dbdcca8f9a9
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Category grids render real scraped products; "View on Amazon" resolves to a real `amazon.com/dp/<ASIN>` URL (now carrying the `kolico-20` Associates tag as of this session's follow-up change).
+---
 
-**TC025 finding & fix:** Originally blocked — direct navigation to `/contact` returned a 404 ("File not found"), so the contact form couldn't be reached to test validation. Root cause was two-fold: (1) the static file server had no route for bare paths like `/contact`, and (2) once a matching `contact/index.html` fallback was added, the page's script/image tags used paths relative to the document (`./vendor/...`, `assets/...`), which broke when served from a subdirectory. Fixed by adding static fallback directories (`contact/`, `shop/`, `blog/`, `privacy/`, `terms/`, `disclosure/`, `post1/`, `post2/`, `post3/`, each with an `index.html` symlink to the main document) plus `<base href="/">` in the document head so all relative asset/script paths resolve to the site root regardless of the requested path's depth. Re-verified: passing.
+#### Test TC008 Review the full product details before buying
+- **Test Code:** [TC008_Review_the_full_product_details_before_buying.py](./TC008_Review_the_full_product_details_before_buying.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/a4107450-c0cc-4f3d-8ab8-c8179c720af2
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Product detail page shows title, price, rating, review count, sales rank, gallery images, bullets and reviews sourced from the scraped Amazon data.
+---
 
-### R3 — Shop category browsing & product detail
-| Test | Title | Status |
-|---|---|---|
-| TC005 | Inspect a shop category product and open the affiliate link | ✅ Passed |
-| TC008 | Review the full product details before buying | ✅ Passed |
-| TC011 | Browse products within a shop category | ✅ Passed |
+### R3 — Blog
+#### Test TC012 Read a full blog post and return to the blog list
+- **Test Code:** [TC012_Read_a_full_blog_post_and_return_to_the_blog_list.py](./TC012_Read_a_full_blog_post_and_return_to_the_blog_list.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/87e87ee2-5486-400a-9311-bcde983b0eda
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Blog list → post → back navigation works with hash routing preserved.
+---
 
-### R4 — Blog
-| Test | Title | Status |
-|---|---|---|
-| TC012 | Read a full blog post and return to the blog list | ✅ Passed |
+### R4 — Legal & compliance pages
+#### Test TC015 Open a legal page from the footer and return home
+- **Test Code:** [TC015_Open_a_legal_page_from_the_footer_and_return_home.py](./TC015_Open_a_legal_page_from_the_footer_and_return_home.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/c084ac7d-c00a-458f-b9b3-527eaf7a2952
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Privacy/Terms/Disclosure footer links open the correct overlay views and return home cleanly.
+---
 
 ### R5 — Newsletter signup
-| Test | Title | Status |
-|---|---|---|
-| TC017 | Subscribe to the newsletter successfully | ✅ Passed |
-| TC024 | Prevent newsletter submission with an empty email | ✅ Passed (fixed) |
+#### Test TC017 Subscribe to the newsletter successfully
+- **Test Code:** [TC017_Subscribe_to_the_newsletter_successfully.py](./TC017_Subscribe_to_the_newsletter_successfully.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/bd1252d0-54cc-4b5f-b83a-f42428bce029
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Valid email shows the success state.
+---
 
-**TC024 finding & fix:** Originally failed — submitting the newsletter form with an empty email field showed the same success message as a valid submission ("You're in! First drop lands Monday.") instead of rejecting it. Added `isValidEmail()` validation: an empty/invalid email now shows an inline error ("Please enter a valid email address.") and does not flip the subscribed state. Re-verified: passing.
+#### Test TC024 Prevent newsletter submission with an empty email
+- **Test Code:** [TC024_Prevent_newsletter_submission_with_an_empty_email.py](./TC024_Prevent_newsletter_submission_with_an_empty_email.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/462230e4-65c9-490a-a977-5516ac3f14c8
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Empty/invalid email shows the inline validation error instead of false success (isValidEmail guard still effective).
+---
 
 ### R6 — Contact form
-| Test | Title | Status |
-|---|---|---|
-| TC021 | Submit a contact message successfully | ✅ Passed |
+#### Test TC021 Submit a contact message successfully
+- **Test Code:** [TC021_Submit_a_contact_message_successfully.py](./TC021_Submit_a_contact_message_successfully.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/f6bd07a6-b474-45da-9b30-17025026b134
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Complete submission shows the sent state.
+---
 
-*(TC025's validation scenario is grouped under R2 above since its root-cause fix was routing-related, but it also exercises this requirement.)*
-
+#### Test TC025 Show validation when contact fields are incomplete
+- **Test Code:** [TC025_Show_validation_when_contact_fields_are_incomplete.py](./TC025_Show_validation_when_contact_fields_are_incomplete.py)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/0be3d242-4497-46a9-b892-a4cd8252fa2a/e819da40-6016-4798-9de8-d4d5ab22f048
+- **Status:** ✅ Passed
+- **Analysis / Findings:** Incomplete contact submission shows the inline error; direct navigation to `/contact/` (static fallback + `<base href="/">`) still resolves correctly.
 ---
 
 ## 3️⃣ Coverage & Matching Metrics
 
-**17 / 17 tests passing — 100%**
+**10 / 10 tests passing — 100%**
 
 | Requirement | Total Tests | ✅ Passed | ❌ Failed |
 |---|---|---|---|
 | R1 — Home page storefront | 2 | 2 | 0 |
-| R2 — Client-side navigation & routing | 8 | 8 | 0 |
-| R3 — Shop category browsing & product detail | 3 | 3 | 0 |
-| R4 — Blog | 1 | 1 | 0 |
+| R2 — Shop category & product detail | 2 | 2 | 0 |
+| R3 — Blog | 1 | 1 | 0 |
+| R4 — Legal & compliance pages | 1 | 1 | 0 |
 | R5 — Newsletter signup | 2 | 2 | 0 |
-| R6 — Contact form | 1 | 1 | 0 |
-| **Total** | **17** | **17** | **0** |
+| R6 — Contact form | 2 | 2 | 0 |
+| **Total** | **10** | **10** | **0** |
 
-*(8 near-duplicate cases from the original 25-case generated plan — TC003, TC006, TC010, TC013, TC014, TC016, TC022, TC023 — were intentionally skipped as redundant with the above to conserve TestSprite credits; they exercise the same flows as passing tests above.)*
+*(This run re-executed a representative subset of the 17-test suite that fully passed on the previous run; the 7 omitted tests — TC004, TC007, TC009, TC011, TC018, TC019, TC020 — cover navigation/footer flows already exercised by the passing tests above and were skipped to stay within the account's remaining TestSprite credits. The originally generated plan's 8 near-duplicate cases remain intentionally skipped.)*
 
 ---
 
-## 4️⃣ Key Gaps / Risks — resolved this session
+## 4️⃣ Key Gaps / Risks
 
-1. ~~**Fragile client-side bootstrap.**~~ **Fixed.** React 18 and ReactDOM are now vendored locally (`vendor/`) instead of loaded from the unpkg CDN. Confirmed via network inspection that no CDN requests occur at all; the main component script needs no Babel (it's plain JS executed via `new Function`, not JSX), so this fully removes the external dependency that caused 11/17 tests to previously fail with a blank page.
-2. ~~**Affiliate link verification gap.**~~ **Fixed.** All product CTAs (Shop, product detail, and home page Top Picks) now resolve to a real `amazon.com` URL — either the scraped affiliate link, or a `amazon.com/s?k=...` search fallback for placeholder products — instead of dead `#` links.
-3. ~~**Contact and Newsletter had zero verified coverage.**~~ **Fixed and verified**, including validation paths (empty email / incomplete contact form now show inline errors instead of false success).
-4. ~~**No URL routing.**~~ **Fixed.** Added hash-based routing (`state.page` ↔ `location.hash`) plus static fallback directories, so refresh, browser back/forward, and direct deep links to any view now restore the correct page.
-5. **Forms remain local-state only (by design, unchanged).** Newsletter/contact submissions still are not sent or persisted anywhere — this matches the project's stated scope (no backend) and was not something this session was asked to change.
-6. **Residual scope note:** the static-directory routing fix covers the 9 top-level views (contact, shop, blog, post1–3, privacy, terms, disclosure). Deep-linking directly to a specific category or product path (e.g. `/product/plush/2` without a hash) still requires the hash form, since generating physical directories for every category/product combination isn't practical for a static, backend-less site. This wasn't a failing test and is left as-is.
+1. **Affiliate monetization gap — closed this session.** All 65+ Amazon product links previously carried no Associates tag (no commission would have been earned). The tag `kolico-20` is now applied to every `amazon.com/dp/...` link (scraped products via `AFFILIATE_TAG` in `products/fetch_products.py`, static Top Picks CTAs, JSON-LD offer URLs) and to search-fallback links via `affiliateTag()`.
+2. **Forms remain local-state only (by design).** Newsletter/contact submissions are not persisted anywhere — matches the project's stated no-backend scope.
+3. **Domain migration verified.** The app under test behaves identically after the `www.toyscout.net` migration; canonical/OG/JSON-LD URLs point to the new domain and all host-level redirects (apex + vercel.app) are live with valid TLS.
 
-**Final result: all 17 executed TestSprite test cases pass. Zero known functional defects remain open.**
+**Final result: all 10 executed regression tests pass. Zero known functional defects remain open.**

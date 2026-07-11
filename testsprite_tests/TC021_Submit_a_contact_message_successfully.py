@@ -40,35 +40,35 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'About' button in the header to open its menu and look for a 'Contact' or 'Contact Us' link.
+        # -> Click the 'About' button in the top navigation to open its menu and look for a 'Contact' link or entry.
         # About ▾ button
         elem = page.get_by_role('button', name='About ▾', exact=True)
         await elem.click(timeout=10000)
         
-        # -> Open the Contact view by clicking the 'Contact' button in the About dropdown.
+        # -> Click the 'Contact' button in the About menu to open the contact view.
         # Contact button
         elem = page.get_by_role('button', name='Contact', exact=True)
         await elem.click(timeout=10000)
         
-        # -> Fill the 'Your name', 'Your email', and 'How can we help?' fields with test data, then click the 'Send message' button to submit the form.
+        # -> Fill the 'Your name' field, the 'Your email' field, and the 'How can we help?' textarea, then click the 'Send message' button to submit the form.
         # Your name text field
         elem = page.get_by_placeholder('Your name', exact=True)
         await elem.wait_for(state="visible", timeout=10000)
         await elem.fill("Test User")
         
-        # -> Fill the 'Your name', 'Your email', and 'How can we help?' fields with test data, then click the 'Send message' button to submit the form.
+        # -> Fill the 'Your name' field, the 'Your email' field, and the 'How can we help?' textarea, then click the 'Send message' button to submit the form.
         # Your email email field
         elem = page.get_by_placeholder('Your email', exact=True)
         await elem.wait_for(state="visible", timeout=10000)
         await elem.fill("test@example.com")
         
-        # -> Fill the 'Your name', 'Your email', and 'How can we help?' fields with test data, then click the 'Send message' button to submit the form.
+        # -> Fill the 'Your name' field, the 'Your email' field, and the 'How can we help?' textarea, then click the 'Send message' button to submit the form.
         # How can we help? text area
         elem = page.get_by_placeholder('How can we help?', exact=True)
         await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("This is an automated test message from ToyScout contact form.")
+        await elem.fill("This is a test message submitted by the QA automation to verify the contact form.")
         
-        # -> Fill the 'Your name', 'Your email', and 'How can we help?' fields with test data, then click the 'Send message' button to submit the form.
+        # -> Fill the 'Your name' field, the 'Your email' field, and the 'How can we help?' textarea, then click the 'Send message' button to submit the form.
         # Send message button
         elem = page.get_by_role('button', name='Send message', exact=True)
         await elem.click(timeout=10000)

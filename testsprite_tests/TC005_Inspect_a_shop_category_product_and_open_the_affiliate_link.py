@@ -40,33 +40,50 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'Shop' link in the header to open the Shop view.
+        # -> Load the homepage (http://localhost:8000) and wait for the SPA to render so the 'Shop' link and product list appear.
+        await page.goto("http://localhost:8000/")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
+        
+        # -> Click the 'Shop' link in the top navigation to open the Shop view.
         # Shop link
         elem = page.get_by_role('link', name='Shop', exact=True)
         await elem.click(timeout=10000)
         
-        # -> Click the 'Action Figures & Statues' category button to switch the toy category.
+        # -> Click the 'Action Figures & Statues' category button to open that category's product list.
         # Action Figures & Statues button
         elem = page.locator('xpath=/html/body/div/div/div/div/div/div[3]/button')
         await elem.click(timeout=10000)
         
-        # -> Click the 'Titan Hero 12-inch Figure' product title to open its product detail view.
-        # Titan Hero 12-inch Figure
+        # -> Open the 'Disney Store Official Buzz Lightyear Interactive Talking Action Figure' product detail by clicking its product title on the category page.
+        # Disney Store Official Buzz Lightyear Interactive...
         elem = page.locator('xpath=/html/body/div/div/div/div/div/div[5]/article/h3')
         await elem.click(timeout=10000)
         
-        # -> Click the 'View current price on Amazon' link on the product detail page to open the affiliate destination and verify its URL.
-        # View current price on Amazon link
-        elem = page.get_by_role('link', name='View current price on Amazon', exact=True)
+        # -> Click the 'View on Amazon' button to follow the affiliate link to Amazon and verify the navigation.
+        # View on Amazon link
+        elem = page.get_by_text('$39.95 · 4.7★ 7,141 ratings', exact=True).locator("xpath=ancestor-or-self::*[.//a][1]").get_by_role('link', name='View on Amazon', exact=True)
         await elem.click(timeout=10000)
         
         # --> Assertions to verify final state
-        current_url = await page.evaluate("() => window.location.href")
-        # Assert: page loaded with a URL (final outcome verified by the AI judge during the run)
-        assert current_url, 'Page should have loaded with a URL'
-        current_url = await page.evaluate("() => window.location.href")
-        # Assert: page loaded with a URL (final outcome verified by the AI judge during the run)
-        assert current_url, 'Page should have loaded with a URL'
+        
+        # --> Verify the product detail view is displayed
+        # Assert: The product summary header is present on the product detail view.
+        await expect(page.locator("xpath=/html/body/div[1]/div[1]/div[1]/h1").nth(0)).to_contain_text("Product summary presents key product information", timeout=15000), "The product summary header is present on the product detail view."
+        # Assert: The breadcrumb shows the product is in the Action Figures category.
+        await expect(page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div[1]/div[4]/div/div/div").nth(0)).to_contain_text("Action Figures", timeout=15000), "The breadcrumb shows the product is in the Action Figures category."
+        await page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div[5]/div[4]/div[3]/div/a").nth(0).scroll_into_view_if_needed()
+        # Assert: The 'Visit the Disney Store Store' link is visible on the product detail view.
+        await expect(page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div[5]/div[4]/div[3]/div/a").nth(0)).to_be_visible(timeout=15000), "The 'Visit the Disney Store Store' link is visible on the product detail view."
+        
+        # --> Verify the affiliate call to action is available
+        # Assert: Affiliate link opened the Amazon product URL amazon.com/dp/B07PQFT83F.
+        await expect(page).to_have_url(re.compile("amazon\\.com/dp/B07PQFT83F"), timeout=15000), "Affiliate link opened the Amazon product URL amazon.com/dp/B07PQFT83F."
+        await page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div[5]/div[4]/div[3]/div/a").nth(0).scroll_into_view_if_needed()
+        # Assert: The Amazon product page shows the 'Visit the Disney Store Store' link, confirming the affiliate destination loaded product content.
+        await expect(page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div[5]/div[4]/div[3]/div/a").nth(0)).to_be_visible(timeout=15000), "The Amazon product page shows the 'Visit the Disney Store Store' link, confirming the affiliate destination loaded product content."
         await asyncio.sleep(5)
 
     finally:
