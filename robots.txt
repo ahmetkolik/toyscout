@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://toyscout.vercel.app/sitemap.xml
+Sitemap: https://www.toyscout.net/sitemap.xml
