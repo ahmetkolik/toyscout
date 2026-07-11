@@ -7,3 +7,4 @@
 # Bir urunu siteden kaldirmak icin satiri sil veya basina # koy.
 # Duzenledikten sonra calistir:  python3 products/fetch_products.py
 
+https://www.amazon.com/dp/B083FM3R87
