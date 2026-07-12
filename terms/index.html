@@ -583,6 +583,7 @@ button{font-family:'Nunito',system-ui,sans-serif}
           </div>
         </sc-if>
       </div>
+      <input type="search" placeholder="🔍 Search toys…" aria-label="Search toys" value="{{searchQ}}" onChange="{{onNavSearch}}" style="width:168px;background:#FFFDF7;border:2px solid rgba(20,34,90,.22);border-radius:999px;padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;color:#12235C;outline:none" style-focus="border-color:#1D3FC4;width:220px">
       <a href="#picks" style="background:#E8442E;color:#fff;font-weight:800;font-size:15px;padding:11px 22px;border-radius:999px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:translateY(1px) scale(.97)">Best of 2026</a>
     </div>
   </nav>
@@ -877,6 +878,14 @@ button{font-family:'Nunito',system-ui,sans-serif}
         <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(38px,4.5vw,60px);line-height:1;margin:0 0 10px;color:#12235C">{{shopTitle}}</h1>
         <div style="font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1.5px;color:#4A5688;margin-bottom:30px">{{shopCount}} TRENDING PICKS · CHARTS UPDATED DAILY</div>
 
+        <div style="display:flex;align-items:center;gap:10px;max-width:560px;margin-bottom:26px;background:#FFFDF7;border:2px solid rgba(20,34,90,.22);border-radius:999px;padding:4px 6px 4px 20px" style-focus-within="border-color:#1D3FC4">
+          <span aria-hidden="true" style="font-size:17px;flex:none">🔍</span>
+          <input type="search" placeholder="Search all toys — try “LEGO”, “plush”, “slime”…" aria-label="Search all products" value="{{searchQ}}" onChange="{{onSearch}}" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font-family:'Nunito',sans-serif;font-weight:700;font-size:15.5px;padding:10px 4px;color:#12235C">
+          <sc-if value="{{searching}}" hint-placeholder-val="{{false}}">
+            <button onClick="{{clearSearch}}" aria-label="Clear search" style="flex:none;border:none;cursor:pointer;background:#EDF1FD;color:#1D3FC4;font-weight:800;font-size:14px;padding:9px 16px;border-radius:999px" style-hover="background:#1D3FC4;color:#fff">Clear ✕</button>
+          </sc-if>
+        </div>
+
         <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:14px;margin-bottom:26px;scrollbar-width:thin">
           <sc-for list="{{catChips}}" as="chip" hint-placeholder-count="8">
             <button onClick="{{chip.open}}" style="flex:none;background:{{chip.bg}};color:{{chip.fg}};border:2px solid {{chip.border}};font-weight:800;font-size:14px;padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .2s ease;font-family:'Nunito',sans-serif;white-space:nowrap" style-active="transform:scale(.96)">{{chip.name}}</button>
@@ -931,6 +940,9 @@ button{font-family:'Nunito',system-ui,sans-serif}
             <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:28px;color:#12235C;margin-bottom:10px">No picks match those filters.</div>
             <p style="font-size:16.5px;color:#4A5688;margin:0 0 24px">Try widening the age or price range.</p>
             <button onClick="{{clearFilters}}" style="border:none;cursor:pointer;background:#1D3FC4;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;padding:13px 28px;border-radius:999px;transition:transform .15s ease" style-hover="transform:translateY(-2px)" style-active="transform:scale(.96)">Clear filters</button>
+            <sc-if value="{{searching}}" hint-placeholder-val="{{false}}">
+              <div style="margin-top:18px"><a href="{{searchAmazonUrl}}" target="_blank" rel="sponsored nofollow noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8442E;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;padding:13px 28px;border-radius:999px;box-shadow:0 3px 0 #B32B18;transition:transform .15s ease" style-hover="transform:translateY(-2px);color:#fff" style-active="transform:scale(.96)">Search “{{searchQ}}” on Amazon →</a></div>
+            </sc-if>
           </div>
         </sc-if>
 
@@ -1404,7 +1416,7 @@ button{font-family:'Nunito',system-ui,sans-serif}
   &quot;tiltCards&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Motion&quot; }
 }">
 class Component extends DCLogic {
-  state = { email: "", subscribed: false, newsletterError: false, page: "home", menuOpen: false, contactName: "", contactEmail: "", contactMsg: "", contactSent: false, contactError: false, shopCat: "sports-outdoor", shopSort: "featured", shopAge: null, shopPrice: null };
+  state = { email: "", subscribed: false, newsletterError: false, page: "home", menuOpen: false, contactName: "", contactEmail: "", contactMsg: "", contactSent: false, contactError: false, shopCat: "sports-outdoor", shopSort: "featured", shopAge: null, shopPrice: null, searchQ: "" };
 
   isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v || "").trim()); }
 
@@ -7873,7 +7885,13 @@ class Component extends DCLogic {
     const s = this.state;
     const catMap = Object.fromEntries(this.catList());
     const cats = this.catList().filter(([id]) => this.productsFor(id).length > 0);
-    let prods = this.productsFor(s.shopCat);
+    const q = (s.searchQ || "").trim().toLowerCase();
+    // Search spans every category; otherwise show the selected one.
+    let prods = q
+      ? cats.flatMap(([id]) => this.productsFor(id)
+          .filter((p) => (p.name || "").toLowerCase().includes(q))
+          .map((p) => ({ ...p, catId: id })))
+      : this.productsFor(s.shopCat);
     if (s.shopAge) prods = prods.filter((p) => p.age === s.shopAge);
     if (s.shopPrice === "u25") prods = prods.filter((p) => p.lo < 25);
     if (s.shopPrice === "25-50") prods = prods.filter((p) => p.lo >= 25 && p.lo < 50);
@@ -7889,11 +7907,24 @@ class Component extends DCLogic {
     });
     return {
       pageShop: s.page === "shop",
-      shopTitle: catMap[s.shopCat] || "",
+      shopTitle: q ? 'Results for "' + s.searchQ.trim() + '"' : (catMap[s.shopCat] || ""),
       shopCount: prods.length,
       shopEmpty: prods.length === 0,
       shopNotEmpty: prods.length > 0,
-      shopProducts: prods.map((p) => ({ ...p, open: (e) => this.openProduct(p.idx, e) })),
+      shopProducts: prods.map((p) => ({ ...p, open: (e) => this.openProduct(p.idx, e, p.catId) })),
+      searchQ: s.searchQ,
+      searching: !!q,
+      searchAmazonUrl: this.amazonSearchUrl(s.searchQ.trim() + " toys"),
+      onSearch: (e) => this.setState({ searchQ: e.target.value }),
+      onNavSearch: (e) => {
+        const v = e.target.value;
+        if (v.trim() && s.page !== "shop" && s.page !== "product") {
+          document.body.style.overflow = "hidden";
+          this.setState({ page: "shop", searchQ: v, menuOpen: false }, () => this.syncHash());
+          this.syncNav();
+        } else this.setState({ searchQ: v });
+      },
+      clearSearch: () => this.setState({ searchQ: "" }),
       openShop: (e) => this.openCat("sports-outdoor", e),
       goOutdoor: (e) => this.openCat("sports-outdoor", e),
       goArts: (e) => this.openCat("arts-crafts", e),
@@ -7918,7 +7949,7 @@ class Component extends DCLogic {
         chip(v + " yrs", s.shopAge === v, () => this.setState({ shopAge: s.shopAge === v ? null : v }))),
       priceChips: [["u25", "Under $25"], ["25-50", "$25–$50"], ["50+", "$50+"]].map(([v, l]) =>
         chip(l, s.shopPrice === v, () => this.setState({ shopPrice: s.shopPrice === v ? null : v }))),
-      clearFilters: () => this.setState({ shopAge: null, shopPrice: null, shopSort: "featured" }),
+      clearFilters: () => this.setState({ shopAge: null, shopPrice: null, shopSort: "featured", searchQ: "" }),
     };
   }
 }
