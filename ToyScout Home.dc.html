@@ -7888,8 +7888,8 @@ class Component extends DCLogic {
     const q = (s.searchQ || "").trim().toLowerCase();
     // Search spans every category; otherwise show the selected one.
     let prods = q
-      ? cats.flatMap(([id]) => this.productsFor(id)
-          .filter((p) => (p.name || "").toLowerCase().includes(q))
+      ? cats.flatMap(([id, cname]) => this.productsFor(id)
+          .filter((p) => (p.name || "").toLowerCase().includes(q) || cname.toLowerCase().includes(q))
           .map((p) => ({ ...p, catId: id })))
       : this.productsFor(s.shopCat);
     if (s.shopAge) prods = prods.filter((p) => p.age === s.shopAge);
