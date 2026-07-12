@@ -1408,6 +1408,22 @@ class Component extends DCLogic {
 
   isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v || "").trim()); }
 
+  // Supabase backend (insert-only via RLS): newsletter signups, contact messages, amazon click log.
+  sbInsert(table, row) {
+    try {
+      fetch("https://vijagongnjfddhtlwecu.supabase.co/rest/v1/" + table, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "sb_publishable_3bra6T7gE_JBJ4Ff-_oX2w_CaHMpxmQ",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify(row),
+        keepalive: true
+      }).catch(() => {});
+    } catch (e) { /* tracking/storage must never break the UI */ }
+  }
+
   // Amazon Associates tag applied to fallback search links; set when the tag is issued.
   affiliateTag() { return "kolico-20"; }
 
@@ -7751,6 +7767,23 @@ class Component extends DCLogic {
     window.addEventListener("scroll", this._onScroll, { passive: true });
     this._onScroll();
 
+    // Outbound Amazon click log → Supabase (which page/category/ASIN earns).
+    this._onClickTrack = (e) => {
+      const a = e.target && e.target.closest ? e.target.closest('a[href*="amazon.com"]') : null;
+      if (!a) return;
+      const href = a.href || "";
+      const m = href.match(/\/dp\/([A-Z0-9]{10})/);
+      const onShop = this.state.page === "shop" || this.state.page === "product";
+      this.sbInsert("amazon_clicks", {
+        page: (location.pathname + location.hash).slice(0, 200),
+        category: (onShop ? this.state.shopCat : this.state.page).slice(0, 80),
+        asin: m ? m[1] : null,
+        url: href.slice(0, 500),
+        referrer: (document.referrer || "").slice(0, 300)
+      });
+    };
+    document.addEventListener("click", this._onClickTrack, true);
+
     this._onKey = (e) => {
       if (e.key !== "Escape") return;
       if (this.state.page === "product") this.backToShop();
@@ -7765,6 +7798,7 @@ class Component extends DCLogic {
     if (this._failSafe) clearTimeout(this._failSafe);
     if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
     if (this._onKey) window.removeEventListener("keydown", this._onKey);
+    if (this._onClickTrack) document.removeEventListener("click", this._onClickTrack, true);
     if (this._onHashChange) window.removeEventListener("hashchange", this._onHashChange);
     document.body.style.overflow = "";
   }
@@ -7777,8 +7811,13 @@ class Component extends DCLogic {
       newsletterError: this.state.newsletterError,
       onEmail: (e) => this.setState({ email: e.target.value, newsletterError: false }),
       onJoin: () => {
-        if (this.isValidEmail(this.state.email)) this.setState({ subscribed: true, newsletterError: false });
-        else this.setState({ newsletterError: true });
+        if (this.isValidEmail(this.state.email)) {
+          this.sbInsert("newsletter_signups", {
+            email: this.state.email.trim().slice(0, 254),
+            source_page: (location.pathname + location.hash).slice(0, 200)
+          });
+          this.setState({ subscribed: true, newsletterError: false });
+        } else this.setState({ newsletterError: true });
       },
       // Top Picks (home page): real best sellers, click-through to detail page
       topPicks: this.topPicks(),
@@ -7816,8 +7855,14 @@ class Component extends DCLogic {
       onCSend: () => {
         const s = this.state;
         const valid = s.contactName.trim() && this.isValidEmail(s.contactEmail) && s.contactMsg.trim();
-        if (valid) this.setState({ contactSent: true, contactError: false });
-        else this.setState({ contactError: true });
+        if (valid) {
+          this.sbInsert("contact_messages", {
+            name: s.contactName.trim().slice(0, 120),
+            email: s.contactEmail.trim().slice(0, 254),
+            message: s.contactMsg.trim().slice(0, 5000)
+          });
+          this.setState({ contactSent: true, contactError: false });
+        } else this.setState({ contactError: true });
       },
       ...this.shopVals(),
       ...this.prodVals(),
