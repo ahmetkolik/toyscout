@@ -1,0 +1,32 @@
+{
+  "source": {
+    "filename": "hero.mp4",
+    "duration": 10.04,
+    "resolution": "1280x720",
+    "fps": 24.0,
+    "codec": "h264",
+    "total_source_frames": 241
+  },
+  "frames": {
+    "target_count": 120,
+    "format": "webp",
+    "quality": 78,
+    "naming_pattern": "frame-{NNNN}.webp"
+  },
+  "recommended_scroll_height": "400vh",
+  "created": "2026-07-13T19:07:28",
+  "desktop": {
+    "resolution": "1280x720",
+    "actual_count": 120,
+    "total_bytes": 3451412,
+    "avg_frame_bytes": 28761,
+    "total_mb": 3.29
+  },
+  "mobile": {
+    "resolution": "800x450",
+    "actual_count": 120,
+    "total_bytes": 2074500,
+    "avg_frame_bytes": 17287,
+    "total_mb": 1.98
+  }
+}
