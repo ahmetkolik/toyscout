@@ -558,7 +558,7 @@ body.cursor-on #cur-dot,body.cursor-on #cur-ring{display:block}
 /* ============ NAV ============ */
 #nav{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
 #nav .n-in{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:26px;padding:16px 28px}
-#nav.scrolled{background:rgba(250,243,231,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 2px 24px rgba(18,35,92,.08)}
+body.v-open #nav,#nav.scrolled{background:rgba(250,243,231,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 2px 24px rgba(18,35,92,.08)}
 #nav .logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;font-size:22px;color:var(--ink);text-decoration:none;letter-spacing:.02em}
 #nav .logo img{width:34px;height:34px;border-radius:8px}
 #nav .links{display:flex;gap:4px;margin-left:auto;align-items:center}
@@ -1324,6 +1324,7 @@ function lockBody(on){document.body.style.overflow=on?"hidden":""}
 function closeMenu(){document.body.classList.remove("menu-open")}
 function goHome(silent){
   state.page="home"; closeMenu();
+  document.body.classList.remove("v-open");
   view.classList.remove("open"); view.innerHTML="";
   lockBody(false);
   if(!silent) pushRoute(); else updateSeo();
@@ -1331,6 +1332,7 @@ function goHome(silent){
 }
 function openView(page,silent){
   state.page=page; closeMenu();
+  document.body.classList.add("v-open");
   render();
   view.classList.add("open");
   lockBody(true);
