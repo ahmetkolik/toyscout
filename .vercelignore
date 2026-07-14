@@ -1,0 +1,11 @@
+testsprite_tests
+uploads
+products/.cache
+products/**/links.txt
+ToyScout Home.dc.html
+support.js
+vendor
+CLAUDE.md
+.thumbnail
+.mcp.json
+_p*.html

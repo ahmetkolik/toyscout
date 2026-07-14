@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="ToyScout — Amazon's Trending Toys, Curated Daily">
 <meta name="twitter:description" content="Amazon's top best-selling toys with real prices, ratings, sales ranks and customer reviews — curated daily, for every age.">
 <meta name="twitter:image" content="https://www.toyscout.net/assets/hero-flying-blue.png">
-<link rel="icon" href="assets/logo-blocks.png" type="image/png">
+<link rel="icon" href="/assets/logo-blocks.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
@@ -946,7 +946,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 
 <nav id="nav">
   <div class="n-in">
-    <a class="logo" href="/" data-go="home"><img src="assets/logo-blocks.png" alt="ToyScout logo">ToyScout</a>
+    <a class="logo" href="/" data-go="home"><img src="/assets/logo-blocks.png" alt="ToyScout logo">ToyScout</a>
     <div class="links">
       <a href="/shop/sports-outdoor" data-go="shop">Shop</a>
       <a href="/#picks" data-anchor="picks">Top Picks</a>
@@ -1106,15 +1106,15 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
     </div>
     <div class="blog-grid">
       <a class="bpost" href="/post1" data-go="post1" data-rv>
-        <div class="bp-img"><img src="assets/hero-toybox-blue.png" alt="Prime Day toy deals" loading="lazy"></div>
+        <div class="bp-img"><img src="/assets/hero-toybox-blue.png" alt="Prime Day toy deals" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Deals · Jul 8, 2026</div><h3>Prime Day 2026: the toy deals actually worth grabbing</h3><p>Prime Day lands July 14–15. Here's what to grab, what to skip, and how to spot a real discount.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
       <a class="bpost" href="/post2" data-go="post2" data-rv style="transition-delay:.12s">
-        <div class="bp-img"><img src="assets/blog-stem.png" alt="STEM kits" loading="lazy"></div>
+        <div class="bp-img"><img src="/assets/blog-stem.png" alt="STEM kits" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Charts · Jun 22, 2026</div><h3>The 7 best-selling STEM kits on Amazon right now</h3><p>Talking flash cards and word books are having a moment — these learning toys top the charts.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
       <a class="bpost" href="/post3" data-go="post3" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="assets/blog-family.png" alt="Outdoor toys" loading="lazy"></div>
+        <div class="bp-img"><img src="/assets/blog-family.png" alt="Outdoor toys" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Seasonal · Jul 1, 2026</div><h3>Screen-free summer: the outdoor toys trending this July</h3><p>Balance bikes, splash pads, and water toys are surging as families unplug for summer.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
     </div>
@@ -1169,7 +1169,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 
 <div id="view" role="region" aria-live="polite"></div>
 
-<script src="js/data.js"></script>
+<script src="/js/data.js"></script>
 <script>
 /* ================= ToyScout — award build ================= */
 (function(){
@@ -1185,6 +1185,7 @@ function $$(s,el){return Array.prototype.slice.call((el||document).querySelector
 function esc(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function fmt(n){return (n||0).toLocaleString("en-US")}
 function starStr(r){var n=Math.max(1,Math.min(5,Math.round(r||5)));return "★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)}
+function A(u){return u&&!/^(https?:)?\//.test(u)?"/"+u:u}
 function amazonSearchUrl(name){return "https://www.amazon.com/s?k="+encodeURIComponent(name)+"&i=toys-and-games&tag="+AFF}
 function cut(t,n){t=t||"";return t.length>n?t.slice(0,Math.max(20,t.lastIndexOf(" ",n)))+"…":t}
 
@@ -1220,10 +1221,10 @@ function productsFor(catId){
   var ages=AGE_OVR[catId]||["3–5","6–8","9–12"];
   return (D[catId]||[]).map(function(p,i){
     return {
-      idx:i, asin:p.asin||"", name:p.name, img:p.img,
+      idx:i, asin:p.asin||"", name:p.name, img:A(p.img),
       lo:p.lo!=null?p.lo:0, price:p.price||"See price on Amazon",
       rc:p.rc||0, ratings:fmt(p.rc||0), rating:p.rating||0, stars:starStr(p.rating),
-      gallery:(p.gallery&&p.gallery.length)?p.gallery:[p.img],
+      gallery:((p.gallery&&p.gallery.length)?p.gallery:[p.img]).map(A),
       reviews:p.reviews||[], bsr:p.bsr||[], bullets:p.bullets||[],
       badge:p.badge||"SCOUT PICK", age:p.age||ages[i%ages.length],
       url:p.url||amazonSearchUrl(p.name), catId:catId
@@ -1447,9 +1448,9 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
-    bp("/post1","Deals · Jul 8, 2026","Prime Day 2026: the toy deals actually worth grabbing","What to grab July 14–15, what to skip, and how to spot a real discount.","assets/hero-toybox-blue.png")+
-    bp("/post2","Charts · Jun 22, 2026","The 7 best-selling STEM kits on Amazon right now","Talking flash cards and word books are having a moment — these learning toys top the charts.","assets/blog-stem.png")+
-    bp("/post3","Seasonal · Jul 1, 2026","Screen-free summer: the outdoor toys trending this July","Balance bikes, splash pads, and water toys are surging as families unplug.","assets/blog-family.png")+
+    bp("/post1","Deals · Jul 8, 2026","Prime Day 2026: the toy deals actually worth grabbing","What to grab July 14–15, what to skip, and how to spot a real discount.","/assets/hero-toybox-blue.png")+
+    bp("/post2","Charts · Jun 22, 2026","The 7 best-selling STEM kits on Amazon right now","Talking flash cards and word books are having a moment — these learning toys top the charts.","/assets/blog-stem.png")+
+    bp("/post3","Seasonal · Jul 1, 2026","Screen-free summer: the outdoor toys trending this July","Balance bikes, splash pads, and water toys are surging as families unplug.","/assets/blog-family.png")+
     '</div></div>';
 }
 function aProd(name,meta,url){
@@ -1745,7 +1746,7 @@ $("#nav").classList.toggle("scrolled",scrollY>10);
 /* ================= SCROLL FILM ENGINE ================= */
 var FRAME_COUNT=120;
 var isMobile=innerWidth<=820;
-var FRAME_DIR="frames/"+(isMobile?"mobile":"desktop")+"/";
+var FRAME_DIR="/frames/"+(isMobile?"mobile":"desktop")+"/";
 function framePath(i){var n=String(i+1);while(n.length<4)n="0"+n;return FRAME_DIR+"frame-"+n+".webp"}
 var frames=new Array(FRAME_COUNT),loaded=0;
 var canvas=$("#hero-canvas"),ctx=canvas.getContext("2d");
