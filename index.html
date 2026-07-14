@@ -152,6 +152,28 @@
           },
           "image": "https://www.toyscout.net/assets/blog-family.png",
           "url": "https://www.toyscout.net/post3/"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Best Toys for 3-Year-Old Girls in 2026",
+          "datePublished": "2026-07-14",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/blog-montessori.png",
+          "url": "https://www.toyscout.net/post4/"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Best Gifts Under $25 for Kids Who Love Arts and Crafts",
+          "datePublished": "2026-07-14",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/hero-flying-blue.png",
+          "url": "https://www.toyscout.net/post5/"
         }
       ]
     },
@@ -1135,17 +1157,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post1" data-go="post1" data-rv>
+      <a class="bpost" href="/post4" data-go="post4" data-rv>
+        <div class="bp-img"><img src="/assets/blog-montessori.png" alt="Toys for 3-year-old girls" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 14, 2026</div><h3>Best toys for 3-year-old girls in 2026</h3><p>Mess-free creative play, sensory picks, and the quiet-time favorites actually worth buying.</p><div class="bp-read">Read the roundup ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post5" data-go="post5" data-rv style="transition-delay:.12s">
+        <div class="bp-img"><img src="/assets/hero-flying-blue.png" alt="Arts and crafts gifts under $25" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 14, 2026</div><h3>Best gifts under $25 for kids who love arts and crafts</h3><p>Every pick sorted by price, from stocking stuffers to standalone birthday gifts.</p><div class="bp-read">Read the roundup ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post1" data-go="post1" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/hero-toybox-blue.png" alt="Prime Day toy deals" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Deals · Jul 8, 2026</div><h3>Prime Day 2026: the toy deals actually worth grabbing</h3><p>Prime Day lands July 14–15. Here's what to grab, what to skip, and how to spot a real discount.</p><div class="bp-read">Read the roundup ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post2" data-go="post2" data-rv style="transition-delay:.12s">
-        <div class="bp-img"><img src="/assets/blog-stem.png" alt="STEM kits" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Charts · Jun 22, 2026</div><h3>The 7 best-selling STEM kits on Amazon right now</h3><p>Talking flash cards and word books are having a moment — these learning toys top the charts.</p><div class="bp-read">Read the roundup ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post3" data-go="post3" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/blog-family.png" alt="Outdoor toys" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Seasonal · Jul 1, 2026</div><h3>Screen-free summer: the outdoor toys trending this July</h3><p>Balance bikes, splash pads, and water toys are surging as families unplug for summer.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
     </div>
   </section>
@@ -1294,6 +1316,8 @@ function updateSeo(){
   else if(s.page==="post1"){title="Prime Day 2026: The Toy Deals Actually Worth Grabbing | ToyScout";desc="We sifted Amazon's Prime Day toy deals against 90 days of price history — these are the discounts that are actually real.";}
   else if(s.page==="post2"){title="The 7 Best-Selling STEM Kits on Amazon Right Now | ToyScout";desc="Screen-free coding, talking flash cards and the learning toys topping Amazon's charts this month.";}
   else if(s.page==="post3"){title="Screen-Free Summer: Trending Outdoor Toys | ToyScout";desc="Splash pads, water blasters and balance bikes — the outdoor toys families are actually buying on Amazon this July.";}
+  else if(s.page==="post4"){title="Best Toys for 3-Year-Old Girls in 2026 | ToyScout";desc="Mess-free creative play, sensory picks, and the quiet-time favorites actually worth buying for 3-year-olds — all 4.5★+ rated.";}
+  else if(s.page==="post5"){title="Best Gifts Under $25 for Kids Who Love Arts and Crafts | ToyScout";desc="Every arts and crafts gift pick sorted by price, from stocking stuffers to standalone birthday gifts — all under $25.";}
   else if(s.page==="contact"){title="Contact ToyScout";desc="Questions, feedback or partnership ideas? Get in touch with the ToyScout team.";}
   else if(s.page==="privacy"){title="Privacy Policy | ToyScout";desc="How ToyScout handles cookies, analytics and affiliate-link data.";}
   else if(s.page==="terms"){title="Terms of Use | ToyScout";desc="The terms that govern your use of ToyScout.";}
@@ -1314,7 +1338,7 @@ function applyRoute(){
   var catIds=stockedCats().map(function(c){return c[0]});
   if(p0==="shop"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; openView("shop",true); return; }
   if(p0==="product"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; state.prodIdx=Math.max(0,parseInt(parts[2],10)||0); state.galIdx=0; state.faqOpen=-1; openView("product",true); return; }
-  if(["blog","post1","post2","post3","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(["blog","post1","post2","post3","post4","post5","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   goHome(true);
 }
 
@@ -1346,7 +1370,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1480,9 +1504,11 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post4","Gift Guides · Jul 14, 2026","Best toys for 3-year-old girls in 2026","Mess-free creative play, sensory picks, and the quiet-time favorites actually worth buying.","/assets/blog-montessori.png")+
+    bp("/post5","Gift Guides · Jul 14, 2026","Best gifts under $25 for kids who love arts and crafts","Every pick sorted by price, from stocking stuffers to standalone birthday gifts.","/assets/hero-flying-blue.png")+
     bp("/post1","Deals · Jul 8, 2026","Prime Day 2026: the toy deals actually worth grabbing","What to grab July 14–15, what to skip, and how to spot a real discount.","/assets/hero-toybox-blue.png")+
-    bp("/post2","Charts · Jun 22, 2026","The 7 best-selling STEM kits on Amazon right now","Talking flash cards and word books are having a moment — these learning toys top the charts.","/assets/blog-stem.png")+
     bp("/post3","Seasonal · Jul 1, 2026","Screen-free summer: the outdoor toys trending this July","Balance bikes, splash pads, and water toys are surging as families unplug.","/assets/blog-family.png")+
+    bp("/post2","Charts · Jun 22, 2026","The 7 best-selling STEM kits on Amazon right now","Talking flash cards and word books are having a moment — these learning toys top the charts.","/assets/blog-stem.png")+
     '</div></div>';
 }
 function aProd(name,meta,url){
@@ -1519,7 +1545,32 @@ var POSTS={
     aProd("SplashEZ 3-in-1 Splash Pad","$19.99 · ★★★★★ 2,064 ratings",amazonSearchUrl("SplashEZ 3-in-1 Splash Pad"))+
     '<h2>Small purchases, big afternoons</h2><p>Not every screen-free win costs $80. Water blasters, self-sealing water balloons, and bubble refills dominate the under-$30 chart — the highest-rated "cousin visit" purchases we track.</p>'+
     aProd("Bunch O Balloons Tropical Party 330+","$17.99 · ★★★★★ 2,313 ratings",amazonSearchUrl("Bunch O Balloons Tropical Party"))+
-    '<h2>Making it stick</h2><p>The pattern in thousands of reviews: outdoor toys get used when they live outside, visible and ready — not boxed in the garage. Pick one anchor toy, leave it set up, and let the boredom do the rest. Screens can\'t compete with a splash pad that\'s already out on the lawn.</p>';}}
+    '<h2>Making it stick</h2><p>The pattern in thousands of reviews: outdoor toys get used when they live outside, visible and ready — not boxed in the garage. Pick one anchor toy, leave it set up, and let the boredom do the rest. Screens can\'t compete with a splash pad that\'s already out on the lawn.</p>';}},
+  post4:{meta:"Gift Guides · Jul 14, 2026 · By ToyScout Editors",h:"Best toys for 3-year-old girls in 2026",
+    body:function(){return '<p class="a-lede">Three is the age of "I do it myself" — tiny hands are steadier, imagination is louder, and attention spans are just long enough for real, open-ended play. We pulled the toys actually holding 4.5★+ with real review volume in the categories that matter most at this age: creative play, sensory play, and quiet-time favorites.</p>'+
+    '<h2>What actually matters at 3</h2><p>Fine motor control is still developing, so the best gifts reward experimentation over precision. Look for open-ended toys — ones with no single "right" way to play — plus anything mess-free enough that you\'re not supervising every second.</p>'+
+    '<h2>Mess-free creative play</h2><p><b>1. Water-reveal art pads.</b> No paint, no markers, just a water pen and reusable pages — reviewers call it the toy that survives the car, the plane, and the waiting room without a single stain.</p>'+
+    aProd("Bluey Aqua Art Reusable Water Reveal Activity Pages","$3.99 · ★★★★★ 1,286 ratings","https://www.amazon.com/dp/B09PGVGCH5?tag=kolico-20")+
+    '<h2>Hands-on sensory play</h2><p><b>2. A bulk modeling compound pack.</b> Twelve cans of jewel-toned Play-Doh means no fighting over color and no mid-project shortage — a genuine staple for the pinch-poke-and-squish stage of development.</p>'+
+    aProd("Play-Doh Jewel Colors Bulk 12-Pack","$10.43 · ★★★★★ 68,496 ratings","https://www.amazon.com/dp/B07BC44JFC?tag=kolico-20")+
+    '<h2>Quiet-time favorite</h2><p><b>3. A sticker book with real volume.</b> 500+ stickers plus coloring scenes buys real quiet time on road trips and restaurant waits — reviewers consistently flag it as the only activity book that survives repeat use.</p>'+
+    aProd("Kids Sticker Book 500+ Stickers, Toddler Travel Activity Book","$16.98 · ★★★★★ 1,222 ratings","https://www.amazon.com/dp/B098PMWSVS?tag=kolico-20")+
+    '<h2>The bigger gift</h2><p><b>4. A magnetic drawing board.</b> Erasable, screen-free, and durable enough to survive years of car rides — it\'s the toy parents mention buying a second time as a gift for someone else\'s kid.</p>'+
+    aProd("Kikidex Magnetic Drawing Board","$24.98 · ★★★★★ 4,032 ratings","https://www.amazon.com/dp/B0BGN1YDJH?tag=kolico-20")+
+    '<h2>How to choose</h2><p>Skip anything with small, loose pieces unless you\'ll be supervising closely, and favor toys that flex with growing skills rather than "aging out" in a month. If you\'re gift-wrapping for someone else\'s kid, mess-free wins — a water-reveal pad or sticker book travels better than modeling compound.</p>'+
+    '<h2>The bottom line</h2><p>At 3, the best toy is the one that gets picked up again tomorrow, not the flashiest one on the shelf. Every pick above holds a 4.5★+ average with real review volume behind it — see the full age range on our <a href="/shop/arts-crafts" data-go="shop">Arts &amp; Crafts</a> and <a href="/shop/baby-toddler" data-go="shop">Baby &amp; Toddler</a> category pages.</p>';}},
+  post5:{meta:"Gift Guides · Jul 14, 2026 · By ToyScout Editors",h:"Best gifts under $25 for kids who love arts and crafts",
+    body:function(){return '<p class="a-lede">Arts and crafts gifts are the safest bet in a parent\'s shopping cart — no batteries, no screen time debate, and a use rate that outlasts most toys we track. Here\'s what\'s actually topping the charts for under $25, sorted by price.</p>'+
+    '<h2>Under $10</h2><p><b>1. Pre-sharpened colored pencils.</b> Thirty-six colors, ready to use out of the box — a reliable pick for coloring books, homework, and everything in between.</p>'+
+    aProd("Crayola Colored Pencils (36ct)","$6.49 · ★★★★★ 5,540 ratings","https://www.amazon.com/dp/B00006RVTS?tag=kolico-20")+
+    '<p><b>2. Washable broad line markers.</b> The classroom standard for a reason — bold color payoff and it washes out of clothes and most surfaces without drama.</p>'+
+    aProd("Crayola Broad Line Markers (12 Count)","$6.38 · ★★★★★ 124 ratings","https://www.amazon.com/dp/B003HGGPLW?tag=kolico-20")+
+    '<p><b>3. A 10-pack of modeling compound.</b> Small cans, big color range — the single most-gifted arts and crafts item we track, and a Prime Day and back-to-school staple every year.</p>'+
+    aProd("Play-Doh Modeling Compound 10-Pack","$7.99 · ★★★★★ 25,390 ratings","https://www.amazon.com/dp/B00JM5GW10?tag=kolico-20")+
+    '<h2>$10–$25</h2><p><b>4. Twist-up mini crayons.</b> No sharpening, no mess — fifty colors in a twist-up format that toddlers can manage without help, which is exactly why it shows up in so many travel-bag reviews.</p>'+
+    aProd("Crayola Mini Twistables Crayons (50ct)","$13.83 · ★★★★☆ 29,327 ratings","https://www.amazon.com/dp/B07D4T2XKB?tag=kolico-20")+
+    '<h2>How to choose</h2><p>For stocking stuffers and party favors, stick under $10 and buy in multiples. For a standalone birthday gift, the $15–25 range buys enough volume or durability to feel like a real present rather than an add-on. Either way, check the age range on the package — markers and modeling compound skew younger than clay or paint kits.</p>'+
+    '<h2>The bottom line</h2><p>You don\'t need to spend big to win at gift-giving in this category — every pick above holds a 4.5★+ average (bar one strong 4.4★) with thousands of real reviews behind it. Browse the full, always-updated lineup on our <a href="/shop/arts-crafts" data-go="shop">Arts &amp; Crafts for Kids</a> category page.</p>';}}
 };
 function vPost(id){
   var P=POSTS[id];
