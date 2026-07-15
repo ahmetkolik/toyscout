@@ -2,133 +2,133 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.toyscout.net/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/blog/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <loc>https://www.toyscout.net/blog</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/post1/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/post1</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/post2/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/post2</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/post3/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/post3</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/post4/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <loc>https://www.toyscout.net/post4</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/post5/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <loc>https://www.toyscout.net/post5</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/contact/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/contact</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/privacy/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/privacy</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/terms/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/terms</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/disclosure/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/disclosure</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/action-figures/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/action-figures</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/arts-crafts/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/arts-crafts</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/baby-toddler/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/baby-toddler</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/games/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/games</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/learning-education/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/learning-education</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/novelty/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/novelty</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/party/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/party</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/ride-ons/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/ride-ons</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/sports-outdoor/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/sports-outdoor</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/building-toys/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/building-toys</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.toyscout.net/shop/plush/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://www.toyscout.net/shop/plush</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>

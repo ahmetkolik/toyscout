@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/:path((?!googlea71b328d538ede18\\.html$).*)",
