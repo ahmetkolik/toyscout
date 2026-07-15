@@ -30,11 +30,15 @@ No CDN dependency, no internet access required to run locally. **Caveat:** routi
 - `sitemap.xml`, `robots.txt` — hand-maintained; add a `<url>` entry when adding a route.
 - `frames/{desktop,mobile}/` + `frames/manifest.json` — sequential image frames for the scroll-scrubbed hero animation (AI-generated per the rebuild commit message). `index.html`'s `heroLoop()` steps through `FRAME_COUNT=120` frames as the user scrolls the intro section.
 - `assets/` — product photos (`assets/products/<ASIN>.jpg` + `_1`…`_5` gallery variants), blog post images, hero stills, logo. Referenced as absolute `/assets/*` paths.
-- `products/fetch_products.py` + `products/<category-slug>/links.txt` — the scraping workflow. **See the warning below — it currently writes to the wrong file.**
+- `products/fetch_products.py` + `products/<category-slug>/links.txt` — the scraping workflow. Writes directly to `js/data.js` (see below).
 
-### ⚠️ Known gap: `fetch_products.py` still targets the legacy file
+### `fetch_products.py` → `js/data.js` (curated fields are preserved)
 
-`products/fetch_products.py`'s `SITE_FILE` constant points at `ToyScout Home.dc.html` and rewrites its `__PRODUCT_DATA_START__`/`__PRODUCT_DATA_END__` block — the file the live site no longer reads. It does **not** touch `js/data.js`. Until this is fixed, running `python3 products/fetch_products.py --refresh` silently updates a dead file; `js/data.js` (and therefore the live prices/ratings) stays frozen at whatever it contained when the rebuild happened. Before relying on the weekly refresh routine again, point the script at `js/data.js`'s `window.TS_DATA={...}` assignment instead (same per-category JSON array shape, so the diff should be small — mainly the regex/target-file constant and the output format wrapper).
+`products/fetch_products.py`'s `SITE_FILE` now points at `js/data.js`, the file the live site actually reads. `inject_into_site()` rewrites the whole file as a single-line `window.TS_DATA={...};` assignment (compact JSON, no `__PRODUCT_DATA_START/END__` markers anymore — that scheme belonged to the dead `.dc.html`).
+
+**Curated-field preservation:** the scraper's `parse_product_page()` does **not** fetch `bsr`, `gallery`, or `reviews` — those are hand-curated in `js/data.js` (currently: `bsr` on all 102 products, `gallery` on 101, `reviews` on 70). Before writing, `load_existing_data()` re-parses the current `window.TS_DATA` and `preserve_curated_fields()` copies those three fields back onto each entry by ASIN (`CURATED_KEYS`). Without this a `--refresh` would wipe them. **If you add a field the scraper can't produce, add its key to `CURATED_KEYS` or the next run drops it.**
+
+**Full-rewrite semantics still apply:** a category whose scrape fully fails (Amazon captcha/503 on every link) produces no entries that run and therefore vanishes from the output. Run `--dry-run` first and keep a backup of `js/data.js` before a real `--refresh`.
 
 ### Client-side routing
 

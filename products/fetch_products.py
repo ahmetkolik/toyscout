@@ -4,8 +4,12 @@
 products/<kategori>/links.txt dosyalarindaki Amazon linklerini okur,
 her urunun adini, fiyatini, puanini, degerlendirme sayisini, aciklama
 maddelerini ve ana fotografini Amazon.com'dan ceker; fotografi
-assets/products/ altina indirir ve tum veriyi "ToyScout Home.dc.html"
-icindeki realProducts() bolumune yazar.
+assets/products/ altina indirir ve tum veriyi canli sitenin okudugu
+"js/data.js" icindeki window.TS_DATA={...} atamasina yazar.
+
+Not: scraper bsr / gallery / reviews alanlarini Amazon'dan cekmez; bunlar
+js/data.js icinde elle kuratorlenmistir. Yeniden yazarken bu uc alan ASIN
+bazinda mevcut dosyadan korunur, boylece refresh onlari silmez.
 
 Kullanim:
     python3 products/fetch_products.py            # yeni linkleri ceker (cache kullanir)
@@ -51,7 +55,11 @@ ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_DIR = ROOT / "products"
 CACHE_DIR = PRODUCTS_DIR / ".cache"
 IMG_DIR = ROOT / "assets" / "products"
-SITE_FILE = ROOT / "ToyScout Home.dc.html"
+SITE_FILE = ROOT / "js" / "data.js"
+
+# Scraper'in Amazon'dan cekmedigi, js/data.js icinde elle tutulan alanlar;
+# yeniden yazarken ASIN bazinda korunur.
+CURATED_KEYS = ("bsr", "gallery", "reviews")
 
 CATEGORIES = [
     "action-figures", "arts-crafts", "baby-toddler", "building-toys",
@@ -255,19 +263,51 @@ def build_site_entry(asin, url, meta, data):
     return entry
 
 
+def load_existing_data():
+    """js/data.js icindeki window.TS_DATA={...} atamasini sozluk olarak dondurur."""
+    try:
+        src = SITE_FILE.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        return {}
+    m = re.search(r"window\.TS_DATA\s*=\s*(\{.*\})\s*;?\s*$", src.strip(), re.S)
+    if not m:
+        return {}
+    try:
+        return json.loads(m.group(1))
+    except json.JSONDecodeError:
+        return {}
+
+
+def preserve_curated_fields(new_data, old_data):
+    """Scraper'in cekmedigi kurator alanlarini (bsr/gallery/reviews)
+    eski dosyadan ASIN bazinda yeni veriye tasir. new_data yerinde guncellenir."""
+    old_by_asin = {}
+    for products in old_data.values():
+        for p in products:
+            if p.get("asin"):
+                old_by_asin[p["asin"]] = p
+    restored = 0
+    for products in new_data.values():
+        for entry in products:
+            old = old_by_asin.get(entry.get("asin"))
+            if not old:
+                continue
+            for key in CURATED_KEYS:
+                if key not in entry and old.get(key):
+                    entry[key] = old[key]
+                    restored += 1
+    return restored
+
+
 def inject_into_site(data, dry_run=False):
-    src = SITE_FILE.read_text(encoding="utf-8")
-    payload = json.dumps(data, ensure_ascii=True, indent=2)
-    payload = payload.replace("</", "<\\/")  # script icinde </script> guvenligi
-    payload = "\n".join("    " + l if l else l for l in payload.splitlines())
-    new_body = f"  realProducts() {{\n    return {payload.lstrip()};\n  }}"
-    pattern = re.compile(
-        r"(// __PRODUCT_DATA_START__[^\n]*\n).*?(\n  // __PRODUCT_DATA_END__)", re.S)
-    if not pattern.search(src):
-        sys.exit("HATA: sitede __PRODUCT_DATA_START__ isaretleri bulunamadi.")
-    updated = pattern.sub(lambda m: m.group(1) + new_body + m.group(2), src)
+    old_data = load_existing_data()
+    restored = preserve_curated_fields(data, old_data)
+    if restored:
+        print(f"  ({restored} kurator alani (bsr/gallery/reviews) korundu)")
+    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    updated = f"window.TS_DATA={payload};"
     if dry_run:
-        print("(dry-run: site dosyasi degistirilmedi)")
+        print("(dry-run: js/data.js degistirilmedi)")
         return
     SITE_FILE.write_text(updated, encoding="utf-8")
 
