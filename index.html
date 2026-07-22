@@ -134,6 +134,28 @@
       "blogPost": [
         {
           "@type": "BlogPosting",
+          "headline": "Best Building Toy Gifts for Kids in 2026",
+          "datePublished": "2026-07-20",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/products/B00AU56C5W.jpg",
+          "url": "https://www.toyscout.net/post7"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Best Card & Board Games for Family Game Night in 2026",
+          "datePublished": "2026-07-20",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/products/B0DWGVM7RY.jpg",
+          "url": "https://www.toyscout.net/post6"
+        },
+        {
+          "@type": "BlogPosting",
           "headline": "Prime Day 2026: The Toy Deals Actually Worth Grabbing",
           "datePublished": "2026-07-08",
           "author": {
@@ -1175,17 +1197,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post4" data-go="post4" data-rv>
+      <a class="bpost" href="/post7" data-go="post7" data-rv>
+        <div class="bp-img"><img src="/assets/products/B00AU56C5W.jpg" alt="Building toy gifts for kids" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 20, 2026</div><h3>Best building toy gifts for kids in 2026</h3><p>PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping the chart before the holiday rush.</p><div class="bp-read">Read the roundup ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post6" data-go="post6" data-rv style="transition-delay:.12s">
+        <div class="bp-img"><img src="/assets/products/B0DWGVM7RY.jpg" alt="Family game night card and board games" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Charts · Jul 20, 2026</div><h3>Best card &amp; board games for family game night in 2026</h3><p>From a 4.9★ newcomer to the classics that never leave the shelf.</p><div class="bp-read">Read the roundup ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post4" data-go="post4" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/blog-montessori.png" alt="Toys for 3-year-old girls" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 14, 2026</div><h3>Best toys for 3-year-old girls in 2026</h3><p>Mess-free creative play, sensory picks, and the quiet-time favorites actually worth buying.</p><div class="bp-read">Read the roundup ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post5" data-go="post5" data-rv style="transition-delay:.12s">
-        <div class="bp-img"><img src="/assets/hero-flying-blue.png" alt="Arts and crafts gifts under $25" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 14, 2026</div><h3>Best gifts under $25 for kids who love arts and crafts</h3><p>Every pick sorted by price, from stocking stuffers to standalone birthday gifts.</p><div class="bp-read">Read the roundup ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post1" data-go="post1" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/hero-toybox-blue.png" alt="Prime Day toy deals" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Deals · Jul 8, 2026</div><h3>Prime Day 2026: the toy deals actually worth grabbing</h3><p>Prime Day lands July 14–15. Here's what to grab, what to skip, and how to spot a real discount.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
     </div>
   </section>
@@ -1283,6 +1305,14 @@ var CATS = [
   ["video-games","Video Games","🕹️"]
 ];
 var CAT_MAP = {}; CATS.forEach(function(c){CAT_MAP[c[0]]=c[1]});
+var CAT_BLOG = {
+  "sports-outdoor":["post3","Screen-Free Summer: The Outdoor Toys Trending This July"],
+  "arts-crafts":["post5","Best Gifts Under $25 for Kids Who Love Arts and Crafts"],
+  "baby-toddler":["post4","Best Toys for 3-Year-Old Girls in 2026"],
+  "games":["post6","Best Card & Board Games for Family Game Night in 2026"],
+  "learning-education":["post2","The 7 Best-Selling STEM Kits on Amazon Right Now"],
+  "building-toys":["post7","Best Building Toy Gifts for Kids in 2026"]
+};
 var CAT_EMOJI = {}; CATS.forEach(function(c){CAT_EMOJI[c[0]]=c[2]});
 function stockedCats(){return CATS.filter(function(c){return (D[c[0]]||[]).length>0})}
 
@@ -1336,6 +1366,8 @@ function updateSeo(){
   else if(s.page==="post3"){title="Screen-Free Summer: Trending Outdoor Toys | ToyScout";desc="Splash pads, water blasters and balance bikes — the outdoor toys families are actually buying on Amazon this July.";}
   else if(s.page==="post4"){title="Best Toys for 3-Year-Old Girls in 2026 | ToyScout";desc="Mess-free creative play, sensory picks, and the quiet-time favorites actually worth buying for 3-year-olds — all 4.5★+ rated.";}
   else if(s.page==="post5"){title="Best Gifts Under $25 for Kids Who Love Arts and Crafts | ToyScout";desc="Every arts and crafts gift pick sorted by price, from stocking stuffers to standalone birthday gifts — all under $25.";}
+  else if(s.page==="post6"){title="Best Card & Board Games for Family Game Night in 2026 | ToyScout";desc="From a 4.9★ newcomer to the classics that never leave the shelf — the card and board games actually winning family game night this month.";}
+  else if(s.page==="post7"){title="Best Building Toy Gifts for Kids in 2026 | ToyScout";desc="PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart right now, while the popular sets are still easy to find.";}
   else if(s.page==="contact"){title="Contact ToyScout";desc="Questions, feedback or partnership ideas? Get in touch with the ToyScout team.";}
   else if(s.page==="privacy"){title="Privacy Policy | ToyScout";desc="How ToyScout handles cookies, analytics and affiliate-link data.";}
   else if(s.page==="terms"){title="Terms of Use | ToyScout";desc="The terms that govern your use of ToyScout.";}
@@ -1350,6 +1382,44 @@ function updateSeo(){
   setMeta('meta[property="og:description"]',desc);
   setMeta('meta[name="twitter:title"]',title);
   setMeta('meta[name="twitter:description"]',desc);
+  updateProductLd();
+}
+function updateProductLd(){
+  var old=document.getElementById("ts-ldjson-dynamic");
+  if(old) old.remove();
+  var s=state, data=null;
+  if(s.page==="product"){
+    var p=productsFor(s.shopCat)[s.prodIdx];
+    if(p){
+      var priceNum=parseFloat(String(p.price).replace(/[^0-9.]/g,""))||p.lo||undefined;
+      data={
+        "@context":"https://schema.org","@type":"Product","name":p.name,
+        "image":p.gallery.map(function(g){return "https://www.toyscout.net"+g}),
+        "description":(p.bullets&&p.bullets[0])||p.name,
+        "url":"https://www.toyscout.net"+pathFor(),
+        "offers":{"@type":"Offer","priceCurrency":"USD","availability":"https://schema.org/InStock","url":p.url}
+      };
+      if(priceNum) data.offers.price=priceNum;
+      if(p.rc>0) data.aggregateRating={"@type":"AggregateRating","ratingValue":p.rating,"reviewCount":p.rc,"bestRating":5};
+    }
+  } else if(s.page==="shop"){
+    var list=productsFor(s.shopCat);
+    if(list.length){
+      data={
+        "@context":"https://schema.org","@type":"ItemList",
+        "name":(CAT_MAP[s.shopCat]||"Toys")+" — Amazon Best Sellers on ToyScout",
+        "itemListElement":list.map(function(p,i){
+          return {"@type":"ListItem","position":i+1,"name":p.name,"url":"https://www.toyscout.net/product/"+s.shopCat+"/"+p.idx};
+        })
+      };
+    }
+  }
+  if(data){
+    var el=document.createElement("script");
+    el.type="application/ld+json"; el.id="ts-ldjson-dynamic";
+    el.textContent=JSON.stringify(data);
+    document.head.appendChild(el);
+  }
 }
 function pushRoute(){
   var p=pathFor();
@@ -1364,7 +1434,7 @@ function applyRoute(){
   var catIds=stockedCats().map(function(c){return c[0]});
   if(p0==="shop"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; openView("shop",true); return; }
   if(p0==="product"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; state.prodIdx=Math.max(0,parseInt(parts[2],10)||0); state.galIdx=0; state.faqOpen=-1; openView("product",true); return; }
-  if(["blog","post1","post2","post3","post4","post5","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(["blog","post1","post2","post3","post4","post5","post6","post7","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   goHome(true);
 }
 
@@ -1396,7 +1466,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1447,6 +1517,8 @@ function vShop(){
     return '<button class="chip'+(s.shopAge===v?" on-red":"")+'" data-age="'+v+'">'+v+' yrs</button>';});
   var prices=[["u25","Under $25"],["25-50","$25–$50"],["50+","$50+"]].map(function(x){
     return '<button class="chip'+(s.shopPrice===x[0]?" on-red":"")+'" data-price="'+x[0]+'">'+x[1]+'</button>';});
+  var relBlog=CAT_BLOG[s.shopCat];
+  var relRead=(relBlog&&!q)?'<div class="v-sub" style="margin-top:2px">📰 Related read: <a href="/'+relBlog[0]+'" data-go="'+relBlog[0]+'" style="color:var(--blue);font-weight:700">'+esc(relBlog[1])+'</a></div>':"";
   var grid=prods.length?
     '<div class="grid-3" style="margin-top:44px">'+prods.map(function(p){return cardHtml(p)}).join("")+'</div>':
     '<div class="empty"><h3>No picks match those filters.</h3><p>Try widening the age or price range.</p><button class="btn btn-blue" data-clearf>Clear filters</button>'+(q?' <a class="btn btn-ghost" target="_blank" rel="noopener" href="'+amazonSearchUrl(q+" toys")+'">Search “'+esc(q)+'” on Amazon →</a>':"")+'</div>';
@@ -1454,6 +1526,7 @@ function vShop(){
     '<div class="crumbs"><a href="/" data-go="home">Home</a> › <span>Toys &amp; Games</span> › <span style="color:var(--red)">'+title+'</span></div>'+
     '<h1 class="v-title">'+title+'</h1>'+
     '<div class="v-sub">'+prods.length+' trending picks · Charts updated daily</div>'+
+    relRead+
     '<div class="shop-search">🔍<input id="shop-q" type="search" placeholder="Search all categories…" value="'+esc(s.searchQ)+'">'+(q?'<button class="clr" data-clearq>Clear ✕</button>':'')+'</div>'+
     '<div class="f-lbl">Category</div><div class="chips">'+chipRow(cats)+'</div>'+
     '<div class="f-lbl">Sort</div><div class="chips">'+chipRow(sorts)+'</div>'+
@@ -1530,6 +1603,8 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post7","Gift Guides · Jul 20, 2026","Best building toy gifts for kids in 2026","PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart before the holiday rush hits.","/assets/products/B00AU56C5W.jpg")+
+    bp("/post6","Charts · Jul 20, 2026","Best card & board games for family game night in 2026","From a 4.9★ newcomer to the classics that never leave the shelf — what's actually winning game night this month.","/assets/products/B0DWGVM7RY.jpg")+
     bp("/post4","Gift Guides · Jul 14, 2026","Best toys for 3-year-old girls in 2026","Mess-free creative play, sensory picks, and the quiet-time favorites actually worth buying.","/assets/blog-montessori.png")+
     bp("/post5","Gift Guides · Jul 14, 2026","Best gifts under $25 for kids who love arts and crafts","Every pick sorted by price, from stocking stuffers to standalone birthday gifts.","/assets/hero-flying-blue.png")+
     bp("/post1","Deals · Jul 8, 2026","Prime Day 2026: the toy deals actually worth grabbing","What to grab July 14–15, what to skip, and how to spot a real discount.","/assets/hero-toybox-blue.png")+
@@ -1584,7 +1659,7 @@ var POSTS={
     '<h2>The bigger gift</h2><p><b>4. A magnetic drawing board.</b> Erasable, screen-free, and durable enough to survive years of car rides — it\'s the toy parents mention buying a second time as a gift for someone else\'s kid.</p>'+
     aProd("Kikidex Magnetic Drawing Board","$24.98 · ★★★★★ 4,032 ratings","https://www.amazon.com/dp/B0BGN1YDJH?tag=kolico-20")+
     '<h2>How to choose</h2><p>Skip anything with small, loose pieces unless you\'ll be supervising closely, and favor toys that flex with growing skills rather than "aging out" in a month. If you\'re gift-wrapping for someone else\'s kid, mess-free wins — a water-reveal pad or sticker book travels better than modeling compound.</p>'+
-    '<h2>The bottom line</h2><p>At 3, the best toy is the one that gets picked up again tomorrow, not the flashiest one on the shelf. Every pick above holds a 4.5★+ average with real review volume behind it — see the full age range on our <a href="/shop/arts-crafts" data-go="shop">Arts &amp; Crafts</a> and <a href="/shop/baby-toddler" data-go="shop">Baby &amp; Toddler</a> category pages.</p>';}},
+    '<h2>The bottom line</h2><p>At 3, the best toy is the one that gets picked up again tomorrow, not the flashiest one on the shelf. Every pick above holds a 4.5★+ average with real review volume behind it — see the full age range on our <a href="/shop/arts-crafts" data-cat="arts-crafts">Arts &amp; Crafts</a> and <a href="/shop/baby-toddler" data-cat="baby-toddler">Baby &amp; Toddler</a> category pages.</p>';}},
   post5:{meta:"Gift Guides · Jul 14, 2026 · By ToyScout Editors",h:"Best gifts under $25 for kids who love arts and crafts",
     body:function(){return '<p class="a-lede">Arts and crafts gifts are the safest bet in a parent\'s shopping cart — no batteries, no screen time debate, and a use rate that outlasts most toys we track. Here\'s what\'s actually topping the charts for under $25, sorted by price.</p>'+
     '<h2>Under $10</h2><p><b>1. Pre-sharpened colored pencils.</b> Thirty-six colors, ready to use out of the box — a reliable pick for coloring books, homework, and everything in between.</p>'+
@@ -1596,7 +1671,35 @@ var POSTS={
     '<h2>$10–$25</h2><p><b>4. Twist-up mini crayons.</b> No sharpening, no mess — fifty colors in a twist-up format that toddlers can manage without help, which is exactly why it shows up in so many travel-bag reviews.</p>'+
     aProd("Crayola Mini Twistables Crayons (50ct)","$13.83 · ★★★★☆ 29,327 ratings","https://www.amazon.com/dp/B07D4T2XKB?tag=kolico-20")+
     '<h2>How to choose</h2><p>For stocking stuffers and party favors, stick under $10 and buy in multiples. For a standalone birthday gift, the $15–25 range buys enough volume or durability to feel like a real present rather than an add-on. Either way, check the age range on the package — markers and modeling compound skew younger than clay or paint kits.</p>'+
-    '<h2>The bottom line</h2><p>You don\'t need to spend big to win at gift-giving in this category — every pick above holds a 4.5★+ average (bar one strong 4.4★) with thousands of real reviews behind it. Browse the full, always-updated lineup on our <a href="/shop/arts-crafts" data-go="shop">Arts &amp; Crafts for Kids</a> category page.</p>';}}
+    '<h2>The bottom line</h2><p>You don\'t need to spend big to win at gift-giving in this category — every pick above holds a 4.5★+ average (bar one strong 4.4★) with thousands of real reviews behind it. Browse the full, always-updated lineup on our <a href="/shop/arts-crafts" data-cat="arts-crafts">Arts &amp; Crafts for Kids</a> category page.</p>';}},
+  post6:{meta:"Charts · Jul 20, 2026 · By ToyScout Editors",h:"Best card & board games for family game night in 2026",
+    body:function(){return '<p class="a-lede">Family game night is having a real moment — the Games category on our radar has more review velocity right now than at any point since Christmas. Here\'s what\'s actually landing on tables this month, from a runaway newcomer to the classics that never leave the shelf.</p>'+
+    '<h2>The newcomer everyone\'s talking about</h2><p><b>1. Flip 7.</b> A press-your-luck card game barely a year old and already pulling a <b>4.9★</b> average — one of the highest ratings we track in any toy category. Quick to teach, 20-minute rounds, and reviewers keep calling it "more addictive than it has any right to be."</p>'+
+    aProd("USAOPOLY Flip 7 Card Game","$7.97 · ★★★★★ 282 ratings","https://www.amazon.com/dp/B0DWGVM7RY?tag=kolico-20")+
+    '<h2>The forever-classic that still wins</h2><p><b>2. UNO.</b> Nearly 4,000 reviews in and it still tops our Games chart — color-blind accessible, customizable, and the one game every generation at the table already knows how to play.</p>'+
+    aProd("Mattel Games UNO Card Game","$11.37 · ★★★★★ 3,969 ratings","https://www.amazon.com/dp/B07P6MZPK3?tag=kolico-20")+
+    '<h2>The $6 staple every house needs</h2><p><b>3. A real deck of Bicycle cards.</b> Poker, blackjack, solitaire, war — the two-deck Red &amp; Blue set is the quiet workhorse behind more game nights than any boxed game we track.</p>'+
+    aProd("Bicycle Standard Playing Cards (2-Pack)","$5.82 · ★★★★★ 2,576 ratings","https://www.amazon.com/dp/B00E4AMFKK?tag=kolico-20")+
+    '<h2>For a laugh-out-loud night</h2><p><b>4. Taco Cat Goat Cheese Pizza.</b> A slap-happy pattern-matching game with 10–15 minute rounds — reviewers consistently flag it as the pick that gets teenagers to actually put their phones down.</p>'+
+    aProd("Taco Cat Goat Cheese Pizza","$9.95 · ★★★★★ 512 ratings","https://www.amazon.com/dp/B077Z1R28P?tag=kolico-20")+
+    '<h2>For the youngest player at the table</h2><p><b>5. Candy Land.</b> Zero reading required, pure color-matching, and still the most-reviewed board game on our entire radar — a rite-of-passage first game for ages 3+.</p>'+
+    aProd("Hasbro Gaming Candy Land","$13 · ★★★★★ 7,369 ratings","https://www.amazon.com/dp/B00000DMF5?tag=kolico-20")+
+    '<h2>For the collector in the family</h2><p><b>6. A Pokémon card bundle with guaranteed rares.</b> Five foils and at least one GX/EX/Tag Team or Secret Rare in every pack — a low-cost way to keep a young collector\'s binder growing between big-box releases.</p>'+
+    aProd("50+ Official Pokémon Cards with 5 Foils","$7.89 · ★★★★★ 1,052 ratings","https://www.amazon.com/dp/B0829FT44S?tag=kolico-20")+
+    '<h2>How to choose</h2><p>Match the game to the room, not just the age on the box: quick pattern games like Taco Cat Goat Cheese Pizza work for mixed ages and short attention spans, while Flip 7 and UNO reward a few more rounds in one sitting. If reading isn\'t reliable yet, stick with color- and shape-matching like Candy Land until phonics catch up.</p>'+
+    '<h2>The bottom line</h2><p>None of tonight\'s picks need batteries, a screen, or a rulebook longer than a page — every one above holds a 4.1★+ average with real review volume behind it. See the full, always-updated lineup on our <a href="/shop/games" data-cat="games">Games</a> category page.</p>';}},
+  post7:{meta:"Gift Guides · Jul 20, 2026 · By ToyScout Editors",h:"Best building toy gifts for kids in 2026",
+    body:function(){return '<p class="a-lede">Building toys are the safest bet on any gift list — no batteries, no screen, and no "aged out of it" cliff a few months later. They\'re also the first category to sell through once the holiday rush starts. Here\'s what\'s topping our Building Toys chart right now, while the popular sets are still easy to find.</p>'+
+    '<h2>The magnetic set that never gets put down</h2><p><b>1. PicassoTiles 100-Piece Magnetic Tile Set.</b> A 40,000-review favorite that scales from a simple square to room-filling castles — reviewers consistently call it the toy that turns a rainy afternoon into hours of quiet, screen-free building.</p>'+
+    aProd("PicassoTiles 100-Piece Magnetic Tile Set","$39.99 · ★★★★★ 40,195 ratings","https://www.amazon.com/dp/B00AU56C5W?tag=kolico-20")+
+    '<h2>The classic that\'s currently 44% off</h2><p><b>2. LEGO Classic Large Creative Brick Box.</b> 790 pieces in 33 colors with no set instructions to follow — just windows, doors, wheels and a storage box to keep it all organized. It\'s the rare toy that works as a first LEGO set or an addition to an existing collection.</p>'+
+    aProd("LEGO Classic Large Creative Brick Box (790 pcs)","$33.49 · ★★★★★ 32,172 ratings","https://www.amazon.com/dp/B00NHQF6MG?tag=kolico-20")+
+    '<h2>The one that survives car rides and restaurants</h2><p><b>3. MAGNA-TILES microMAGS Travel Set.</b> A 75%-smaller version of the original magnetic tiles, packed in a metal tin that doubles as a baseplate — reviewers buy these specifically for road trips, flights and restaurant waits.</p>'+
+    aProd("MAGNA-TILES microMAGS 26-Piece Travel Set","$19.97 · ★★★★★ 3,328 ratings","https://www.amazon.com/dp/B0CX4RLCXW?tag=kolico-20")+
+    '<h2>The stocking-stuffer add-on</h2><p><b>4. Squeez\'M Big Block Cube.</b> Not a building toy, but it\'s the top-charting small gift in the same category on our radar — a satisfying, slow-rise sensory cube reviewers keep buying in multiples for classrooms and stockings alike.</p>'+
+    aProd("Squeez\'M Big Block Sensory Cube","$16.99 · ★★★★☆ 1,586 ratings","https://www.amazon.com/dp/B0FG779YKY?tag=kolico-20")+
+    '<h2>How to choose</h2><p>Magnetic tiles (PicassoTiles, MAGNA-TILES) suit kids who want to see a shape stand up immediately — good for shorter attention spans and ages 3+. LEGO brick sets reward kids who already sit through longer, more detailed builds. If you\'re shopping early for the holidays, buy the exact style and color now — restocks on the popular sets get unpredictable from November on.</p>'+
+    '<h2>The bottom line</h2><p>Every pick above holds a 4.5★+ average (the sensory cube included, at 4.5★) with tens of thousands of real reviews behind the top two. Browse the full, always-updated lineup on our <a href="/shop/building-toys" data-cat="building-toys">Building Toys</a> category page.</p>';}}
 };
 function vPost(id){
   var P=POSTS[id];

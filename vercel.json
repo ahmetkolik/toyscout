@@ -23,6 +23,8 @@
     { "source": "/post3", "destination": "/index.html" },
     { "source": "/post4", "destination": "/index.html" },
     { "source": "/post5", "destination": "/index.html" },
+    { "source": "/post6", "destination": "/index.html" },
+    { "source": "/post7", "destination": "/index.html" },
     { "source": "/contact", "destination": "/index.html" },
     { "source": "/privacy", "destination": "/index.html" },
     { "source": "/terms", "destination": "/index.html" },
