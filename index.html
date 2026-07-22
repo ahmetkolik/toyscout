@@ -134,6 +134,17 @@
       "blogPost": [
         {
           "@type": "BlogPosting",
+          "headline": "Best Squishy & Fidget Toys Kids Can't Put Down in 2026",
+          "datePublished": "2026-07-22",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/products/B0D9ZTW7PS.jpg",
+          "url": "https://www.toyscout.net/post8"
+        },
+        {
+          "@type": "BlogPosting",
           "headline": "Best Building Toy Gifts for Kids in 2026",
           "datePublished": "2026-07-20",
           "author": {
@@ -1197,17 +1208,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post7" data-go="post7" data-rv>
+      <a class="bpost" href="/post8" data-go="post8" data-rv>
+        <div class="bp-img"><img src="/assets/products/B0D9ZTW7PS.jpg" alt="Squishy and fidget toys" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Trend Watch · Jul 22, 2026</div><h3>Best squishy &amp; fidget toys kids can't put down in 2026</h3><p>NeeDoh, kawaii squishy packs, and party-favor fidget bundles topping the Novelty chart.</p><div class="bp-read">Read the roundup ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post7" data-go="post7" data-rv style="transition-delay:.12s">
         <div class="bp-img"><img src="/assets/products/B00AU56C5W.jpg" alt="Building toy gifts for kids" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 20, 2026</div><h3>Best building toy gifts for kids in 2026</h3><p>PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping the chart before the holiday rush.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
-      <a class="bpost" href="/post6" data-go="post6" data-rv style="transition-delay:.12s">
+      <a class="bpost" href="/post6" data-go="post6" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/products/B0DWGVM7RY.jpg" alt="Family game night card and board games" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Charts · Jul 20, 2026</div><h3>Best card &amp; board games for family game night in 2026</h3><p>From a 4.9★ newcomer to the classics that never leave the shelf.</p><div class="bp-read">Read the roundup ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post4" data-go="post4" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/blog-montessori.png" alt="Toys for 3-year-old girls" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 14, 2026</div><h3>Best toys for 3-year-old girls in 2026</h3><p>Mess-free creative play, sensory picks, and the quiet-time favorites actually worth buying.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
     </div>
   </section>
@@ -1311,7 +1322,8 @@ var CAT_BLOG = {
   "baby-toddler":["post4","Best Toys for 3-Year-Old Girls in 2026"],
   "games":["post6","Best Card & Board Games for Family Game Night in 2026"],
   "learning-education":["post2","The 7 Best-Selling STEM Kits on Amazon Right Now"],
-  "building-toys":["post7","Best Building Toy Gifts for Kids in 2026"]
+  "building-toys":["post7","Best Building Toy Gifts for Kids in 2026"],
+  "novelty":["post8","Best Squishy & Fidget Toys Kids Can't Put Down in 2026"]
 };
 var CAT_EMOJI = {}; CATS.forEach(function(c){CAT_EMOJI[c[0]]=c[2]});
 function stockedCats(){return CATS.filter(function(c){return (D[c[0]]||[]).length>0})}
@@ -1368,6 +1380,7 @@ function updateSeo(){
   else if(s.page==="post5"){title="Best Gifts Under $25 for Kids Who Love Arts and Crafts | ToyScout";desc="Every arts and crafts gift pick sorted by price, from stocking stuffers to standalone birthday gifts — all under $25.";}
   else if(s.page==="post6"){title="Best Card & Board Games for Family Game Night in 2026 | ToyScout";desc="From a 4.9★ newcomer to the classics that never leave the shelf — the card and board games actually winning family game night this month.";}
   else if(s.page==="post7"){title="Best Building Toy Gifts for Kids in 2026 | ToyScout";desc="PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart right now, while the popular sets are still easy to find.";}
+  else if(s.page==="post8"){title="Best Squishy & Fidget Toys Kids Can't Put Down in 2026 | ToyScout";desc="NeeDoh, kawaii squishy packs, and party-favor fidget bundles — what's actually topping the Novelty & Gag Toys chart this month.";}
   else if(s.page==="contact"){title="Contact ToyScout";desc="Questions, feedback or partnership ideas? Get in touch with the ToyScout team.";}
   else if(s.page==="privacy"){title="Privacy Policy | ToyScout";desc="How ToyScout handles cookies, analytics and affiliate-link data.";}
   else if(s.page==="terms"){title="Terms of Use | ToyScout";desc="The terms that govern your use of ToyScout.";}
@@ -1434,7 +1447,7 @@ function applyRoute(){
   var catIds=stockedCats().map(function(c){return c[0]});
   if(p0==="shop"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; openView("shop",true); return; }
   if(p0==="product"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; state.prodIdx=Math.max(0,parseInt(parts[2],10)||0); state.galIdx=0; state.faqOpen=-1; openView("product",true); return; }
-  if(["blog","post1","post2","post3","post4","post5","post6","post7","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   goHome(true);
 }
 
@@ -1466,7 +1479,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1603,6 +1616,7 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post8","Trend Watch · Jul 22, 2026","Best squishy & fidget toys kids can't put down in 2026","NeeDoh, kawaii squishy packs, and party-favor fidget bundles — what's actually selling on the Novelty chart right now.","/assets/products/B0D9ZTW7PS.jpg")+
     bp("/post7","Gift Guides · Jul 20, 2026","Best building toy gifts for kids in 2026","PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart before the holiday rush hits.","/assets/products/B00AU56C5W.jpg")+
     bp("/post6","Charts · Jul 20, 2026","Best card & board games for family game night in 2026","From a 4.9★ newcomer to the classics that never leave the shelf — what's actually winning game night this month.","/assets/products/B0DWGVM7RY.jpg")+
     bp("/post4","Gift Guides · Jul 14, 2026","Best toys for 3-year-old girls in 2026","Mess-free creative play, sensory picks, and the quiet-time favorites actually worth buying.","/assets/blog-montessori.png")+
@@ -1699,7 +1713,21 @@ var POSTS={
     '<h2>The stocking-stuffer add-on</h2><p><b>4. Squeez\'M Big Block Cube.</b> Not a building toy, but it\'s the top-charting small gift in the same category on our radar — a satisfying, slow-rise sensory cube reviewers keep buying in multiples for classrooms and stockings alike.</p>'+
     aProd("Squeez\'M Big Block Sensory Cube","$16.99 · ★★★★☆ 1,586 ratings","https://www.amazon.com/dp/B0FG779YKY?tag=kolico-20")+
     '<h2>How to choose</h2><p>Magnetic tiles (PicassoTiles, MAGNA-TILES) suit kids who want to see a shape stand up immediately — good for shorter attention spans and ages 3+. LEGO brick sets reward kids who already sit through longer, more detailed builds. If you\'re shopping early for the holidays, buy the exact style and color now — restocks on the popular sets get unpredictable from November on.</p>'+
-    '<h2>The bottom line</h2><p>Every pick above holds a 4.5★+ average (the sensory cube included, at 4.5★) with tens of thousands of real reviews behind the top two. Browse the full, always-updated lineup on our <a href="/shop/building-toys" data-cat="building-toys">Building Toys</a> category page.</p>';}}
+    '<h2>The bottom line</h2><p>Every pick above holds a 4.5★+ average (the sensory cube included, at 4.5★) with tens of thousands of real reviews behind the top two. Browse the full, always-updated lineup on our <a href="/shop/building-toys" data-cat="building-toys">Building Toys</a> category page.</p>';}},
+  post8:{meta:"Trend Watch · Jul 22, 2026 · By ToyScout Editors",h:"Best squishy & fidget toys kids can't put down in 2026",
+    body:function(){return '<p class="a-lede">Squishy toys and fidget packs are outperforming almost every other category on our radar right now — review velocity is up, and the appeal cuts across ages. Here\'s what\'s actually selling on Amazon\'s Novelty &amp; Gag Toys chart this month.</p>'+
+    '<h2>The runaway bestseller</h2><p><b>1. Schylling NeeDoh Nice Ice Baby.</b> With over 15,000 ratings, this is the single most-reviewed product anywhere on our Novelty &amp; Gag Toys radar — a semi-transparent, ice-cube-look squeeze toy that stretches and always bounces back to shape.</p>'+
+    aProd("Schylling NeeDoh Nice Ice Baby","$16.80 · ★★★★☆ 15,525 ratings","https://www.amazon.com/dp/B0D9ZTW7PS?tag=kolico-20")+
+    '<h2>The best bulk buy</h2><p><b>2. 30-Pack Kawaii Squishy Toys.</b> Thirty mini squishies for under $8 — reviewers buy this one specifically for party favor bags and classroom prize boxes, where per-toy cost matters more than any single showpiece.</p>'+
+    aProd("30-Pack Kawaii Squishy Toys","$7.99 · ★★★★★ 4,905 ratings","https://www.amazon.com/dp/B0DG2VRFV7?tag=kolico-20")+
+    '<h2>The highest-rated single squishy</h2><p><b>3. Butter Slow Rising Squishy Dumpling.</b> At 4.7★ across nearly 4,000 ratings, this is the top-rated single squishy we track — a soft, slow-rise texture reviewers say holds up to heavy daily squeezing better than cheaper knockoffs.</p>'+
+    aProd("Butter Slow Rising Squishy Dumpling","$5.99 · ★★★★★ 3,920 ratings","https://www.amazon.com/dp/B0F7M16P52?tag=kolico-20")+
+    '<h2>The one built for party favors</h2><p><b>4. 160-Pc Fidget Toys Party Favor Pack.</b> A random assortment of pop-its, mini squeeze toys and fidgets — the bulk pick reviewers reach for when they need to fill 20+ goodie bags without opening 20 separate packages.</p>'+
+    aProd("160-Pc Fidget Toys Party Favor Pack","$9.99 · ★★★★☆ 2,255 ratings","https://www.amazon.com/dp/B0G3P428LL?tag=kolico-20")+
+    '<h2>The original, still going strong</h2><p><b>5. Schylling NeeDoh Nice Cube.</b> The cube-shaped sibling to the brand\'s original squeeze ball — same doughy, never-dries-out texture, in a shape that\'s easier to grip for smaller hands.</p>'+
+    aProd("Schylling NeeDoh Nice Cube","$9.99 · ★★★★☆ 326 ratings","https://www.amazon.com/dp/B0BQZFVJTB?tag=kolico-20")+
+    '<h2>How to choose</h2><p>For party favors and classroom giveaways, buy in bulk — the 30-pack and 160-piece assortments bring the per-unit cost down to a dollar or less. For a single gift or a sensory tool a kid will actually use daily, the NeeDoh line and the butter squishy hold up better to repeated, heavy squeezing than most bulk-pack fillers.</p>'+
+    '<h2>The bottom line</h2><p>Every pick above holds a 4.3★+ average with real review volume behind it — squishies and fidgets are inexpensive enough to try a few and see what actually gets used. Browse the full, always-updated lineup on our <a href="/shop/novelty" data-cat="novelty">Novelty &amp; Gag Toys</a> category page.</p>';}}
 };
 function vPost(id){
   var P=POSTS[id];
