@@ -8,7 +8,7 @@ ToyScout — a single-page Amazon affiliate website (toy curation site). The liv
 
 **Watch out:** the project directory name ends with a trailing space (`.../Amazon Affiliate Website `). Always quote paths in shell commands.
 
-**⚠️ Legacy file — do not edit expecting it to go live:** `ToyScout Home.dc.html` (plus `support.js`) was the *original* implementation — a Design Canvas doc rendered client-side via React/Babel loaded from unpkg. It was fully replaced by the vanilla-JS rebuild in commit `77f6ec2` ("Award-grade rebuild... vanilla JS SPA replacing Design Canvas runtime", 2026-07-13/14). Both files are still in the repo but the live site does not load `support.js` at all — verified via `curl https://www.toyscout.net/ | grep -o 'support.js\|js/data.js'` returning only `js/data.js`. **Any content or feature change must go into `index.html` / `js/data.js`, not the `.dc.html` file.**
+**Legacy Design Canvas implementation removed (2026-07-21):** `ToyScout Home.dc.html`, `support.js`, `vendor/` (React/Babel), and other dead files (`uploads/`, `products/__pycache__`, `testsprite_tests/`) were deleted during a repo cleanup — they were remnants of the *original* implementation (a Design Canvas doc rendered client-side via React/Babel loaded from unpkg), fully replaced by the vanilla-JS rebuild in commit `77f6ec2` ("Award-grade rebuild... vanilla JS SPA replacing Design Canvas runtime", 2026-07-13/14) and confirmed unreferenced by `index.html` before removal. **Any content or feature change goes into `index.html` / `js/data.js` — there is no other implementation to worry about touching by mistake.**
 
 ## Running it
 
@@ -64,7 +64,7 @@ Same Supabase project as before (`vijagongnjfddhtlwecu`). `sbInsert(table, row)`
 
 ### Testing
 
-`testsprite_tests/` holds TestSprite-generated Python test scripts (home/shop/product/blog flows). These predate the vanilla-JS rebuild and haven't been re-verified against the new markup/selectors.
+No automated test suite. (The old `testsprite_tests/` scripts predated the vanilla-JS rebuild, were never re-verified against the new markup/selectors, and were removed in the 2026-07-21 cleanup.)
 
 ## Deploying
 
