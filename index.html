@@ -134,6 +134,17 @@
       "blogPost": [
         {
           "@type": "BlogPosting",
+          "headline": "Best Birthday Party Balloons & Decorations Under $10 in 2026",
+          "datePublished": "2026-07-27",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/products/B00N1QPNMA.jpg",
+          "url": "https://www.toyscout.net/post9"
+        },
+        {
+          "@type": "BlogPosting",
           "headline": "Best Squishy & Fidget Toys Kids Can't Put Down in 2026",
           "datePublished": "2026-07-22",
           "author": {
@@ -1208,17 +1219,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post8" data-go="post8" data-rv>
+      <a class="bpost" href="/post9" data-go="post9" data-rv>
+        <div class="bp-img"><img src="/assets/products/B00N1QPNMA.jpg" alt="Birthday party balloons and glow stick party favors" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Party Prep · Jul 27, 2026</div><h3>Best birthday party balloons &amp; decorations under $10 in 2026</h3><p>Six chart-topping party picks, none over $10 — glow sticks, arch packs and rainbow latex.</p><div class="bp-read">Read the roundup ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post8" data-go="post8" data-rv style="transition-delay:.12s">
         <div class="bp-img"><img src="/assets/products/B0D9ZTW7PS.jpg" alt="Squishy and fidget toys" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Trend Watch · Jul 22, 2026</div><h3>Best squishy &amp; fidget toys kids can't put down in 2026</h3><p>NeeDoh, kawaii squishy packs, and party-favor fidget bundles topping the Novelty chart.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
-      <a class="bpost" href="/post7" data-go="post7" data-rv style="transition-delay:.12s">
+      <a class="bpost" href="/post7" data-go="post7" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/products/B00AU56C5W.jpg" alt="Building toy gifts for kids" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 20, 2026</div><h3>Best building toy gifts for kids in 2026</h3><p>PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping the chart before the holiday rush.</p><div class="bp-read">Read the roundup ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post6" data-go="post6" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/products/B0DWGVM7RY.jpg" alt="Family game night card and board games" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Charts · Jul 20, 2026</div><h3>Best card &amp; board games for family game night in 2026</h3><p>From a 4.9★ newcomer to the classics that never leave the shelf.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
     </div>
   </section>
@@ -1323,7 +1334,8 @@ var CAT_BLOG = {
   "games":["post6","Best Card & Board Games for Family Game Night in 2026"],
   "learning-education":["post2","The 7 Best-Selling STEM Kits on Amazon Right Now"],
   "building-toys":["post7","Best Building Toy Gifts for Kids in 2026"],
-  "novelty":["post8","Best Squishy & Fidget Toys Kids Can't Put Down in 2026"]
+  "novelty":["post8","Best Squishy & Fidget Toys Kids Can't Put Down in 2026"],
+  "party":["post9","Best Birthday Party Balloons & Decorations Under $10 in 2026"]
 };
 var CAT_EMOJI = {}; CATS.forEach(function(c){CAT_EMOJI[c[0]]=c[2]});
 function stockedCats(){return CATS.filter(function(c){return (D[c[0]]||[]).length>0})}
@@ -1381,6 +1393,7 @@ function updateSeo(){
   else if(s.page==="post6"){title="Best Card & Board Games for Family Game Night in 2026 | ToyScout";desc="From a 4.9★ newcomer to the classics that never leave the shelf — the card and board games actually winning family game night this month.";}
   else if(s.page==="post7"){title="Best Building Toy Gifts for Kids in 2026 | ToyScout";desc="PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart right now, while the popular sets are still easy to find.";}
   else if(s.page==="post8"){title="Best Squishy & Fidget Toys Kids Can't Put Down in 2026 | ToyScout";desc="NeeDoh, kawaii squishy packs, and party-favor fidget bundles — what's actually topping the Novelty & Gag Toys chart this month.";}
+  else if(s.page==="post9"){title="Best Birthday Party Balloons & Decorations Under $10 in 2026 | ToyScout";desc="Glow sticks with 28,000+ ratings, rainbow and pastel latex packs, and mixed-size arch bundles — six chart-topping party picks, every one under $10.";}
   else if(s.page==="contact"){title="Contact ToyScout";desc="Questions, feedback or partnership ideas? Get in touch with the ToyScout team.";}
   else if(s.page==="privacy"){title="Privacy Policy | ToyScout";desc="How ToyScout handles cookies, analytics and affiliate-link data.";}
   else if(s.page==="terms"){title="Terms of Use | ToyScout";desc="The terms that govern your use of ToyScout.";}
@@ -1447,7 +1460,7 @@ function applyRoute(){
   var catIds=stockedCats().map(function(c){return c[0]});
   if(p0==="shop"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; openView("shop",true); return; }
   if(p0==="product"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; state.prodIdx=Math.max(0,parseInt(parts[2],10)||0); state.galIdx=0; state.faqOpen=-1; openView("product",true); return; }
-  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   goHome(true);
 }
 
@@ -1479,7 +1492,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1616,6 +1629,7 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post9","Party Prep · Jul 27, 2026","Best birthday party balloons & decorations under $10 in 2026","Glow sticks with 28,000+ ratings, rainbow latex packs and gold arch bundles — six chart-toppers, none over $10.","/assets/products/B00N1QPNMA.jpg")+
     bp("/post8","Trend Watch · Jul 22, 2026","Best squishy & fidget toys kids can't put down in 2026","NeeDoh, kawaii squishy packs, and party-favor fidget bundles — what's actually selling on the Novelty chart right now.","/assets/products/B0D9ZTW7PS.jpg")+
     bp("/post7","Gift Guides · Jul 20, 2026","Best building toy gifts for kids in 2026","PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart before the holiday rush hits.","/assets/products/B00AU56C5W.jpg")+
     bp("/post6","Charts · Jul 20, 2026","Best card & board games for family game night in 2026","From a 4.9★ newcomer to the classics that never leave the shelf — what's actually winning game night this month.","/assets/products/B0DWGVM7RY.jpg")+
@@ -1727,7 +1741,23 @@ var POSTS={
     '<h2>The original, still going strong</h2><p><b>5. Schylling NeeDoh Nice Cube.</b> The cube-shaped sibling to the brand\'s original squeeze ball — same doughy, never-dries-out texture, in a shape that\'s easier to grip for smaller hands.</p>'+
     aProd("Schylling NeeDoh Nice Cube","$9.99 · ★★★★☆ 326 ratings","https://www.amazon.com/dp/B0BQZFVJTB?tag=kolico-20")+
     '<h2>How to choose</h2><p>For party favors and classroom giveaways, buy in bulk — the 30-pack and 160-piece assortments bring the per-unit cost down to a dollar or less. For a single gift or a sensory tool a kid will actually use daily, the NeeDoh line and the butter squishy hold up better to repeated, heavy squeezing than most bulk-pack fillers.</p>'+
-    '<h2>The bottom line</h2><p>Every pick above holds a 4.3★+ average with real review volume behind it — squishies and fidgets are inexpensive enough to try a few and see what actually gets used. Browse the full, always-updated lineup on our <a href="/shop/novelty" data-cat="novelty">Novelty &amp; Gag Toys</a> category page.</p>';}}
+    '<h2>The bottom line</h2><p>Every pick above holds a 4.3★+ average with real review volume behind it — squishies and fidgets are inexpensive enough to try a few and see what actually gets used. Browse the full, always-updated lineup on our <a href="/shop/novelty" data-cat="novelty">Novelty &amp; Gag Toys</a> category page.</p>';}},
+  post9:{meta:"Party Prep · Jul 27, 2026 · By ToyScout Editors",h:"Best birthday party balloons &amp; decorations under $10 in 2026",
+    body:function(){return '<p class="a-lede">Party decor is the one aisle where spending more almost never buys a better party. Every single pick below lands under $10, and each one carries thousands of real Amazon ratings behind it — these are the balloon packs and party favors actually topping the Party Supplies chart on our radar this month.</p>'+
+    '<h2>The most-reviewed party supply we track</h2><p><b>1. PartySticks Glow Sticks, 100-pack.</b> Nearly 29,000 ratings — more than any other product anywhere on our Party Supplies radar. The pack includes connectors that turn the 8-inch sticks into necklaces and bracelets, which is why reviewers keep buying it for birthday goodie bags, sleepovers and summer-evening backyard parties.</p>'+
+    aProd("PartySticks Glow Sticks 100-Pack with Connectors","$7.99 · ★★★★★ 28,702 ratings","https://www.amazon.com/dp/B00N1QPNMA?tag=kolico-20")+
+    '<h2>The best all-purpose balloon pack</h2><p><b>2. Bezente Assorted Rainbow Latex Balloons, 100-pack.</b> At roughly six cents a balloon, this is the default pick when you just need color and volume. Twelve-inch latex in a mixed rainbow assortment — thick enough that reviewers report noticeably fewer pops while inflating than with bargain-bin packs.</p>'+
+    aProd("Bezente Assorted Rainbow Latex Balloons (100 pcs)","$6.29 · ★★★★★ 13,811 ratings","https://www.amazon.com/dp/B0BZCHMVTK?tag=kolico-20")+
+    '<h2>For baby showers and gender reveals</h2><p><b>3. PartyWoo Pastel Balloons, 100 pcs.</b> The same 12-inch latex format in muted pastel tones — the pack reviewers reach for when a bright primary rainbow would clash with the rest of the decor. Baby showers, gender reveals, bridal showers and first birthdays are the use cases that come up over and over.</p>'+
+    aProd("PartyWoo Pastel Rainbow Balloons (100 pcs)","$7.99 · ★★★★★ 10,154 ratings","https://www.amazon.com/dp/B0D82WS2G7?tag=kolico-20")+
+    '<h2>The highest-rated pack on the list</h2><p><b>4. Clear 260 Skinny Balloons, 100-pack.</b> At <b>4.7★</b> these are the best-rated party balloons we track, and the cheapest pick here at $5.88. Long, skinny 260-size balloons are what balloon-twisters use for animals and swords — but most buyers use them as filler inside jumbo clear balloons or woven into arch garlands.</p>'+
+    aProd("100-Pc Clear 260 Skinny Latex Balloons","$5.88 · ★★★★★ 9,529 ratings","https://www.amazon.com/dp/B09L7MDNH6?tag=kolico-20")+
+    '<h2>The one to buy for a balloon arch</h2><p><b>5. PartyWoo White Balloons, 140 pcs.</b> Mixed sizes — 18, 12, 10 and 5 inch — in one pack, which is exactly what a balloon garland needs: big anchors, small gap-fillers, and enough of each to build a full arch without buying three separate packs.</p>'+
+    aProd("PartyWoo White Balloons, 140 pcs Mixed Sizes","$9.99 · ★★★★★ 9,243 ratings","https://www.amazon.com/dp/B0BDQXLT4C?tag=kolico-20")+
+    '<h2>For milestone birthdays and New Year\'s</h2><p><b>6. RUBFAC Gold Balloons, 129 pcs.</b> The grown-up option — the same mixed-size arch formula in metallic gold, and the pack that shows up in reviews for 30th and 50th birthdays, graduations, anniversaries and New Year\'s Eve just as often as kids\' parties.</p>'+
+    aProd("RUBFAC Gold Balloons, 129 pcs Mixed Sizes","$8.09 · ★★★★★ 9,212 ratings","https://www.amazon.com/dp/B09T6QFR2J?tag=kolico-20")+
+    '<h2>How to choose</h2><p>Work backwards from what you\'re building. A <b>balloon arch or garland</b> needs one mixed-size pack (the white 140-pc or gold 129-pc above) plus a color pack to accent it. <b>Table and ceiling decor</b> only needs a single-size 100-pack — the rainbow or pastel picks. <b>Party favors</b> are a separate line item entirely, and glow sticks beat balloons there because they survive the ride home. One practical note: buy roughly 20% more balloons than your plan calls for. Some will pop during inflation, and running out mid-arch means a second order and a second shipping wait.</p>'+
+    '<h2>The bottom line</h2><p>Six picks, none over $10, and every one holding a 4.5★+ average with thousands of ratings behind it — you can decorate an entire party for less than the cost of a single character-licensed balloon bouquet. Prices and ratings above were checked against Amazon on July 27, 2026. Browse the full, always-updated lineup on our <a href="/shop/party" data-cat="party">Party Supplies</a> category page.</p>';}}
 };
 function vPost(id){
   var P=POSTS[id];
