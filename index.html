@@ -7,7 +7,7 @@
 <title>ToyScout — Amazon's Trending Toys, Curated Daily</title>
 <meta name="description" content="ToyScout tracks Amazon's Toys & Games best-seller chart daily — real prices, star ratings, sales ranks and verified customer reviews for the top trending toys, sorted by category and age.">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="canonical" href="https://www.toyscout.net/">
+<!-- canonical is injected per-route by updateSeo(); a static tag here would declare every route a duplicate of "/" -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ToyScout">
 <meta property="og:locale" content="en_US">
@@ -1401,7 +1401,9 @@ function updateSeo(){
   document.title=title;
   var md=$('meta[name="description"]'); if(md) md.setAttribute("content",desc);
   var url="https://www.toyscout.net"+(pathFor()==="/"?"/":pathFor());
-  var cl=$('link[rel="canonical"]'); if(cl) cl.setAttribute("href",url);
+  var cl=$('link[rel="canonical"]');
+  if(!cl){cl=document.createElement("link");cl.setAttribute("rel","canonical");document.head.appendChild(cl);}
+  cl.setAttribute("href",url);
   function setMeta(sel,val){var el=$(sel); if(el) el.setAttribute("content",val);}
   setMeta('meta[property="og:url"]',url);
   setMeta('meta[property="og:title"]',title);
