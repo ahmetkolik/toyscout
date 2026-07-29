@@ -10,6 +10,35 @@ Son güncelleme: 29 Tem 2026
 
 ---
 
+## A0. ⚠️ BİLİNEN ARIZA — TCC / `~/Downloads` tuzağı (29 Tem 2026)
+
+Proje `~/Downloads` altında. **macOS TCC koruması launchd ajanlarının bu klasördeki
+dosyaları açmasına izin vermiyor** — ajan "yüklü" görünür ama çalıştığında
+`Operation not permitted` alır ve sessizce ölür.
+
+| Ajan | Durum | Kanıt |
+|---|---|---|
+| `net.toyscout.gsc` | ✅ **ÇÖZÜLDÜ** | script `~/Library/Application Support/toyscout/`'a taşındı (projeye dokunmuyor), exit 0 |
+| `net.toyscout.bestsellers` | ❌ **ÇALIŞMIYOR** | exit 2 — `can't open file ... [Errno 1] Operation not permitted` |
+
+**Bestsellers neden taşımayla çözülmez:** script `js/data.js`, `assets/products/`,
+`sitemap-products.xml` okuyup yazmak zorunda; hepsi `~/Downloads` içinde. Script nerede
+dururla ilgili değil, sürecin o klasöre erişememesiyle ilgili.
+
+**Kalıcı çözüm (30 Tem'de karar ver) — iki seçenek:**
+1. **Projeyi `~/Downloads` dışına taşı** (ör. `~/Projects/toyscout`). Doğru çözüm.
+   Taşıdıktan sonra güncellenecekler: `net.toyscout.bestsellers.plist` içindeki iki yol,
+   `tasks/verify.sh`, `products/build_browse_page.py` yol sabitleri yok (göreli),
+   ve Claude Code'un proje/hafıza dizini kimliği değişir.
+2. **System Settings → Privacy & Security → Full Disk Access**'e `/usr/bin/python3` ekle.
+   Çalışır ama tüm python süreçlerine geniş erişim verir — güvenlik açısından tercih edilmez.
+
+**O güne kadar:** senkronizasyonu elle çalıştır —
+`python3 products/bestseller_sync.py` (Terminal'den çalışıyor, TCC yalnızca launchd'yi
+etkiliyor). `bash tasks/verify.sh` bu arızayı yakalar; "son calisma HATA verdi" satırına bak.
+
+---
+
 ## A. Tekrarlayan görevler (launchd — makinede kalıcı)
 
 ### A1. Amazon Best Sellers senkronizasyonu — TAM OTOMATİK
