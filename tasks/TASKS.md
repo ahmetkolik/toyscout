@@ -67,11 +67,35 @@ Manual actions · Core Web Vitals · **~10 URL indeksleme isteği** (kota dolunc
 
 ## B. Açık işler (tarihli, bitince buradan sil)
 
-- [ ] **İndeksleme turu — 29 Tem 22:00 sonrası.** Gün içinde "Quota Exceeded" alındı.
-      Yeni hedefler hazır: 18 yeni ürün sayfası + `/shop/dolls` (hiç taranmamış).
-- [ ] **`sitemap-products.xml` doğrulaması — 30 Tem.** GSC → Sitemaps: "Success" mi?
-      Artık **115 URL** (97 değil) — Discovered sayısının artması sitemap'in
-      okunduğunun en temiz kanıtı olur.
+- [ ] **İndeksleme turu — devam, 30 Tem.** 29 Tem 21:00'de **4 istek gönderildi**
+      (`/product/games/10`, `/product/baby-toddler/11`, `/shop/dolls`,
+      `/product/sports-outdoor/16`). 5.'de hız sınırına takıldı
+      ("We had a problem submitting your indexing request"). Kalan hedefler sırayla:
+      `/product/games/11` · `/product/arts-crafts/23` · `/product/ride-ons/4` ·
+      `/product/arts-crafts/22` · `/product/arts-crafts/20` · `/product/baby-toddler/9`
+- [ ] **`sitemap-products.xml` doğrulaması — 30 Tem.** 29 Tem 21:00'de **yeniden
+      gönderildi** (önceki durum "Couldn't fetch", 0 keşif). Dosyada teknik sorun YOK:
+      HTTP 200, `application/xml`, geçerli XML, robots.txt'de listeli, 115 URL.
+      Yarın "Success" ve Discovered > 0 olmalı.
+- [ ] **ASIL KÖK SORUN (29 Tem araştırması): ürün sayfalarına taranabilir link YOK.**
+      Sunucudan gelen ham HTML'de `<a href="/product/...">` sayısı **sıfır** (115 ürünün
+      hiçbirine). Kategori linki yalnızca 7 adet ve hepsi aynı yere
+      (`/shop/sports-outdoor`). `#view` kapsayıcısı **boş** geliyor; tüm gezinme ve içerik
+      JS ile istemcide üretiliyor. `<noscript>` ise tam ekran "ToyScout requires
+      JavaScript" uyarısı gösteriyor.
+      **Sonuç:** Google'ın iki keşif yolu da kapalı — sitemap okunmuyor VE iç link yok.
+      URL Inspection'ın her sayfada "Referring page: None detected" +
+      "URL is unknown to Google" demesinin sebebi bu.
+      Google JS render edebilir ama render ayrı ve gecikmeli bir kuyruk; otoritesi
+      sıfıra yakın bir sitede pratikte sıraya hiç gelmiyor.
+      **Önerilen çözüm:** ham HTML'e gerçek `<a href>` linkleri koymak — örn. script'le
+      üretilen statik "tüm ürünler" sayfası + footer'dan gerçek linkle bağlamak.
+      Build step gerektirmez, mevcut mimariye uyar. Kullanıcı onayı bekliyor.
+- [ ] **Sitemap hiç okunmuyor (ikincil).** URL Inspection her sayfada
+      **"No referring sitemaps detected"** ve **"URL is unknown to Google"** diyor;
+      `/sitemap.xml` Last read hâlâ **26 Tem** (3 gün önce), yalnızca 25 sayfa keşfedilmiş.
+      Yani sayfalar tek tek elle isteniyor, sitemap üzerinden toplu keşif çalışmıyor.
+      30 Tem'de hâlâ okunmadıysa asıl mesele bu — elle istek bunu telafi edemez.
 - [ ] **VALIDATE FIX sonucu** — Merchant listings `Missing field "price"` doğrulaması
       *Started* durumda, birkaç gün sürer.
 - [ ] **09-A videosu (SEREED denge bisikleti)** — kampanyada hiç üretilmemiş tek slot.

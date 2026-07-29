@@ -427,6 +427,16 @@ def main():
         n = write_sitemap(d)
         log(f'sitemap-products.xml yeniden uretildi: {n} URL')
 
+    # browse.html'i HER turda yeniden uret — fiyat/puan degistiyse orada da guncellensin.
+    # Bu sayfa Google'in urun sayfalarina ulasabildigi TEK ic link zinciri (29 Tem 2026).
+    try:
+        import build_browse_page
+        links = build_browse_page.main()
+        log(f'browse.html yeniden uretildi: {links} gercek urun linki')
+    except Exception as e:
+        log(f'UYARI: browse.html uretilemedi ({type(e).__name__}: {e}) — '
+            f'elle: python3 products/build_browse_page.py')
+
     log('bitti. NOT: deploy YAPILMADI — canliya cikmasi icin push gerekiyor.')
     return 0
 
