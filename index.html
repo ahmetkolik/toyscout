@@ -235,7 +235,7 @@
     },
     {
       "@type": "Product",
-      "name": "PartyWoo White Balloons 140 pcs Different Sizes of 18 12 10 5 Inch White Balloons Arch Kit Garland for Wedding Baby Shower Birthday Bridal Shower Graduation Engagement Party Decorations White-Y13",
+      "name": "PartyWoo White Balloons 140 pcs Different Sizes of 18 12 10 5 Inch White Balloons Arch Kit Garland for Wedding Baby Shower Birthday Decorations",
       "brand": { "@type": "Brand", "name": "PartyWoo" },
       "image": [
         "https://www.toyscout.net/assets/products/B0BDQXLT4C.jpg",
@@ -249,7 +249,7 @@
       "url": "https://www.toyscout.net/shop/party",
       "offers": {
         "@type": "Offer",
-        "price": "8.99",
+        "price": "9.99",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
         "url": "https://www.amazon.com/dp/B0BDQXLT4C?tag=kolico-20"
@@ -257,7 +257,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": 4.5,
-        "reviewCount": 6605,
+        "reviewCount": 9243,
         "bestRating": 5
       },
       "review": [
@@ -307,17 +307,10 @@
       ],
       "description": "Stop, collaborate, and squish this",
       "url": "https://www.toyscout.net/shop/novelty",
-      "offers": {
-        "@type": "Offer",
-        "price": "16.80",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "url": "https://www.amazon.com/dp/B0D9ZTW7PS?tag=kolico-20"
-      },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": 4.0,
-        "reviewCount": 15525,
+        "ratingValue": 4.1,
+        "reviewCount": 4436,
         "bestRating": 5
       },
       "review": [
@@ -355,7 +348,7 @@
     },
     {
       "@type": "Product",
-      "name": "Disney Store Official Buzz Lightyear Interactive Talking Action Figure from Toy Story, Features 10+ English Phrases, Interacts with Other Figures and Toys",
+      "name": "Disney Store Official Buzz Lightyear Interactive Talking Action Figure from Toy Story, Features 10+ English Phrases",
       "brand": { "@type": "Brand", "name": "Disney Store" },
       "image": [
         "https://www.toyscout.net/assets/products/B07PQFT83F.jpg",
@@ -376,7 +369,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": 4.7,
-        "reviewCount": 7141,
+        "reviewCount": 49086,
         "bestRating": 5
       },
       "review": [
@@ -414,7 +407,7 @@
     },
     {
       "@type": "Product",
-      "name": "Bicycle Standard Playing Cards, Standard Poker Size Deck of Cards, Red & Blue (2 Pack), Classic Cards for Poker, Blackjack, Family Game Night & Card Games, Fun for All Ages",
+      "name": "Bicycle Standard Playing Cards, Standard Poker Size Deck of Cards, Red & Blue (2 Pack), Classic Cards for Poker, Blackjack & Family Game Night",
       "brand": { "@type": "Brand", "name": "Bicycle" },
       "image": [
         "https://www.toyscout.net/assets/products/B00E4AMFKK.jpg",
@@ -428,7 +421,7 @@
       "url": "https://www.toyscout.net/shop/games",
       "offers": {
         "@type": "Offer",
-        "price": "5.82",
+        "price": "4.72",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
         "url": "https://www.amazon.com/dp/B00E4AMFKK?tag=kolico-20"
@@ -436,7 +429,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": 4.8,
-        "reviewCount": 2576,
+        "reviewCount": 794,
         "bestRating": 5
       },
       "review": [
@@ -474,7 +467,7 @@
     },
     {
       "@type": "Product",
-      "name": "Animals Habitat 500+ Kids Sticker Book by Cupkin Toddler Airplane Travel Activity Coloring and Sticker Book, Road Trip Essentials, 12 Coloring Pages + 12 Scenes for Ages 2–8 Years",
+      "name": "Animals Habitat 500+ Kids Sticker Book by Cupkin, Toddler Travel Activity Coloring and Sticker Book, 12 Coloring Pages + 12 Scenes for Ages 2–8",
       "brand": { "@type": "Brand", "name": "Cupkin" },
       "image": [
         "https://www.toyscout.net/assets/products/B098PMWSVS.jpg",
@@ -496,7 +489,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": 4.8,
-        "reviewCount": 1222,
+        "reviewCount": 6630,
         "bestRating": 5
       },
       "review": [
@@ -1352,6 +1345,14 @@ function updateSeo(){
   setMeta('meta[name="twitter:description"]',desc);
   updateProductLd();
 }
+// Google rejects Product "name" values longer than 150 chars
+// ("Invalid string length in field name"), so trim on a word boundary.
+function ldName(n){
+  n=String(n||"").trim();
+  if(n.length<=150) return n;
+  var cut=n.slice(0,150), sp=cut.lastIndexOf(" ");
+  return (sp>80?cut.slice(0,sp):cut).replace(/[\s,;:\-–—(]+$/,"");
+}
 function updateProductLd(){
   var old=document.getElementById("ts-ldjson-dynamic");
   if(old) old.remove();
@@ -1361,7 +1362,7 @@ function updateProductLd(){
     if(p){
       var priceNum=parseFloat(String(p.price).replace(/[^0-9.]/g,""))||p.lo||undefined;
       data={
-        "@context":"https://schema.org","@type":"Product","name":p.name,
+        "@context":"https://schema.org","@type":"Product","name":ldName(p.name),
         "image":p.gallery.map(function(g){return "https://www.toyscout.net"+g}),
         "description":(p.bullets&&p.bullets[0])||p.name,
         "url":"https://www.toyscout.net"+pathFor()
@@ -1378,7 +1379,7 @@ function updateProductLd(){
         "@context":"https://schema.org","@type":"ItemList",
         "name":(CAT_MAP[s.shopCat]||"Toys")+" — Amazon Best Sellers on ToyScout",
         "itemListElement":list.map(function(p,i){
-          return {"@type":"ListItem","position":i+1,"name":p.name,"url":"https://www.toyscout.net/product/"+s.shopCat+"/"+p.idx};
+          return {"@type":"ListItem","position":i+1,"name":ldName(p.name),"url":"https://www.toyscout.net/product/"+s.shopCat+"/"+p.idx};
         })
       };
     }
