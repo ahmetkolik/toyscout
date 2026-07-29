@@ -65,11 +65,52 @@ Manual actions · Core Web Vitals · **~10 URL indeksleme isteği** (kota dolunc
 
 ---
 
+## B0. ⭐ YARIN İLK İŞ — 30 Tem 2026 GSC turu
+
+Bunu önce oku. 29 Tem gecesi bilgisayar kapatılmadan önce yazıldı.
+
+**1. Kalan 5 indeksleme isteği** (29 Tem'de hız sınırına takıldı, gönderilemedi):
+```
+https://www.toyscout.net/product/arts-crafts/23     Play-Doh 42'li   (4.9★ 17.343)
+https://www.toyscout.net/product/ride-ons/4          SEREED bisiklet  (4.8★ 16.217)
+https://www.toyscout.net/product/arts-crafts/22      Crayola 24'lü    (4.8★  7.510)
+https://www.toyscout.net/product/arts-crafts/20      Prang karton     (4.7★  6.892)
+https://www.toyscout.net/product/baby-toddler/9      LiKee fırıldak   (4.8★  5.210)
+```
+
+**2. `/browse.html` indekslendi mi?** (29 Tem 22:0x'te istek gönderildi, onaylandı)
+
+**3. EN NET SİNYAL — bir ürün sayfasında "Referring page" değişti mi?**
+Herhangi bir `/product/...` URL'ini denetle. "None detected" yerine `/browse.html`
+görünüyorsa iç link zinciri çalışmaya başlamış demektir.
+
+**4. `/sitemap-products.xml` "Success" oldu mu?** (29 Tem 21:0x'te yeniden gönderildi)
+`/sitemap.xml` Last read tarihi 26 Tem'den ileri gitti mi?
+
+**Akış kuralları (kanla öğrenildi):** Her istekten sonra Overview'a dön ve kutuya
+**iki kez** tıkla (navigate sonrası ilk yazma yutuluyor). Yenilemeden arka arkaya
+istek atarsan hız sınırı devreye girer. Onay için modal'a güvenme — satırdaki kalıcı
+**"✓ Indexing requested"** yazısına bak.
+
+---
+
 ## B. Açık işler (tarihli, bitince buradan sil)
 
-- [ ] **İndeksleme turu — devam, 30 Tem.** 29 Tem 21:00'de **4 istek gönderildi**
-      (`/product/games/10`, `/product/baby-toddler/11`, `/shop/dolls`,
-      `/product/sports-outdoor/16`). 5.'de hız sınırına takıldı
+- [x] **29 Tem 22:1x — İLK OLUMLU SİNYAL: `/product/games/11` INDEKSLENDİ.**
+      Aynı akşam saat başında "URL is unknown to Google" diyen sayfa, istek
+      gönderildikten ~45 dakika sonra **"URL is on Google · Page is indexed"** oldu;
+      Product snippets 5 geçerli öğe görüyor. **Anlamı:** Google bu SPA'nın ürün
+      sayfalarını render edip indeksleyebiliyor — sorun render değil, sayfaya
+      ULAŞAMAMASIYDI. `browse.html` yaklaşımının doğru olduğunun ilk kanıtı.
+- [ ] **`/browse.html` takibi — 30 Tem'den itibaren (EN ÖNEMLİ ÖLÇÜT).**
+      29 Tem 22:0x'te indeksleme isteğine gönderildi ("Indexing requested" onaylı).
+      Taranınca Google 115 ürün + 12 kategori linkini tek seferde görecek.
+      **Bakılacak iki sinyal:** (1) `/browse.html` indekslendi mi, (2) rastgele bir ürün
+      sayfasında "Referring page" artık "None detected" yerine `/browse.html` gösteriyor mu.
+      İkincisi daha erken ve daha net sinyal. Bkz. `spa-taranabilirlik-sorunu` hafızası.
+- [ ] **İndeksleme turu — devam, 30 Tem.** 29 Tem akşamı **5 istek gönderildi**
+      (`/browse.html`, `/product/games/10`, `/product/baby-toddler/11`, `/shop/dolls`,
+      `/product/sports-outdoor/16`). Arada bir kez hız sınırına takıldı
       ("We had a problem submitting your indexing request"). Kalan hedefler sırayla:
       `/product/games/11` · `/product/arts-crafts/23` · `/product/ride-ons/4` ·
       `/product/arts-crafts/22` · `/product/arts-crafts/20` · `/product/baby-toddler/9`
