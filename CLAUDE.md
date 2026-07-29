@@ -66,6 +66,29 @@ Same Supabase project as before (`vijagongnjfddhtlwecu`). `sbInsert(table, row)`
 
 No automated test suite. (The old `testsprite_tests/` scripts predated the vanilla-JS rebuild, were never re-verified against the new markup/selectors, and were removed in the 2026-07-21 cleanup.)
 
+## Tasks and reminders — read `tasks/` first
+
+**`tasks/TASKS.md` is the single source of truth for every recurring task, reminder,
+and open item on this project.** Session-scoped schedulers (cron jobs created inside a
+Claude session) do NOT survive closing the project, so nothing lives there — recurring
+work is bound to macOS `launchd` agents, and everything is written down in `tasks/`.
+
+At the start of any session that touches scheduling, SEO, the product catalog, or the
+video campaign: **run `bash tasks/verify.sh`**. It compares what `TASKS.md` claims
+against what is actually on the machine — launchd agents loaded, scripts present, last
+run times, catalog/sitemap counts matching, and whether the live site is behind local
+changes. Do not trust `TASKS.md` alone; the script is what catches a silently unloaded
+agent.
+
+Currently registered (details, schedules and stop commands in `tasks/TASKS.md`):
+- `net.toyscout.bestsellers` — Amazon Best Sellers sync every 5 days, fully automatic
+  via `products/bestseller_sync.py`. **It does not deploy** — changes stay local until
+  someone pushes.
+- `net.toyscout.gsc` — daily 22:15 reminder for the Google Search Console round.
+  Reminder only; the GSC indexing flow needs a logged-in browser and cannot be scripted.
+
+`tasks/` is in `.vercelignore` — it lives in the repo but 404s on the live site.
+
 ## Deploying
 
 Push to `master` → Vercel auto-deploys (no in-repo CI config; deploys are Vercel's git integration). `vercel.json`'s `redirects` block also permanently 301s `toyscout.vercel.app` and `toyscout-kolik.vercel.app` traffic to `www.toyscout.net`. The `p:domain_verify` meta tag in `<head>` must stay in place (Pinterest domain-claim verification — removing it un-claims the domain on Pinterest).
