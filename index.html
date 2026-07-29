@@ -1364,10 +1364,11 @@ function updateProductLd(){
         "@context":"https://schema.org","@type":"Product","name":p.name,
         "image":p.gallery.map(function(g){return "https://www.toyscout.net"+g}),
         "description":(p.bullets&&p.bullets[0])||p.name,
-        "url":"https://www.toyscout.net"+pathFor(),
-        "offers":{"@type":"Offer","priceCurrency":"USD","availability":"https://schema.org/InStock","url":p.url}
+        "url":"https://www.toyscout.net"+pathFor()
       };
-      if(priceNum) data.offers.price=priceNum;
+      // An Offer without a price is a critical structured-data error ("Missing field price"),
+      // so only declare offers when we actually know the price.
+      if(priceNum) data.offers={"@type":"Offer","price":priceNum,"priceCurrency":"USD","availability":"https://schema.org/InStock","url":p.url};
       if(p.rc>0) data.aggregateRating={"@type":"AggregateRating","ratingValue":p.rating,"reviewCount":p.rc,"bestRating":5};
     }
   } else if(s.page==="shop"){
