@@ -6,7 +6,7 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 29 Tem 2026
+Son güncelleme: 30 Tem 2026
 
 ---
 
@@ -132,6 +132,69 @@ görünüyorsa iç link zinciri çalışmaya başlamış demektir.
 **iki kez** tıkla (navigate sonrası ilk yazma yutuluyor). Yenilemeden arka arkaya
 istek atarsan hız sınırı devreye girer. Onay için modal'a güvenme — satırdaki kalıcı
 **"✓ Indexing requested"** yazısına bak.
+
+---
+
+## A3. Pinterest — periyodik kontrol + SEO optimizasyonu (kullanıcı isteği, 30 Tem 2026)
+
+Hesap: **`toyscoutnet`** · 11 pano · **108 pin** · katalog **117 ürün**
+
+**⛔ ŞU AN BLOKE — Pinterest MCP token'ı yetkisini kaybetmiş.** `boards_list` çalışıyor,
+ama `pins_list`, `user_get_info` ve `pins_create` **401** dönüyor. Pin okunamıyor,
+oluşturulamıyor, düzenlenemiyor. **İlk iş: Pinterest bağlantısını yeniden yetkilendir.**
+O yapılmadan aşağıdaki hiçbir madde uygulanamaz.
+
+### Boşluk analizi (30 Tem — pano pin sayıları ↔ katalog)
+
+| Pano | Ürün | Pin | Fark |
+|---|---:|---:|---:|
+| Arts & Crafts for Kids | 26 | 19 | **−7** |
+| Baby & Toddler Toys | 12 | 10 | −2 |
+| Action Figures | 4 | 3 | −1 |
+| Games | 12 | 11 | −1 |
+| **Dolls & Accessories** | 1 | 0 | −1 · **PANO HİÇ YOK** |
+| Building Toys / Learning / Novelty | — | — | +1 (blog pinleri, normal) |
+| Party · Plush · Ride-ons · Sports | — | — | 0 (tam) |
+
+### Yapılacaklar (token yenilenince, öncelik sırasıyla)
+
+**1. ⚠️ Eski pinlerin linklerini düzelt — EN YÜKSEK ETKİLİ.**
+Mevcut ürün pinleri **hash'li link** kullanıyor (`/#...`), bu yüzden ne trafik ne SEO
+değeri üretiyorlar. Artık gerçek URL'ler var:
+`https://www.toyscout.net/product/<kategori>/<idx>`. Düzeltilirse hem tıklama siteye
+gelir hem de **harici link sinyali** oluşur — [[spa-taranabilirlik-sorunu]] göz önüne
+alınırsa siteye dışarıdan gelen ilk gerçek linkler bunlar olacak.
+
+**2. Rich Pins'i etkinleştir.** Domain zaten Pinterest'te doğrulanmış
+(`p:domain_verify` meta etiketi `index.html`'de duruyor, silinmemeli). Ürün sayfalarında
+zaten `Product` yapılandırılmış verisi var → **Product Rich Pins** açılabilir; fiyat ve
+stok bilgisi pinde otomatik görünür, tıklama oranını belirgin artırır. Tek seferlik iş.
+
+**3. Görsel oranı — sessiz ama büyük kayıp.** Pinterest **2:3 dikey** (1000×1500)
+görselleri belirgin şekilde öne çıkarıyor; bizim ürün fotoğrafları Amazon'dan geldiği
+için **kare**. Kare görseller akışta eziliyor. Çözüm: `assets/products/<ASIN>.jpg`'den
+2:3 dikey pin görseli üreten bir script (ürün fotoğrafı üstte, altta ürün adı + fiyat +
+puan şeridi, ToyScout logosu). `products/build_browse_page.py` ile aynı mantıkta
+otomatikleştirilebilir.
+
+**4. Başlık/açıklama SEO şablonu** (yeni ve düzeltilen tüm pinlerde):
+- **Başlık:** birincil anahtar kelime **başta**, ~40 karakterde anlam tamamlanmalı.
+  `SKYJO — The Card Game With 75,000 Five-Star Reviews`
+- **Açıklama:** ilk 100 karakter kritik (akışta görünen kısım). Doğal cümle içinde
+  anahtar kelime, sonra fiyat/puan, sonra eylem çağrısı. 200-400 karakter ideal.
+- **Hashtag:** 3-5 tane, sona. Pinterest hashtag ağırlığını düşürdü — **anahtar kelimeli
+  açıklama hashtag'den çok daha değerli**, abartma.
+- **`alt_text`:** görseli betimle (erişilebilirlik + indeksleme).
+- **Pano açıklamaları** da anahtar kelimeli olmalı; şu an bazıları boş
+  (Action Figures, Arts & Crafts panolarının açıklaması yok).
+
+**5. Eksik ~12 pini tamamla** + `Dolls & Accessories` panosunu oluştur.
+
+**6. Tazelik.** Pinterest yeni pini ödüllendiriyor. Toplu 100 pin atmak yerine
+**5 günde bir birkaç yeni pin** daha iyi çalışır — Best Sellers senkronizasyonuyla aynı
+ritim, katalog büyüdükçe yeni ürünler pinlenir.
+
+**Periyot:** 5 günde bir, A1 turuyla birlikte kontrol et.
 
 ---
 
