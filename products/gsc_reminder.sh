@@ -1,4 +1,9 @@
 #!/bin/bash
+# NOT: BU KOPYA ARTIK CALISMIYOR — yalnizca referans icin duruyor.
+# launchd'nin calistirdigi gercek script:
+#   ~/Library/Application Support/toyscout/gsc_reminder.sh
+# (30 Tem 2026: proje ~/Projects/toyscout'a tasindi, TCC sorunu bitti; bu
+#  script yine de disarida tutuldu, projeye bagimli degil.)
 # ToyScout — gunluk GSC denetim/indeksleme turu hatirlatmasi.
 # launchd: net.toyscout.gsc (her gun 22:15)
 #
