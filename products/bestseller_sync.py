@@ -427,6 +427,16 @@ def main():
         n = write_sitemap(d)
         log(f'sitemap-products.xml yeniden uretildi: {n} URL')
 
+    # sitemap.xml'i HER turda yeniden uret. Google'in gercekten okudugu dosya bu;
+    # yeni urunler buraya girmezse kesfedilmiyorlar (30 Tem 2026 dersi).
+    try:
+        import build_sitemap
+        n = build_sitemap.main()
+        log(f'sitemap.xml yeniden uretildi: {n} URL')
+    except Exception as e:
+        log(f'UYARI: sitemap.xml uretilemedi ({type(e).__name__}: {e}) — '
+            f'elle: python3 products/build_sitemap.py')
+
     # browse.html'i HER turda yeniden uret — fiyat/puan degistiyse orada da guncellensin.
     # Bu sayfa Google'in urun sayfalarina ulasabildigi TEK ic link zinciri (29 Tem 2026).
     try:
