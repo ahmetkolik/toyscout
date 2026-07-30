@@ -158,12 +158,32 @@ O yapılmadan aşağıdaki hiçbir madde uygulanamaz.
 
 ### Yapılacaklar (token yenilenince, öncelik sırasıyla)
 
-**1. ⚠️ Eski pinlerin linklerini düzelt — EN YÜKSEK ETKİLİ.**
-Mevcut ürün pinleri **hash'li link** kullanıyor (`/#...`), bu yüzden ne trafik ne SEO
-değeri üretiyorlar. Artık gerçek URL'ler var:
-`https://www.toyscout.net/product/<kategori>/<idx>`. Düzeltilirse hem tıklama siteye
-gelir hem de **harici link sinyali** oluşur — [[spa-taranabilirlik-sorunu]] göz önüne
-alınırsa siteye dışarıdan gelen ilk gerçek linkler bunlar olacak.
+**1. 🔴 ÜRÜN PİNLERİNİN LİNKLERİ KIRIK — 30 Tem'de tarayıcıdan DOĞRULANDI.**
+Örnek pin (`1106618939714542588`, Taba Squishy Hamster) hedefi: **`/#/product/games/9`**
+Site yönlendirmeyi `location.pathname` ile okuyor; **hash hiç okunmuyor.** Yani bu pin
+kullanıcıyı ürün sayfasına değil **ana sayfaya** bırakıyor. ~100 ürün pini, ~100 kopuk
+yolculuk. Sadece SEO kaybı değil, dönüşüm kaybı.
+Doğru biçim: `https://www.toyscout.net/product/<kategori>/<idx>`
+
+**⚠️ Basit `#` silme yetmez:** ürün eklendikçe/silindikçe indeksler kayıyor
+(bkz. [[urun-katalog-bulgulari-2026-07]] URL kaydırma tuzağı). Her pin, **ürün adından
+doğrulanarak** yeniden eşlenmeli. Kontrol edilen örnekte `games/9` hâlâ doğruydu ama
+bu garanti değil.
+
+**Blog pinleri SAĞLAM** — kontrol edilen blog pini `/post2`'ye gidiyordu, gerçek yol.
+Sorun yalnızca ürün pinlerinde.
+
+**Yan bulgu — yanlış pano/kategori:** "Taba Squishy Hamster" hem Pinterest'te **Games**
+panosunda hem katalogda `games` kategorisinde. Squishy oyuncak, oyun değil → `novelty`
+olmalı. Katalogdaki otomatik kategori eşlemesi gözden geçirilmeli.
+
+**Hesap durumu (30 Tem):** `toyscoutnet` · **63 aylık görüntülenme** · 0 takipçi.
+Profil bio'su ve site linki düzgün, domain doğrulanmış.
+
+**YÖNTEM NOTU:** Tarayıcı UI'dan pin düzenleme mümkün (`... → Edit Pin`) ama pin başına
+6-8 tıklama = 100 pin için ~700 işlem, üstelik arayüz kararsız. **Doğru yol MCP token'ını
+yenileyip programatik düzenlemek** — aynı iş dakikalar sürer. Token yenilenmeden UI'dan
+tek tek uğraşma.
 
 **2. Rich Pins'i etkinleştir.** Domain zaten Pinterest'te doğrulanmış
 (`p:domain_verify` meta etiketi `index.html`'de duruyor, silinmemeli). Ürün sayfalarında
@@ -195,6 +215,38 @@ otomatikleştirilebilir.
 ritim, katalog büyüdükçe yeni ürünler pinlenir.
 
 **Periyot:** 5 günde bir, A1 turuyla birlikte kontrol et.
+
+---
+
+## A4. 🔴 EN BÜYÜK SEO AÇIĞI — blog yazıları sunucuda hiç yok (30 Tem 2026 tespiti)
+
+**`/post1` … `/post9` ham HTML'de ana sayfayla BİREBİR AYNI içeriği dönüyor.**
+Doğrulandı (`curl /post9`): `<title>` ana sayfanın başlığı, `#view` kapsayıcısı **boş**,
+yazının tek satırı bile ham HTML'de yok, canonical yok (JS enjekte ediyor).
+
+**Neden kritik:** JS çalıştırmayan bir tarayıcı için 9 blog yazısının hepsi ana sayfanın
+kopyası. GSC'deki *"Alternate page with proper canonical tag: 3"* uyarısının kaynağı
+büyük olasılıkla bu. Üstelik blog yazıları bu sitenin **asıl organik trafik kaldıracı** —
+ürün sayfaları rekabet edemez, uzun kuyruk sorguları yazılardan gelir. O yazılar
+sunucuda yok.
+
+**Çözüm (browse.html ile aynı desen):** `post1.html` … `post9.html` statik dosyaları üret.
+- Kaynak: `index.html` içindeki `var POSTS={...}` (26 KB, 9 yazı,
+  her biri `meta` + `h` + `body()` fonksiyonu).
+- `body()` şu yardımcıları çağırıyor: `aProd`, `amazonSearchUrl` → statik üretimde
+  bunlara stub yazılmalı (Node ile eval en pratik yol).
+- Her sayfada: benzersiz `<title>`, meta description, **canonical**, OG + Twitter,
+  `BlogPosting` JSON-LD, breadcrumb, ilgili ürünlere gerçek `<a href>`.
+- `vercel.json`: `/post9` → `/index.html` yerine **`/post9.html`** olarak değiştir
+  (9 satır). SPA içi gezinme `data-go` ile çalışmaya devam eder.
+
+**Diğer tespitler (aynı taramadan):**
+- `index.html` ham HTML'de **canonical YOK** — sadece JS enjekte ediyor. Kendine
+  referans veren bir canonical statik olarak eklenmeli.
+- meta description **187 karakter** — ~155'e kısalt, aramada kesiliyor.
+- Görsellerde `width`/`height` yok → CLS riski (Core Web Vitals "No data" durumda).
+- `browse.html`'de **OG/Twitter etiketi ve JSON-LD yok** — `CollectionPage` +
+  `ItemList` + breadcrumb eklenmeli.
 
 ---
 
