@@ -250,6 +250,67 @@ sunucuda yok.
 
 ---
 
+## A5. YouTube / TikTok kanal denetimi (31 Tem 2026)
+
+### 🔵 ANA BULGU: TikTok, YouTube'u ezici farkla geçiyor
+
+Aynı videolar, aynı gün, iki platform:
+
+| Video | TikTok | YouTube | Fark |
+|---|---:|---:|---:|
+| Kikidex çizim tahtası | **694** | 5 | **139×** |
+| UNO kart oyunu | **168** | 3 | 56× |
+| Oball bebek topu | **269** | 0 | — |
+| Bluey su boyama | **138** | 19 | 7× |
+| Mr. Sketch kokulu kalem | **170** | 36 | 4.7× |
+| Havuz şezlongu | **111** | 90 | 1.2× |
+
+**TikTok toplam ≈ 1.741 görüntülenme · YouTube 28 günde 159.** Yaklaşık **11 kat**.
+YouTube: 1 abone, 0,3 saat izlenme süresi.
+
+**Sonuç: emek dağılımı TikTok'a kaymalı.** Aynı videoyu iki platforma yüklemek zaten
+maliyetsiz, ama optimizasyon (başlık, hashtag, saat, ses seçimi) çabası TikTok'a
+yoğunlaşmalı. YouTube Shorts bu kanal için henüz karşılık vermiyor.
+
+### 🔴 Düzeltilecek hatalar
+
+**1. TikTok'ta MÜKERRER gönderi.** Crayola Ultra Clean iki kez yayınlanmış:
+`24 Tem 7:00` (94 görüntülenme) ve `25 Tem 7:00` (97). Aynı ürün, aynı açıklama.
+YouTube'da aynı hata 24 Tem'de bulunup silinmişti; TikTok'taki hâlâ duruyor.
+Mükerrer içerik erişimi baskılar → **birini sil.**
+
+**2. Türkçe katalog adları TikTok açıklamalarına sızmış (4 gönderi).**
+ABD kitlesine İngilizce açıklamanın önünde Türkçe ürün adı duruyor:
+- `Crayola Ultra Clean Yıkanabilir Kalem 40'lı Washable markers that…` (×2)
+- `Bluey Aqua Su ile Boyama (Reusable) This $4 Bluey toy…`
+- `Aqua Monterey 4'ü1 Arada Havuz Şezlongu This pool float…`
+- `05-A UNO Kart Oyunu The $11 game…` ← ayrıca **slot kodu** da sızmış
+
+07-A'daki aynı hatayı kullanıcı 29 Tem'de düzeltmişti; bu 4'ü kalmış.
+**Not:** ticari içerik işaretli TikTok gönderilerinin açıklaması **yalnızca telefondan**
+düzenlenebiliyor (29 Tem'de öğrenildi).
+
+**3. YouTube 08-B (ALASOU) takılmış.** `30 Tem` için zamanlanmış ama 31 Tem'de hâlâ
+"Planlandı" görünüyor — yayına geçmemiş. Kontrol edilmeli, gerekirse elle yayınla.
+
+**4. 04-A Candy Land** hâlâ Shorts listesinde yok (uzun format, `dnkiQr9BkHI`).
+6 denetimdir açık.
+
+### Durum (31 Tem)
+
+YouTube 18 Shorts: **13 yayında**, 5 zamanlanmış (31 Tem – 1 Ağu).
+TikTok 12 gönderi: **8 yayında**, 4 zamanlanmış.
+Yeni içerik planından **11-A (LeapFrog)** her iki platforma da yüklenmiş, 1 Ağu'ya
+zamanlı (planda 2 Ağu'ydu, sorun değil).
+
+### İzleme notu
+
+YouTube'da bir izleyici yorumu: **"That's AI"**. İzleyiciler yapay zekâ üretimi
+videoları fark ediyor. Yeni yöntem (Amazon ürün videosu + CapCut) bu açıdan da
+avantajlı olabilir — gerçek ürün görüntüsü kullanılacak.
+
+---
+
 ## B. Açık işler (tarihli, bitince buradan sil)
 
 - [x] **29 Tem 22:1x — İLK OLUMLU SİNYAL: `/product/games/11` INDEKSLENDİ.**
