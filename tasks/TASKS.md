@@ -94,11 +94,32 @@ Manual actions · Core Web Vitals · **~10 URL indeksleme isteği** (kota dolunc
 
 ---
 
-## B0. ⭐ YARIN İLK İŞ — 30 Tem 2026 GSC turu
+## B0. ⭐ SIRADAKİ İŞ — 31 Tem 2026 GSC turu
 
-Bunu önce oku. 29 Tem gecesi bilgisayar kapatılmadan önce yazıldı.
+**30 Tem turunda ne oldu:**
+- ✅ **`/sitemap.xml` OKUNDU** — Last read 26 Tem → **30 Tem, Success, 124 sayfa**
+  (dün 25'ti). Dün "sitemap hiç okunmuyor" teşhisi artık geçerli değil.
+- ✅ **Yeni kök sorun bulundu ve çözüldü:** `sitemap.xml` yalnızca ESKİ 97 ürünü
+  içeriyordu; 29 Tem'de eklenen 18 ürün + `/shop/dolls` sadece
+  `sitemap-products.xml`'deydi — yani Google'ın ÇEKEMEDİĞİ dosyada. Google'ın okuduğu
+  dosyada bu sayfalar yoktu. `products/build_sitemap.py` yazıldı, `sitemap.xml` artık
+  **143 URL** (16 statik + 12 kategori + 115 ürün). Deploy `96c3b881`, canlı doğrulandı.
+  `bestseller_sync.py` her turda otomatik yeniden üretiyor.
+- ✅ `sitemap.xml` GSC'ye yeniden gönderildi (Submitted 30 Tem).
+- ❌ **Kalan 5 indeksleme isteği GÖNDERİLEMEDİ** — URL Inspection kutusu girdi kabul
+  etmemeye başladı (eklenti/renderer kararsızdı, 3 deneme). Aşağıda duruyorlar.
+- ℹ️ İndeksleme sayıları hâlâ 4 indeksli / 40 değil — bu rapor günlerce gecikmeli.
+  Ama Product snippets **56**, Merchant listings **51**, Review snippets **166** geçerli
+  öğe görüyor; bu, Google'ın 4 sayfadan çok daha fazlasını taradığına işaret.
 
-**1. Kalan 5 indeksleme isteği** (29 Tem'de hız sınırına takıldı, gönderilemedi):
+**31 Tem'de bakılacaklar:**
+1. `/sitemap.xml` Discovered sayısı **124 → 143**'e çıktı mı? (yeni sürüm okundu mu)
+2. `/product/arts-crafts/23` gibi YENİ bir ürün sayfası artık
+   "No referring sitemaps detected" demiyor mu? **En net sinyal bu.**
+3. İndeksli sayfa sayısı 4'ten hareket etti mi?
+4. `/browse.html` indekslendi mi?
+
+**Kalan 5 indeksleme isteği** (29 Tem'de hız sınırı, 30 Tem'de eklenti arızası):
 ```
 https://www.toyscout.net/product/arts-crafts/23     Play-Doh 42'li   (4.9★ 17.343)
 https://www.toyscout.net/product/ride-ons/4          SEREED bisiklet  (4.8★ 16.217)
