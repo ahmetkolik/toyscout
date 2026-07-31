@@ -94,6 +94,21 @@ else
   warn "canli $L urun, yerelde $N urun -> DEPLOY EDILMEMIS degisiklik var"
 fi
 
+# --- Supabase analitik
+# Ucretsiz plan ~7 gun hareketsizlikte projeyi DURAKLATIYOR; duraklayinca sbInsert()
+# sessizce basarisiz olur ve tiklama/mesaj/bulten kayitlari kaybolur. 31 Tem 2026'da
+# tam bu olmustu (17 gun veri kaybi). Bkz. tasks/TASKS.md A6.
+printf "\n${c_b}Analitik (Supabase)${c_0}\n"
+SB_KEY="sb_publishable_3bra6T7gE_JBJ4Ff-_oX2w_CaHMpxmQ"
+SB_URL="https://vijagongnjfddhtlwecu.supabase.co/rest/v1/amazon_clicks?select=id&limit=1"
+SB=$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 -H "apikey: $SB_KEY" "$SB_URL")
+if [ "$SB" = "200" ]; then
+  pass "Supabase uyanik (REST 200) — tiklama/form kayitlari yaziliyor"
+else
+  fail "Supabase yanit $SB — proje DURAKLAMIS olabilir, analitik VE iletisim formu kaybediliyor"
+  warn "supabase.com panelinden projeyi Restore et; sonra: bash tasks/verify.sh"
+fi
+
 # --- acik isler
 printf "\n${c_b}Acik isler${c_0} (tasks/TASKS.md B bolumu)\n"
 grep -n '^\- \[ \]' tasks/TASKS.md | sed 's/^\([0-9]*\):- \[ \] /  · /' | cut -c1-100

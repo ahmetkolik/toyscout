@@ -6,7 +6,9 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 31 Tem 2026 (GSC turu + A4 kapanışı + deploy `26fb4f8`)
+Son güncelleme: 31 Tem 2026 — GSC turu · A4 kapanışı · **Supabase analitik kesintisi
+düzeltildi (A6)** · **blog kaldıraç verisi (A7)** · post10 yayında.
+Deploy'lar: `26fb4f8` · `e1238bc` · `5f408b1` · `1c3f717`
 
 ---
 
@@ -185,6 +187,48 @@ görünüyorsa iç link zinciri çalışmaya başlamış demektir.
 **iki kez** tıkla (navigate sonrası ilk yazma yutuluyor). Yenilemeden arka arkaya
 istek atarsan hız sınırı devreye girer. Onay için modal'a güvenme — satırdaki kalıcı
 **"✓ Indexing requested"** yazısına bak.
+
+---
+
+## A6. 🔴 ANALİTİK — Supabase duraklama tuzağı (31 Tem 2026'da yakalandı)
+
+**Olan:** Supabase projesi (`vijagongnjfddhtlwecu`) **INACTIVE** durumdaydı.
+Ücretsiz plan **~7 gün hareketsizlikte projeyi otomatik duraklatıyor.** Duraklayınca
+`index.html`'deki `sbInsert()` sessizce başarısız oluyor.
+
+**Kaybedilen:** son `amazon_clicks` kaydı **14 Tem 20:29** — yani **17 gün** boyunca
+affiliate tıklaması, iletişim mesajı ve bülten kaydı hiç yazılmadı.
+Toplam tarihsel veri: **7 tıklama** (hepsi 12-14 Tem, ikisi eski `/#/product/` hash'li
+URL'den, biri `referrer: vercel.com` → büyük olasılıkla kendi testleri), **0 bülten,
+0 mesaj**. Amazon Associates paneli 27 Tem'de 34 tıklama diyordu — **aradaki fark bu
+kesintiden.** Yani gerçek kaynak Amazon paneli, bizim tablo değil.
+
+**⚠️ Teşhis tuzağı:** proje `COMING_UP` iken `list_tables` **boş** döner ve
+`relation "amazon_clicks" does not exist` hatası alırsın. **Tabloların silindiğini
+sanma** — restore bitmeden sorgulama. Tablolar ve veri yerindeydi.
+
+### Yapılanlar (31 Tem)
+- [x] Proje **restore** edildi, REST API doğrulandı (INSERT 201).
+- [x] Tablolar `create table if not exists` + indeks + **RLS** ile sağlamlaştırıldı.
+      Politika: anon/authenticated **yalnızca INSERT**. SELECT bilerek YOK —
+      publishable anahtar herkese açık, aksi halde tüm e-postalar okunabilirdi.
+      Doğrulandı: anon SELECT `[]` dönüyor, sızıntı yok.
+- [x] **Kalıcı çözüm: `bestseller_sync.py`'ye `ping_supabase()` eklendi.**
+      Tur 5 günde bir çalıştığı için 7 günlük duraklama eşiği hiç görülmez.
+      Ping başarısızsa log'a **UYARI** yazar. Python HTTPS bu makinede bozuk → `curl`.
+- [x] **Form sessiz başarısızlığı düzeltildi.** İletişim formu ve bülten kutusu, kayıt
+      başarısız olsa bile koşulsuz "✓ Message sent" / "✓ You're in!" diyordu. Artık
+      `sbInsert()` bir promise döndürüyor ve başarı mesajı **yalnızca HTTP ok** ise
+      gösteriliyor; değilse hata + `info@kolikshop.com` yönlendirmesi.
+      Tarayıcıdan uçtan uca test edildi: form → Supabase → satır yazıldı.
+
+### Kalan
+- [ ] **Vercel Web Analytics KAPALI** (API 404: "Web Analytics not found").
+      Şu an sitede ziyaretçi/sayfa görüntüleme ölçümü **hiç yok** — GSC yalnızca
+      organik aramayı gösteriyor, TikTok/Pinterest'ten gelen trafik hiçbir yerde
+      görünmüyor. Vercel panelinden **Analytics sekmesi → Enable** (tek tık, ücretsiz
+      kademe var), sonra `index.html`'e script eklenir. **Kullanıcı yapmalı.**
+- [ ] Her A1 turundan sonra log'da `Supabase ping: 200` satırını doğrula.
 
 ---
 
@@ -412,6 +456,55 @@ avantajlı olabilir — gerçek ürün görüntüsü kullanılacak.
 
 ---
 
+## A7. 📈 BLOG = ASIL KALDIRAÇ (31 Tem'de GSC verisiyle kanıtlandı)
+
+90 günlük Performance: **81 gösterim, 0 tıklama, ortalama pozisyon 24.2** (3. sayfa).
+Sayfa bazında gösterimler:
+
+| Sayfa | Gösterim |
+|---|---:|
+| `/` | 23 |
+| **`/blog`** | **18** |
+| **`/post5`** | **16** |
+| `/shop/sports-outdoor` | 13 |
+| `/shop/dolls` | 6 |
+| `/shop/building-toys` | 3 |
+| `/product/arts-crafts/1` | 2 |
+| `/product/learning-education/0` · `/post4` · `/product/plush/0` | 1'er |
+
+**9 blog yazısı 35 gösterim (%43); 117 ürün sayfası toplam 4.** Sayfa başına blog,
+katalogdan ~9 kat verimli. Üstelik post4/post5 bunu **ham HTML'de ana sayfanın kopyası
+olarak servis edilirken** aldı (statik hâle 30 Tem'de geçtiler) — yani bu taban, tavan değil.
+
+Marka dışı sorgular da blog konulu: *"cyber monday kids art & coloring deals"*,
+*"black friday kids art & coloring deals"*, *"building toy"*, *"outdoor sports toys market"*.
+**En çok gösterim alan kategori arts-crafts** (katalogdaki en büyük kategori, 26 ürün).
+
+**Kural: yeni yazı konusu seçerken bu tabloya bak.** Ürün sayfası üretmek yerine yazı
+üretmek daha getirili. Mevsimsel kanca + en iyi performans gösteren kategori birleşimi
+en iyi sonucu veriyor.
+
+### Yayın takvimi
+3 günde bir. **post10 "Best back-to-school art supplies under $15 in 2026" 31 Tem'de
+yayınlandı** (deploy `1c3f717`, canlı doğrulandı: 7 gerçek katalog ürünü, 7 affiliate
+link, statik `post10.html`, canonical + BlogPosting JSON-LD).
+**Sıradaki: post11 — 3 Ağu 2026.** Boştaki konular: baby-toddler, plush, ride-ons,
+dolls, action-figures; ayrıca Kasım öncesi Black Friday/Cyber Monday (sorgu verisi var).
+
+### ⚠️ Yeni yazı eklerken — 9 nokta + bir tuzak
+`index.html`: POSTS · yönlendirme dizisi · `render()` zinciri · `updateSeo()` ·
+JSON-LD `blogPost` · ana sayfa teaser · `vBlog()` `bp()`.
+Ayrıca `vercel.json` rewrite ve `products/build_sitemap.py`.
+**Ana sayfa teaser'ında 3 kart tutulmalı** (grid 3'lü; 4. kart tek başına satır açar) —
+en eskisini çıkar, `/blog`'da zaten duruyor.
+
+**🐛 31 Tem'de düzeltilen hata:** `build_blog_pages.py`'deki regex `(post\d)` tek haneliydi;
+**post10, post1 diye eşleşiyordu** ve kendi görselini/tarihini alamıyordu. `(post\d+)`
+yapıldı. İki haneli ilk yazı olduğu için şimdi ortaya çıktı — benzer tek-hane regex'i
+başka yerde kalmadı (tarandı).
+
+---
+
 ## B. Açık işler (tarihli, bitince buradan sil)
 
 - [x] **29 Tem 22:1x — İLK OLUMLU SİNYAL: `/product/games/11` INDEKSLENDİ.**
@@ -437,6 +530,16 @@ avantajlı olabilir — gerçek ürün görüntüsü kullanılacak.
       *Started* durumda, birkaç gün sürer.
       ℹ️ 31 Tem: Product snippets 49, Merchant listings 43, Review snippets 145, Breadcrumbs 9,
       hepsi **0 geçersiz**. (30 Tem'de 56/51/166 idi — rakamlar gün gün oynuyor, panik yok.)
+- [ ] **Vercel Web Analytics'i aç** (bkz. A6) — şu an ziyaretçi ölçümü sıfır.
+- [ ] **post11 — 3 Ağu** (bkz. A7 konu listesi).
+- [ ] **Görsel tarama yükü kararı.** Crawl stats: 90 günde 208 istek / 91.9 MB,
+      **%75-78'i görsel**, HTML yalnızca %13. Diskte `assets/products` 697 dosya /114 MB;
+      bunun **576'sı galeri varyantı (`_1`…`_5`) = 95 MB**, ana görseller 19 MB.
+      **Ama bunu "görseller HTML'i aç bırakıyor" diye okuma:** Google'ın crawl-budget
+      kavramı 1M+ sayfalı siteler için; 146 URL'de düşük tarama **talep düşüklüğü**.
+      `robots.txt` ile galeriyi kapatmak bütçeyi HTML'e kaydırmaz ve Google
+      "render için gereken kaynağı engelleme" diyor. **Yapılabilir ama garantisi yok —
+      karar kullanıcıda.** Zararsız kısmı: `Disallow: /frames/` (241 dekoratif kare).
 - [ ] **09-A videosu (SEREED denge bisikleti)** — kampanyada hiç üretilmemiş tek slot.
       Ürün 29 Tem'de siteye eklendi (`B08SGH7NKX`), artık kendi sayfası var.
 - [ ] **04-A format hatası** — Candy Land videosu (`dnkiQr9BkHI`) hâlâ 3:31 uzun
