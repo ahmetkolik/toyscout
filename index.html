@@ -2163,5 +2163,12 @@ applyRoute();
 boot();
 })();
 </script>
+<!-- Vercel Web Analytics. Ziyaretci/sayfa goruntuleme olcumu; GSC yalnizca organik
+     aramayi gosteriyor, TikTok/Pinterest trafigi baska hicbir yerde olculmuyordu.
+     Bu SPA history.pushState kullaniyor; Vercel'in script'i pushState'i kendisi
+     sarmaladigi icin rota degisimleri de otomatik sayiliyor.
+     NOT: Vercel panelinde Analytics kapaliysa bu istek 404 doner ve sessizce yok
+     sayilir — sayfaya zarari yok. Panelden acildigi an calismaya baslar. -->
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

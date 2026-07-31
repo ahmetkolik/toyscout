@@ -229,6 +229,8 @@ def main():
 </footer>
 
 </div>
+<!-- Vercel Web Analytics — panelde kapaliysa 404 doner ve sessizce yok sayilir. -->
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 """
