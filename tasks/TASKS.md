@@ -223,12 +223,25 @@ sanma** — restore bitmeden sorgulama. Tablolar ve veri yerindeydi.
       gösteriliyor; değilse hata + `info@kolikshop.com` yönlendirmesi.
       Tarayıcıdan uçtan uca test edildi: form → Supabase → satır yazıldı.
 
-### Kalan
-- [ ] **Vercel Web Analytics KAPALI** (API 404: "Web Analytics not found").
-      Şu an sitede ziyaretçi/sayfa görüntüleme ölçümü **hiç yok** — GSC yalnızca
-      organik aramayı gösteriyor, TikTok/Pinterest'ten gelen trafik hiçbir yerde
-      görünmüyor. Vercel panelinden **Analytics sekmesi → Enable** (tek tık, ücretsiz
-      kademe var), sonra `index.html`'e script eklenir. **Kullanıcı yapmalı.**
+### Vercel Web Analytics — kod tarafı BİTTİ, panel düğmesi kullanıcıda
+
+**31 Tem'de yapıldı:** `<script defer src="/_vercel/insights/script.js">` **12 sayfaya**
+eklendi — `index.html` + `post1…post10.html` + `browse.html`. Blog sayfaları ve
+browse.html ayrı statik dosyalar; sadece index.html'e koymak **en çok gösterim alan
+`/blog` ve `/post*` trafiğini ölçüsüz bırakırdı** (bkz. A7). Üreteçlere de eklendi
+(`build_blog_pages.py`, `build_browse_page.py`), yani yeniden üretimde kaybolmaz.
+Deploy `01fa7d1`, canlı doğrulandı.
+
+Bu SPA `history.pushState` kullanıyor; Vercel'in script'i pushState'i kendisi
+sarmaladığı için **rota değişimleri de otomatik sayılıyor** — ek kod gerekmedi.
+
+- [ ] **⚠️ SON ADIM — KULLANICI YAPMALI: Vercel panelinden Analytics'i aç.**
+      `vercel.com/kolik/toyscout` → **Analytics** → **Enable** (ücretsiz kademe var).
+      Claude tarayıcıdan yapamadı: Vercel oturumu kapalıydı ve **giriş yapmak/kimlik
+      bilgisi girmek Claude'a yasak.**
+      **Doğrulama:** `curl -o /dev/null -w "%{http_code}" https://www.toyscout.net/_vercel/insights/script.js`
+      → şu an **404**, açılınca **200** dönmeli. Script zaten yerinde, ikinci bir
+      deploy gerekmiyor; düğmeye basıldığı an veri akmaya başlar.
 - [ ] Her A1 turundan sonra log'da `Supabase ping: 200` satırını doğrula.
 
 ---
@@ -473,9 +486,19 @@ Yeniden kırpılıp ikisine de kısa sürüm yüklenmeli. 7 denetimdir açık.
    17-B (slime) ve 20-A (öğretmen/okula dönüş) mevsimsel olarak şu an zirvede.
 
 3. **`TikTok Başlık ve Hashtag` sekmesi baştan yazıldı.** Eskiden satırların çoğu sekme
-   karakterleriyle **tek hücreye** sıkışmıştı, kopyalanamıyordu. Artık **A1:H41**,
-   40 video: `Video | Ürün | TikTok Caption | Hashtag 1-5`.
-   **Caption kendi hücresinde** → tek tık + Cmd+C, doğrudan TikTok'a yapıştır.
+   karakterleriyle **tek hücreye** sıkışmıştı, kopyalanamıyordu. Artık **A1:E41**, 40 video:
+
+   | Sütun | İçerik |
+   |---|---|
+   | A | Video (slot) |
+   | B | Ürün |
+   | **C** | **TAM METİN — TikTok'a yapıştır** (caption + 5 hashtag, TEK hücre) |
+   | D | Caption (ayrı) |
+   | E | Hashtag'ler (5'i birden, TEK hücre) |
+
+   **Kullanım: C sütunundaki hücreye tek tık + Cmd+C → doğrudan TikTok caption
+   alanına yapıştır.** Hiçbir birleştirme gerekmiyor. Hashtag'ler ayrı da lazım
+   olursa E sütununda tek hücrede duruyor.
    Türkçe ad sızıntıları temizlendi, iptal edilen 06-A notuyla korundu.
 
 ---
