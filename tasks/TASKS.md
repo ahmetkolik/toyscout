@@ -7,8 +7,9 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
 Son güncelleme: 31 Tem 2026 — GSC turu · A4 kapanışı · **Supabase analitik kesintisi
-düzeltildi (A6)** · **blog kaldıraç verisi (A7)** · post10 yayında.
-Deploy'lar: `26fb4f8` · `e1238bc` · `5f408b1` · `1c3f717`
+düzeltildi (A6)** · **blog kaldıraç verisi (A7)** · post10 yayında ·
+**video tam denetimi + Sheet yeniden düzenlendi (A5, A5-B)**.
+Deploy'lar: `26fb4f8` · `e1238bc` · `5f408b1` · `1c3f717` · `52cffbe`
 
 ---
 
@@ -395,7 +396,91 @@ sunucuda yok.
 
 ---
 
-## A5. YouTube / TikTok kanal denetimi (31 Tem 2026)
+## A5. YouTube / TikTok — 31 Tem 2026 TAM DENETİM (platformlardan doğrulandı)
+
+**Google Sheet:** `ToyScout YouTube Shorts Yayın Takip Çizelgesi`
+(`1P1Uzw7FH8s71WrsKFaPWby1456x4L6GXotvSPuJA1Cs`)
+
+### Sayım — iki platformdan tek tek okundu
+- **YouTube:** 27 Shorts → **14 yayında**, 13 zamanlanmış (31 Tem – 5 Ağu).
+- **TikTok:** 16 gönderi → 12 yayında, 4 zamanlanmış (31 Tem – 1 Ağu).
+
+### ✅ Kapanan iki madde
+- **08-B (ALASOU) ARTIK YAYINDA.** "30 Tem'e zamanlıydı, takıldı" durumu çözülmüş —
+  YouTube'da *Yayınlandı*, TikTok'ta **590 görüntülenme** (yeni TikTok rekoru).
+- **Eski denetimin "01-A…03-B TikTok Studio'da GÖRÜNMÜYOR" tespiti YANLIŞTI.**
+  Altısı da orada (01-A 16 Tem, 01-B 16 Tem, 02-A/02-B 17 Tem, 03-A 19 Tem, 03-B 17 Tem).
+  20 Tem denetiminde listede yeterince aşağı kaydırılmamış. **Bu satırı bir daha kovalama.**
+
+### ❌ Kampanyadaki tek gerçek boşluk
+**09-A (SEREED denge bisikleti, `B08SGH7NKX`) hiç üretilmedi** — iki platformda da yok.
+Sheet'te `Durum` = **EKSİK — üretilmedi** olarak işaretlendi (diğer 28 slot `YAPILDI`).
+
+### ⛔ TikTok mükerrer silme — WEB'DEN MÜMKÜN DEĞİL
+Crayola Ultra Clean iki kez yayınlanmış:
+`24 Tem 7:00` → 94 görüntülenme / 0 beğeni (video `7665358627472968982`)
+`25 Tem 7:00` → 97 görüntülenme / 1 beğeni (video `7665358944545557782`)
+**Silinecek olan 24 Tem'deki** (her metrikte düşük). İki video aslında farklı çekim,
+aynı ürün + aynı açıklama.
+
+31 Tem'de 5 farklı yoldan denendi, hepsinde aynı duvar:
+> **"Ticari içeriğe sahip videolar yalnızca TikTok uygulamasında düzenlenebilir."**
+
+"Sil" seçeneği menüde **gri/pasif**. 29 Tem'de açıklamalar için bulunan kısıt
+**silmeyi de kapsıyor.** → **Telefondan:** TikTok → Profil → 24 Tem Crayola → ⋯ → Sil.
+
+### ⚠️ Türkçe sızıntı 4 değil, ~9 gönderide
+TikTok açıklamalarının başında Türkçe katalog adı duran gönderiler:
+01-A (ayrıca **`01-A` slot kodu** da sızmış), 01-B, 02-A, 02-B, 03-A, 03-B, 04-A, 04-B, 05-A.
+Hepsi ticari içerik işaretli → **yalnızca telefondan düzeltilebilir.**
+Ayrıca hashtag yazım hataları: `#kidsoftiktoks`, `#outdoortoy`, `#todlertoys`,
+`#boardgamesoftiktok`, 01-B'de `#amazonfinds` iki kez.
+
+### ⚠️ 04-A Candy Land — İKİ platformda da uzun format
+YouTube `dnkiQr9BkHI` (3:31, Shorts listesinde yok) **ve** TikTok'ta 03:30.
+Yeniden kırpılıp ikisine de kısa sürüm yüklenmeli. 7 denetimdir açık.
+
+### 🔵 TikTok, YouTube'u ezmeye devam ediyor
+07-A Kikidex: TikTok **694** / YouTube 12 · 08-B: TikTok **590** / YouTube 1 ·
+08-A Oball: TikTok **281** / YouTube 6 · 07-B Mr. Sketch: TikTok 172 / YouTube 59.
+**Optimizasyon çabası TikTok'a yoğunlaşmalı.**
+
+---
+
+## A5-B. 📋 Sheet 31 Tem'de yeniden düzenlendi
+
+1. **`Durum` sütunu (L2:L30)** → 28 slot `YAPILDI`, 09-A `EKSİK — üretilmedi`.
+2. **10 yeni video eklendi: `16-A` … `20-B`** (satır 31-40), 7-11 Ağu 2026.
+   Seçim yöntemi: `js/data.js`'teki 30 Tem Best Sellers senkronundan, **kampanyada
+   kullanılmamış**, 4.6★+ ve 5.000+ yorumlu ürünler; yorum sayısına göre sıralandı.
+   **Varyant tuzağına düşmemek için elendi:** Oball çıngırağı (08-A'nın varyantı),
+   UNO Splash (05-A), Play-Doh 42'li (01-A) — mevcut videolara fazla benziyordu.
+
+   | Slot | Ürün | ASIN | Yorum | Puan |
+   |---|---|---|---:|---:|
+   | 16-A | magilano SKYJO | B06XZ9K244 | 75.577 | 4.8 |
+   | 16-B | Sassy Halka Dizme | B07NXDJ52C | 65.204 | 4.8 |
+   | 17-A | Hoyle Su Geçirmez Kağıt | B000J3Z7TC | 24.675 | 4.7 |
+   | 17-B | Elmer's Yapıştırıcı 1 Galon | B0006HUJJO | 15.919 | 4.8 |
+   | 18-A | Surfer Dudes | B0DZJ7NJQS | 6.927 | 4.7 |
+   | 18-B | Bezente Balon 100'lü | B0BZCHMVTK | 13.865 | 4.6 |
+   | 19-A | Max Liquidator Su Tabancası | B0796JVBJ8 | 10.559 | 4.7 |
+   | 19-B | Airbition Konuşan Kartlar | B0CRYJB6GK | 8.830 | 4.6 |
+   | 20-A | Crayola Toplu Kuru Boya 24'lü | B00Y4QBJAQ | 7.509 | 4.8 |
+   | 20-B | GOER 30 Yaş Balon Seti | B093672RHQ | 15.406 | 4.6 |
+
+   Kategori dağılımı: oyun 2 · bebek 1 · sanat 2 · parti 2 · spor 1 · yenilik 1 · öğrenme 1.
+   17-B (slime) ve 20-A (öğretmen/okula dönüş) mevsimsel olarak şu an zirvede.
+
+3. **`TikTok Başlık ve Hashtag` sekmesi baştan yazıldı.** Eskiden satırların çoğu sekme
+   karakterleriyle **tek hücreye** sıkışmıştı, kopyalanamıyordu. Artık **A1:H41**,
+   40 video: `Video | Ürün | TikTok Caption | Hashtag 1-5`.
+   **Caption kendi hücresinde** → tek tık + Cmd+C, doğrudan TikTok'a yapıştır.
+   Türkçe ad sızıntıları temizlendi, iptal edilen 06-A notuyla korundu.
+
+---
+
+## A5-ESKI. 20 Tem denetimi (arşiv)
 
 ### 🔵 ANA BULGU: TikTok, YouTube'u ezici farkla geçiyor
 
@@ -540,12 +625,15 @@ başka yerde kalmadı (tarandı).
       `robots.txt` ile galeriyi kapatmak bütçeyi HTML'e kaydırmaz ve Google
       "render için gereken kaynağı engelleme" diyor. **Yapılabilir ama garantisi yok —
       karar kullanıcıda.** Zararsız kısmı: `Disallow: /frames/` (241 dekoratif kare).
-- [ ] **09-A videosu (SEREED denge bisikleti)** — kampanyada hiç üretilmemiş tek slot.
-      Ürün 29 Tem'de siteye eklendi (`B08SGH7NKX`), artık kendi sayfası var.
-- [ ] **04-A format hatası** — Candy Land videosu (`dnkiQr9BkHI`) hâlâ 3:31 uzun
-      format, Shorts değil. 5 denetimdir duruyor.
-- [ ] **11-A…15-B videoları** — 2-6 Ağu 2026 için 10 içerik planı Google Sheet'te
-      hazır (`PLANLANDI`). Videolar Amazon ürün videosundan CapCut ile hazırlanacak.
+- [ ] **📱 TELEFONDAN YAPILACAK — TikTok mükerrer silme.** 24 Tem 7:00 Crayola
+      (`7665358627472968982`, 94 izlenme). Web'den imkânsız, bkz. A5.
+- [ ] **📱 TELEFONDAN YAPILACAK — 9 TikTok açıklamasındaki Türkçe ad + `01-A` slot kodu.**
+- [ ] **09-A videosu (SEREED denge bisikleti)** — kampanyadaki tek gerçek boşluk,
+      iki platformda da yok. Ürün sitede var (`B08SGH7NKX`).
+- [ ] **04-A format hatası** — Candy Land **iki platformda da** uzun format
+      (YouTube `dnkiQr9BkHI` 3:31, TikTok 03:30). 7 denetimdir duruyor.
+- [ ] **16-A…20-B videoları** — 7-11 Ağu 2026, Sheet'te `PLANLANDI` (bkz. A5-B tablosu).
+      Amazon ürün videosundan CapCut ile hazırlanacak.
 
 ---
 
