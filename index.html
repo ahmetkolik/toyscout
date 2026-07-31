@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="p:domain_verify" content="6fba23a68964d959e4c6c07dc0786f46"/>
 <title>ToyScout — Amazon's Trending Toys, Curated Daily</title>
-<meta name="description" content="ToyScout tracks Amazon's Toys & Games best-seller chart daily — real prices, star ratings, sales ranks and verified customer reviews for the top trending toys, sorted by category and age.">
+<meta name="description" content="ToyScout tracks Amazon's Toys & Games best sellers daily — real prices, star ratings, sales ranks and reviews for the top trending toys, by age.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <!-- canonical is injected per-route by updateSeo(); a static tag here would declare every route a duplicate of "/" -->
 <meta property="og:type" content="website">
@@ -1153,15 +1153,15 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
     </div>
     <div class="blog-grid">
       <a class="bpost" href="/post9" data-go="post9" data-rv>
-        <div class="bp-img"><img src="/assets/products/B00N1QPNMA.jpg" alt="Birthday party balloons and glow stick party favors" loading="lazy"></div>
+        <div class="bp-img"><img src="/assets/products/B00N1QPNMA.jpg" width="1500" height="1500" alt="Birthday party balloons and glow stick party favors" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Party Prep · Jul 27, 2026</div><h3>Best birthday party balloons &amp; decorations under $10 in 2026</h3><p>Six chart-topping party picks, none over $10 — glow sticks, arch packs and rainbow latex.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
       <a class="bpost" href="/post8" data-go="post8" data-rv style="transition-delay:.12s">
-        <div class="bp-img"><img src="/assets/products/B0D9ZTW7PS.jpg" alt="Squishy and fidget toys" loading="lazy"></div>
+        <div class="bp-img"><img src="/assets/products/B0D9ZTW7PS.jpg" width="1488" height="1500" alt="Squishy and fidget toys" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Trend Watch · Jul 22, 2026</div><h3>Best squishy &amp; fidget toys kids can't put down in 2026</h3><p>NeeDoh, kawaii squishy packs, and party-favor fidget bundles topping the Novelty chart.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
       <a class="bpost" href="/post7" data-go="post7" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/products/B00AU56C5W.jpg" alt="Building toy gifts for kids" loading="lazy"></div>
+        <div class="bp-img"><img src="/assets/products/B00AU56C5W.jpg" width="1500" height="1483" alt="Building toy gifts for kids" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 20, 2026</div><h3>Best building toy gifts for kids in 2026</h3><p>PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping the chart before the holiday rush.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
     </div>
@@ -1316,7 +1316,7 @@ function pathFor(){
 }
 function updateSeo(){
   var title="ToyScout — Amazon's Trending Toys, Curated Daily";
-  var desc="ToyScout tracks Amazon's Toys & Games best-seller chart daily — real prices, star ratings, sales ranks and verified customer reviews for the top trending toys.";
+  var desc="ToyScout tracks Amazon's Toys & Games best sellers daily — real prices, star ratings, sales ranks and reviews for the top trending toys, by age.";
   var s=state;
   if(s.page==="shop"){var c=CAT_MAP[s.shopCat]||"Toys";title=c+" — Today's Amazon Best Sellers | ToyScout";desc="Today's best-selling "+c.toLowerCase()+" on Amazon with live prices, star ratings, review counts and age filters — updated from the official best-seller chart.";}
   else if(s.page==="product"){var p=productsFor(s.shopCat)[s.prodIdx];if(p){title=cut(p.name,58)+" — Review, Price & Rank | ToyScout";var rank=p.bsr.length?"Amazon Toys & Games rank #"+p.bsr[0].rank+". ":"";desc=cut(rank+p.name+" — "+p.price+", rated "+p.rating+" out of 5 by "+p.ratings+" Amazon customers.",158);}}

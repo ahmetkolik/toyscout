@@ -138,15 +138,70 @@ def main():
             f'<a href="/shop/{esc(c)}">browse this category</a></p>\n'
             f'    <ul>\n' + '\n'.join(items) + '\n    </ul>\n  </section>')
 
+    # Kept under ~155 chars so Google doesn't truncate it in the SERP.
+    DESC = esc(f"The complete ToyScout catalog: {total} of Amazon's best-selling, "
+               f"top-rated toys across {len(order)} categories, with current prices and ratings.")
+
+    # CollectionPage + ItemList (one entry per category section) + breadcrumb.
+    # Gives the crawler a machine-readable map of what this page links to.
+    LD = json.dumps({
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "@id": "https://www.toyscout.net/browse.html",
+                "url": "https://www.toyscout.net/browse.html",
+                "name": f"All Toys — Browse the Full ToyScout Catalog ({total} Toys)",
+                "description": (f"The complete ToyScout catalog: {total} of Amazon's "
+                                f"best-selling, top-rated toys across {len(order)} categories, "
+                                f"with current prices and ratings."),
+                "isPartOf": {"@type": "WebSite", "name": "ToyScout",
+                             "url": "https://www.toyscout.net/"},
+                "dateModified": today,
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "numberOfItems": len(order),
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": i + 1,
+                         "name": names.get(c, (c, ""))[0],
+                         "url": f"https://www.toyscout.net/shop/{c}"}
+                        for i, c in enumerate(order)
+                    ],
+                },
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home",
+                     "item": "https://www.toyscout.net/"},
+                    {"@type": "ListItem", "position": 2, "name": "All Toys",
+                     "item": "https://www.toyscout.net/browse.html"},
+                ],
+            },
+        ],
+    }, ensure_ascii=False, separators=(',', ':'))
+
     page = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>All Toys — Browse the Full ToyScout Catalog ({total} Toys)</title>
-<meta name="description" content="The complete ToyScout catalog: {total} of Amazon's
-best-selling and highest-rated toys, grouped by category with current prices and ratings.">
+<meta name="description" content="{DESC}">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.toyscout.net/browse.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToyScout">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="All Toys — Browse the Full ToyScout Catalog ({total} Toys)">
+<meta property="og:description" content="{DESC}">
+<meta property="og:url" content="https://www.toyscout.net/browse.html">
+<meta property="og:image" content="https://www.toyscout.net/assets/hero-flying-blue.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="All Toys — Browse the Full ToyScout Catalog ({total} Toys)">
+<meta name="twitter:description" content="{DESC}">
+<meta name="twitter:image" content="https://www.toyscout.net/assets/hero-flying-blue.png">
+<script type="application/ld+json">{LD}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700..900&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
