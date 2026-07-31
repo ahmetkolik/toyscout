@@ -6,7 +6,7 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 30 Tem 2026
+Son güncelleme: 31 Tem 2026 (GSC turu + A4 kapanışı + deploy `26fb4f8`)
 
 ---
 
@@ -27,6 +27,18 @@ Script'ler `__file__` tabanlı göreli yol kullandığı için kod değişikliğ
 
 **Eski `~/.claude/projects/-Users-ahmet-Downloads-toyscout-master/` dizini artık
 okunmuyor** — silinebilir, karışıklık yaratmasın.
+
+### ⚠️ 31 Tem: `~/Downloads/toyscout-master` GERİ GELMİŞ
+
+30 Tem 17:26'da klasörün yeni bir kopyası `~/Downloads`'a inmiş (dosya adı `-master`,
+yani GitHub zip indirmesi). İçerik `diff -rq` ile **byte-byte aynı** — bayat değil, ama:
+- launchd ajanı `WorkingDirectory=/Users/ahmet/Projects/toyscout`'a bakıyor,
+- log'lar ve `js/data.js.bak-*` yedekleri orada,
+- Claude Code hafızası ikiye ayrılmış durumda.
+
+**Downloads kopyasında yapılan hiçbir düzenlemeyi otomasyon görmez.** Tek doğru klasör
+`~/Projects/toyscout`. Downloads kopyası silinmeli. (Bir Claude oturumu 31 Tem'de
+yanlışlıkla orada açıldı — tüm iş `~/Projects/toyscout`'a taşınarak yapıldı.)
 
 ---
 
@@ -85,7 +97,48 @@ Manual actions · Core Web Vitals · **~10 URL indeksleme isteği** (kota dolunc
 
 ---
 
-## B0. ⭐ SIRADAKİ İŞ — 31 Tem 2026 GSC turu
+## B0. ✅ 31 TEM GSC TURU YAPILDI — KEŞİF SORUNU ÇÖZÜLDÜ
+
+**Bu, 28 Tem'den beri süren indeksleme krizinin kapanışıdır.**
+
+| Sinyal | 30 Tem | 31 Tem | Sonuç |
+|---|---|---|---|
+| `/sitemap.xml` Discovered | 124 | **143** | ✅ yeni sürüm okundu |
+| Ürün sayfası "Sitemaps" alanı | "No referring sitemaps detected" | **`/sitemap.xml`** | ✅ **ASIL SİNYAL** |
+| Ürün sayfası durumu | "URL is unknown to Google" | **"Discovered – currently not indexed"** | ✅ Google artık biliyor |
+| `/browse.html` | bilinmiyor | **29 Tem 15:10'da TARANDI** (Googlebot smartphone) | ✅ görevini yaptı |
+| "Crawled – currently not indexed" | — | **0 sayfa** | ✅ |
+
+**Teşhis değişti.** Artık sorun keşif değil: Google 37 sayfayı biliyor ("Discovered"),
+ama taramaya öncelik vermiyor. Bu teknik bir kusur değil, **site otoritesi/değer sinyali**
+meselesi. Elle indeksleme isteği bunu çözmez — günlük kota ~3-10 istek, katalog 117 sayfa.
+**Bundan sonra kaldıraç: içerik (blog) + gerçek dış link, elle istek değil.**
+
+**31 Tem'de gönderilen indeksleme istekleri:** `/product/arts-crafts/23` ✅,
+`/product/ride-ons/4` ✅, `/product/arts-crafts/22` (ilk tık yuttu, ikincide **Quota Exceeded**).
+Kota doldu → tur kuralına göre durduruldu.
+**Kalan 2 hedef:** `/product/arts-crafts/20`, `/product/baby-toddler/9`.
+
+**"Alternate page with proper canonical tag: 3" — HATA DEĞİL, KAPATILDI.**
+Üç sayfa şunlar: `/post4` (14 Tem'de taranmış, yani statik blog düzeltmesinden **önce** —
+bayat veri, yeniden taranınca düşecek), `/shop/plush/` ve `/shop/building-toys/`
+(**sondaki slash**; `vercel.json`'da `trailingSlash:false` var, `curl` ile doğrulandı:
+308 → slash'sız sürüme yönleniyor). Yani doğru davranışın raporlanması. Kovalama.
+
+**⚠️ `/sitemap-products.xml` hâlâ "Couldn't fetch", 0 keşif.** Ama artık **gereksiz**:
+`sitemap.xml` 143 URL ile tüm ürünleri kapsıyor ve okunuyor. Öneri: bu sitemap'i
+GSC'den kaldır, sürekli hata gürültüsü üretmesin.
+
+### Akış kuralları (kanla öğrenildi — 31 Tem'de tekrar doğrulandı)
+- **Navigate sonrası İLK yazma her seferinde yutuluyor.** Kutuya iki kez tıklamak yetmiyor;
+  yazdıktan sonra **zoom ile kutuyu doğrula**, boşsa tekrar yaz. Ancak doğruladıktan sonra Enter.
+- Enter'dan sonra sayfanın yüklenmesini bekle; **REQUEST INDEXING'e erken tıklarsan tık boşa gider.**
+- Onay için modal'a güvenme, satırdaki kalıcı **"✓ Indexing requested"** yazısına bak.
+- Kota dolunca **"Quota Exceeded"** kırmızı modal'ı çıkar → o turu bitir.
+
+---
+
+## B0-ESKI. 30 Tem turu (arşiv)
 
 **30 Tem turunda ne oldu:**
 - ✅ **`/sitemap.xml` OKUNDU** — Last read 26 Tem → **30 Tem, Success, 124 sayfa**
@@ -139,12 +192,15 @@ istek atarsan hız sınırı devreye girer. Onay için modal'a güvenme — sat�
 
 Hesap: **`toyscoutnet`** · 11 pano · **108 pin** · katalog **117 ürün**
 
-**⛔ ŞU AN BLOKE — Pinterest MCP token'ı yetkisini kaybetmiş.** `boards_list` çalışıyor,
-ama `pins_list`, `user_get_info` ve `pins_create` **401** dönüyor. Pin okunamıyor,
-oluşturulamıyor, düzenlenemiyor. **İlk iş: Pinterest bağlantısını yeniden yetkilendir.**
-O yapılmadan aşağıdaki hiçbir madde uygulanamaz.
+**⛔ HÂLÂ BLOKE — 31 Tem'de yeniden test edildi, durum aynı.**
+`boards_list` **çalışıyor** (pano okuma kapsamı sağlam), ama `user_get_info` ve
+`pins_list` **401**. Yani token'da pano okuma var, **pin okuma/yazma ve hesap kapsamı yok**.
+Bu kısmi kapsam kaybı → tam yeniden yetkilendirme gerekiyor (OAuth iznini kullanıcı
+kendi vermeli, Claude veremez).
+**İlk iş: Pinterest bağlantısını yeniden yetkilendir.** O yapılmadan aşağıdaki
+hiçbir madde uygulanamaz.
 
-### Boşluk analizi (30 Tem — pano pin sayıları ↔ katalog)
+### Boşluk analizi (31 Tem — `boards_list` ↔ `js/data.js`, doğrulandı)
 
 | Pano | Ürün | Pin | Fark |
 |---|---:|---:|---:|
@@ -153,8 +209,11 @@ O yapılmadan aşağıdaki hiçbir madde uygulanamaz.
 | Action Figures | 4 | 3 | −1 |
 | Games | 12 | 11 | −1 |
 | **Dolls & Accessories** | 1 | 0 | −1 · **PANO HİÇ YOK** |
-| Building Toys / Learning / Novelty | — | — | +1 (blog pinleri, normal) |
-| Party · Plush · Ride-ons · Sports | — | — | 0 (tam) |
+| Building Toys · Learning · Novelty | 4·2·18 | 5·3·19 | +1 (blog pinleri, normal) |
+| Party · Plush · Ride-ons · Sports | 15·1·5·17 | aynı | 0 (tam) |
+| **TOPLAM** | **117** | **108** | **12 ürün pini eksik** (+3 blog pini) |
+
+**Pano açıklaması boş olanlar:** Action Figures, Arts & Crafts (diğer 9'unda var).
 
 ### Yapılacaklar (token yenilenince, öncelik sırasıyla)
 
@@ -218,7 +277,49 @@ ritim, katalog büyüdükçe yeni ürünler pinlenir.
 
 ---
 
-## A4. 🔴 EN BÜYÜK SEO AÇIĞI — blog yazıları sunucuda hiç yok (30 Tem 2026 tespiti)
+## A4. ✅ ÇÖZÜLDÜ — blog yazıları artık sunucuda statik (30-31 Tem)
+
+**Ana madde bitti.** `post1.html`…`post9.html` üretildi (`products/build_blog_pages.py`),
+`vercel.json` rewrite'ları `/post9` → **`/post9.html`** olarak değiştirildi, deploy edildi.
+Canlıdan doğrulandı: `curl /post9` artık yazının kendi `<title>`'ını ve canonical'ını dönüyor.
+
+### 31 Tem'de yapılan kalan işler
+
+- [x] **`browse.html`'e OG/Twitter + JSON-LD eklendi.** `CollectionPage` + `ItemList`
+      (12 kategori) + `BreadcrumbList`. **Üreteç `products/build_browse_page.py` düzenlendi**,
+      `browse.html` doğrudan değil — aksi halde sonraki `bestseller_sync` turu ezerdi.
+      Bozuk (satır sonu içeren) description da düzeltildi. Deploy `26fb4f8`, canlı doğrulandı.
+- [x] **meta description 187 → 144 karakter.** Hem statik etikette hem `updateSeo()`
+      varsayılanında güncellendi (ikisi ayrı yerde, ikisi de değişmeliydi).
+- [x] **Blog teaser görsellerine `width`/`height` eklendi** (3 statik `<img>`).
+
+### ❌ İPTAL — "index.html'e statik canonical ekle" maddesi YANLIŞTI
+
+**Eklenmeyecek, bir daha gündeme getirilmeyecek.** `index.html` tek bir sayfa değil:
+`vercel.json` rewrite'ları ile `/`, `/shop/*`, `/product/*`, `/contact`, `/privacy`,
+`/terms`, `/disclosure` rotalarının **hepsine** aynı dosya servis ediliyor.
+Ham HTML'e `<link rel="canonical" href="https://www.toyscout.net/">` koymak,
+JS çalıştırmayan tarayıcıya **117 ürün sayfasının hepsinin ana sayfanın kopyası olduğunu**
+söyler — yani şu an olmayan bir felaketi yaratır. `index.html:10`'daki kod yorumu
+bunu zaten açıklıyor ve haklı. Canonical'ı `updateSeo()` rota başına enjekte etmeye
+devam etmeli.
+**Kanıt Google'ın JS'i render ettiği yönünde:** Product snippets 49, Review snippets 145
+geçerli öğe; `/product/games/11` indeksli.
+*(Gerçek çözüm istenirse: ürün sayfalarını da `post*.html` gibi statik üretmek — 117 dosya,
+ayrı ve büyük bir iş. Şu an gerek yok, keşif zaten çalışıyor.)*
+
+### ❌ İPTAL — "görsellerde width/height yok → CLS riski" maddesi de yanıltıcıydı
+
+CSS'te **bütün görsel kutuları zaten yer ayırıyor**: `.pcard .ph{aspect-ratio:1/.86}`,
+`.bpost .bp-img{aspect-ratio:16/9}`, `.pd-imgbox .main{aspect-ratio:1/1}`, logo'da açık
+`width/height`. Görselden kaynaklı CLS zaten engellenmiş.
+**Core Web Vitals'ın "No data" demesinin sebebi kod değil trafik:** CWV gerçek kullanıcı
+alan verisi (CrUX) ister, o da minimum trafik eşiği gerektirir. Sitede 0 tıklama var.
+Trafik gelmeden bu kutu yeşile dönmez.
+
+---
+
+## A4-ESKI. Özgün tespit (arşiv, 30 Tem)
 
 **`/post1` … `/post9` ham HTML'de ana sayfayla BİREBİR AYNI içeriği dönüyor.**
 Doğrulandı (`curl /post9`): `<title>` ana sayfanın başlığı, `#view` kapsayıcısı **boş**,
@@ -319,43 +420,23 @@ avantajlı olabilir — gerçek ürün görüntüsü kullanılacak.
       Product snippets 5 geçerli öğe görüyor. **Anlamı:** Google bu SPA'nın ürün
       sayfalarını render edip indeksleyebiliyor — sorun render değil, sayfaya
       ULAŞAMAMASIYDI. `browse.html` yaklaşımının doğru olduğunun ilk kanıtı.
-- [ ] **`/browse.html` takibi — 30 Tem'den itibaren (EN ÖNEMLİ ÖLÇÜT).**
-      29 Tem 22:0x'te indeksleme isteğine gönderildi ("Indexing requested" onaylı).
-      Taranınca Google 115 ürün + 12 kategori linkini tek seferde görecek.
-      **Bakılacak iki sinyal:** (1) `/browse.html` indekslendi mi, (2) rastgele bir ürün
-      sayfasında "Referring page" artık "None detected" yerine `/browse.html` gösteriyor mu.
-      İkincisi daha erken ve daha net sinyal. Bkz. `spa-taranabilirlik-sorunu` hafızası.
-- [ ] **İndeksleme turu — devam, 30 Tem.** 29 Tem akşamı **5 istek gönderildi**
-      (`/browse.html`, `/product/games/10`, `/product/baby-toddler/11`, `/shop/dolls`,
-      `/product/sports-outdoor/16`). Arada bir kez hız sınırına takıldı
-      ("We had a problem submitting your indexing request"). Kalan hedefler sırayla:
-      `/product/games/11` · `/product/arts-crafts/23` · `/product/ride-ons/4` ·
-      `/product/arts-crafts/22` · `/product/arts-crafts/20` · `/product/baby-toddler/9`
-- [ ] **`sitemap-products.xml` doğrulaması — 30 Tem.** 29 Tem 21:00'de **yeniden
-      gönderildi** (önceki durum "Couldn't fetch", 0 keşif). Dosyada teknik sorun YOK:
-      HTTP 200, `application/xml`, geçerli XML, robots.txt'de listeli, 115 URL.
-      Yarın "Success" ve Discovered > 0 olmalı.
-- [ ] **ASIL KÖK SORUN (29 Tem araştırması): ürün sayfalarına taranabilir link YOK.**
-      Sunucudan gelen ham HTML'de `<a href="/product/...">` sayısı **sıfır** (115 ürünün
-      hiçbirine). Kategori linki yalnızca 7 adet ve hepsi aynı yere
-      (`/shop/sports-outdoor`). `#view` kapsayıcısı **boş** geliyor; tüm gezinme ve içerik
-      JS ile istemcide üretiliyor. `<noscript>` ise tam ekran "ToyScout requires
-      JavaScript" uyarısı gösteriyor.
-      **Sonuç:** Google'ın iki keşif yolu da kapalı — sitemap okunmuyor VE iç link yok.
-      URL Inspection'ın her sayfada "Referring page: None detected" +
-      "URL is unknown to Google" demesinin sebebi bu.
-      Google JS render edebilir ama render ayrı ve gecikmeli bir kuyruk; otoritesi
-      sıfıra yakın bir sitede pratikte sıraya hiç gelmiyor.
-      **Önerilen çözüm:** ham HTML'e gerçek `<a href>` linkleri koymak — örn. script'le
-      üretilen statik "tüm ürünler" sayfası + footer'dan gerçek linkle bağlamak.
-      Build step gerektirmez, mevcut mimariye uyar. Kullanıcı onayı bekliyor.
-- [ ] **Sitemap hiç okunmuyor (ikincil).** URL Inspection her sayfada
-      **"No referring sitemaps detected"** ve **"URL is unknown to Google"** diyor;
-      `/sitemap.xml` Last read hâlâ **26 Tem** (3 gün önce), yalnızca 25 sayfa keşfedilmiş.
-      Yani sayfalar tek tek elle isteniyor, sitemap üzerinden toplu keşif çalışmıyor.
-      30 Tem'de hâlâ okunmadıysa asıl mesele bu — elle istek bunu telafi edemez.
+- [x] **`/browse.html` — TARANDI.** URL Inspection (31 Tem): Last crawl **29 Tem 15:10**,
+      Googlebot smartphone. Kendisi "Crawled – currently not indexed" — ama **görevi
+      indekslenmek değil, link keşfi sağlamaktı ve onu yaptı.** Çıplak link listesi
+      olduğu için Google'ın indekslememesi normal, kovalanmayacak.
+- [x] **ASIL KÖK SORUN (taranabilir link/sitemap keşfi) — ÇÖZÜLDÜ.** 31 Tem'de
+      doğrulandı: ürün sayfaları artık "Discovered", kaynak `/sitemap.xml`.
+      Ayrıntı ve rakamlar B0'da.
+- [x] **Sitemap okunmuyor sorunu — ÇÖZÜLDÜ.** `/sitemap.xml` 143 URL, Success, 30 Tem okundu.
+- [ ] **Kalan 2 indeksleme isteği** (31 Tem'de kota doldu):
+      `/product/arts-crafts/20` · `/product/baby-toddler/9`
+- [ ] **`sitemap-products.xml`'i GSC'den KALDIR.** Hâlâ "Couldn't fetch"/0 keşif ve
+      artık gereksiz — `sitemap.xml` tüm ürünleri kapsıyor ve okunuyor. Sürekli hata
+      gürültüsü üretiyor, sinyali kirletiyor.
 - [ ] **VALIDATE FIX sonucu** — Merchant listings `Missing field "price"` doğrulaması
       *Started* durumda, birkaç gün sürer.
+      ℹ️ 31 Tem: Product snippets 49, Merchant listings 43, Review snippets 145, Breadcrumbs 9,
+      hepsi **0 geçersiz**. (30 Tem'de 56/51/166 idi — rakamlar gün gün oynuyor, panik yok.)
 - [ ] **09-A videosu (SEREED denge bisikleti)** — kampanyada hiç üretilmemiş tek slot.
       Ürün 29 Tem'de siteye eklendi (`B08SGH7NKX`), artık kendi sayfası var.
 - [ ] **04-A format hatası** — Candy Land videosu (`dnkiQr9BkHI`) hâlâ 3:31 uzun
