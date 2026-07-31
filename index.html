@@ -1239,14 +1239,17 @@ function A(u){return u&&!/^(https?:)?\//.test(u)?"/"+u:u}
 function amazonSearchUrl(name){return "https://www.amazon.com/s?k="+encodeURIComponent(name)+"&i=toys-and-games&tag="+AFF}
 function cut(t,n){t=t||"";return t.length>n?t.slice(0,Math.max(20,t.lastIndexOf(" ",n)))+"…":t}
 
+// Returns a promise resolving true only when the row was actually stored.
+// Fire-and-forget callers (click tracking) can ignore it; the forms must not,
+// or they end up telling visitors "message sent" when nothing was written.
 function sbInsert(table,row){
   try{
-    fetch("https://vijagongnjfddhtlwecu.supabase.co/rest/v1/"+table,{
+    return fetch("https://vijagongnjfddhtlwecu.supabase.co/rest/v1/"+table,{
       method:"POST",
       headers:{"Content-Type":"application/json","apikey":"sb_publishable_3bra6T7gE_JBJ4Ff-_oX2w_CaHMpxmQ","Prefer":"return=minimal"},
       body:JSON.stringify(row),keepalive:true
-    }).catch(function(){});
-  }catch(e){}
+    }).then(function(r){return r.ok;}).catch(function(){return false;});
+  }catch(e){return Promise.resolve(false);}
 }
 function isValidEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||"").trim())}
 
@@ -1789,10 +1792,20 @@ function bindView(){
   var cs=$("#c-send");
   if(cs){cs.addEventListener("click",function(){
     var n=$("#c-name").value,em=$("#c-email").value,m=$("#c-msg").value;
+    var err=$("#c-err"), errDefault=err.innerHTML, btnDefault=cs.innerHTML;
     if(n.trim()&&isValidEmail(em)&&m.trim()){
-      sbInsert("contact_messages",{name:n.trim().slice(0,120),email:em.trim().slice(0,254),message:m.trim().slice(0,5000)});
-      $("#cform").innerHTML='<div class="ok">✓ Message sent — thanks for writing in!</div>';
-    } else { $("#c-err").style.display="block"; }
+      err.style.display="none";
+      cs.disabled=true; cs.innerHTML="Sending…";
+      sbInsert("contact_messages",{name:n.trim().slice(0,120),email:em.trim().slice(0,254),message:m.trim().slice(0,5000)})
+        .then(function(ok){
+          if(ok){ $("#cform").innerHTML='<div class="ok">✓ Message sent — thanks for writing in!</div>'; }
+          else {
+            cs.disabled=false; cs.innerHTML=btnDefault;
+            err.textContent="Sorry — we couldn't send that. Please email us directly at info@kolikshop.com.";
+            err.style.display="block";
+          }
+        });
+    } else { err.innerHTML=errDefault; err.style.display="block"; }
   })}
   hookCursorTargets();
 }
@@ -1843,10 +1856,18 @@ navQ.addEventListener("keydown",function(e){
 /* newsletter */
 $("#news-btn").addEventListener("click",function(){
   var em=$("#news-email").value;
+  var nerr=$("#news-err"), nerrDefault=nerr.innerHTML;
   if(isValidEmail(em)){
-    sbInsert("newsletter_signups",{email:em.trim().slice(0,254),source_page:(location.pathname+location.hash).slice(0,200)});
-    $("#news-box").innerHTML='<div class="n-ok">✓ You\'re in! First drop lands Monday.</div>';
-  } else { $("#news-err").style.display="block"; }
+    nerr.style.display="none";
+    sbInsert("newsletter_signups",{email:em.trim().slice(0,254),source_page:(location.pathname+location.hash).slice(0,200)})
+      .then(function(ok){
+        if(ok){ $("#news-box").innerHTML='<div class="n-ok">✓ You\'re in! First drop lands Monday.</div>'; }
+        else {
+          nerr.textContent="Sorry — signup failed. Please try again in a moment.";
+          nerr.style.display="block";
+        }
+      });
+  } else { nerr.innerHTML=nerrDefault; nerr.style.display="block"; }
 });
 
 /* ---------- home dynamic content ---------- */
