@@ -110,7 +110,8 @@ def load_ld_meta():
     out = {}
     for m in re.finditer(
             r'"headline"\s*:\s*"(.*?)"\s*,\s*"datePublished"\s*:\s*"(.*?)".*?'
-            r'"image"\s*:\s*"(.*?)".*?"url"\s*:\s*"https://www\.toyscout\.net/(post\d)"',
+            # \d+ sart: tek hane olsaydi post10, post1 diye eslenirdi (31 Tem 2026'da yakalandi).
+            r'"image"\s*:\s*"(.*?)".*?"url"\s*:\s*"https://www\.toyscout\.net/(post\d+)"',
             src, re.S):
         out[m.group(4)] = {'headline': m.group(1), 'date': m.group(2), 'image': m.group(3)}
     return out

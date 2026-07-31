@@ -74,6 +74,10 @@
       "destination": "/post9.html"
     },
     {
+      "source": "/post10",
+      "destination": "/post10.html"
+    },
+    {
       "source": "/contact",
       "destination": "/index.html"
     },

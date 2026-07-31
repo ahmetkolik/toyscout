@@ -134,6 +134,17 @@
       "blogPost": [
         {
           "@type": "BlogPosting",
+          "headline": "Best Back-to-School Art Supplies Under $15 in 2026",
+          "datePublished": "2026-07-31",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/products/B07D4T2XKB.jpg",
+          "url": "https://www.toyscout.net/post10"
+        },
+        {
+          "@type": "BlogPosting",
           "headline": "Best Birthday Party Balloons & Decorations Under $10 in 2026",
           "datePublished": "2026-07-27",
           "author": {
@@ -1152,17 +1163,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post9" data-go="post9" data-rv>
+      <a class="bpost" href="/post10" data-go="post10" data-rv>
+        <div class="bp-img"><img src="/assets/products/B07D4T2XKB.jpg" width="902" height="1031" alt="Back-to-school art supplies: crayons, markers and colored pencils" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Back to School · Jul 31, 2026</div><h3>Best back-to-school art supplies under $15 in 2026</h3><p>Seven classroom staples with 160,000+ ratings between them — and the two kinds of kit to skip.</p><div class="bp-read">Read the roundup ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post9" data-go="post9" data-rv style="transition-delay:.12s">
         <div class="bp-img"><img src="/assets/products/B00N1QPNMA.jpg" width="1500" height="1500" alt="Birthday party balloons and glow stick party favors" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Party Prep · Jul 27, 2026</div><h3>Best birthday party balloons &amp; decorations under $10 in 2026</h3><p>Six chart-topping party picks, none over $10 — glow sticks, arch packs and rainbow latex.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
-      <a class="bpost" href="/post8" data-go="post8" data-rv style="transition-delay:.12s">
+      <a class="bpost" href="/post8" data-go="post8" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/products/B0D9ZTW7PS.jpg" width="1488" height="1500" alt="Squishy and fidget toys" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Trend Watch · Jul 22, 2026</div><h3>Best squishy &amp; fidget toys kids can't put down in 2026</h3><p>NeeDoh, kawaii squishy packs, and party-favor fidget bundles topping the Novelty chart.</p><div class="bp-read">Read the roundup ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post7" data-go="post7" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/products/B00AU56C5W.jpg" width="1500" height="1483" alt="Building toy gifts for kids" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Gift Guides · Jul 20, 2026</div><h3>Best building toy gifts for kids in 2026</h3><p>PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping the chart before the holiday rush.</p><div class="bp-read">Read the roundup ⇢</div></div>
       </a>
     </div>
   </section>
@@ -1332,6 +1343,7 @@ function updateSeo(){
   else if(s.page==="post6"){title="Best Card & Board Games for Family Game Night in 2026 | ToyScout";desc="From a 4.9★ newcomer to the classics that never leave the shelf — the card and board games actually winning family game night this month.";}
   else if(s.page==="post7"){title="Best Building Toy Gifts for Kids in 2026 | ToyScout";desc="PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart right now, while the popular sets are still easy to find.";}
   else if(s.page==="post8"){title="Best Squishy & Fidget Toys Kids Can't Put Down in 2026 | ToyScout";desc="NeeDoh, kawaii squishy packs, and party-favor fidget bundles — what's actually topping the Novelty & Gag Toys chart this month.";}
+  else if(s.page==="post10"){title="Best Back-to-School Art Supplies Under $15 in 2026 | ToyScout";desc="Seven classroom staples with 160,000+ Amazon ratings between them — Crayola twistables, pre-sharpened pencils, washable markers, scissors and paper, all under $15.";}
   else if(s.page==="post9"){title="Best Birthday Party Balloons & Decorations Under $10 in 2026 | ToyScout";desc="Glow sticks with 28,000+ ratings, rainbow and pastel latex packs, and mixed-size arch bundles — six chart-topping party picks, every one under $10.";}
   else if(s.page==="contact"){title="Contact ToyScout";desc="Questions, feedback or partnership ideas? Get in touch with the ToyScout team.";}
   else if(s.page==="privacy"){title="Privacy Policy | ToyScout";desc="How ToyScout handles cookies, analytics and affiliate-link data.";}
@@ -1410,7 +1422,7 @@ function applyRoute(){
   var catIds=stockedCats().map(function(c){return c[0]});
   if(p0==="shop"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; openView("shop",true); return; }
   if(p0==="product"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; state.prodIdx=Math.max(0,parseInt(parts[2],10)||0); state.galIdx=0; state.faqOpen=-1; openView("product",true); return; }
-  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   goHome(true);
 }
 
@@ -1442,7 +1454,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1579,6 +1591,7 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post10","Back to School · Jul 31, 2026","Best back-to-school art supplies under $15 in 2026","Seven classroom staples with 160,000+ ratings between them — crayons, pencils, markers, scissors and paper, all under $15.","/assets/products/B07D4T2XKB.jpg")+
     bp("/post9","Party Prep · Jul 27, 2026","Best birthday party balloons & decorations under $10 in 2026","Glow sticks with 28,000+ ratings, rainbow latex packs and gold arch bundles — six chart-toppers, none over $10.","/assets/products/B00N1QPNMA.jpg")+
     bp("/post8","Trend Watch · Jul 22, 2026","Best squishy & fidget toys kids can't put down in 2026","NeeDoh, kawaii squishy packs, and party-favor fidget bundles — what's actually selling on the Novelty chart right now.","/assets/products/B0D9ZTW7PS.jpg")+
     bp("/post7","Gift Guides · Jul 20, 2026","Best building toy gifts for kids in 2026","PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart before the holiday rush hits.","/assets/products/B00AU56C5W.jpg")+
@@ -1690,6 +1703,24 @@ var POSTS={
     aProd("Schylling NeeDoh Nice Cube","★★★★☆ 15,819 ratings","https://www.amazon.com/dp/B0BQZFVJTB?tag=kolico-20")+
     '<h2>How to choose</h2><p>For party favors and classroom giveaways, buy in bulk — the 30-pack and 160-piece assortments bring the per-unit cost down to a dollar or less. For a single gift or a sensory tool a kid will actually use daily, the NeeDoh line and the butter squishy hold up better to repeated, heavy squeezing than most bulk-pack fillers.</p>'+
     '<h2>The bottom line</h2><p>Squishies and fidgets are inexpensive enough to try a few and see what actually gets used — and unlike most toy categories, the ratings here move around a lot, so check the current score before you buy. Figures above were verified against Amazon on July 27, 2026. Browse the full, always-updated lineup on our <a href="/shop/novelty" data-cat="novelty">Novelty &amp; Gag Toys</a> category page.</p>';}},
+  post10:{meta:"Back to School · Jul 31, 2026 · By ToyScout Editors",h:"Best back-to-school art supplies under $15 in 2026",
+    body:function(){return '<p class="a-lede">The classroom supply list is the one shopping trip where brand loyalty actually pays off — the cheap markers dry out by October and the bargain scissors never cut construction paper. Every pick below is under $15, every one holds 4.7★ or better, and between them they carry more than 160,000 Amazon ratings. These are the supplies parents and teachers keep re-ordering year after year.</p>'+
+    '<h2>Start with the crayons that survive a backpack</h2><p><b>1. Crayola Mini Twistables, 50 count.</b> The single most-reviewed back-to-school item on our Arts &amp; Crafts radar. No sharpening, no paper to peel, and the plastic barrel is the reason they survive being loose in a backpack all semester — the complaint that dominates reviews of standard crayons simply doesn\'t appear here.</p>'+
+    aProd("Crayola Mini Twistables Crayons (50ct)","$13.83 · ★★★★★ 50,551 ratings","https://www.amazon.com/dp/B07D4T2XKB?tag=kolico-20")+
+    '<h2>The two pencil sets worth owning</h2><p><b>2. Crayola Colored Pencils, 36 count.</b> Pre-sharpened out of the box, which matters more than it sounds when a teacher is handing supplies to twenty-four kids at once. Nearly 50,000 ratings and a 4.8★ average make this the safest single item on any supply list.</p>'+
+    aProd("Crayola Colored Pencils (36ct), Pre-Sharpened","$6.49 · ★★★★★ 49,963 ratings","https://www.amazon.com/dp/B00006RVTS?tag=kolico-20")+
+    '<p><b>3. Crayola Erasable Colored Pencils, 24 count.</b> The underrated pick. For kids in the 6–8 bracket who are old enough to care when a drawing goes wrong, erasability is the difference between finishing a piece and crumpling it. Reviewers consistently flag them for map work and diagram assignments.</p>'+
+    aProd("Crayola Erasable Colored Pencils (24ct)","$5.88 · ★★★★★ 17,696 ratings","https://www.amazon.com/dp/B000PCWKBA?tag=kolico-20")+
+    '<h2>Markers: washable is not optional</h2><p><b>4. Crayola Broad Line Markers, 12 count.</b> At 4.8★ across 20,000+ ratings, this is the default classroom marker. The washable formula is the entire point — it is the difference between a stained uniform and a load of laundry. Broad tip covers poster board fast, which is what most early-grade projects actually need.</p>'+
+    aProd("Crayola Broad Line Washable Markers (12 Count)","$7.46 · ★★★★★ 20,244 ratings","https://www.amazon.com/dp/B003HGGPLW?tag=kolico-20")+
+    '<h2>The boring items that decide the year</h2><p><b>5. Scotch Kids Pointed Tip Scissors, 5-inch.</b> Under two dollars, 4.8★, and stainless steel blades that actually cut card stock. Blunt-tip safety scissors are the most common supply-list mistake — they crush construction paper instead of cutting it, and kids give up on the project.</p>'+
+    aProd("Scotch Kids Pointed Tip Scissors, 5\"","$1.99 · ★★★★★ 1,720 ratings","https://www.amazon.com/dp/B004TQ0O3Y?tag=kolico-20")+
+    '<p><b>6. Prang Construction Paper, 50 sheets, 12&quot;×18&quot;.</b> The large format is what separates this from the pad in the dollar aisle. Ten colors, heavy enough that glue and paint don\'t buckle it, and the sheet size leaves room for a full project rather than a cramped corner.</p>'+
+    aProd("Prang Construction Paper, 10 Colors, 50 Sheets","$4.79 · ★★★★★ 6,898 ratings","https://www.amazon.com/dp/B0009IR3UI?tag=kolico-20")+
+    '<h2>If you are buying for a classroom, not a backpack</h2><p><b>7. Elmer\'s White Liquid School Glue, 1 gallon.</b> The teacher-supply pick, and the one item here that only makes sense in bulk. A gallon refills classroom bottles all year for less than buying them individually twice — and it is the same washable formula that powers every slime project your kitchen table will host.</p>'+
+    aProd("Elmer\'s White Liquid School Glue, 1 Gallon","$14.99 · ★★★★★ 15,919 ratings","https://www.amazon.com/dp/B0006HUJJO?tag=kolico-20")+
+    '<h2>What to skip</h2><p><b>Character-branded supply kits.</b> They cost two to three times the component price for markers and pencils that reviewers consistently rate a full star lower. The licensing is the product. <b>All-in-one supply boxes</b> have the same problem — you pay for twelve items to get the four you needed, and the filler ends up in a drawer.</p>'+
+    '<h2>The bottom line</h2><p>A complete, genuinely good supply kit from this list — twistables, both pencil sets, markers, scissors and construction paper — comes to about <b>$40</b>. That is less than most pre-assembled character kits, and every item in it is one that teachers re-order on purpose. Buy the boring brands; they are boring because they work.</p>';}},
   post9:{meta:"Party Prep · Jul 27, 2026 · By ToyScout Editors",h:"Best birthday party balloons &amp; decorations under $10 in 2026",
     body:function(){return '<p class="a-lede">Party decor is the one aisle where spending more almost never buys a better party. Every single pick below lands under $10, and each one carries thousands of real Amazon ratings behind it — these are the balloon packs and party favors actually topping the Party Supplies chart on our radar this month.</p>'+
     '<h2>The most-reviewed party supply we track</h2><p><b>1. PartySticks Glow Sticks, 100-pack.</b> Nearly 29,000 ratings — more than any other product anywhere on our Party Supplies radar. The pack includes connectors that turn the 8-inch sticks into necklaces and bracelets, which is why reviewers keep buying it for birthday goodie bags, sleepovers and summer-evening backyard parties.</p>'+

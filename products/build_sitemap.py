@@ -43,6 +43,7 @@ STATIC = [
     ('/post5', '0.7', 'monthly'), ('/post6', '0.7', 'monthly'),
     ('/post7', '0.7', 'monthly'), ('/post8', '0.7', 'monthly'),
     ('/post9', '0.7', 'monthly'),
+    ('/post10', '0.7', 'monthly'),
     ('/contact', '0.5', 'monthly'),
     ('/privacy', '0.3', 'yearly'),
     ('/terms', '0.3', 'yearly'),
