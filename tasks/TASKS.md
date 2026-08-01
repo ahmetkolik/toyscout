@@ -707,6 +707,9 @@ başka yerde kalmadı (tarandı).
 - [x] **Sitemap okunmuyor sorunu — ÇÖZÜLDÜ.** `/sitemap.xml` 143 URL, Success, 30 Tem okundu.
 - [x] **Kalan 2 indeksleme isteği — 1 Ağu'da GÖNDERİLDİ.** Liste boşaldı.
 - [x] **`sitemap-products.xml` GSC'den KALDIRILDI (1 Ağu)** + robots.txt'ten çıkarıldı.
+- [ ] **2 Ağu turunda İLK İŞ: `/post11` indeksleme isteği.** post11 1 Ağu 21:xx'te
+      yayınlandı ama o günün turu 20:23'te yapılmıştı, kota doluydu. Blog sayfası
+      ürün sayfasından ~9 kat verimli (A7), o yüzden sıranın başında.
 - [ ] **VALIDATE FIX sonucu** — Merchant listings `Missing field "price"` doğrulaması
       *Started* durumda, birkaç gün sürer.
       ℹ️ 31 Tem: Product snippets 49, Merchant listings 43, Review snippets 145, Breadcrumbs 9,
