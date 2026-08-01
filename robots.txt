@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.toyscout.net/sitemap.xml
-Sitemap: https://www.toyscout.net/sitemap-products.xml

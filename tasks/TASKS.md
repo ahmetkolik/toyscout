@@ -6,7 +6,8 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 31 Tem 2026 — GSC turu · A4 kapanışı · **Supabase analitik kesintisi
+Son güncelleme: 1 Ağu 2026 — GSC turu (B0-A: bekleyen 2 istek + sitemap temizligi).
+Onceki: 31 Tem 2026 — GSC turu · A4 kapanışı · **Supabase analitik kesintisi
 düzeltildi (A6)** · **blog kaldıraç verisi (A7)** · post10 yayında ·
 **video tam denetimi + Sheet yeniden düzenlendi (A5, A5-B)**.
 Deploy'lar: `26fb4f8` · `e1238bc` · `5f408b1` · `1c3f717` · `52cffbe`
@@ -97,6 +98,32 @@ tek istek gönderilemedi. Her gün aynı saatte tur yapılırsa pencere tam kapa
 Tur içeriği: GSC → Pages sayıları · Sitemaps durumu · Product/Review snippets ·
 Manual actions · Core Web Vitals · **~10 URL indeksleme isteği** (kota dolunca dur).
 Öncelik: hiç taranmamış yeni ürün/kategori sayfaları → blog.
+
+---
+
+## B0-A. ✅ 1 AĞU GSC TURU (20:2x) — bekleyen her şey kapatıldı
+
+**Kota sıfırlanmıştı** (31 Tem'deki istekler ~08:30'daydı, üzerinden ~35 saat geçti).
+
+- ✅ **Kalan 2 indeksleme isteği gönderildi:** `/product/arts-crafts/20` ·
+  `/product/baby-toddler/9`. İkisi de "Indexing requested" onayı verdi.
+  **Kampanyadaki indeksleme istek listesi böylece BOŞALDI.**
+- ✅ **`/sitemap-products.xml` GSC'den KALDIRILDI.** Artık tek sitemap `/sitemap.xml`
+  (Last read 31 Tem, Success, **146 sayfa** — 31 Tem'de 143'tü, post10 ile arttı).
+  Kaldırma yolu: Sitemaps → satıra tıkla → detay sayfası → sağ üst **⋮ → Remove sitemap**.
+  (Liste satırındaki ⋮ menüsünde bu seçenek YOK, sadece detay sayfasında var.)
+- ✅ `robots.txt`'ten de `sitemap-products.xml` satırı çıkarıldı. **Dosyanın kendisi
+  duruyor** — `verify.sh` onu katalog sayısı karşılaştırması için kullanıyor.
+- ℹ️ Indexed 4 / Not indexed 40 (37 Discovered + 3 alternate canonical) — dünle aynı.
+  **Bu rapor günlerce gecikmeli, hareketsizlik normal.** Panik yok.
+
+### ⚠️ Tuzak: URL Inspection'ın "referring sitemap" alanı gecikmeli
+`/product/baby-toddler/9` denetimde **"No referring sitemaps detected"** +
+"URL is unknown to Google" dedi. **Sitemap kusurlu DEĞİL** — `curl` ile doğrulandı,
+12 baby-toddler URL'sinin hepsi (`/0`…`/11`) sitemap'te. Aynı sitemap'teki
+`/product/arts-crafts/20` ise "Discovered" + sitemap ilişkili görünüyordu.
+Yani GSC'nin **URL başına** sitemap ilişkilendirmesi, sitemap okumasından bağımsız
+ve gecikmeli güncelleniyor. **Bunu sitemap hatası sanıp tekrar araştırma.**
 
 ---
 
@@ -629,11 +656,8 @@ başka yerde kalmadı (tarandı).
       doğrulandı: ürün sayfaları artık "Discovered", kaynak `/sitemap.xml`.
       Ayrıntı ve rakamlar B0'da.
 - [x] **Sitemap okunmuyor sorunu — ÇÖZÜLDÜ.** `/sitemap.xml` 143 URL, Success, 30 Tem okundu.
-- [ ] **Kalan 2 indeksleme isteği** (31 Tem'de kota doldu):
-      `/product/arts-crafts/20` · `/product/baby-toddler/9`
-- [ ] **`sitemap-products.xml`'i GSC'den KALDIR.** Hâlâ "Couldn't fetch"/0 keşif ve
-      artık gereksiz — `sitemap.xml` tüm ürünleri kapsıyor ve okunuyor. Sürekli hata
-      gürültüsü üretiyor, sinyali kirletiyor.
+- [x] **Kalan 2 indeksleme isteği — 1 Ağu'da GÖNDERİLDİ.** Liste boşaldı.
+- [x] **`sitemap-products.xml` GSC'den KALDIRILDI (1 Ağu)** + robots.txt'ten çıkarıldı.
 - [ ] **VALIDATE FIX sonucu** — Merchant listings `Missing field "price"` doğrulaması
       *Started* durumda, birkaç gün sürer.
       ℹ️ 31 Tem: Product snippets 49, Merchant listings 43, Review snippets 145, Breadcrumbs 9,
