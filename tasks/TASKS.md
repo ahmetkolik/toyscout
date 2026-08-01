@@ -6,7 +6,8 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 1 Ağu 2026 — GSC turu (B0-A: bekleyen 2 istek + sitemap temizligi).
+Son güncelleme: 1 Ağu 2026 — **video denetimi (A5-C)** · **post11 yayında (A7)** ·
+GSC turu (B0-A: bekleyen 2 istek + sitemap temizligi).
 Onceki: 31 Tem 2026 — GSC turu · A4 kapanışı · **Supabase analitik kesintisi
 düzeltildi (A6)** · **blog kaldıraç verisi (A7)** · post10 yayında ·
 **video tam denetimi + Sheet yeniden düzenlendi (A5, A5-B)**.
@@ -98,6 +99,44 @@ tek istek gönderilemedi. Her gün aynı saatte tur yapılırsa pencere tam kapa
 Tur içeriği: GSC → Pages sayıları · Sitemaps durumu · Product/Review snippets ·
 Manual actions · Core Web Vitals · **~10 URL indeksleme isteği** (kota dolunca dur).
 Öncelik: hiç taranmamış yeni ürün/kategori sayfaları → blog.
+
+---
+
+## A5-C. ✅ 1 AĞU VİDEO DENETİMİ — kampanya iki platformda da TAM
+
+Kullanıcı "hepsi planlandı ve yüklendi" dedi; **platformlardan tek tek sayılarak
+doğrulandı.**
+
+| | 31 Tem | 1 Ağu | Değişim |
+|---|---:|---:|---|
+| YouTube Shorts | 27 | **27** (18 yayında + 9 zamanlı, 2-6 Ağu) | — |
+| YouTube uzun video | 1 | **0** | 04-A silindi |
+| TikTok gönderi | 16 | **29** (19 yayında + 10 zamanlı, 2-6 Ağu) | **+13** |
+
+**Sayı tutuyor:** kampanya 30 slot − 06-A (iptal) − 09-A (üretilmedi) = **28 gerçek video**.
+YouTube 27 + silinen 04-A = 28 ✓ · TikTok 29 = 28 + Crayola mükerreri ✓
+**TikTok 31 Tem'de 12 video geriydi, o açık kapandı** — artık her iki platform da
+2-6 Ağu arası dolu.
+
+### ✅ 04-A Candy Land uzun format — YouTube'da ÇÖZÜLDÜ (yarım)
+`dnkiQr9BkHI` **silinmiş**: Studio "Videolar" sekmesi tamamen boş, video URL'si
+`"status":"ERROR","reason":"Video unavailable"` dönüyor. **Ama kısa sürüm yüklenmedi**
+→ 04-A artık YouTube'da hiç yok. Sorun "yanlış format"tan "eksik video"ya dönüştü.
+7 denetimdir açık olan madde bu yüzden kapanmadı, yeniden tanımlandı.
+
+### ❌ Değişmeyen üç boşluk
+- **09-A (SEREED denge bisikleti `B08SGH7NKX`)** — hâlâ iki platformda da yok.
+- **Crayola mükerreri** — TikTok profilinde 94 ve 97 izlenmeli iki kart yan yana
+  duruyor. Silme hâlâ yapılmamış (yalnızca telefondan mümkün, bkz. A5).
+- **16-A…20-B** — 7-11 Ağu için Sheet'te planlı, **henüz üretilmedi**; zamanlanmış
+  listede bu 10 ürünün hiçbiri yok (SKYJO, Sassy halka, Hoyle, Elmer's, Surfer Dudes,
+  Bezente, Max Liquidator, Airbition, Crayola toplu, GOER).
+
+### 🐞 Tarayıcı tuzağı — TikTok Studio "Gönderiler" listesi
+Liste sanallaştırılmış ve kaydırınca **boş satır** render ediyor; sayaç da
+"Gönderiler 16" gibi yanlış/eksik bir rakam gösteriyor. **Sayım için Studio'yu değil
+`tiktok.com/@toyscoutnet` profil ızgarasını kullan** — orada 6'lı satırlar hâlinde
+hepsi görünüyor. Studio'daki arama kutusu da yazılan metni almıyor.
 
 ---
 
@@ -620,11 +659,21 @@ Marka dışı sorgular da blog konulu: *"cyber monday kids art & coloring deals"
 en iyi sonucu veriyor.
 
 ### Yayın takvimi
-3 günde bir. **post10 "Best back-to-school art supplies under $15 in 2026" 31 Tem'de
-yayınlandı** (deploy `1c3f717`, canlı doğrulandı: 7 gerçek katalog ürünü, 7 affiliate
-link, statik `post10.html`, canonical + BlogPosting JSON-LD).
-**Sıradaki: post11 — 3 Ağu 2026.** Boştaki konular: baby-toddler, plush, ride-ons,
-dolls, action-figures; ayrıca Kasım öncesi Black Friday/Cyber Monday (sorgu verisi var).
+3 günde bir. **post11 "Best baby shower gifts under $25 in 2026" 1 Ağu'da yayınlandı**
+(7 gerçek katalog ürünü / 7 affiliate link, statik `post11.html`, canonical +
+BlogPosting JSON-LD, sitemap 147 URL).
+
+**Neden 3 Ağu yerine 1 Ağu:** takvim kendi koyduğumuz bir taban, Google'ın şartı değil;
+içerik darboğaz olduğu için erken yayın yalnızca kazandırır. **Ritim korundu —
+sıradaki post12 = 4 Ağu 2026.**
+
+**Kategori seçimi veriye dayandı:** `baby-toddler` katalogda 12 ürünle en büyük
+işlenmemiş kategoriydi (learning-education 2, plush 1, dolls 1 — yazıya yetmiyor).
+Ayrıca `CAT_BLOG["baby-toddler"]` eşlemesi post4'ten ("3-Year-Old Girls", zayıf eşleşme)
+post11'e çevrildi.
+Kalan boş konular: ride-ons (5 ürün), action-figures (4); ayrıca Kasım öncesi
+Black Friday/Cyber Monday (sorgu verisi var). plush/dolls/learning-education
+**katalog derinliği yetmediği için yazı konusu yapılamaz** — önce ürün gerekir.
 
 ### ⚠️ Yeni yazı eklerken — 9 nokta + bir tuzak
 `index.html`: POSTS · yönlendirme dizisi · `render()` zinciri · `updateSeo()` ·
@@ -663,7 +712,7 @@ başka yerde kalmadı (tarandı).
       ℹ️ 31 Tem: Product snippets 49, Merchant listings 43, Review snippets 145, Breadcrumbs 9,
       hepsi **0 geçersiz**. (30 Tem'de 56/51/166 idi — rakamlar gün gün oynuyor, panik yok.)
 - [ ] **Vercel Web Analytics'i aç** (bkz. A6) — şu an ziyaretçi ölçümü sıfır.
-- [ ] **post11 — 3 Ağu** (bkz. A7 konu listesi).
+- [x] **post11 — 1 Ağu'da YAYINLANDI** (2 gün erken, gerekçe A7'de). Sıradaki **post12 = 4 Ağu**.
 - [ ] **Görsel tarama yükü kararı.** Crawl stats: 90 günde 208 istek / 91.9 MB,
       **%75-78'i görsel**, HTML yalnızca %13. Diskte `assets/products` 697 dosya /114 MB;
       bunun **576'sı galeri varyantı (`_1`…`_5`) = 95 MB**, ana görseller 19 MB.
@@ -674,12 +723,16 @@ başka yerde kalmadı (tarandı).
       karar kullanıcıda.** Zararsız kısmı: `Disallow: /frames/` (241 dekoratif kare).
 - [ ] **📱 TELEFONDAN YAPILACAK — TikTok mükerrer silme.** 24 Tem 7:00 Crayola
       (`7665358627472968982`, 94 izlenme). Web'den imkânsız, bkz. A5.
+      1 Ağu'da profil ızgarasında hâlâ duruyor (94 ve 97 izlenmeli iki kart).
 - [ ] **📱 TELEFONDAN YAPILACAK — 9 TikTok açıklamasındaki Türkçe ad + `01-A` slot kodu.**
-- [ ] **09-A videosu (SEREED denge bisikleti)** — kampanyadaki tek gerçek boşluk,
-      iki platformda da yok. Ürün sitede var (`B08SGH7NKX`).
-- [ ] **04-A format hatası** — Candy Land **iki platformda da** uzun format
-      (YouTube `dnkiQr9BkHI` 3:31, TikTok 03:30). 7 denetimdir duruyor.
-- [ ] **16-A…20-B videoları** — 7-11 Ağu 2026, Sheet'te `PLANLANDI` (bkz. A5-B tablosu).
+- [ ] **09-A videosu (SEREED denge bisikleti)** — 1 Ağu'da yeniden doğrulandı,
+      iki platformda da hâlâ yok. Ürün sitede var (`B08SGH7NKX`).
+- [ ] **04-A Candy Land — YouTube'da artık HİÇ YOK.** Uzun video 1 Ağu'dan önce
+      silinmiş (`dnkiQr9BkHI` → "Video unavailable"), yerine kısa sürüm yüklenmemiş.
+      Kısa sürüm kırpılıp YouTube'a yüklenmeli. TikTok tarafı ayrıca doğrulanmadı
+      (Studio listesi/araması bozuk, bkz. A5-C). Bkz. A5-C.
+- [ ] **16-A…20-B videoları** — 7-11 Ağu 2026, Sheet'te `PLANLANDI`, **1 Ağu itibarıyla
+      henüz üretilmedi** (zamanlanmış listede bu 10 ürünün hiçbiri yok). Bkz. A5-B tablosu.
       Amazon ürün videosundan CapCut ile hazırlanacak.
 
 ---
