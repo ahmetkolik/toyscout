@@ -38,11 +38,16 @@ check_agent() {
     fail "launchd'ye YUKLU DEGIL -> launchctl load $plist"
   fi
 
-  [ -f "$SITE/$script" ] && pass "script var: $script" || fail "script YOK: $script"
+  # yol "/" ile basliyorsa mutlak kabul et (launchd'nin gercekten calistirdigi dosya
+  # proje disinda olabilir — bkz. net.toyscout.gsc / Application Support)
+  case "$script" in /*) script_p="$script";; *) script_p="$SITE/$script";; esac
+  case "$logf"  in /*) logf_p="$logf";;    *) logf_p="$SITE/$logf";;   esac
 
-  if [ -f "$SITE/$logf" ]; then
+  [ -f "$script_p" ] && pass "script var: $script" || fail "script YOK: $script"
+
+  if [ -f "$logf_p" ]; then
     local last
-    last=$(tail -n 40 "$SITE/$logf" | grep -oE '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9:]{8}' | tail -1)
+    last=$(tail -n 40 "$logf_p" | grep -oE '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9:]{8}' | tail -1)
     [ -n "$last" ] && pass "son calisma: $last" || warn "log var ama tarih okunamadi"
   else
     warn "henuz hic calismamis (log yok: $logf)"
@@ -57,8 +62,8 @@ check_agent "net.toyscout.bestsellers" \
 
 check_agent "net.toyscout.gsc" \
   "$LA/net.toyscout.gsc.plist" \
-  "products/gsc_reminder.sh" \
-  "products/gsc_reminder.log" \
+  "$HOME/Library/Application Support/toyscout/gsc_reminder.sh" \
+  "$HOME/Library/Application Support/toyscout/gsc_reminder.log" \
   "Gunluk GSC turu hatirlaticisi, 22:15 (SADECE BILDIRIM)"
 
 # --- katalog tutarliligi

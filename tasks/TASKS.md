@@ -6,12 +6,44 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 1 Ağu 2026 — **video denetimi (A5-C)** · **post11 yayında (A7)** ·
+Son güncelleme: 3 Ağu 2026 — **GSC turu (B0-YENI)**: yapılandırılmış veri
+doğrulaması **Passed**, sitemap bugün okundu; indeksleme istekleri tıkandı.
+Aynı gün **takvim bölümü (§0) eklendi** — tarihli her iş tek tabloda.
+Onceki: 1 Ağu 2026 — **video denetimi (A5-C)** · **post11 yayında (A7)** ·
 GSC turu (B0-A: bekleyen 2 istek + sitemap temizligi).
 Onceki: 31 Tem 2026 — GSC turu · A4 kapanışı · **Supabase analitik kesintisi
 düzeltildi (A6)** · **blog kaldıraç verisi (A7)** · post10 yayında ·
 **video tam denetimi + Sheet yeniden düzenlendi (A5, A5-B)**.
 Deploy'lar: `26fb4f8` · `e1238bc` · `5f408b1` · `1c3f717` · `52cffbe`
+
+---
+
+## 0. ⏱ YAKIN TAKVİM — hangi gün ne yapılacak
+
+Tarihli her iş burada. Ayrıntı için parantezdeki bölüme bak. Bir işi bitirince
+hem buradan hem ilgili bölümden işaretle.
+
+| Ne zaman | İş | Kim/Nasıl | Bölüm |
+|---|---|---|---|
+| **Her gün 22:15** | GSC turu (denetim + ~10 indeksleme isteği) | launchd bildirir, tur **elle** yapılır | A2 |
+| **4 Ağu 2026** | **post12** blog yazısı (3 günde bir kadans) | elle yazılıp deploy | A7 |
+| **~4 Ağu 2026** | Best Sellers senkronu (5 günde bir) | **tam otomatik** — ama **deploy etmez**, sonucu gözden geçirip push et | A1 |
+| **Her A1 turundan sonra** | Log'da `Supabase ping: 200` satırını doğrula | `tail products/bestseller_sync.log` | A6 |
+| **7–11 Ağu 2026** | 16-A…20-B videoları (10 ürün) | CapCut, henüz üretilmedi | A5-B |
+| **~7 Ağu 2026** | Best Sellers senkronu (bir sonraki tur) | otomatik | A1 |
+| Tarihsiz, sıradaki turda | `/post11`, `/product/arts-crafts/24`, `/25` indeksleme isteği | GSC, **URL başına en fazla 2 deneme** | B0-YENI |
+| Tarihsiz, kullanıcıda | Vercel panelinden Web Analytics'i aç | kullanıcı | A6 |
+| Tarihsiz, telefonda | TikTok mükerrer silme + 9 açıklama düzeltmesi | **sadece telefondan** | A5 |
+| Tarihsiz | 09-A (SEREED) videosu · 04-A kısa sürüm yeniden yükleme | üretim | A5-C |
+| Tarihsiz, karar bekliyor | Görsel tarama yükü (`Disallow: /frames/`) | kullanıcı kararı | B |
+
+**Sabit çalışma kuralları (her turda geçerli):**
+- Tüm iş **`~/Projects/toyscout`**'ta yapılır. `~/Downloads/toyscout-master` bayat
+  kopyadır, launchd oradaki dosyaları görmez (A0).
+- Tur başında **`bash tasks/verify.sh`** — TASKS.md'ye değil, makineye bak.
+- GSC mülkü **üçüncü Google hesabında** (`authuser=2`, URL-prefix); doğrudan giriş
+  adresi B0-YENI'de.
+- Deploy: bu klasör git deposu değil, **`gh api` Git Data API** ile push edilir (D).
 
 ---
 
@@ -83,10 +115,16 @@ Kalite kuralları (kullanıcı kararı, 29 Tem 2026):
 |---|---|
 | Ajan | `net.toyscout.gsc` |
 | Plist | `~/Library/LaunchAgents/net.toyscout.gsc.plist` |
-| Script | `products/gsc_reminder.sh` |
+| Script | `~/Library/Application Support/toyscout/gsc_reminder.sh` ⚠️ proje dışında |
 | Sıklık | Her gün **22:15** |
-| Log | `products/gsc_reminder.log` |
+| Log | `~/Library/Application Support/toyscout/gsc_reminder.log` |
 | Durdur | `launchctl unload ~/Library/LaunchAgents/net.toyscout.gsc.plist` |
+
+⚠️ **Script ve log proje klasöründe DEĞİL.** Projedeki `products/gsc_reminder.*`
+dosyaları taşınmadan önceki kalıntılar; launchd'nin gerçekten çalıştırdığı kopya
+`~/Library/Application Support/toyscout/` altında. 3 Ağu'ya kadar `verify.sh`
+projedeki bayat log'a baktığı için ajan **5 gündür ölü** görünüyordu — oysa her
+gün çalışıyordu. Script artık mutlak yolu okuyor (bkz. B0-YENI).
 
 **Bu iş otomatikleştirilemez.** Search Console'da "Request indexing" akışı Google
 oturumu açık bir tarayıcı gerektiriyor, API'siz script'le yapılamıyor. Ajan yalnızca
@@ -137,6 +175,65 @@ Liste sanallaştırılmış ve kaydırınca **boş satır** render ediyor; saya�
 "Gönderiler 16" gibi yanlış/eksik bir rakam gösteriyor. **Sayım için Studio'yu değil
 `tiktok.com/@toyscoutnet` profil ızgarasını kullan** — orada 6'lı satırlar hâlinde
 hepsi görünüyor. Studio'daki arama kutusu da yazılan metni almıyor.
+
+---
+
+## B0-YENI. 3 AĞU GSC TURU (21:0x–21:4x) — denetim temiz, istekler tıkandı
+
+**2 Ağu turu atlandı** (kayıt yok), bu tur 2 günlük aradan sonra yapıldı.
+
+### ⚠️ ÖNCE BUNU OKU — GSC mülkü ÜÇÜNCÜ Google hesabında
+Chrome'da varsayılan hesap (`authuser=0`) **toyscoutnet@gmail.com** ve bu hesabın
+**hiç mülkü yok**; `authuser=1` **info@kolikshop.com** (yalnızca kolikshop.com).
+ToyScout mülkü **`authuser=2`**'de. Doğrudan giriş:
+`https://search.google.com/u/2/search-console?resource_id=https%3A%2F%2Fwww.toyscout.net%2F`
+Mülk tipi **URL-prefix** (`https://www.toyscout.net/`), domain property değil —
+`sc-domain:toyscout.net` her hesapta "erişiminiz yok" verir. Her turda buradan başla.
+
+### 🔧 `verify.sh` düzeltildi (3 Ağu)
+`net.toyscout.gsc` için proje içindeki **eski** log'a (`products/gsc_reminder.log`,
+son satır 29 Tem) bakıyordu ve ajan 5 gündür çalışmıyormuş gibi görünüyordu.
+Gerçek log launchd'nin çalıştırdığı yerde:
+`~/Library/Application Support/toyscout/gsc_reminder.log` (son çalışma **2 Ağu 22:15**,
+düzenli). `check_agent` artık mutlak yolları da kabul ediyor.
+
+### Denetim sonuçları
+| Rapor | Değer | Not |
+|---|---|---|
+| `/sitemap.xml` | Success, **Last read 3 Ağu**, 147 sayfa | yereldeki `sitemap.xml` de 147 ✓ |
+| Pages | Indexed **4** / Not indexed **40** (37 Discovered + 3 alternate canonical) | **Last update 7/24** — rapor 10 gün bayat, hareketsizlik bundan |
+| Product snippets | **55** geçerli, 0 geçersiz | 31 Tem'de 49 |
+| Merchant listings | **47** geçerli, 0 geçersiz | 31 Tem'de 43 |
+| Review snippets | **161** geçerli, 0 geçersiz | 31 Tem'de 145 |
+| Breadcrumbs | **9** geçerli, 0 geçersiz | değişmedi |
+| Manual actions | No issues detected | temiz |
+| Core Web Vitals | "Not enough usage data" (mobil+masaüstü) | trafik düşük, beklenen |
+
+### 📈 Performance (3 ay) — gösterimler ilk kez belirgin yükselişte
+**0 tıklama · 185 gösterim · ort. konum 30.1.** Grafik 28 Tem'e kadar günde 0-5
+gösterimde yatayken 29 Tem–1 Ağu arasında **günde ~45 gösterime** fırladı — bu,
+28-31 Tem'deki keşif/sitemap düzeltmelerinin ilk ölçülebilir karşılığı.
+Tıklama hâlâ 0: ortalama konum 30 (3. sayfa), yani görünürlük var, sıralama yok.
+
+### ✅ VALIDATE FIX KAPANDI
+Merchant listings → `Missing field "price" (in offers)` → **Validation: Passed, 0 öğe.**
+29 Tem'de başlatılan doğrulama başarıyla bitti; bu açık iş listeden silindi.
+
+### ❌ İndeksleme istekleri — 1 başarılı, 6 hata
+- ✅ `/post10` → "Indexing requested" (öncelikli tarama kuyruğuna eklendi).
+- ❌ `/post11` → **5 denemede de** "Oops! Something went wrong — We had a problem
+  submitting your indexing request." (turun ilk işiydi, hâlâ gönderilemedi)
+- ❌ `/product/arts-crafts/24` → aynı hata (dialog önce "Testing if live URL can be
+  indexed" diyor, ~30 sn sonra hataya düşüyor).
+- **Teşhis:** kota mesajı ("Quota exceeded") DEĞİL, jenerik gönderim hatası.
+  Bilinen tuzak (29 Tem'de öğrenilmişti, bu turda tekrar doğrulandı): **istekler arasında
+  sayfa yenilenmezse GSC bu hatayı verir ve ardından oturuma hız sınırı koyar.**
+  Bu turda ilk istek yenilemesiz arka arkaya denendiği için sınır tetiklendi;
+  sonradan Overview'a dönüp doğru akışla (yenile → kutuya iki kez tıkla → yaz →
+  Enter → REQUEST INDEXING) yapılan deneme de geçmedi, yani sınır oturum boyunca sürüyor.
+- **Kural: bir URL için en fazla 2 deneme. Hata gelirse turu bitir, ertesi güne bırak.**
+  Bu turda 5 deneme yapıldı ve muhtemelen o yüzden kalan ~8 istek hiç gönderilemedi.
+- **Sıradaki turun İLK İŞİ: `/post11` + `/product/arts-crafts/24` + `/25`.**
 
 ---
 
@@ -707,15 +804,24 @@ başka yerde kalmadı (tarandı).
 - [x] **Sitemap okunmuyor sorunu — ÇÖZÜLDÜ.** `/sitemap.xml` 143 URL, Success, 30 Tem okundu.
 - [x] **Kalan 2 indeksleme isteği — 1 Ağu'da GÖNDERİLDİ.** Liste boşaldı.
 - [x] **`sitemap-products.xml` GSC'den KALDIRILDI (1 Ağu)** + robots.txt'ten çıkarıldı.
-- [ ] **2 Ağu turunda İLK İŞ: `/post11` indeksleme isteği.** post11 1 Ağu 21:xx'te
-      yayınlandı ama o günün turu 20:23'te yapılmıştı, kota doluydu. Blog sayfası
-      ürün sayfasından ~9 kat verimli (A7), o yüzden sıranın başında.
-- [ ] **VALIDATE FIX sonucu** — Merchant listings `Missing field "price"` doğrulaması
-      *Started* durumda, birkaç gün sürer.
-      ℹ️ 31 Tem: Product snippets 49, Merchant listings 43, Review snippets 145, Breadcrumbs 9,
-      hepsi **0 geçersiz**. (30 Tem'de 56/51/166 idi — rakamlar gün gün oynuyor, panik yok.)
+- [ ] **Sıradaki turun İLK İŞİ: `/post11` indeksleme isteği** — 3 Ağu'da 5 denemede de
+      "problem submitting" hatası verdi (bkz. B0-YENI). Yanına `/product/arts-crafts/24`
+      ve `/25` (30 Tem'de eklenen iki yeni ürün, ikisi de hiç taranmamış).
+      Blog sayfası ürün sayfasından ~9 kat verimli (A7), post11 sıranın başında.
+- [x] **VALIDATE FIX — GEÇTİ (3 Ağu).** Merchant listings `Missing field "price"`
+      doğrulaması **Passed**, 0 geçersiz öğe.
+      ℹ️ 3 Ağu: Product snippets 55, Merchant listings 47, Review snippets 161,
+      Breadcrumbs 9, hepsi **0 geçersiz** (31 Tem: 49/43/145/9 — hepsi arttı).
 - [ ] **Vercel Web Analytics'i aç** (bkz. A6) — şu an ziyaretçi ölçümü sıfır.
 - [x] **post11 — 1 Ağu'da YAYINLANDI** (2 gün erken, gerekçe A7'de). Sıradaki **post12 = 4 Ağu**.
+- [ ] **post12 — 4 Ağu 2026.** Konu katalog derinliğine göre seçilecek (A7'deki
+      kurallar + "yeni yazı eklerken 9 nokta" listesi). Blog, ürün sayfasından
+      ~9 kat verimli olduğu için kadans kaçırılmamalı.
+- [ ] **~4 Ağu: Best Sellers senkron çıktısını gözden geçir ve DEPLOY ET.** Ajan
+      otomatik çalışır ama **push etmez** — `js/data.js`, `sitemap-products.xml` ve
+      `browse.html` yerelde kalır. Tur sonrası: `bash tasks/verify.sh` ("canlı X
+      ürün, yerelde Y" uyarısı çıkarsa deploy bekliyor demektir), log'da
+      `Supabase ping: 200` satırını doğrula, sonra `gh api` ile push (D).
 - [ ] **Görsel tarama yükü kararı.** Crawl stats: 90 günde 208 istek / 91.9 MB,
       **%75-78'i görsel**, HTML yalnızca %13. Diskte `assets/products` 697 dosya /114 MB;
       bunun **576'sı galeri varyantı (`_1`…`_5`) = 95 MB**, ana görseller 19 MB.
