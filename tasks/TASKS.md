@@ -31,13 +31,13 @@ hem buradan hem ilgili bölümden işaretle.
 | Ne zaman | İş | Kim/Nasıl | Bölüm |
 |---|---|---|---|
 | **Her gün 22:15** | GSC turu (denetim + ~10 indeksleme isteği) | launchd bildirir, tur **elle** yapılır | A2 |
-| **7–11 Ağu 2026** | 16-A…20-B videoları (10 ürün) | CapCut, henüz üretilmedi | A5-B |
+| **7–11 Ağu 2026** | 16-B…20-B videoları (9 ürün; 16-A iptal) | CapCut, henüz üretilmedi | A5-B |
 | **10 Ağu 2026** | **post13** blog yazısı (3 günde bir kadans) | elle yazılıp deploy | A7 |
 | **~12 Ağu 2026** | Best Sellers senkronu (5 günde bir; sayaç 7 Ağu turundan başlar) | **tam otomatik** — ama **deploy etmez**, sonucu gözden geçirip push et | A1 |
 | **Her A1 turundan sonra** | Log'da `Supabase ping: 200` satırını doğrula + `verify.sh`'te "son gercek calisma" | `bash tasks/verify.sh` | A6 |
 | Tarihsiz, sıradaki turda | `B0GCC4HQRP` (Mattel KPop Rumi bebek) — kategori elle atanacak | 7 Ağu turu "ELLE BAKILACAK" dedi | A1 |
 | **12–16 Ağu 2026** | 21-A…25-B videoları (10 ürün) | Sheet'e eklendi, henüz üretilmedi | A5-B |
-| Tarihsiz, telefonda | TikTok mükerrer silme + 9 açıklama düzeltmesi | **sadece telefondan** | A5 |
+| Tarihsiz, telefonda | 9 TikTok açıklamasındaki Türkçe ad + `01-A` slot kodu | **sadece telefondan** | A5 |
 | Tarihsiz | 09-A (SEREED) videosu · 04-A kısa sürüm yeniden yükleme | üretim | A5-C |
 | Tarihsiz, karar bekliyor | Görsel tarama yükü (`Disallow: /frames/`) | kullanıcı kararı | B |
 | ~~4 Ağu~~ | ~~post12~~ | ✅ 7 Ağu'da yayında (3 gün gecikmeli) | A7 |
@@ -175,8 +175,6 @@ YouTube 27 + silinen 04-A = 28 ✓ · TikTok 29 = 28 + Crayola mükerreri ✓
 
 ### ❌ Değişmeyen üç boşluk
 - **09-A (SEREED denge bisikleti `B08SGH7NKX`)** — hâlâ iki platformda da yok.
-- **Crayola mükerreri** — TikTok profilinde 94 ve 97 izlenmeli iki kart yan yana
-  duruyor. Silme hâlâ yapılmamış (yalnızca telefondan mümkün, bkz. A5).
 - **16-A…20-B** — 7-11 Ağu için Sheet'te planlı, **henüz üretilmedi**; zamanlanmış
   listede bu 10 ürünün hiçbiri yok (SKYJO, Sassy halka, Hoyle, Elmer's, Surfer Dudes,
   Bezente, Max Liquidator, Airbition, Crayola toplu, GOER).
@@ -700,7 +698,12 @@ sunucuda yok.
 **09-A (SEREED denge bisikleti, `B08SGH7NKX`) hiç üretilmedi** — iki platformda da yok.
 Sheet'te `Durum` = **EKSİK — üretilmedi** olarak işaretlendi (diğer 28 slot `YAPILDI`).
 
-### ⛔ TikTok mükerrer silme — WEB'DEN MÜMKÜN DEĞİL
+### 🚫 TikTok mükerrer silme — VAZGEÇİLDİ (7 Ağu 2026, kullanıcı kararı)
+
+**Bu artık bir görev değil.** İki Crayola gönderisi profilde kalacak; aşağısı
+yalnızca neden web'den yapılamadığının kaydı, kovalanacak bir iş değil.
+
+#### (arşiv) Web'den mümkün değildi
 Crayola Ultra Clean iki kez yayınlanmış:
 `24 Tem 7:00` → 94 görüntülenme / 0 beğeni (video `7665358627472968982`)
 `25 Tem 7:00` → 97 görüntülenme / 1 beğeni (video `7665358944545557782`)
@@ -742,7 +745,7 @@ Yeniden kırpılıp ikisine de kısa sürüm yüklenmeli. 7 denetimdir açık.
 
    | Slot | Ürün | ASIN | Yorum | Puan |
    |---|---|---|---:|---:|
-   | 16-A | magilano SKYJO | B06XZ9K244 | 75.577 | 4.8 |
+   | ~~16-A~~ | ~~magilano SKYJO~~ | ~~B06XZ9K244~~ | — | **7 Ağu'da iptal, satır silindi** |
    | 16-B | Sassy Halka Dizme | B07NXDJ52C | 65.204 | 4.8 |
    | 17-A | Hoyle Su Geçirmez Kağıt | B000J3Z7TC | 24.675 | 4.7 |
    | 17-B | Elmer's Yapıştırıcı 1 Galon | B0006HUJJO | 15.919 | 4.8 |
@@ -968,9 +971,6 @@ başka yerde kalmadı (tarandı).
       `robots.txt` ile galeriyi kapatmak bütçeyi HTML'e kaydırmaz ve Google
       "render için gereken kaynağı engelleme" diyor. **Yapılabilir ama garantisi yok —
       karar kullanıcıda.** Zararsız kısmı: `Disallow: /frames/` (241 dekoratif kare).
-- [ ] **📱 TELEFONDAN YAPILACAK — TikTok mükerrer silme.** 24 Tem 7:00 Crayola
-      (`7665358627472968982`, 94 izlenme). Web'den imkânsız, bkz. A5.
-      1 Ağu'da profil ızgarasında hâlâ duruyor (94 ve 97 izlenmeli iki kart).
 - [ ] **📱 TELEFONDAN YAPILACAK — 9 TikTok açıklamasındaki Türkçe ad + `01-A` slot kodu.**
 - [ ] **09-A videosu (SEREED denge bisikleti)** — 1 Ağu'da yeniden doğrulandı,
       iki platformda da hâlâ yok. Ürün sitede var (`B08SGH7NKX`).
@@ -978,9 +978,14 @@ başka yerde kalmadı (tarandı).
       silinmiş (`dnkiQr9BkHI` → "Video unavailable"), yerine kısa sürüm yüklenmemiş.
       Kısa sürüm kırpılıp YouTube'a yüklenmeli. TikTok tarafı ayrıca doğrulanmadı
       (Studio listesi/araması bozuk, bkz. A5-C). Bkz. A5-C.
-- [ ] **16-A…20-B videoları** — 7-11 Ağu 2026, Sheet'te `PLANLANDI`, **1 Ağu itibarıyla
-      henüz üretilmedi** (zamanlanmış listede bu 10 ürünün hiçbiri yok). Bkz. A5-B tablosu.
-      Amazon ürün videosundan CapCut ile hazırlanacak.
+- [ ] **16-B…20-B videoları (9 adet)** — 7-11 Ağu 2026, Sheet'te `PLANLANDI`, henüz
+      üretilmedi. Bkz. A5-B tablosu. Amazon ürün videosundan CapCut ile hazırlanacak.
+      **`16-A` (magilano SKYJO) 7 Ağu'da kullanıcı kararıyla İPTAL** ve Sheet'in iki
+      sekmesinden de **satır olarak silindi** (06-A/09-A'daki gibi işaretlenmedi).
+      ⚠️ Sonuç: **7 Ağu'da tek video kaldı** (16-B, 03:00 TR). İki videolu günlük
+      düzen korunacaksa 16-B 21:00 slotuna çekilmeli.
+- [ ] **21-A…25-B videoları (10 adet)** — 12-16 Ağu 2026, Sheet'e 7 Ağu'da eklendi.
+      Bkz. A5-B tablosu.
 
 ---
 
