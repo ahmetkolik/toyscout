@@ -37,7 +37,6 @@ hem buradan hem ilgili bölümden işaretle.
 | **Her A1 turundan sonra** | Log'da `Supabase ping: 200` satırını doğrula + `verify.sh`'te "son gercek calisma" | `bash tasks/verify.sh` | A6 |
 | Tarihsiz, sıradaki turda | `B0GCC4HQRP` (Mattel KPop Rumi bebek) — kategori elle atanacak | 7 Ağu turu "ELLE BAKILACAK" dedi | A1 |
 | **12–16 Ağu 2026** | 21-A…25-B videoları (10 ürün) | Sheet'e eklendi, henüz üretilmedi | A5-B |
-| Tarihsiz, kullanıcıda | Vercel panelinden Web Analytics'i aç | kullanıcı | A6 |
 | Tarihsiz, telefonda | TikTok mükerrer silme + 9 açıklama düzeltmesi | **sadece telefondan** | A5 |
 | Tarihsiz | 09-A (SEREED) videosu · 04-A kısa sürüm yeniden yükleme | üretim | A5-C |
 | Tarihsiz, karar bekliyor | Görsel tarama yükü (`Disallow: /frames/`) | kullanıcı kararı | B |
@@ -45,6 +44,7 @@ hem buradan hem ilgili bölümden işaretle.
 | ~~4 Ağu~~ | ~~Best Sellers senkronu~~ | ✅ kaçırıldı, 7 Ağu'da elle tetiklendi | B0-AGU7 |
 | ~~Tarihsiz~~ | ~~`/post11`, `/product/arts-crafts/24`, `/25` indeksleme~~ | ✅ 7 Ağu'da üçü de gönderildi | B0-AGU7 |
 | ~~Tarihsiz~~ | ~~`toyscout-master` Vercel projesini sil~~ | ✅ kullanıcı sildi, 7 Ağu — adres artık 404 | B0-AGU7 |
+| ~~Tarihsiz~~ | ~~Vercel Web Analytics'i aç~~ | ✅ 7 Ağu — script 200 döndü | A6 |
 
 **Sabit çalışma kuralları (her turda geçerli):**
 - Tüm iş **`~/Projects/toyscout`**'ta yapılır. `~/Downloads/toyscout-master`
@@ -497,7 +497,16 @@ Deploy `01fa7d1`, canlı doğrulandı.
 Bu SPA `history.pushState` kullanıyor; Vercel'in script'i pushState'i kendisi
 sarmaladığı için **rota değişimleri de otomatik sayılıyor** — ek kod gerekmedi.
 
-- [ ] **⚠️ SON ADIM — KULLANICI YAPMALI: Vercel panelinden Analytics'i aç.**
+- [x] ~~**SON ADIM — KULLANICI YAPMALI: Vercel panelinden Analytics'i aç.**~~
+      **✅ AÇILDI 7 Ağu 2026.** `/_vercel/insights/script.js` artık **200** dönüyor
+      (2.495 bayt, `server: Vercel`, gerçek ETag; curl ile 6 kez doğrulandı).
+      ⚠️ **Tuzak:** Claude'un kullandığı Chrome profilinde bir içerik engelleyici
+      `/_vercel/insights/` isteklerini kesiyor — tarayıcıda **503**, sayfa içi
+      `fetch` ise `Failed to fetch` veriyor ve `window.va` tanımsız kalıyor.
+      Aynı sayfadan `/js/data.js` sorunsuz geliyor, yani sunucu tarafı sağlam.
+      **Bunu "analitik bozuk" sanma** — yalnızca engelleyicili tarayıcılar sayılmaz.
+      Panelde veri görünüp görünmediğini engelleyicisiz bir tarayıcıdan/telefondan
+      ziyaret ederek doğrula.
       `vercel.com/kolik/toyscout` → **Analytics** → **Enable** (ücretsiz kademe var).
       Claude tarayıcıdan yapamadı: Vercel oturumu kapalıydı ve **giriş yapmak/kimlik
       bilgisi girmek Claude'a yasak.**
@@ -941,7 +950,7 @@ başka yerde kalmadı (tarandı).
       doğrulaması **Passed**, 0 geçersiz öğe.
       ℹ️ 3 Ağu: Product snippets 55, Merchant listings 47, Review snippets 161,
       Breadcrumbs 9, hepsi **0 geçersiz** (31 Tem: 49/43/145/9 — hepsi arttı).
-- [ ] **Vercel Web Analytics'i aç** (bkz. A6) — şu an ziyaretçi ölçümü sıfır.
+- [x] ~~**Vercel Web Analytics'i aç** (bkz. A6)~~ — 7 Ağu'da açıldı, script 200.
 - [x] **post11 — 1 Ağu'da YAYINLANDI** (2 gün erken, gerekçe A7'de). Sıradaki **post12 = 4 Ağu**.
 - [x] ~~**post12 — 4 Ağu 2026.**~~ — 7 Ağu'da yayında, party favor konusu (B0-AGU7) Konu katalog derinliğine göre seçilecek (A7'deki
       kurallar + "yeni yazı eklerken 9 nokta" listesi). Blog, ürün sayfasından
