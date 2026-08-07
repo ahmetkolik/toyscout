@@ -6,7 +6,13 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 7 Ağu 2026 — **büyük temizlik turu (B0-AGU7)**: Downloads kopyası
+Son güncelleme: 7 Ağu 2026 (akşam) — **§A9 HUNİ DURUMU eklendi**: affiliate ve trafik
+katmanları tek tek ölçüldü. Özet: teknik taraf temiz (izleme + tag doğrulandı), 30 günde
+**50 tıklama / 0 sipariş / $0**, ama o tıklamaların neredeyse tamamı **siteden değil**
+sosyal bio linklerinden geliyor — site şu an huninin içinde değil. Sıfır satış 50
+tıklamada beklenen sonuç; darboğaz dönüşüm değil **hacim**. İki acil risk kullanıcıda:
+**vergi bilgisi eksik** ve **180 gün / 3 satış kuralı**.
+Aynı gün, daha önce — **büyük temizlik turu (B0-AGU7)**: Downloads kopyası
 çatalladığı yakalandı ve **silindi** (5 ürün kurtarıldı) · Best Sellers ajanı 4 Ağu
 turunu kaçırmıştı, elle tetiklendi (**katalog 117 → 132**) · `verify.sh`'in yanlış
 yeşil verdiği yer düzeltildi · **post12 yayında** · GSC turu: tıkanmış 3 istek + post12
@@ -37,6 +43,8 @@ hem buradan hem ilgili bölümden işaretle.
 | **Her A1 turundan sonra** | Log'da `Supabase ping: 200` satırını doğrula + `verify.sh`'te "son gercek calisma" | `bash tasks/verify.sh` | A6 |
 | Tarihsiz, sıradaki turda | `B0GCC4HQRP` (Mattel KPop Rumi bebek) — kategori elle atanacak | 7 Ağu turu "ELLE BAKILACAK" dedi | A1 |
 | **12–16 Ağu 2026** | 21-A…25-B videoları (10 ürün) | Sheet'e eklendi, henüz üretilmedi | A5-B |
+| **BUGÜN, kullanıcıda** | **Associates vergi bilgisini doldur** — ödeme engelli | Associates → hesap ayarları | A9 |
+| **Kontrol et** | Associates 180 gün / 3 satış kuralı — hesap açılış tarihi? | kullanıcı | A9 |
 | Tarihsiz, telefonda | 9 TikTok açıklamasındaki Türkçe ad + `01-A` slot kodu | **sadece telefondan** | A5 |
 | Tarihsiz | 09-A (SEREED) videosu · 04-A kısa sürüm yeniden yükleme | üretim | A5-C |
 | ~~4 Ağu~~ | ~~post12~~ | ✅ 7 Ağu'da yayında (3 gün gecikmeli) | A7 |
@@ -449,6 +457,72 @@ görünüyorsa iç link zinciri çalışmaya başlamış demektir.
 **iki kez** tıkla (navigate sonrası ilk yazma yutuluyor). Yenilemeden arka arkaya
 istek atarsan hız sınırı devreye girer. Onay için modal'a güvenme — satırdaki kalıcı
 **"✓ Indexing requested"** yazısına bak.
+
+---
+
+## A9. 📉 HUNİ DURUMU — 7 Ağu 2026 tam ölçüm (referans noktası)
+
+**Neden burada:** "günlerdir uğraşıyorum, hâlâ satış yok" sorusunun cevabı.
+Tüm katmanlar aynı gün, tek tek ölçüldü. **Sonraki turlarda bu tabloyla karşılaştır.**
+
+### Ölçülen sayılar
+
+| Katman | Dönem | Sonuç |
+|---|---|---|
+| Amazon Associates | 8 Tem – 6 Ağu (30 gün) | **50 tıklama · 0 sipariş · %0.00 dönüşüm · $0.00** |
+| Amazon Associates | Ağustos ayı | 10 tıklama |
+| Sitenin kendi kaydı (`amazon_clicks`) | 14 Tem'den beri | **0** — toplam 7 kayıt, hepsi 12-14 Tem |
+| GSC Performance | son 28 gün | 0 tıklama · 277 gösterim · **ort. konum 29.2** |
+| GSC indeksli sayfa | — | **4** (sitede 132 ürün + 12 yazı var) |
+| Vercel Web Analytics | 7 Ağu'da açıldı | henüz 0 olay, "0 online" |
+| `newsletter_signups` / `contact_messages` | tüm zamanlar | 0 / 0 |
+
+### ✅ Teknik taraf temiz — bir daha kontrol etme
+- **Supabase izleme çalışıyor:** canlı sayfadan test kaydı atıldı → **201**, satır düştü
+  (id 10), sonra silindi. Boru hattı sağlam, RLS doğru, anahtar geçerli.
+- **Affiliate tag 132/132 üründe doğru** (`tag=kolico-20`), blog yazılarındaki linkler de.
+- Tıklama dinleyicisi (`index.html:1927`) yerinde, `a[href*="amazon.com"]` yakalıyor.
+- `browse.html` bilerek Amazon'a değil iç `/product/*` sayfalarına linkliyor (tarama yardımcısı).
+
+**Yani "satış yok" bir arıza belirtisi DEĞİL.** Sıfır tıklama kaydı, sıfır trafiğin
+sonucu; bozuk izlemenin değil.
+
+### 📐 Beklenen gelir matematiği (hissi sayıya çevir)
+Oyuncak komisyonu ~%3 · ortalama sepet ~$20 · soğuk sosyal trafikte dönüşüm ~%1-2
+→ **tıklama başına beklenen gelir ≈ 1,2 sent.**
+- 50 tıklama ≈ **$0.60 beklenen gelir**
+- İlk $1 için ~85 tıklama · ayda $100 için **~8.000 tıklama**
+
+50 tıklamada 0 sipariş **istatistiksel olarak beklenen sonuç**. Örneklem, dönüşümü
+ölçmeye bile yetmiyor. Sorun dönüşüm değil, **hacim**.
+
+### 🔑 ASIL BULGU: site huninin içinde değil
+Associates 50 tıklama gösterirken sitenin kendi izleyicisi aynı dönemde **0** kaydetti.
+→ O tıklamalar **TikTok/YouTube/Pinterest bio linklerinden doğrudan Amazon'a** gidiyor.
+**Katalog, SEO ve blog çalışması şu an huniye hiç değmiyor.** Altyapı doğru kuruldu
+ama trafik gelene kadar getiri üretmez.
+
+Site neden trafik almıyor: Google'da **4 sayfa indeksli**, ortalama konum **29**
+(3. sayfa). 3. sayfadan tıklama gelmez. Bu bir hata değil, yeni sitenin normal hâli —
+ama aylarla ölçülen bir iş.
+
+### ⚠️ İKİ ACİL RİSK (kullanıcıda)
+- [ ] **VERGİ BİLGİSİ EKSİK.** Associates panelinde kırmızı uyarı:
+      *"The primary account holder needs to finish filling out tax information."*
+      **Satış olsa bile ödeme alınamaz.** Associates → hesap ayarları → tax information.
+- [ ] **180 gün / 3 satış kuralı.** Amazon Associates, hesap açılışından itibaren
+      180 gün içinde **3 nitelikli satış** olmazsa hesabı kapatıyor. Hesabın açılış
+      tarihini kontrol et; süre daralıyorsa bu listedeki her şeyden acil hâle gelir.
+
+### Kaldıraç sırası (ölçüme dayalı, tahmine değil)
+1. **TikTok tek gerçek kanal.** ~1.741 izlenme → ~50 tıklama = **%3 tıklama oranı**,
+   sosyal için iyi bir oran. Sorun oran değil, izlenme sayısı. 19 slot planlı ama
+   üretilmemiş (16-B…20-B + 21-A…25-B) — ölçülebilir getirisi olan tek iş bu.
+2. **Bio linki testi.** Şu an doğrudan Amazon'a gidiyorsa site hiç devreye girmiyor.
+   `toyscout.net`'e çevirmek trafik + SEO sinyali getirir ama araya adım koyduğu için
+   tıklama kaybettirir. **Gerçek bir ödünleşme — iki hafta A/B denemeye değer.**
+3. **SEO arka planda.** Çalışıyor (gösterim 3 ayda 185 → 28 günde 277) ama takvimi
+   aylarla ölçülüyor. Buradan kısa vadeli satış bekleme.
 
 ---
 
