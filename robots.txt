@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Ana sayfadaki kaydirmali hero animasyonunun kareleri (240 JPG, ~5.8 MB).
+# Tamamen dekoratif: aranabilir icerik degil ve sayfanin render'i icin gerekli
+# degil — engellemek Google'in "render kaynagini bloklama" uyarisina girmiyor.
+# Amac tarama butcesi kazanmak DEGIL (163 URL'de oyle bir darbogaz yok);
+# amac Crawl stats raporunu temizlemek: 90 gunde 208 istegin %75-78'i gorseldi,
+# bu gurultu altinda gercek icerigin nasil tarandigi okunamiyordu. (7 Agu 2026)
+Disallow: /frames/
+
 Sitemap: https://www.toyscout.net/sitemap.xml
