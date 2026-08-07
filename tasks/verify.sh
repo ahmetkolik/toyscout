@@ -21,7 +21,7 @@ printf "\n${c_b}ToyScout — gorev durumu${c_0}   %s\n" "$(date '+%Y-%m-%d %H:%M
 hr
 
 check_agent() {
-  local label="$1" plist="$2" script="$3" logf="$4" desc="$5"
+  local label="$1" plist="$2" script="$3" logf="$4" desc="$5" max_gun="$6"
   printf "\n${c_b}%s${c_0}  — %s\n" "$label" "$desc"
 
   [ -f "$LA/$(basename "$plist")" ] && pass "plist var" || fail "plist YOK: $plist"
@@ -45,10 +45,37 @@ check_agent() {
 
   [ -f "$script_p" ] && pass "script var: $script" || fail "script YOK: $script"
 
-  if [ -f "$logf_p" ]; then
+  # ── launchd ajani GERCEKTEN tetiklendi mi?
+  # Log'un son satirina BAKMA: log'a ajan disindaki kod yollari da yazabiliyor
+  # (ornek: bestseller_sync'in Supabase ping'i). 7 Agu 2026'da tam bu oldu —
+  # ajan 30 Tem'den beri hic calismamisken log 31 Tem tarihli bir ping satiri
+  # tasidigi icin burasi "son calisma: 31 Tem" deyip YESIL veriyordu.
+  # Tek guvenilir kanit: launchctl'in "runs" sayaci + stdout log'unun mtime'i.
+  local runs
+  runs=$(launchctl print "gui/$(id -u)/$label" 2>/dev/null | awk '/^\truns = /{print $3}')
+  if [ -n "$runs" ]; then
+    pass "launchd runs sayaci: $runs"
+  else
+    warn "launchctl print 'runs' vermedi (eski macOS?)"
+  fi
+
+  # Ajanin kendi stdout log'u varsa gercek son calisma zamani odur.
+  local stdout_p="${script_p%.py}.stdout.log"
+  if [ -f "$stdout_p" ]; then
+    local m mgun
+    m=$(date -r "$stdout_p" '+%Y-%m-%d %H:%M')
+    mgun=$(( ( $(date +%s) - $(stat -f %m "$stdout_p") ) / 86400 ))
+    if [ -n "$max_gun" ] && [ "$mgun" -gt "$max_gun" ]; then
+      fail "son GERCEK calisma $m ($mgun gun once) — beklenen araligi ($max_gun gun) astI, tur KACIRILMIS"
+      warn "elle tetikle: launchctl kickstart -k gui/$(id -u)/$label"
+    else
+      pass "son gercek calisma: $m ($mgun gun once)"
+    fi
+  elif [ -f "$logf_p" ]; then
     local last
     last=$(tail -n 40 "$logf_p" | grep -oE '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9:]{8}' | tail -1)
-    [ -n "$last" ] && pass "son calisma: $last" || warn "log var ama tarih okunamadi"
+    [ -n "$last" ] && pass "log son satiri: $last (stdout log yok, dolayli kanit)" \
+                   || warn "log var ama tarih okunamadi"
   else
     warn "henuz hic calismamis (log yok: $logf)"
   fi
@@ -58,7 +85,8 @@ check_agent "net.toyscout.bestsellers" \
   "$LA/net.toyscout.bestsellers.plist" \
   "products/bestseller_sync.py" \
   "products/bestseller_sync.log" \
-  "Amazon Best Sellers senkronizasyonu, 5 gunde bir (TAM OTOMATIK)"
+  "Amazon Best Sellers senkronizasyonu, 5 gunde bir (TAM OTOMATIK)" \
+  6
 
 check_agent "net.toyscout.gsc" \
   "$LA/net.toyscout.gsc.plist" \

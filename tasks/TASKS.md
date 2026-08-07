@@ -6,7 +6,12 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 3 Ağu 2026 — **GSC turu (B0-YENI)**: yapılandırılmış veri
+Son güncelleme: 7 Ağu 2026 — **büyük temizlik turu (B0-AGU7)**: Downloads kopyası
+çatalladığı yakalandı ve **silindi** (5 ürün kurtarıldı) · Best Sellers ajanı 4 Ağu
+turunu kaçırmıştı, elle tetiklendi (**katalog 117 → 132**) · `verify.sh`'in yanlış
+yeşil verdiği yer düzeltildi · **post12 yayında** · GSC turu: tıkanmış 3 istek + post12
+gönderildi. Deploy: `178fbe6` · `9135dff` · `3a48efc`.
+Onceki: 3 Ağu 2026 — **GSC turu (B0-YENI)**: yapılandırılmış veri
 doğrulaması **Passed**, sitemap bugün okundu; indeksleme istekleri tıkandı.
 Aynı gün **takvim bölümü (§0) eklendi** — tarihli her iş tek tabloda.
 Onceki: 1 Ağu 2026 — **video denetimi (A5-C)** · **post11 yayında (A7)** ·
@@ -26,23 +31,28 @@ hem buradan hem ilgili bölümden işaretle.
 | Ne zaman | İş | Kim/Nasıl | Bölüm |
 |---|---|---|---|
 | **Her gün 22:15** | GSC turu (denetim + ~10 indeksleme isteği) | launchd bildirir, tur **elle** yapılır | A2 |
-| **4 Ağu 2026** | **post12** blog yazısı (3 günde bir kadans) | elle yazılıp deploy | A7 |
-| **~4 Ağu 2026** | Best Sellers senkronu (5 günde bir) | **tam otomatik** — ama **deploy etmez**, sonucu gözden geçirip push et | A1 |
-| **Her A1 turundan sonra** | Log'da `Supabase ping: 200` satırını doğrula | `tail products/bestseller_sync.log` | A6 |
 | **7–11 Ağu 2026** | 16-A…20-B videoları (10 ürün) | CapCut, henüz üretilmedi | A5-B |
-| **~7 Ağu 2026** | Best Sellers senkronu (bir sonraki tur) | otomatik | A1 |
-| Tarihsiz, sıradaki turda | `/post11`, `/product/arts-crafts/24`, `/25` indeksleme isteği | GSC, **URL başına en fazla 2 deneme** | B0-YENI |
+| **10 Ağu 2026** | **post13** blog yazısı (3 günde bir kadans) | elle yazılıp deploy | A7 |
+| **~12 Ağu 2026** | Best Sellers senkronu (5 günde bir; sayaç 7 Ağu turundan başlar) | **tam otomatik** — ama **deploy etmez**, sonucu gözden geçirip push et | A1 |
+| **Her A1 turundan sonra** | Log'da `Supabase ping: 200` satırını doğrula + `verify.sh`'te "son gercek calisma" | `bash tasks/verify.sh` | A6 |
+| Tarihsiz, sıradaki turda | `B0GCC4HQRP` (Mattel KPop Rumi bebek) — kategori elle atanacak | 7 Ağu turu "ELLE BAKILACAK" dedi | A1 |
+| Tarihsiz, kullanıcıda | **`toyscout-master` Vercel projesini sil** — mükerrer canlı kopya | kullanıcı, Vercel paneli | B0-AGU7 |
 | Tarihsiz, kullanıcıda | Vercel panelinden Web Analytics'i aç | kullanıcı | A6 |
 | Tarihsiz, telefonda | TikTok mükerrer silme + 9 açıklama düzeltmesi | **sadece telefondan** | A5 |
 | Tarihsiz | 09-A (SEREED) videosu · 04-A kısa sürüm yeniden yükleme | üretim | A5-C |
 | Tarihsiz, karar bekliyor | Görsel tarama yükü (`Disallow: /frames/`) | kullanıcı kararı | B |
+| ~~4 Ağu~~ | ~~post12~~ | ✅ 7 Ağu'da yayında (3 gün gecikmeli) | A7 |
+| ~~4 Ağu~~ | ~~Best Sellers senkronu~~ | ✅ kaçırıldı, 7 Ağu'da elle tetiklendi | B0-AGU7 |
+| ~~Tarihsiz~~ | ~~`/post11`, `/product/arts-crafts/24`, `/25` indeksleme~~ | ✅ 7 Ağu'da üçü de gönderildi | B0-AGU7 |
 
 **Sabit çalışma kuralları (her turda geçerli):**
-- Tüm iş **`~/Projects/toyscout`**'ta yapılır. `~/Downloads/toyscout-master` bayat
-  kopyadır, launchd oradaki dosyaları görmez (A0).
+- Tüm iş **`~/Projects/toyscout`**'ta yapılır. `~/Downloads/toyscout-master`
+  **7 Ağu 2026'da silindi** (Çöp Kutusu'nda `toyscout-master-silindi-20260807`).
+  Yeniden indirilirse **hemen sil** — 3 Ağu'da bir tur oraya yazılıp kayboldu (A0).
 - Tur başında **`bash tasks/verify.sh`** — TASKS.md'ye değil, makineye bak.
-- GSC mülkü **üçüncü Google hesabında** (`authuser=2`, URL-prefix); doğrudan giriş
-  adresi B0-YENI'de.
+- GSC mülkü **`authuser=0`**'da (⚠️ 7 Ağu'da değişti, eskiden `authuser=2`'ydi —
+  Chrome hesap sırası kayabiliyor; "erişiminiz yok" görürsen `u/0…u/3`'ü sırayla dene).
+  Doğrudan giriş adresi B0-YENI'de.
 - Deploy: bu klasör git deposu değil, **`gh api` Git Data API** ile push edilir (D).
 
 ---
@@ -175,6 +185,94 @@ Liste sanallaştırılmış ve kaydırınca **boş satır** render ediyor; saya�
 "Gönderiler 16" gibi yanlış/eksik bir rakam gösteriyor. **Sayım için Studio'yu değil
 `tiktok.com/@toyscoutnet` profil ızgarasını kullan** — orada 6'lı satırlar hâlinde
 hepsi görünüyor. Studio'daki arama kutusu da yazılan metni almıyor.
+
+---
+
+## B0-AGU7. 7 AĞU 2026 — iki sessiz arıza yakalandı, dördü de kapatıldı
+
+**Turun başında `verify.sh` 13/13 YEŞİL veriyordu. Üçü yalandı.** Aşağıdakilerin
+hiçbiri kayıttan anlaşılmıyordu; hepsi makineye bakarak bulundu.
+
+### 🔴 1. İki kopya çatalladı — 5 ürün canlıya hiç çıkmamış
+
+31 Tem'de "byte-byte aynı" denen `~/Downloads/toyscout-master` ile
+`~/Projects/toyscout` ayrışmıştı:
+
+| | Projects (doğru) | Downloads (bayat taban) |
+|---|---|---|
+| Ürün | 117 (= canlı) | **122** |
+| Blog | post1–11 | post1–**9** |
+| `index.html` | 1 Ağu, 167 KB | 3 Ağu, **153 KB** |
+
+Downloads eski bir GitHub zip'iydi ama **3 Ağu 18:55'te katalog turu orada
+çalıştırılmış**. Sonuç: `B01HLJ7RNK`, `B06XL1B7QN`, `B07D4RN9NH`, `B0991GLP6L`,
+`B0CGHC2BSR` yalnızca yanlış klasörde, canlıda yok.
+
+**Yapılan:** 5 ürün + 26 görsel Projects'e taşındı, 117 ortak üründe 73 alan
+(fiyat/puan/yorum/BSR) tazelendi, deploy `178fbe6`. Downloads kopyası **silindi**.
+⚠️ Downloads `index.html`'i olduğu gibi deploy edilseydi post10 + post11 silinecekti.
+
+### 🔴 2. Best Sellers ajanı 4 Ağu turunu kaçırdı — verify.sh göremiyordu
+
+`launchctl print` → **`runs = 1`**: ajan 30 Tem'deki elle kickstart'tan beri hiç
+tetiklenmemiş. 5 günlük `StartInterval`'e göre ~4 Ağu turu düşmüş.
+
+**Neden yeşil görünüyordu:** `verify.sh` "son çalışma"yı log'un son tarih satırından
+okuyordu; o satır 31 Tem'deki `Supabase ping: 200`'dü — sync'ten değil, **ayrı bir kod
+yolundan** gelen bir satır. A0'daki hatanın birebir aynısı: izleyici yanlış sinyale bakıyor.
+
+**Yapılan:** `check_agent()` artık `launchctl print`'ten **`runs`** sayacını ve
+ajanın kendi **`*.stdout.log`** mtime'ını okuyor; 6 günden eskiyse KIRMIZI verip
+`launchctl kickstart` komutunu yazıyor. Log'un son satırı yalnızca stdout log yoksa,
+"dolaylı kanıt" etiketiyle kullanılıyor.
+
+Tur elle tetiklendi (exit 0, `runs=2`): **10 yeni ürün, 44 ürün tazelendi,
+katalog 122 → 132**, sitemap 163 URL. Deploy `9135dff`.
+**ELLE BAKILACAK:** `B0GCC4HQRP` (Mattel KPop Demon Hunters Rumi) kategori
+belirlenemedi, katalogda yok — `dolls` kategorisine elle eklenebilir.
+
+### 🟠 3. Mükerrer canlı kopya: `toyscout-master.vercel.app`
+
+Downloads kopyasında bir `.vercel` bağlantısı çıktı (`projectName: toyscout-master`)
+ve **o adres 200 dönüyor** — 3 Ağu'da oradan ayrı bir Vercel projesi deploy edilmiş.
+Hafifletici: sayfa `<link rel="canonical" href="https://www.toyscout.net/">` taşıyor,
+yani Google asıl siteye yönlendiriyor. Yine de tarama bütçesi yiyor.
+`vercel.json`'daki 301 listesi bu hostu **kapsamıyor** (yalnızca `toyscout.vercel.app`
+ve `toyscout-kolik.vercel.app` var).
+**→ Kullanıcı Vercel panelinden `toyscout-master` projesini silmeli.**
+
+### ✅ 4. GSC turu — tıkanmış üç istek de geçti
+
+Mülk artık **`authuser=0`**'da (3 Ağu'da `authuser=2`'ydi; `u/2` şimdi
+toyscoutnet@gmail.com, `u/1` info@kolikshop.com, `u/3` iamsudeai@gmail.com).
+
+| Rapor | Değer | Not |
+|---|---|---|
+| `/sitemap.xml` | Success, **Last read 7 Ağu**, 147 sayfa | yerel 163'e çıktı, sonraki okumada güncellenir |
+| Pages | Indexed 4 / Not indexed 40 | ⚠️ **Last update 7/24** — rapor **14 gündür donmuş**, bu sayılar 2 haftalık |
+| Product snippets | 55 geçerli, 0 geçersiz | 3 Ağu ile aynı |
+| Merchant listings | 47 geçerli, 0 geçersiz | 3 Ağu ile aynı |
+| Review snippets | 161 geçerli, 0 geçersiz | 3 Ağu ile aynı |
+| Breadcrumbs | 10 geçerli | 9'du |
+| Manual actions | No issues detected | temiz |
+
+**📈 Performance (28 gün): 0 tıklama · 277 gösterim · ort. konum 29.2.**
+3 Ağu'da 3 aylık toplam 185'ti; 28 günde 277 — yükseliş sürüyor, tıklama hâlâ 0.
+
+**İndeksleme istekleri — 4/4 başarılı** (3 Ağu'da 5 denemede geçmeyenler dahil):
+`/post11` ✅ · `/product/arts-crafts/24` ✅ · `/product/arts-crafts/25` ✅ · `/post12` ✅.
+**Kural işe yaradı:** her URL için Overview'a dönüp yenile → kutuya iki kez tıkla →
+yaz → **zoom ile doğrula** → Enter. Kutuya navigate sonrası ilk yazma her seferinde
+yutuldu; zoom doğrulaması olmasa üçü de boş Enter'la gidecekti.
+
+### 🔎 "Discovered - currently not indexed" listesinde ürün sayfası YOK
+37 URL'nin tamamı statik sayfa, blog yazısı ve `/shop/*` kategori sayfası — ve
+büyük kısmı **sondaki slash mükerreri** (`/blog/`, `/contact/`, `/post1/`,
+`/shop/games/` …). Bu URL'ler 308 ile slash'sıza dönüyor; iç linklerimizde
+slash'lı sürüm **yok** (sitemap, browse.html, index.html tarandı, temiz).
+Google kendi tahminiyle veya eski dış linklerden bulmuş. **Kovalanacak bir hata değil.**
+Not: bu liste 7/24 tarihli, yani 30 Tem'deki ürün sitemap düzeltmesinden **önceki**
+duruma ait — ürünlerin listede olmaması bundan.
 
 ---
 
@@ -804,7 +902,7 @@ başka yerde kalmadı (tarandı).
 - [x] **Sitemap okunmuyor sorunu — ÇÖZÜLDÜ.** `/sitemap.xml` 143 URL, Success, 30 Tem okundu.
 - [x] **Kalan 2 indeksleme isteği — 1 Ağu'da GÖNDERİLDİ.** Liste boşaldı.
 - [x] **`sitemap-products.xml` GSC'den KALDIRILDI (1 Ağu)** + robots.txt'ten çıkarıldı.
-- [ ] **Sıradaki turun İLK İŞİ: `/post11` indeksleme isteği** — 3 Ağu'da 5 denemede de
+- [x] ~~**Sıradaki turun İLK İŞİ: `/post11` indeksleme isteği**~~ — 7 Ağu'da gönderildi (B0-AGU7) — 3 Ağu'da 5 denemede de
       "problem submitting" hatası verdi (bkz. B0-YENI). Yanına `/product/arts-crafts/24`
       ve `/25` (30 Tem'de eklenen iki yeni ürün, ikisi de hiç taranmamış).
       Blog sayfası ürün sayfasından ~9 kat verimli (A7), post11 sıranın başında.
@@ -814,10 +912,10 @@ başka yerde kalmadı (tarandı).
       Breadcrumbs 9, hepsi **0 geçersiz** (31 Tem: 49/43/145/9 — hepsi arttı).
 - [ ] **Vercel Web Analytics'i aç** (bkz. A6) — şu an ziyaretçi ölçümü sıfır.
 - [x] **post11 — 1 Ağu'da YAYINLANDI** (2 gün erken, gerekçe A7'de). Sıradaki **post12 = 4 Ağu**.
-- [ ] **post12 — 4 Ağu 2026.** Konu katalog derinliğine göre seçilecek (A7'deki
+- [x] ~~**post12 — 4 Ağu 2026.**~~ — 7 Ağu'da yayında, party favor konusu (B0-AGU7) Konu katalog derinliğine göre seçilecek (A7'deki
       kurallar + "yeni yazı eklerken 9 nokta" listesi). Blog, ürün sayfasından
       ~9 kat verimli olduğu için kadans kaçırılmamalı.
-- [ ] **~4 Ağu: Best Sellers senkron çıktısını gözden geçir ve DEPLOY ET.** Ajan
+- [x] ~~**~4 Ağu: Best Sellers senkron çıktısını gözden geçir ve DEPLOY ET.**~~ — tur kaçırılmıştı, 7 Ağu'da elle çalıştırılıp deploy edildi (B0-AGU7) Ajan
       otomatik çalışır ama **push etmez** — `js/data.js`, `sitemap-products.xml` ve
       `browse.html` yerelde kalır. Tur sonrası: `bash tasks/verify.sh` ("canlı X
       ürün, yerelde Y" uyarısı çıkarsa deploy bekliyor demektir), log'da
