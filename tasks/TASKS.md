@@ -36,7 +36,7 @@ hem buradan hem ilgili bölümden işaretle.
 | **~12 Ağu 2026** | Best Sellers senkronu (5 günde bir; sayaç 7 Ağu turundan başlar) | **tam otomatik** — ama **deploy etmez**, sonucu gözden geçirip push et | A1 |
 | **Her A1 turundan sonra** | Log'da `Supabase ping: 200` satırını doğrula + `verify.sh`'te "son gercek calisma" | `bash tasks/verify.sh` | A6 |
 | Tarihsiz, sıradaki turda | `B0GCC4HQRP` (Mattel KPop Rumi bebek) — kategori elle atanacak | 7 Ağu turu "ELLE BAKILACAK" dedi | A1 |
-| Tarihsiz, kullanıcıda | **`toyscout-master` Vercel projesini sil** — mükerrer canlı kopya | kullanıcı, Vercel paneli | B0-AGU7 |
+| **12–16 Ağu 2026** | 21-A…25-B videoları (10 ürün) | Sheet'e eklendi, henüz üretilmedi | A5-B |
 | Tarihsiz, kullanıcıda | Vercel panelinden Web Analytics'i aç | kullanıcı | A6 |
 | Tarihsiz, telefonda | TikTok mükerrer silme + 9 açıklama düzeltmesi | **sadece telefondan** | A5 |
 | Tarihsiz | 09-A (SEREED) videosu · 04-A kısa sürüm yeniden yükleme | üretim | A5-C |
@@ -44,6 +44,7 @@ hem buradan hem ilgili bölümden işaretle.
 | ~~4 Ağu~~ | ~~post12~~ | ✅ 7 Ağu'da yayında (3 gün gecikmeli) | A7 |
 | ~~4 Ağu~~ | ~~Best Sellers senkronu~~ | ✅ kaçırıldı, 7 Ağu'da elle tetiklendi | B0-AGU7 |
 | ~~Tarihsiz~~ | ~~`/post11`, `/product/arts-crafts/24`, `/25` indeksleme~~ | ✅ 7 Ağu'da üçü de gönderildi | B0-AGU7 |
+| ~~Tarihsiz~~ | ~~`toyscout-master` Vercel projesini sil~~ | ✅ kullanıcı sildi, 7 Ağu — adres artık 404 | B0-AGU7 |
 
 **Sabit çalışma kuralları (her turda geçerli):**
 - Tüm iş **`~/Projects/toyscout`**'ta yapılır. `~/Downloads/toyscout-master`
@@ -239,7 +240,7 @@ Hafifletici: sayfa `<link rel="canonical" href="https://www.toyscout.net/">` ta�
 yani Google asıl siteye yönlendiriyor. Yine de tarama bütçesi yiyor.
 `vercel.json`'daki 301 listesi bu hostu **kapsamıyor** (yalnızca `toyscout.vercel.app`
 ve `toyscout-kolik.vercel.app` var).
-**→ Kullanıcı Vercel panelinden `toyscout-master` projesini silmeli.**
+**✅ ÇÖZÜLDÜ — kullanıcı 7 Ağu'da projeyi sildi;** `toyscout-master.vercel.app` artık **404**.
 
 ### ✅ 4. GSC turu — tıkanmış üç istek de geçti
 
@@ -746,7 +747,37 @@ Yeniden kırpılıp ikisine de kısa sürüm yüklenmeli. 7 denetimdir açık.
    Kategori dağılımı: oyun 2 · bebek 1 · sanat 2 · parti 2 · spor 1 · yenilik 1 · öğrenme 1.
    17-B (slime) ve 20-A (öğretmen/okula dönüş) mevsimsel olarak şu an zirvede.
 
-3. **`TikTok Başlık ve Hashtag` sekmesi baştan yazıldı.** Eskiden satırların çoğu sekme
+3. **10 yeni video daha eklendi: `21-A` … `25-B`** (7 Ağu 2026; ana sekme satır 41-50,
+   TikTok sekmesi satır 42-51), **12-16 Ağu 2026**. 16-A…20-B'nin tamamı iki platforma
+   da zamanlandığı için sıra bir sonraki partiye geldi.
+   Seçim: 7 Ağu Best Sellers turundan sonraki 132 ürünlük katalogdan, **kampanyada
+   kullanılmamış**, 4.6★+ ve 3.000+ yorumlu ürünler; yorum sayısına göre sıralandı.
+
+   | Slot | Ürün | ASIN | Fiyat | Yorum | Puan |
+   |---|---|---|---:|---:|---:|
+   | 21-A | Crayola Mini Twistables 50'li | B07D4T2XKB | $13.83 | 50.551 | 4.7 |
+   | 21-B | LeapFrog LeapTop Touch | B06XL1B7QN | $29.90 | 30.697 | 4.7 |
+   | 22-A | Hasbro Connect 4 | B06XY881H4 | $11.41 | 19.320 | 4.8 |
+   | 22-B | RUBFAC Altın Balon 129'lu | B09T6QFR2J | $7.19 | 9.236 | 4.6 |
+   | 23-A | Prang Fon Kartonu | B0009IR3UI | $4.79 | 6.898 | 4.7 |
+   | 23-B | 260 Balon Hayvan Balonu 100'lü | B09L7MDNH6 | $5.88 | 5.914 | 4.6 |
+   | 24-A | LiKee Vantuzlu Banyo Oyuncakları | B097B3K46R | $9.99 | 5.229 | 4.8 |
+   | 24-B | nobasco Mochi Squishy 30'lu | B0BVNSDG2W | $6.99 | 5.020 | 4.6 |
+   | 25-A | USAOPOLY Flip 7 | B0DWGVM7RY | $7.97 | 4.878 | **4.9** |
+   | 25-B | MAGNA-TILES microMAGS 26 Parça | B0CX4RLCXW | $19.97 | 3.354 | 4.8 |
+
+   Kategori dağılımı: sanat 2 · oyun 2 · parti 2 · bebek 1 · öğrenme 1 · yenilik 1 · yapı 1.
+   **Varyant tuzağına düşmemek için elendi:** tüm Play-Doh hamur paketleri (01-A varyantı),
+   Bunch O Balloons 350'lik (03-A), UNO Splash (05-A), Oball çıngırağı (08-A),
+   Crayola Broad Line kalemler (06-B), Crayola silinebilir kuru boya (20-A),
+   JoyCat suyla boyama (05-B).
+   ⚠️ **İki üründe fiyat yok** (Gamfeiny denge bisikleti `B0BLMF98S8`, iPlay iLearn
+   bas-bırak arabalar `B0BTBV51KY`) — Amazon o gün `curl`'ü engellediği için fiyat
+   çekilemedi, ikisi de listeden çıkarıldı. Bir sonraki senkron fiyatı getirirse aday olurlar.
+   ⚠️ **25-B not:** MAGNA-TILES, 01-B'deki PicassoTiles'a kategori olarak komşu; farkı
+   *seyahat boyu* 26 parça olması. Videoda bu açı öne çıkarılmalı, yoksa tekrar gibi durur.
+
+4. **`TikTok Başlık ve Hashtag` sekmesi baştan yazıldı.** Eskiden satırların çoğu sekme
    karakterleriyle **tek hücreye** sıkışmıştı, kopyalanamıyordu. Artık **A1:E41**, 40 video:
 
    | Sütun | İçerik |
