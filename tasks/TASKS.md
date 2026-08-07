@@ -39,12 +39,13 @@ hem buradan hem ilgili bölümden işaretle.
 | **12–16 Ağu 2026** | 21-A…25-B videoları (10 ürün) | Sheet'e eklendi, henüz üretilmedi | A5-B |
 | Tarihsiz, telefonda | 9 TikTok açıklamasındaki Türkçe ad + `01-A` slot kodu | **sadece telefondan** | A5 |
 | Tarihsiz | 09-A (SEREED) videosu · 04-A kısa sürüm yeniden yükleme | üretim | A5-C |
-| Tarihsiz, karar bekliyor | Görsel tarama yükü (`Disallow: /frames/`) | kullanıcı kararı | B |
 | ~~4 Ağu~~ | ~~post12~~ | ✅ 7 Ağu'da yayında (3 gün gecikmeli) | A7 |
 | ~~4 Ağu~~ | ~~Best Sellers senkronu~~ | ✅ kaçırıldı, 7 Ağu'da elle tetiklendi | B0-AGU7 |
 | ~~Tarihsiz~~ | ~~`/post11`, `/product/arts-crafts/24`, `/25` indeksleme~~ | ✅ 7 Ağu'da üçü de gönderildi | B0-AGU7 |
 | ~~Tarihsiz~~ | ~~`toyscout-master` Vercel projesini sil~~ | ✅ kullanıcı sildi, 7 Ağu — adres artık 404 | B0-AGU7 |
 | ~~Tarihsiz~~ | ~~Vercel Web Analytics'i aç~~ | ✅ 7 Ağu — script 200 döndü | A6 |
+| ~~Tarihsiz~~ | ~~Görsel tarama yükü kararı~~ | ✅ 7 Ağu — `Disallow: /frames/` deploy edildi | B |
+| **Sonraki GSC turunda** | Crawl stats'te görsel oranı %75-78'den düştü mü? | GSC → Ayarlar → Crawl stats | B |
 
 **Sabit çalışma kuralları (her turda geçerli):**
 - Tüm iş **`~/Projects/toyscout`**'ta yapılır. `~/Downloads/toyscout-master`
@@ -963,7 +964,18 @@ başka yerde kalmadı (tarandı).
       `browse.html` yerelde kalır. Tur sonrası: `bash tasks/verify.sh` ("canlı X
       ürün, yerelde Y" uyarısı çıkarsa deploy bekliyor demektir), log'da
       `Supabase ping: 200` satırını doğrula, sonra `gh api` ile push (D).
-- [ ] **Görsel tarama yükü kararı.** Crawl stats: 90 günde 208 istek / 91.9 MB,
+- [x] ~~**Görsel tarama yükü kararı.**~~ **KARAR VERİLDİ 7 Ağu 2026: `Disallow: /frames/`
+      eklendi ve deploy edildi** (`06986a4`, canlı doğrulandı).
+      Sadece dekoratif hero kareleri (240 JPG) kapatıldı; **`assets/products` bilerek
+      açık bırakıldı** — gerçek ürün görselleri, Google Images'tan trafik gelebilir.
+      Kapatmadan önce doğrulandı: `frames/` hiçbir `<script>`/`<link>` etiketinde
+      geçmiyor, sitemap'lerde yok, JS ile dinamik yükleniyor → render için gerekli değil.
+      Gerçek kullanıcılar etkilenmiyor (kareler hâlâ 200 dönüyor; robots.txt yalnızca
+      tarayıcılara talimat).
+      **Beklenti düşük tutulmalı:** amaç tarama bütçesi kazanmak değil, Crawl stats
+      raporunu okunur kılmak. Sonraki turda bak: görsel oranı %75-78'den düştü mü?
+      Aşağısı kararın dayandığı ölçüm.
+      Crawl stats: 90 günde 208 istek / 91.9 MB,
       **%75-78'i görsel**, HTML yalnızca %13. Diskte `assets/products` 697 dosya /114 MB;
       bunun **576'sı galeri varyantı (`_1`…`_5`) = 95 MB**, ana görseller 19 MB.
       **Ama bunu "görseller HTML'i aç bırakıyor" diye okuma:** Google'ın crawl-budget
