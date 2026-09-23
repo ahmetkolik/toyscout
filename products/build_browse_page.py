@@ -47,6 +47,7 @@ CATS = [
     ('learning-education', 'Learning & Education', '📚'),
     ('novelty', 'Novelty & Gag Toys', '🪄'),
     ('party', 'Party Supplies', '🎉'),
+    ('musical-instruments', "Kids' Musical Instruments", '🎵'),
     ('puppets', 'Puppets', '🧦'),
     ('puzzles', 'Puzzles', '🧩'),
     ('sports-outdoor', 'Sports & Outdoor Play', '⚽'),

@@ -64,7 +64,7 @@ CURATED_KEYS = ("bsr", "gallery", "reviews")
 CATEGORIES = [
     "action-figures", "arts-crafts", "baby-toddler", "building-toys",
     "dolls", "dress-up", "games", "hobbies", "kids-electronics",
-    "learning-education", "novelty", "party", "puppets", "puzzles",
+    "learning-education", "novelty", "party", "musical-instruments", "puppets", "puzzles",
     "sports-outdoor", "plush", "rc-vehicles", "ride-ons", "video-games",
 ]
 
