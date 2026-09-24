@@ -6,7 +6,8 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 7 Ağu 2026 (akşam) — **§A9 HUNİ DURUMU eklendi**: affiliate ve trafik
+Son güncelleme: 24 Eyl 2026 — **katalog 134 → 1.004 ürün (18 kategori)**: Toys & Games'in 20 alt kategorisinin Best Sellers + Hot New Releases listelerinden (`products/subcat_sync.py` + Chrome ile çekim, `products/browser_import/`). Canlıda (`098fd9c`, `b5bb54b`, `c15bc0b` + bu tur). GSC: sitemap yeniden gönderildi (1.041 URL), 6 yeni kategori sayfası için indeksleme isteği gönderildi (musical-instruments, puzzles, rc-vehicles, kids-electronics, dress-up, puppets). Site: sahte yaş çipi / "SCOUT PICK" / hazır artı-eksi cümleleri kaldırıldı — yaş, rozet, özellikler ve yorumlar artık gerçek Amazon verisi; `data.js` sürümlü + 1 yıl önbellek (`products/stamp_data_version.py`). **AÇIK / KULLANICI KARARI:** (1) Supabase projesi `toyscout` DURAKLATILMIŞ — iletişim formu, bülten ve tıklama analitiği çalışmıyor (kullanıcı şimdilik atla dedi). (2) `~/Projects/toyscout` ESKİ (165 ürün) — oradan deploy YAPMA; ajanlar için karar bekliyor. (3) Ana sayfa metinleri ("Only 4.5★+", "1M+ reviews analyzed", "Rachel S." yorumu) veriyle doğrulanamıyor. (4) Associates vergi bilgisi + 180 gün/3 satış kuralı (A9) hâlâ açık.
+Onceki: 7 Ağu 2026 (akşam) — **§A9 HUNİ DURUMU eklendi**: affiliate ve trafik
 katmanları tek tek ölçüldü. Özet: teknik taraf temiz (izleme + tag doğrulandı), 30 günde
 **50 tıklama / 0 sipariş / $0**, ama o tıklamaların neredeyse tamamı **siteden değil**
 sosyal bio linklerinden geliyor — site şu an huninin içinde değil. Sıfır satış 50

@@ -1252,7 +1252,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 
 <div id="view" role="region" aria-live="polite"></div>
 
-<script src="/js/data.js"></script>
+<script src="/js/data.js?v=94e68365"></script>
 <script>
 /* ================= ToyScout — award build ================= */
 (function(){
@@ -1312,9 +1312,9 @@ var CAT_BLOG = {
 var CAT_EMOJI = {}; CATS.forEach(function(c){CAT_EMOJI[c[0]]=c[2]});
 function stockedCats(){return CATS.filter(function(c){return (D[c[0]]||[]).length>0})}
 
+/* Rozet YALNIZCA gercek Amazon siralamasindan turetilir (bsr); veri yoksa rozet gosterilmez. */
+function badgeFor(p){var b=p.bsr||[],i;for(i=0;i<b.length;i++){if(b[i].rank<=10)return "TOP 10"}for(i=0;i<b.length;i++){if(b[i].cat==="Toys & Games"&&b[i].rank<=100)return "TOP 100"}return ""}
 function productsFor(catId){
-  var AGE_OVR={"baby-toddler":["0–2","0–2","3–5"],"plush":["0–2","3–5","6–8"],"ride-ons":["0–2","3–5","6–8"],"kids-electronics":["6–8","9–12","Teen+"],"video-games":["6–8","9–12","Teen+"],"novelty":["6–8","9–12","Teen+"],"hobbies":["6–8","9–12","Teen+"]};
-  var ages=AGE_OVR[catId]||["3–5","6–8","9–12"];
   return (D[catId]||[]).map(function(p,i){
     return {
       idx:i, asin:p.asin||"", name:p.name, img:A(p.img),
@@ -1322,7 +1322,7 @@ function productsFor(catId){
       rc:p.rc||0, ratings:fmt(p.rc||0), rating:p.rating||0, stars:starStr(p.rating),
       gallery:((p.gallery&&p.gallery.length)?p.gallery:[p.img]).map(A),
       reviews:p.reviews||[], bsr:p.bsr||[], bullets:p.bullets||[],
-      badge:p.badge||"SCOUT PICK", age:p.age||ages[i%ages.length],
+      badge:p.badge||badgeFor(p), age:p.age||"",
       url:p.url||amazonSearchUrl(p.name), catId:catId
     };
   });
@@ -1510,7 +1510,7 @@ function shopProducts(){
 }
 function cardHtml(p,withDesc){
   return '<a class="pcard" href="/product/'+p.catId+'/'+p.idx+'" data-prod="'+p.catId+':'+p.idx+'" data-tilt3d>'+
-    '<div class="ph"><span class="badge" >'+esc(p.badge)+'</span><span class="agechip">AGES '+esc(p.age)+'</span><img loading="lazy" src="'+esc(p.img)+'" alt="'+esc(cut(p.name,80))+'"></div>'+
+    '<div class="ph">'+(p.badge?'<span class="badge">'+esc(p.badge)+'</span>':"")+(p.age?'<span class="agechip">AGES '+esc(p.age)+'</span>':"")+'<img loading="lazy" src="'+esc(p.img)+'" alt="'+esc(cut(p.name,80))+'"></div>'+
     '<div class="pc-body"><div class="pc-name">'+esc(p.shortName||cut(p.name,70))+'</div>'+
     (withDesc&&p.desc?'<div class="pc-desc">'+esc(p.desc)+'</div>':'')+
     '<div class="pc-meta"><span class="pc-price">'+esc(p.price)+'</span><span class="pc-stars">'+p.stars+'</span><span class="pc-rc">'+p.ratings+'</span></div>'+
@@ -1555,21 +1555,18 @@ function vProduct(){
   var i=p.idx;
   var pool=list.filter(function(x){return x.idx!==i});
   Object.keys(D).forEach(function(cid){ if(cid===s.shopCat) return; productsFor(cid).forEach(function(x){pool.push(x)}); });
-  var PROS=[["Consistently top-rated by verified buyers","Sturdy build quality survives rough play","Easy setup — playable within minutes","Strong value for its price range"],
-    ["One of the fastest-rising toys in its category","High replay value — kids return to it daily","Quality materials with a premium feel","Great gift pick with giftable packaging"],
-    ["Backed by thousands of 5-star family reviews","Grows with your child across age stages","Encourages screen-free, open-ended play","Holds resale value unusually well"]][i%3];
-  var CONS=[["Popular colors and styles sell out fast","Box is larger than expected — plan storage"],
-    ["Slightly above average price for the category","Small parts — mind the age recommendation"],
-    ["High demand causes occasional shipping delays","Instructions could be clearer for first-timers"]][i%3];
+  var PROS=(p.bullets||[]).slice(0,4).map(function(t){return cut(t.replace(/^[A-Z0-9 &'\-\/,]{3,40}\s[-–—:]\s+/,""),150)});
+  var CONS=[]; if(p.rating) CONS.push("Rated "+p.rating+" out of 5 by "+p.ratings+" shoppers on Amazon");
+  p.bsr.slice(0,3).forEach(function(x){CONS.push("Ranked #"+fmt(x.rank)+" in "+x.cat)});
   var faqs=[
-    {q:"Is this appropriate for ages "+p.age+"?",a:"Yes — the manufacturer and the majority of reviewers place it squarely in the "+p.age+" range. Younger kids may need adult help at first; always check the safety notes on the listing."},
-    {q:"Why is it marked “"+p.badge+"”?",a:"Badges come straight from our daily scan of Amazon's charts. “"+p.badge+"” reflects this product's current position in the "+(CAT_MAP[s.shopCat]||"")+" department."},
-    {q:"Is the price shown the final price?",a:"We show an approximate range ("+p.price+") from recent listings. Amazon sets the final price — always confirm on the product page before buying."}];
+    p.age?{q:"What age is this recommended for?",a:"Amazon lists the manufacturer's recommended age for this product in the "+p.age+" range. Always check the age grading and safety notes on the Amazon listing, and supervise younger children."}:null,
+    p.badge?{q:"What does “"+p.badge+"” mean?",a:"It means at least one of this product's Amazon Best Sellers Ranks (see “Sales rank” above) is "+(p.badge==="TOP 10"?"10 or better":"100 or better in Toys & Games")+" at the time we last checked. Ranks change constantly."}:null,
+    {q:"Is the price shown the final price?",a:"We show the price from our last check ("+p.price+"). Amazon sets the final price and it changes often — always confirm on the Amazon product page before buying."}].filter(Boolean);
   var alt1=pool[0]||p, alt2=pool[1]||p;
   var related=pool.slice(0,3);
   var gal=p.gallery, gi=Math.min(s.galIdx||0,gal.length-1);
   var bsrTxt=p.bsr.map(function(b){return "#"+fmt(b.rank)+" in "+b.cat}).join(" · ");
-  var specs=[["AGE RANGE",p.age+" years"],["PRICE RANGE",p.price],["RATING",p.rating?p.rating+" out of 5":"—"],["RATINGS",p.ratings+" global ratings"],["SALES RANK",p.bsr.length?"#"+fmt(p.bsr[0].rank)+" in "+p.bsr[0].cat:"—"],["TREND STATUS",p.badge],["DEPARTMENT",CAT_MAP[s.shopCat]||""]];
+  var specs=[["AGE RANGE",p.age?p.age+" years":"—"],["PRICE RANGE",p.price],["RATING",p.rating?p.rating+" out of 5":"—"],["RATINGS",p.ratings+" global ratings"],["SALES RANK",p.bsr.length?"#"+fmt(p.bsr[0].rank)+" in "+p.bsr[0].cat:"—"],["TREND STATUS",p.badge||"—"],["DEPARTMENT",CAT_MAP[s.shopCat]||""]];
   var cmp=[["PRICE",p.price,alt1.price,alt2.price],["RATING",(p.rating||"—")+"★",(alt1.rating||"—")+"★",(alt2.rating||"—")+"★"],["RATINGS",p.ratings,alt1.ratings,alt2.ratings],["RANK",p.bsr.length?"#"+p.bsr[0].rank:"—",alt1.bsr.length?"#"+alt1.bsr[0].rank:"—",alt2.bsr.length?"#"+alt2.bsr[0].rank:"—"],["AGES",p.age,alt1.age,alt2.age],["TREND",p.badge,alt1.badge,alt2.badge]];
   return '<div class="v-wrap">'+
     '<div class="crumbs"><a href="/" data-go="home">Home</a> › <a href="/shop/'+s.shopCat+'" data-cat="'+s.shopCat+'">'+esc(CAT_MAP[s.shopCat]||"")+'</a> › <span style="color:var(--red)">Review</span></div>'+
@@ -1577,7 +1574,7 @@ function vProduct(){
       '<div class="pd-imgbox"><div class="main"><img id="pd-main" src="'+esc(gal[gi])+'" alt="'+esc(cut(p.name,80))+'"></div>'+
       (gal.length>1?'<div class="pd-thumbs">'+gal.map(function(g,k){return '<button data-gal="'+k+'" style="border:'+(k===gi?"2px solid var(--blue)":"2px solid rgba(20,34,90,.12)")+'"><img src="'+esc(g)+'" alt=""></button>'}).join("")+'</div>':"")+'</div>'+
       '<div>'+
-        '<div class="pd-badges"><span class="pd-badge">'+esc(p.badge)+'</span><span class="pd-badge alt">AGES '+esc(p.age)+'</span>'+(p.bsr.length?'<span class="pd-badge" style="background:var(--blue)">#'+p.bsr[0].rank+' BEST SELLER</span>':"")+'</div>'+
+        '<div class="pd-badges">'+(p.badge?'<span class="pd-badge">'+esc(p.badge)+'</span>':"")+(p.age?'<span class="pd-badge alt">AGES '+esc(p.age)+'</span>':"")+(p.bsr.length&&p.bsr[0].rank<=100?'<span class="pd-badge" style="background:var(--blue)">#'+p.bsr[0].rank+' BEST SELLER</span>':"")+'</div>'+
         '<h1 class="pd-name">'+esc(p.name)+'</h1>'+
         '<div class="pd-rate"><span class="stars">'+p.stars+'</span><span>'+p.rating+' out of 5 · '+p.ratings+' global ratings on Amazon</span></div>'+
         (bsrTxt?'<div class="pd-bsr">Amazon Best Sellers Rank: '+esc(bsrTxt)+'</div>':"")+
@@ -1585,8 +1582,8 @@ function vProduct(){
           '<a class="btn btn-red" target="_blank" rel="noopener sponsored" href="'+esc(p.url)+'">View current price on Amazon <span class="arr">→</span></a>'+
           '<div class="note">Price and availability set by Amazon · affiliate link</div></div>'+
         '<div class="pl-cols">'+
-          '<div class="pl-box good"><h4>What we love</h4><ul>'+PROS.map(function(t){return '<li><span class="ic">✓</span>'+t+'</li>'}).join("")+'</ul></div>'+
-          '<div class="pl-box bad"><h4>Keep in mind</h4><ul>'+CONS.map(function(t){return '<li><span class="ic">✕</span>'+t+'</li>'}).join("")+'</ul></div>'+
+          (PROS.length?'<div class="pl-box good"><h4>Key features (from the Amazon listing)</h4><ul>'+PROS.map(function(t){return '<li><span class="ic">✓</span>'+esc(t)+'</li>'}).join("")+'</ul></div>':"")+
+          (CONS.length?'<div class="pl-box good"><h4>By the numbers</h4><ul>'+CONS.map(function(t){return '<li><span class="ic">•</span>'+esc(t)+'</li>'}).join("")+'</ul></div>':"")+
         '</div>'+
       '</div>'+
     '</div>'+
