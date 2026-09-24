@@ -6,7 +6,29 @@ bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
 
 **Durumu doğrulamak için:** `bash tasks/verify.sh`
 
-Son güncelleme: 24 Eyl 2026 — **katalog 134 → 1.004 ürün (18 kategori)**: Toys & Games'in 20 alt kategorisinin Best Sellers + Hot New Releases listelerinden (`products/subcat_sync.py` + Chrome ile çekim, `products/browser_import/`). Canlıda (`098fd9c`, `b5bb54b`, `c15bc0b` + bu tur). GSC: sitemap yeniden gönderildi (1.041 URL), 6 yeni kategori sayfası için indeksleme isteği gönderildi (musical-instruments, puzzles, rc-vehicles, kids-electronics, dress-up, puppets). Site: sahte yaş çipi / "SCOUT PICK" / hazır artı-eksi cümleleri kaldırıldı — yaş, rozet, özellikler ve yorumlar artık gerçek Amazon verisi; `data.js` sürümlü + 1 yıl önbellek (`products/stamp_data_version.py`). **AÇIK / KULLANICI KARARI:** (1) Supabase projesi `toyscout` DURAKLATILMIŞ — iletişim formu, bülten ve tıklama analitiği çalışmıyor (kullanıcı şimdilik atla dedi). (2) `~/Projects/toyscout` ESKİ (165 ürün) — oradan deploy YAPMA; ajanlar için karar bekliyor. (3) Ana sayfa metinleri ("Only 4.5★+", "1M+ reviews analyzed", "Rachel S." yorumu) veriyle doğrulanamıyor. (4) Associates vergi bilgisi + 180 gün/3 satış kuralı (A9) hâlâ açık.
+Son güncelleme: 24 Eyl 2026 — **katalog 134 → 1.004 ürün (18 kategori)**: Toys & Games'in 20 alt kategorisinin Best Sellers + Hot New Releases listelerinden (`products/subcat_sync.py` + Chrome ile çekim, `products/browser_import/`). Canlıda (`098fd9c`, `b5bb54b`, `c15bc0b` + bu tur). GSC: sitemap yeniden gönderildi (1.041 URL), 6 yeni kategori sayfası için indeksleme isteği gönderildi (musical-instruments, puzzles, rc-vehicles, kids-electronics, dress-up, puppets). Site: sahte yaş çipi / "SCOUT PICK" / hazır artı-eksi cümleleri kaldırıldı — yaş, rozet, özellikler ve yorumlar artık gerçek Amazon verisi; `data.js` sürümlü + 1 yıl önbellek (`products/stamp_data_version.py`). **AÇIK / KULLANICI KARARI:** (1) Supabase projesi `toyscout` DURAKLATILMIŞ — iletişim formu, bülten ve tıklama analitiği çalışmıyor (kullanıcı şimdilik atla dedi). (2) `~/Projects/toyscout` ile `~/Downloads/Toyscout` (git klonu) 24 Eyl'de BİRLEŞTİRİLDİ ve eşitlendi (Projects'teki 22 Eyl ürünleri/betikleri klona alındı, klondaki 1.016 ürünlük katalog Projects'e yazıldı). İkisini tekrar ayrıştırma: değişiklikleri tek yerde yap, sonra diğerine rsync et; deploy için git push (klon) kullan. (3) Ana sayfa metinleri ("Only 4.5★+", "1M+ reviews analyzed", "Rachel S." yorumu) veriyle doğrulanamıyor. (4) Associates vergi bilgisi + 180 gün/3 satış kuralı (A9) hâlâ açık. Kalite eşiği notu: 22 Eyl'de kaldırılmıştı (`bestseller_sync.py`); 24 Eyl'de kullanıcı toplu importta "eşiği koru" dedi → `subcat_sync.py` ≥4.4★/≥50 yorum uyguluyor, `bestseller_sync.py` eşiksiz kalıyor — hangisinin geçerli olacağı netleşmeli.
+Onceki: 22 Eylül 2026 — **6 haftalık aradan sonra ilk tur, GSC + katalog
+genişletme.** GSC'de ilk kez gerçek organik tıklama görüldü (3 ayda 7 tıklama,
+6'sı `/post8` squishy&fidget yazısından — bkz. `notes/2026-09-22-gsc-keyword-log.md`),
+indeksli sayfa 4→29'a çıktı. Bu veriyle **kullanıcı kararı: MIN_RATING/MIN_REVIEWS
+kalite eşiği (eskisi 29 Tem: 4.4★+/50+ yorum) tamamen KALDIRILDI** — artık puanı/yorumu
+az veya hiç olmayan ürünler de ekleniyor (bkz. `bestseller_sync.py` ve
+`gsc_theme_search.py` docstring'leri). Bu turda katalog **132 → 165 ürüne** çıktı:
+Best Sellers senkronu (+15, 45 gün kaçırılmış turdan), yeni `products/gsc_theme_search.py`
+ile GSC temalarına hedefli arama (+14: squishy/fidget, family board games, baby rattle),
+yeni `products/new_releases_sync.py` ile Amazon New Releases taraması (+4, geri kalan
+~56 aday **Amazon rate-limit'e takıldı** — session içinde çok sayıda istek atıldığı için
+ürün sayfası fetch'leri "okunamadı" döndü, birkaç saat sonra tekrar denenmeli).
+Ayrıca `CAT_RULES`'a hiç olmayan **'doll' kuralı eklendi** (dolls kategorisi daha önce
+hiçbir otomatik eşlemeyle dolmuyordu) + 'beyblade'/'spinning top' → games.
+**3 ürün hâlâ elle kategori bekliyor** (bsr boş döndü, rate-limit yüzünden):
+LEGO Snowman Ornaments 40812 (`B0G2KJ8V5R`, → building-toys), Mah Jong Card 4Pcs
+(`B0H6FHNDWY`, → games), Magic: The Gathering Commander Deck Bundle (`B0GXCBW828`,
+→ games). **Henüz deploy edilmedi** — kullanıcı önce yerelde (`localhost:8000`,
+`~/Projects/toyscout`'ta calisan http.server) inceleyecek. Supabase yine DURAKLAMIŞ
+(aynı 7 Ağu arızası) — restore gerekiyor. Kolik keyword-research skill'i
+`~/.claude/skills/keyword-research/` altına kuruldu (Helium 10 tabanlı Amazon PPC
+araştırması için, bu GSC log'undan farklı bir araç).
 Onceki: 7 Ağu 2026 (akşam) — **§A9 HUNİ DURUMU eklendi**: affiliate ve trafik
 katmanları tek tek ölçüldü. Özet: teknik taraf temiz (izleme + tag doğrulandı), 30 günde
 **50 tıklama / 0 sipariş / $0**, ama o tıklamaların neredeyse tamamı **siteden değil**
@@ -37,6 +59,10 @@ hem buradan hem ilgili bölümden işaretle.
 
 | Ne zaman | İş | Kim/Nasıl | Bölüm |
 |---|---|---|---|
+| **1. sıra — yarın (23 Eylül 2026)** | Kalan ~56 New Releases ürününü ekle | `python3 products/new_releases_sync.py` (22 Eylül'de rate-limit'e takıldı, tekrar dene) | E |
+| **2. sıra — yarın, (1) bitince** | 3 elle-bakılacak ürünü kategoriye ata | LEGO Snowman Ornaments→building-toys, Mah Jong Card→games, MTG Commander Deck→games | E |
+| **3. sıra — (1)+(2) bitince** | **DEPLOY ET** (gh api ile push, canlıya çıkar) | kullanıcı onayladı: "hepsini ekledikten sonra deploy edersin" | E |
+| **4. sıra — deploy'dan SONRA** | GSC tarafını güncelle: sitemap yeniden gönder + yeni ürün sayfaları icin indeksleme + genel GSC turu | kullanıcı onayladı: "en son gsc tarafını güncellersin" | E |
 | **Her gün 22:15** | GSC turu (denetim + ~10 indeksleme isteği) | launchd bildirir, tur **elle** yapılır | A2 |
 | **7–11 Ağu 2026** | 16-B…20-B videoları (9 ürün; 16-A iptal) | CapCut, henüz üretilmedi | A5-B |
 | **10 Ağu 2026** | **post13** blog yazısı (3 günde bir kadans) | elle yazılıp deploy | A7 |
@@ -1003,6 +1029,59 @@ başka yerde kalmadı (tarandı).
 
 ---
 
+## E. 📦 22 Eylül 2026 — katalog genişletme turu (DEVAM EDİYOR, sıradaki adımlar §0'da)
+
+6 haftalık aradan sonra ilk tur. GSC'de ilk kez gerçek organik tıklama görüldü
+(bkz. `notes/2026-09-22-gsc-keyword-log.md`) — bu veriyle kullanıcı **kalite
+eşiğini kaldırma kararı aldı** ve kataloğu hem genel Best Sellers hem GSC
+temaları hem de Amazon New Releases üzerinden genişletmeye karar verdi.
+
+**Kural değişikliği:** `bestseller_sync.py` ve `gsc_theme_search.py`'daki
+MIN_RATING(4.4)/MIN_REVIEWS(50) eşiği **kaldırıldı** (eski karar: 29 Tem 2026).
+Artık puanı/yorumu az veya hiç olmayan ürünler de ekleniyor. Sadece varyant
+kontrolü (veri doğruluğu) ve kategori tespiti hâlâ geçerli.
+
+**Bu turda yapılanlar:**
+- `bestseller_sync.py` elle tetiklendi (45 gün kaçırılmıştı): +15 ürün.
+- Yeni **`products/gsc_theme_search.py`** yazıldı — GSC log'undaki yüksek
+  talep temalarını (squishy/fidget, family board games, baby rattle) doğrudan
+  Amazon aramasından tarar, kategoriyi temaya göre doğrudan atar (BSR tahmini
+  değil). +14 ürün. "balance bike" teması rate-limit'e takıldı, script'ten
+  kaldırıldı (THEMES listesi).
+- Yeni **`products/new_releases_sync.py`** yazıldı — Amazon New Releases
+  (Toys & Games) sayfalarını `bestseller_sync.parse_list_page` ile aynı
+  mantıkla tarar, kategoriyi `pick_category()` (BSR+başlık) ile bulur.
+  Kullanıcı istegi: `https://www.amazon.com/gp/new-releases/toys-and-games/...pg=2`
+  linki + "100 ürünü ekle". Gerçekte o link 30 ürün (sıra 51-80) veriyordu;
+  sayfa 1 de eklenip 60 benzersiz ürüne çıkıldı, sayfa 3-6 boş döndü (muhtemelen
+  Amazon'un New Releases sayfalaması sadece 2 "gerçek" sayfa veriyor).
+  60'ından **sadece 4'ü** eklenebildi, **52'si Amazon rate-limit'ine takıldı**
+  (bkz. §D), **3'ü** bsr boş döndüğü için kategori belirlenemedi.
+- `CAT_RULES`'a hiç olmayan **'doll' kuralı eklendi** + 'beyblade'/'spinning top'
+  → games. Eskiden dolls kategorisi hiçbir otomatik eşlemeyle dolamıyordu.
+- Katalog: **132 → 165 ürün**. `js/data.js` doğrulandı, sitemap-products.xml +
+  sitemap.xml + browse.html yeniden üretildi. **Deploy edilmedi.**
+- Kullanıcı yerelde inceliyor: `~/Projects/toyscout`'ta `python3 -m http.server 8000`
+  çalışıyor, `http://localhost:8000/`.
+
+**Sıradaki adımlar** (kullanıcı onayladı, sırayla — bkz. §0 tablosu):
+1. Yarın (23 Eylül): kalan ~56 New Releases ürününü ekle
+   (`python3 products/new_releases_sync.py`, rate-limit gecmis olmali).
+2. 3 elle-bakılacak ürünü kategoriye ata:
+   `B0G2KJ8V5R` LEGO Snowman Ornaments 40812 → building-toys,
+   `B0H6FHNDWY` Mah Jong Card 4Pcs → games,
+   `B0GXCBW828` Magic: The Gathering Foundations Commander Deck Bundle → games.
+3. Tüm ekleme bitince **deploy et** (gh api ile push).
+4. Deploy'dan sonra **GSC tarafını güncelle**: sitemap.xml'i GSC'ye yeniden
+   gönder, yeni ürün sayfaları için indeksleme isteği gönder (bkz. A2 akışı),
+   genel bir GSC turu yap (Pages/Coverage/Performance kontrolü).
+
+**Ayrıca not:** keyword-research skill'i (`~/.claude/skills/keyword-research/`)
+bu turda kuruldu — Helium 10 CSV tabanlı Amazon PPC anahtar kelime araştırması
+için, GSC log'undan farklı bir araç, gerektiğinde ayrı kullanılır.
+
+---
+
 ## B. Açık işler (tarihli, bitince buradan sil)
 
 - [x] **29 Tem 22:1x — İLK OLUMLU SİNYAL: `/product/games/11` INDEKSLENDİ.**
@@ -1093,11 +1172,33 @@ başka yerde kalmadı (tarandı).
 - **Bu klasör bir git deposu değil.** Deploy GitHub Git Data API ile yapılır
   (`gh api` üzerinden): `git/ref` → `git/commits` → `git/blobs` → `git/trees`
   (`base_tree` ile) → `git/commits` → `PATCH git/refs/heads/master`.
-- **Klonlama çalışmaz.** `frames/` yüzünden `git clone` timeout oluyor;
-  `--depth 1 --filter=blob:none` kısmi klon bile 7 dakikada bitmedi (29 Tem).
+- **Klonlama artık çalışıyor** — 29 Tem'deki "`git clone` timeout oluyor"
+  notu **güncel değil**: 22 Eylül'de `gh repo clone ahmetkolik/toyscout` birkaç
+  saniyede bitti (başka bir klasöre, `~/Downloads/Toyscout`). Eskiden `frames/`
+  yüzünden sorun olabiliyordu; şu an sorun yok, gerekirse tekrar denenebilir.
 - **Python HTTPS isteği atamıyor** — bu makinedeki Python'da CA sertifikaları eksik
   (`CERTIFICATE_VERIFY_FAILED`). GitHub API çağrılarını `gh api` üzerinden yap.
 - **Amazon `curl` ile açılıyor** — normal masaüstü User-Agent +
   `Accept-Language: en-US` yeterli, captcha yok. Tarayıcı scrape'ine gerek yok.
+- **⚠️ Amazon rate-limit — 22 Eylül'de ilk kez net görüldü.** Tek oturumda
+  ~30 dakika içinde ~150+ istek (bestseller_sync + gsc_theme_search + New Releases
+  taramaları üst üste) atılınca Amazon urun sayfası fetch'lerinin **%85'i**
+  "sayfa okunamadı" döndü (kısa/bozuk yanıt, captcha değil). Liste sayfaları
+  (`fetch_list`/New Releases) de 3 sayfadan sonra tamamen bos donmeye basladi.
+  **Ders:** Bir oturumda birden fazla scraping script'i art arda calistirmadan
+  önce hacmi hesaba kat; 100+ urun/liste sayfası istegi gerekiyorsa birkaç saate
+  yay, hepsini tek turda bitirmeye calisma. Engellenince hemen tekrar denemek
+  ise yaramiyor — birkaç saat/gun beklemek gerekiyor.
+- **⚠️ `products/fetch_products.py`'ı ÇALIŞTIRMA.** `links.txt` dosyaları
+  (`products/<kategori>/links.txt`) 14 Temmuz'dan beri güncellenmedi ve artık
+  kataloğun küçük bir alt kümesini içeriyor (22 Eylül'de 165 ürün varken
+  links.txt'lerin toplamı ~100'dü). Bu script **js/data.js'i links.txt'lerden
+  TAM YENİDEN YAZAR** — çalıştırılırsa `bestseller_sync.py`/`gsc_theme_search.py`/
+  `new_releases_sync.py` ile eklenen onlarca ürün SİLİNİR. Yeni ürün eklemek için
+  bunun yerine `bestseller_sync.py`, `gsc_theme_search.py` veya
+  `new_releases_sync.py` kullan (hepsi mevcut kataloğu yükleyip üzerine ekler,
+  asla tam yeniden yazmaz). fetch_products.py'ın ayrıca argümanları doğrulamıyor
+  — `--help` bile gerçek bir çalıştırma başlatıyor (22 Eylül'de böyle oldu, şans
+  eseri js/data.js'e yazmadan durduruldu).
 - **Deploy sonrası doğrulama** Vercel edge cache yüzünden `?cb=$RANDOM` ile yapılmalı.
 - `tasks/` ve `notes/` `.vercelignore`'da — GitHub'da duruyor, canlı sitede 404.

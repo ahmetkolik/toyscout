@@ -16,12 +16,15 @@ Yaptiklari:
 YAPMADIKLARI: deploy etmez. Degisiklikler yereldedir; canliya cikmasi icin
 ayrica push gerekir (bkz. DEPLOY notu asagida).
 
-Kalite kurallari (kullanici karari, 29 Tem 2026):
-  - Sadece MIN_RATING (4.4) ve uzeri, en az MIN_REVIEWS yorumu olan urunler eklenir.
-  - Puani/yorumu olmayan yeni listelemeler eklenmez.
-  - Varyant tuzagi: basligi katalogdaki bir urunle cok benzeyen ASIN eklenmez
-    (ayni urunun renk/boy varyanti ayri ASIN olarak listede gorunebiliyor).
-  - Kategorisi guvenle belirlenemeyen urun eklenmez, log'a "elle bakilacak" yazilir.
+Kalite kurallari:
+  - 22 Eyl 2026 kullanici karariyla MIN_RATING/MIN_REVIEWS esigi KALDIRILDI
+    (eskisi, 29 Tem 2026: sadece 4.4*+ ve 50+ yorumu olan urunler eklenirdi).
+    Artik puani/yorumu dusuk veya hic olmayan urunler de eklenir.
+  - Varyant tuzagi hala gecerli: basligi katalogdaki bir urunle cok benzeyen
+    ASIN eklenmez (ayni urunun renk/boy varyanti ayri ASIN olarak listede
+    gorunebiliyor) — bu bir kalite esigi degil, veri dogrulugu kontrolu.
+  - Kategorisi guvenle belirlenemeyen urun eklenmez, log'a "elle bakilacak"
+    yazilir — bu da kalite degil, hangi diziye ekleneceginin bilinmemesi.
 """
 from __future__ import annotations
 
@@ -59,6 +62,11 @@ LIST_URLS = [
 # Amazon BSR alt kategori adi -> sitedeki kategori id'si.
 # Ilk eslesen anahtar kelime kazanir; sirasi onemli (ozelden genele).
 CAT_RULES = [
+    # 22 Eyl 2026: 'doll' icin hic kural yoktu (dolls kategorisi hicbir zaman
+    # otomatik doldurulamiyordu) — eklendi. Ozelden genele sirali kalmali.
+    ('doll clothing', 'dolls'), ('doll accessor', 'dolls'), ('playset', 'dolls'),
+    ('doll', 'dolls'),
+    ('beyblade', 'games'), ('spinning top', 'games'), ('gaming top', 'games'),
     ('action figure', 'action-figures'), ('toy figure', 'action-figures'),
     ('balloon', 'party'), ('party', 'party'),
     ('stuffed animal', 'plush'), ('plush', 'plush'), ('teddy', 'plush'),
@@ -400,13 +408,12 @@ def main():
     log(f'{upd} urun guncellendi')
 
     # --- 2) yeni urunleri ekle
+    # NOT: 22 Eyl 2026 kullanici karariyla MIN_RATING/MIN_REVIEWS esigi KALDIRILDI
+    # (eskisi: 29 Tem 2026, sadece 4.4*+ / 50+ yorum). Artik puani/yorumu dusuk
+    # veya hic olmayan urunler de eklenir. Bkz. tasks/TASKS.md.
     added = skipped = 0
     for r in listing:
         if r['asin'] in index:
-            continue
-        if not r['rating'] or r['rating'] < MIN_RATING or not r['rc'] or r['rc'] < MIN_REVIEWS:
-            log(f'  - {r["asin"]} atlandi (kalite: {r["rating"]}* / {r["rc"]} yorum)')
-            skipped += 1
             continue
 
         prod = fetch_product(r['asin'])
@@ -415,11 +422,6 @@ def main():
             log(f'  ! {r["asin"]} urun sayfasi okunamadi, atlandi')
             skipped += 1
             continue
-        if prod['rating'] and prod['rating'] < MIN_RATING:
-            log(f'  - {r["asin"]} atlandi (urun sayfasi puani {prod["rating"]}*)')
-            skipped += 1
-            continue
-
         dup = is_variant(prod['name'], d)
         if dup:
             log(f'  - {r["asin"]} atlandi (varyant: katalogdaki {dup} ile ayni urun)')
