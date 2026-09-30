@@ -115,12 +115,20 @@ else
   fail "js/data.js AYRISTIRILAMADI"
 fi
 
+C=$(head -c 40 js/catalog.js 2>/dev/null | grep -o 'TS_SRC="[0-9a-f]*' | cut -d'"' -f2)
+if [ "$C" = "$(md5 -q js/data.js | cut -c1-8)" ]; then
+  pass "js/catalog.js + js/detail/ data.js ile guncel"
+else
+  fail "js/catalog.js BAYAT -> python3 products/stamp_data_version.py calistir"
+fi
+
 B=$(ls js/data.js.bak-* 2>/dev/null | wc -l | tr -d ' ')
 pass "$B yedek duruyor (js/data.js.bak-*)"
 
 # --- canli site
 printf "\n${c_b}Canli site${c_0}\n"
-L=$(curl -s --max-time 20 "https://www.toyscout.net/js/data.js?cb=$RANDOM" | grep -o '"asin"' | wc -l | tr -d ' ')
+# Sayfanin yukledigi dosya js/catalog.js (data.js artik sadece kaynak).
+L=$(curl -s --max-time 20 "https://www.toyscout.net/js/catalog.js?cb=$RANDOM" | grep -o '"asin"' | wc -l | tr -d ' ')
 if [ "$L" = "$N" ]; then
   pass "canli katalog guncel — $L urun"
 else

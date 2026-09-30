@@ -310,6 +310,10 @@ def inject_into_site(data, dry_run=False):
         print("(dry-run: js/data.js degistirilmedi)")
         return
     SITE_FILE.write_text(updated, encoding="utf-8")
+    # Site data.js'i degil, ondan uretilen js/catalog.js + js/detail/ dosyalarini yukler.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import stamp_data_version
+    stamp_data_version.main()
 
 
 def main():

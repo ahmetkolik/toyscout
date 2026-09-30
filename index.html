@@ -1252,7 +1252,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 
 <div id="view" role="region" aria-live="polite"></div>
 
-<script src="/js/data.js?v=91a67eaa"></script>
+<script src="/js/catalog.js?v=0d687638"></script>
 <script>
 /* ================= ToyScout — award build ================= */
 (function(){
@@ -1314,14 +1314,26 @@ function stockedCats(){return CATS.filter(function(c){return (D[c[0]]||[]).lengt
 
 /* Rozet YALNIZCA gercek Amazon siralamasindan turetilir (bsr); veri yoksa rozet gosterilmez. */
 function badgeFor(p){var b=p.bsr||[],i;for(i=0;i<b.length;i++){if(b[i].rank<=10)return "TOP 10"}for(i=0;i<b.length;i++){if(b[i].cat==="Toys & Games"&&b[i].rank<=100)return "TOP 100"}return ""}
+/* Detay alanlari (gallery/bullets/reviews) kategori basina /js/detail/<cat>.json'da durur ve
+   ancak o kategoride bir urun sayfasi acilinca yuklenir (bkz. products/split_data.py). */
+var DET = {}, DET_V = window.TS_DETAIL_V || {}, detWait = {};
+function loadDetail(catId){
+  if(DET[catId]||!DET_V[catId]) return Promise.resolve();
+  if(!detWait[catId]) detWait[catId]=fetch("/js/detail/"+catId+".json?v="+DET_V[catId])
+    .then(function(r){return r.ok?r.json():null})
+    .then(function(a){if(a) DET[catId]=a; else delete detWait[catId];})
+    .catch(function(){delete detWait[catId];});
+  return detWait[catId];
+}
 function productsFor(catId){
   return (D[catId]||[]).map(function(p,i){
+    var x=(DET[catId]||[])[i]||p;
     return {
       idx:i, asin:p.asin||"", name:p.name, img:A(p.img),
       lo:p.lo!=null?p.lo:0, price:p.price||"See price on Amazon",
       rc:p.rc||0, ratings:fmt(p.rc||0), rating:p.rating||0, stars:starStr(p.rating),
-      gallery:((p.gallery&&p.gallery.length)?p.gallery:[p.img]).map(A),
-      reviews:p.reviews||[], bsr:p.bsr||[], bullets:p.bullets||[],
+      gallery:((x.gallery&&x.gallery.length)?x.gallery:[p.img]).map(A),
+      reviews:x.reviews||[], bsr:p.bsr||[], bullets:x.bullets||[],
       badge:p.badge||badgeFor(p), age:p.age||"",
       url:p.url||amazonSearchUrl(p.name), catId:catId
     };
@@ -1335,7 +1347,7 @@ function topPicks(){
     if(!p) return;
     var raw=(D[d[0]]||[])[d[1]]||{};
     p.shortName=cut(p.name,60);
-    p.desc=cut((raw.bullets&&raw.bullets[0])||"Scouted from this week's Amazon best-seller charts.",110);
+    p.desc=cut(raw.sd||(raw.bullets&&raw.bullets[0])||"Scouted from this week's Amazon best-seller charts.",110);
     picks.push(p);
   });
   return picks;
@@ -1486,6 +1498,14 @@ function render(keepScroll){
   view.innerHTML=html;
   view.scrollTop=st;
   bindView();
+  // Urun sayfasi once hafif veriyle cizilir, detaylar gelince yeniden cizilir;
+  // kategori sayfasinda detaylar tiklamadan once arka planda indirilir.
+  if((p==="product"||(p==="shop"&&!(state.searchQ||"").trim()))&&!DET[state.shopCat]){
+    var cat=state.shopCat;
+    loadDetail(cat).then(function(){
+      if(state.page==="product"&&state.shopCat===cat&&DET[cat]){render(true);updateSeo();}
+    });
+  }
 }
 
 /* ---------- shop view ---------- */

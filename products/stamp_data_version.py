@@ -1,21 +1,41 @@
 #!/usr/bin/env python3
-"""index.html'deki <script src="/js/data.js?v=..."> surumunu js/data.js'in icerik hash'ine gunceller.
+"""js/data.js'ten js/catalog.js + js/detail/*.json uretir (split_data.py) ve
+index.html ile pre-render sayfalarindaki <script src="/js/catalog.js?v=..."> surumunu
+catalog.js'in icerik hash'ine gunceller.
 
-Neden: vercel.json, ?v= parametresi OLAN /js/data.js istekleri icin 1 yillik `immutable` onbellek verir.
-Katalog her degistiginde (subcat_sync, bestseller_sync, elle duzenleme) bu betik calistirilmali,
-yoksa ziyaretciler eski katalogu gorur. Kullanim: python3 products/stamp_data_version.py
+Neden: vercel.json, ?v= parametresi OLAN /js/catalog.js ve /js/detail/* istekleri icin 1 yillik
+`immutable` onbellek verir. Katalog her degistiginde (subcat_sync, bestseller_sync, elle duzenleme)
+bu betik calistirilmali, yoksa ziyaretciler eski katalogu gorur. Kullanim: python3 products/stamp_data_version.py
 """
-import hashlib, os, re, sys
+import glob, hashlib, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import split_data
+
+# Eski (data.js) ve yeni (catalog.js) etiketi eslesir, boylece ilk calistirma gecisi de yapar.
+TAG = re.compile(r'<script src="/js/(?:data|catalog)\.js(?:\?v=[0-9a-f]+)?"></script>')
+
+
 def main():
-    v = hashlib.md5(open(os.path.join(ROOT, 'js', 'data.js'), 'rb').read()).hexdigest()[:8]
+    split_data.main()
+    v = hashlib.md5(open(os.path.join(ROOT, 'js', 'catalog.js'), 'rb').read()).hexdigest()[:8]
+    tag = f'<script src="/js/catalog.js?v={v}"></script>'
     p = os.path.join(ROOT, 'index.html')
     s = open(p, encoding='utf-8').read()
-    n, k = re.subn(r'<script src="/js/data\.js(?:\?v=[0-9a-f]+)?"></script>', f'<script src="/js/data.js?v={v}"></script>', s)
+    n, k = TAG.subn(tag, s)
     if k != 1:
-        raise SystemExit(f'data.js script etiketi bulunamadi/birden fazla ({k}) — index.html degismedi')
+        raise SystemExit(f'katalog script etiketi bulunamadi/birden fazla ({k}) — index.html degismedi')
     open(p, 'w', encoding='utf-8').write(n)
-    print('data.js surumu:', v)
+    # prerender.py index.html'i kopyalar; hangi sirayla calistirilirsa calistirilsin surum ayni kalsin.
+    pages = glob.glob(os.path.join(ROOT, 'product', '*', '*', 'index.html')) + glob.glob(os.path.join(ROOT, 'shop', '*', 'index.html'))
+    for f in pages:
+        s = open(f, encoding='utf-8').read()
+        n = TAG.sub(tag, s, count=1)
+        if n != s:
+            open(f, 'w', encoding='utf-8').write(n)
+    print('catalog.js surumu:', v, f'({len(pages)} pre-render sayfasi)')
     return v
+
+
 if __name__ == '__main__':
     main()

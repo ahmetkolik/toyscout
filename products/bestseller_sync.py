@@ -128,6 +128,10 @@ def load_catalog():
 def save_catalog(d):
     open(DATA, 'w', encoding='utf-8').write(
         'window.TS_DATA=' + json.dumps(d, ensure_ascii=False, separators=(',', ':')) + ';')
+    # Site data.js'i degil, ondan uretilen js/catalog.js + js/detail/ dosyalarini yukler.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import stamp_data_version
+    stamp_data_version.main()
 
 
 def backup():
