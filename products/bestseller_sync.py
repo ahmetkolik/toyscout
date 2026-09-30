@@ -66,6 +66,9 @@ CAT_RULES = [
     # otomatik doldurulamiyordu) — eklendi. Ozelden genele sirali kalmali.
     ('doll clothing', 'dolls'), ('doll accessor', 'dolls'), ('playset', 'dolls'),
     ('doll', 'dolls'),
+    # 1 Eki 2026: Amazon "Squeeze Toys" alt kategorisi hicbir kurala uymuyordu; urunler ya
+    # atlaniyor ya da basliktaki rastgele bir kelimeyle yanlis kategoriye (sports-outdoor) dusuyordu.
+    ('squeeze', 'novelty'),
     ('beyblade', 'games'), ('spinning top', 'games'), ('gaming top', 'games'),
     ('action figure', 'action-figures'), ('toy figure', 'action-figures'),
     ('balloon', 'party'), ('party', 'party'),
@@ -76,7 +79,7 @@ CAT_RULES = [
     ('magnetic playboard', 'building-toys'),
     ('baby', 'baby-toddler'), ('infant', 'baby-toddler'), ('toddler', 'baby-toddler'),
     ('rattle', 'baby-toddler'), ('teether', 'baby-toddler'),
-    ('card game', 'games'), ('board game', 'games'), ('game', 'games'), ('puzzle', 'games'),
+    ('puzzle', 'puzzles'), ('card game', 'games'), ('board game', 'games'), ('game', 'games'),
     ('learning', 'learning-education'), ('education', 'learning-education'),
     ('flash card', 'learning-education'),
     ('sport', 'sports-outdoor'), ('outdoor', 'sports-outdoor'), ('water', 'sports-outdoor'),
