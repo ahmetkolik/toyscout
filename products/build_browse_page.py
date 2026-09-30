@@ -124,8 +124,7 @@ def main():
         items = []
         for i, p in enumerate(d[c]):
             bits = []
-            if p.get('price'):
-                bits.append(f'<span class="price">{esc(p["price"])}</span>')
+            # Fiyat gosterilmez (CLAUDE.md kurali: sitede hicbir yerde fiyat yok).
             if p.get('rating'):
                 rc = f' · {p["rc"]:,} reviews' if p.get('rc') else ''
                 bits.append(f'<span class="star">★</span> {esc(p["rating"])}{rc}')
@@ -141,7 +140,7 @@ def main():
 
     # Kept under ~155 chars so Google doesn't truncate it in the SERP.
     DESC = esc(f"The complete ToyScout catalog: {total} of Amazon's best-selling, "
-               f"top-rated toys across {len(order)} categories, with current prices and ratings.")
+               f"top-rated toys across {len(order)} categories, with ratings and reviews.")
 
     # CollectionPage + ItemList (one entry per category section) + breadcrumb.
     # Gives the crawler a machine-readable map of what this page links to.
@@ -155,7 +154,7 @@ def main():
                 "name": f"All Toys — Browse the Full ToyScout Catalog ({total} Toys)",
                 "description": (f"The complete ToyScout catalog: {total} of Amazon's "
                                 f"best-selling, top-rated toys across {len(order)} categories, "
-                                f"with current prices and ratings."),
+                                f"with ratings and reviews."),
                 "isPartOf": {"@type": "WebSite", "name": "ToyScout",
                              "url": "https://www.toyscout.net/"},
                 "dateModified": today,

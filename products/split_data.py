@@ -10,10 +10,33 @@ Bu betik ondan sunlari uretir:
 Neden: detay alanlari data.js'in ~%85'i; her ilk ziyarette 2.9 MB (950 KB gzip) inmesin.
 Dogrudan calistirmaya gerek yok: stamp_data_version.py bunu cagirir.
 """
-import hashlib, json, os, shutil
+import hashlib, json, os, re, shutil
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DETAIL_KEYS = ('gallery', 'bullets', 'reviews')
+
+# CLAUDE.md kurali: sitede hicbir yerde fiyat gosterilmez. Amazon ilan maddeleri ("SAVE UP TO $70",
+# "$7.99/month") ve musteri yorumlari ("got it for $12") da fiyat tasiyabiliyor; bunlar sayfaya gitmez
+# (data.js'te kalir). "$1 bills" gibi oyuncak para birimleri fiyat degildir, haric tutulur.
+PRICE_RE = re.compile(r'\$\s?\d[\d,]*(?:\.\d+)?(?!\s*(?:bills?|BILLS?|coins?)\b)|\d+\s?\u00a2')
+
+
+def has_price(text):
+    return bool(PRICE_RE.search(text or ''))
+
+
+def clean_detail(p):
+    """Sayfaya gidecek detay alanlari — fiyat iceren madde/yorumlar ayiklanmis."""
+    out = {}
+    if p.get('gallery'):
+        out['gallery'] = p['gallery']
+    b = [x for x in (p.get('bullets') or []) if not has_price(x)]
+    if b:
+        out['bullets'] = b
+    r = [x for x in (p.get('reviews') or []) if not has_price(x.get('title')) and not has_price(x.get('body'))]
+    if r:
+        out['reviews'] = r
+    return out
 
 
 def dump(o):
@@ -31,12 +54,14 @@ def main():
     for cat, items in data.items():
         light[cat], det = [], []
         for i, p in enumerate(items):
-            lp = {k: v for k, v in p.items() if k not in DETAIL_KEYS}
+            # price/lo sayfaya hic gitmez (CLAUDE.md kurali: sitede fiyat gosterilmez).
+            lp = {k: v for k, v in p.items() if k not in DETAIL_KEYS and k not in ('price', 'lo')}
             # Ana sayfadaki "top picks" kartlari her kategorinin 0. urununun ilk maddesini gosterir.
-            if i == 0 and p.get('bullets'):
-                lp['sd'] = p['bullets'][0][:200]
+            cd = clean_detail(p)
+            if i == 0 and cd.get('bullets'):
+                lp['sd'] = cd['bullets'][0][:200]
             light[cat].append(lp)
-            det.append({k: p[k] for k in DETAIL_KEYS if p.get(k)})
+            det.append(cd)
         body = dump(det)
         open(os.path.join(ddir, cat + '.json'), 'w', encoding='utf-8').write(body)
         ver[cat] = hashlib.md5(body.encode('utf-8')).hexdigest()[:8]

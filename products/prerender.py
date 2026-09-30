@@ -8,6 +8,8 @@ Re-run after ANY change to js/data.js or index.html head (then stamp_data_versio
 Output: product/, shop/ (generated; safe to delete and regenerate).
 """
 import html, json, os, re, shutil, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from split_data import has_price  # CLAUDE.md kurali: fiyat iceren ilan maddeleri sayfaya gitmez
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://www.toyscout.net'
@@ -70,9 +72,9 @@ def main():
             continue
         cname = CAT[cat]
         # shop page
-        lis = ''.join(f'<li><a href="/product/{cat}/{i}">{E(p["name"])}</a> — {E(p.get("price") or "")} · {(p.get("rating") or 0)}★ ({fmt((p.get("rc") or 0))} ratings)</li>'
+        lis = ''.join(f'<li><a href="/product/{cat}/{i}">{E(p["name"])}</a> — {(p.get("rating") or 0)}★ ({fmt((p.get("rc") or 0))} ratings)</li>'
                       for i, p in enumerate(items))
-        desc = f"Today's best-selling {cname.lower()} on Amazon with live prices, star ratings, review counts and age filters — updated from the official best-seller chart."
+        desc = f"Today's best-selling {cname.lower()} on Amazon with star ratings, review counts and age filters — updated from the official best-seller chart."
         ld = {"@context": "https://schema.org", "@type": "ItemList", "name": f"{cname} — Amazon Best Sellers on ToyScout",
               "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": ldname(p['name']), "url": f"{BASE}/product/{cat}/{i}"} for i, p in enumerate(items)]}
         body = f'<div style="font-family:sans-serif;padding:24px;max-width:900px;margin:auto"><h1>{E(cname)} — Today\'s Amazon Best Sellers</h1><p>{E(desc)}</p><ol>{lis}</ol><p><a href="/">ToyScout home</a></p></div>'
@@ -81,32 +83,22 @@ def main():
         for i, p in enumerate(items):
             name = p['name']
             bsr = p.get('bsr') or []
-            price = p.get('price') or 'See price on Amazon'
             rating, rc = p.get('rating') or 0, p.get('rc') or 0
             rank = f"Amazon Toys & Games rank #{bsr[0]['rank']}. " if bsr else ''
-            title = cut(name, 58) + ' — Review, Price & Rank | ToyScout'
-            desc = cut(f'{rank}{name} — {price}, rated {rating} out of 5 by {fmt(rc)} Amazon customers.', 158)
+            title = cut(name, 58) + ' — Reviews & Amazon Rank | ToyScout'
+            desc = cut(f'{rank}{name} — rated {rating} out of 5 by {fmt(rc)} Amazon customers.', 158)
             gal = p.get('gallery') or [p['img']]
-            pn = None
-            m = re.sub(r'[^0-9.]', '', str(price))
-            try:
-                pn = float(m) if m else None
-            except ValueError:
-                pn = None
-            pn = pn or p.get('lo') or None
+            # Fiyat/Offer yok (CLAUDE.md kurali: sitede hicbir yerde fiyat gosterilmez).
             ld = {"@context": "https://schema.org", "@type": "Product", "name": ldname(name),
-                  "image": [BASE + g for g in gal], "description": (p.get('bullets') or [name])[0],
+                  "image": [BASE + g for g in gal], "description": ([x for x in (p.get('bullets') or []) if not has_price(x)] or [name])[0],
                   "url": f"{BASE}/product/{cat}/{i}"}
-            if pn:
-                ld["offers"] = {"@type": "Offer", "price": pn, "priceCurrency": "USD",
-                                "availability": "https://schema.org/InStock", "url": p.get('url')}
             if rc > 0:
                 ld["aggregateRating"] = {"@type": "AggregateRating", "ratingValue": rating, "reviewCount": rc, "bestRating": 5}
-            bl = ''.join(f'<li>{E(b)}</li>' for b in (p.get('bullets') or [])[:6])
+            bl = ''.join(f'<li>{E(b)}</li>' for b in [x for x in (p.get('bullets') or []) if not has_price(x)][:6])
             rk = ''.join(f'<li>#{b["rank"]} in {E(b["cat"])}</li>' for b in bsr[:3])
             body = (f'<div style="font-family:sans-serif;padding:24px;max-width:900px;margin:auto"><h1>{E(name)}</h1>'
                     f'<img src="{E(gal[0])}" alt="{E(cut(name, 100))}" width="300">'
-                    f'<p>{E(price)} · rated {rating} out of 5 by {fmt(rc)} Amazon customers.</p>'
+                    f'<p>Rated {rating} out of 5 by {fmt(rc)} Amazon customers. <a href="{E(p.get("url") or "")}" rel="nofollow sponsored">See today\'s price on Amazon</a>.</p>'
                     f'{"<ul>" + rk + "</ul>" if rk else ""}{"<h2>Key features (from the Amazon listing)</h2><ul>" + bl + "</ul>" if bl else ""}'
                     f'<p><a href="/shop/{cat}">More {E(cname)}</a> · <a href="/">ToyScout home</a></p></div>')
             write(f'/product/{cat}/{i}', page(title, desc, f'/product/{cat}/{i}', body, ld, BASE + gal[0]))
