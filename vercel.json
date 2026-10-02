@@ -98,6 +98,10 @@
       "destination": "/post15.html"
     },
     {
+      "source": "/post16",
+      "destination": "/post16.html"
+    },
+    {
       "source": "/contact",
       "destination": "/index.html"
     },

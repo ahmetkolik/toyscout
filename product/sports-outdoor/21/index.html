@@ -134,6 +134,17 @@
       "blogPost": [
         {
           "@type": "BlogPosting",
+          "headline": "Best Family Card & Board Games for Game Night in 2026",
+          "datePublished": "2026-10-02",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/products/B06XZ9K244.jpg",
+          "url": "https://www.toyscout.net/post16"
+        },
+        {
+          "@type": "BlogPosting",
           "headline": "Best Christmas Gifts for Kids Under $25 in 2026, by Age",
           "datePublished": "2026-09-30",
           "author": {
@@ -1177,17 +1188,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post15" data-go="post15" data-rv>
+      <a class="bpost" href="/post16" data-go="post16" data-rv>
+        <div class="bp-img"><img src="/assets/products/B06XZ9K244.jpg" width="869" height="1500" alt="SKYJO family card game box" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Gift Guides · Oct 2, 2026</div><h3>Best family card &amp; board games for game night in 2026</h3><p>SKYJO, UNO and Exploding Kittens for the whole table, Monopoly Deal and Five Crowns for a quick round — ten picks, all 4.6★+.</p><div class="bp-read">Read the guide ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post15" data-go="post15" data-rv style="transition-delay:.12s">
         <div class="bp-img"><img src="/assets/products/B06XZ9K244.jpg" width="869" height="1500" alt="SKYJO family card game box" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Gift Guides · Sep 30, 2026</div><h3>Best Christmas gifts for kids under $25 in 2026, by age</h3><p>Ten toys under $25, each 4.7★+ with 25,000+ ratings — from Mega Bloks to SKYJO and Bananagrams, sorted by age.</p><div class="bp-read">Read the guide ⇢</div></div>
       </a>
-      <a class="bpost" href="/post14" data-go="post14" data-rv style="transition-delay:.12s">
+      <a class="bpost" href="/post14" data-go="post14" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/products/B00JM5GW10.jpg" width="1380" height="1500" alt="Play-Doh 10-pack of assorted color cans" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Buying Guides · Sep 30, 2026</div><h3>Which Play-Doh pack should you buy? Every size compared</h3><p>Six Play-Doh packs by can size, total compound and colours — the 10-pack, 36-pack, 12-pack of 4-oz cans and the handout packs.</p><div class="bp-read">Read the guide ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post13" data-go="post13" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/products/B0DRW6C2RF.jpg" width="986" height="1000" alt="LEGO Botanicals Happy Plants building set" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Gift Guides · Sep 30, 2026</div><h3>Best building toys for girls in 2026, by age</h3><p>PicassoTiles and MAGNA-TILES for preschoolers, Creator 3-in-1 animals at 7–8, LEGO Botanicals at 9–12 — nine picks, all 4.6★+.</p><div class="bp-read">Read the guide ⇢</div></div>
       </a>
     </div>
   </section>
@@ -1368,6 +1379,7 @@ function updateSeo(){
   else if(s.page==="post6"){title="Best Card & Board Games for Family Game Night in 2026 | ToyScout";desc="From a 4.9★ newcomer to the classics that never leave the shelf — the card and board games actually winning family game night this month.";}
   else if(s.page==="post7"){title="Best Building Toy Gifts for Kids in 2026 | ToyScout";desc="PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart right now, while the popular sets are still easy to find.";}
   else if(s.page==="post8"){title="Best Squishy & Fidget Toys Kids Can't Put Down in 2026 | ToyScout";desc="NeeDoh, kawaii squishy packs, and party-favor fidget bundles — what's actually topping the Novelty & Gag Toys chart this month.";}
+  else if(s.page==="post16"){title="Best Family Card & Board Games for Game Night in 2026 | ToyScout";desc="Ten family games for game night, from SKYJO, UNO and Exploding Kittens to Monopoly Deal, Five Crowns and Bananagrams — all rated 4.6★ or better, with 19,000 to 76,000 Amazon ratings each.";}
   else if(s.page==="post15"){title="Best Christmas Gifts for Kids Under $25 in 2026, by Age | ToyScout";desc="Ten Christmas gifts for kids under $25, each rated 4.7★+ with 25,000+ Amazon ratings — Mega Bloks, LeapFrog, Bluey figures, SKYJO, Kanoodle and Bananagrams, sorted by age.";}
   else if(s.page==="post14"){title="Which Play-Doh Pack Should You Buy? Every Size Compared | ToyScout";desc="Six Play-Doh packs compared by can size, total compound and colours — the 10-pack, 36-pack, 12-pack of 4-oz cans, 42- and 65-can packs and Halloween sticks — and which to buy.";}
   else if(s.page==="post13"){title="Best Building Toys for Girls in 2026, by Age | ToyScout";desc="Nine building toys girls love, by age — PicassoTiles and MAGNA-TILES for ages 3–5, LEGO Creator 3-in-1 animals for 7–8 and LEGO Botanicals for 9–12, all rated 4.6★ or better.";}
@@ -1448,7 +1460,7 @@ function applyRoute(){
   var catIds=stockedCats().map(function(c){return c[0]});
   if(p0==="shop"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; openView("shop",true); return; }
   if(p0==="product"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; state.prodIdx=Math.max(0,parseInt(parts[2],10)||0); state.galIdx=0; state.faqOpen=-1; openView("product",true); return; }
-  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","post11","post12","post13","post14","post15","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","post11","post12","post13","post14","post15","post16","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   goHome(true);
 }
 
@@ -1480,7 +1492,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10"||p==="post11"||p==="post12"||p==="post13"||p==="post14"||p==="post15") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10"||p==="post11"||p==="post12"||p==="post13"||p==="post14"||p==="post15"||p==="post16") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1614,6 +1626,7 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post16","Gift Guides · Oct 2, 2026","Best family card & board games for game night in 2026","SKYJO, UNO and Exploding Kittens for the whole table, Monopoly Deal and Five Crowns for a quick round — ten picks, all 4.6★+.","/assets/products/B06XZ9K244.jpg")+
     bp("/post15","Gift Guides · Sep 30, 2026","Best Christmas gifts for kids under $25 in 2026, by age","Ten toys under $25, each 4.7★+ with 25,000+ ratings — from Mega Bloks to SKYJO and Bananagrams, sorted by age.","/assets/products/B06XZ9K244.jpg")+
     bp("/post14","Buying Guides · Sep 30, 2026","Which Play-Doh pack should you buy? Every size compared","Six Play-Doh packs by can size, total compound and colours — the 10-pack, 36-pack, 12-pack of 4-oz cans and the handout packs.","/assets/products/B00JM5GW10.jpg")+
     bp("/post13","Gift Guides · Sep 30, 2026","Best building toys for girls in 2026, by age","PicassoTiles and MAGNA-TILES for preschoolers, Creator 3-in-1 animals at 7–8, LEGO Botanicals at 9–12 — nine picks, all 4.6★+.","/assets/products/B0DRW6C2RF.jpg")+
@@ -1635,6 +1648,38 @@ function aProd(name,meta,url){
   return '<div class="a-prod"><div class="t"><b>'+esc(name)+'</b><span>'+esc(meta)+'</span></div><a class="btn btn-blue" style="padding:11px 22px;font-size:14px" target="_blank" rel="noopener sponsored" href="'+esc(url)+'">View on Amazon</a></div>';
 }
 var POSTS={
+  post16:{meta:"Gift Guides · Oct 2, 2026 · By ToyScout Editors",h:"Best family card & board games for game night in 2026",
+    body:function(){return '<p class="a-lede">A good family game does three things: it takes five minutes to learn, it works for a seven-year-old and a grandparent at the same table, and it is over before anyone loses interest. We went through the 75 games on our Games chart and kept ten that fit, each rated <b>4.6&#9733; or better</b> with at least 19,000 Amazon ratings. Ratings and ranks are from our September 24, 2026 catalog check.</p>'+
+    '<h2>The quick answer</h2><ul>'+
+    '<li><b>Best all-round:</b> SKYJO, rated 4.8&#9733; across 76,155 ratings, the most-reviewed game we track.</li>'+
+    '<li><b>Easiest to learn:</b> UNO, with 60,942 ratings at 4.8&#9733;.</li>'+
+    '<li><b>Best for a quick round:</b> Monopoly Deal, which plays in about 15 minutes.</li>'+
+    '<li><b>Best for word lovers:</b> Bananagrams, 4.9&#9733; with 26,903 ratings.</li></ul>'+
+    '<h2>Card games for the whole table</h2>'+
+    '<p><b>1. SKYJO.</b> <b>#5 in Dedicated Deck Card Games</b> and #74 across all of Toys &amp; Games. You try to finish with the fewest points over several rounds, and the maths is simple addition, so younger players can keep up. <a href="/product/games/10" data-prod="games:10">See its full ToyScout page</a>.</p>'+
+    aProd("magilano SKYJO Card Game","★★★★★ 76,155 ratings","https://www.amazon.com/dp/B06XZ9K244?tag=kolico-20")+
+    '<p><b>2. UNO.</b> <b>#2 in Dedicated Deck Card Games</b>. Players match colours or numbers and race to empty their hand. The deck includes three blank Wild Cards, so each family can write its own house rules.</p>'+
+    aProd("Mattel Games UNO Card Game","★★★★★ 60,942 ratings","https://www.amazon.com/dp/B07P6MZPK3?tag=kolico-20")+
+    '<p><b>3. Taco Cat Goat Cheese Pizza.</b> <b>#4 in Dedicated Deck Card Games</b>. It is a fast, loud, slap-the-pile game that suits big groups and mixed ages, and it fits in a bag.</p>'+
+    aProd("Taco Cat Goat Cheese Pizza Card Game","★★★★★ 54,925 ratings","https://www.amazon.com/dp/B077Z1R28P?tag=kolico-20")+
+    '<p><b>4. Exploding Kittens.</b> For 2 to 5 players, ages 7 and up. You draw cards and use action cards to avoid the exploding kitten. It is the lowest-rated game on this list at <b>4.6&#9733;</b>, but it has 59,533 ratings behind that score, and it suits teens and adults as much as children.</p>'+
+    aProd("Exploding Kittens Original Edition","★★★★☆ 59,533 ratings","https://www.amazon.com/dp/B010TQY7A8?tag=kolico-20")+
+    '<h2>Quick-playing rummy and property games</h2>'+
+    '<p><b>5. Monopoly Deal.</b> It plays in about 15 minutes: you swap, steal and scheme to be the first to collect three complete property sets. It gives you the Monopoly feel without the three-hour board game.</p>'+
+    aProd("Monopoly Deal Card Game","★★★★★ 36,610 ratings","https://www.amazon.com/dp/B00NQQTZCO?tag=kolico-20")+
+    '<p><b>6. Five Crowns.</b> Rated <b>4.9&#9733;</b> across 34,429 ratings. A rummy-style game with a fifth suit of stars and rotating wild cards. It is a good choice for adult game nights that still include children.</p>'+
+    aProd("Five Crowns Rummy Style Card Game","★★★★★ 34,429 ratings","https://www.amazon.com/dp/B00000IV35?tag=kolico-20")+
+    '<p><b>7. Phase 10.</b> Players race to complete ten different phases made of sets, runs or same-colour cards. Those who do not finish a phase repeat it, so a full game lasts longer than the others here. It comes in a tin that travels well.</p>'+
+    aProd("Mattel Games Phase 10 Card Game","★★★★★ 19,980 ratings","https://www.amazon.com/dp/B07Y98T14Q?tag=kolico-20")+
+    '<h2>Classic board games and a word game</h2>'+
+    '<p><b>8. Sorry!</b> <b>#2 in Board Games</b>. The first player to get all their pawns home wins, with plenty of chances to send someone else back to start. It is the one on this list for younger children, at ages 6 and up.</p>'+
+    aProd("Sorry! Board Game","★★★★★ 34,554 ratings","https://www.amazon.com/dp/B076HK9H7Z?tag=kolico-20")+
+    '<p><b>9. Connect 4.</b> <b>#1 in Board Games</b>, for two players, ages 6 and up. This edition adds a blue Blocker Disc for extra strategy. It is the right pick when only two people want to play.</p>'+
+    aProd("Hasbro Gaming Connect 4","★★★★★ 19,369 ratings","https://www.amazon.com/dp/B06XY881H4?tag=kolico-20")+
+    '<p><b>10. Bananagrams.</b> 144 letter tiles in a banana-shaped pouch, and no board or timer. Everyone builds their own word grid at the same time, so a fast player and a slow one can share a game. It is rated <b>4.9&#9733;</b> and travels easily.</p>'+
+    aProd("Bananagrams Classic Word Game","★★★★★ 26,903 ratings","https://www.amazon.com/dp/1932188126?tag=kolico-20")+
+    '<h2>What to skip</h2><p><b>Games with a long set-up</b> for a mixed-age table: if explaining the rules takes longer than the first round, people drift away. <b>Unofficial or &#8220;card game&#8221; clones</b> with a few dozen reviews: the original versions above have tens of thousands. And <b>the game your children are too young for</b>: check the age on the box, since a 7+ game played by a five-year-old tends to end in tears.</p>'+
+    '<h2>The bottom line</h2><p>If you buy one, buy <b>SKYJO</b> or <b>UNO</b>: both are rated 4.8&#9733; with more than 60,000 ratings, and both work from age six. For adults who want a bit more, add <b>Five Crowns</b>. For two players, <b>Connect 4</b>. Check the Amazon price before you buy, since it changes often. For more, see our full <a href="/shop/games" data-cat="games">Games</a> page.</p>';}},
   post15:{meta:"Gift Guides · Sep 30, 2026 · By ToyScout Editors",h:"Best Christmas gifts for kids under $25 in 2026, by age",
     body:function(){return '<p class="a-lede">Twenty-five dollars is the price limit for most holiday gift swaps, classroom exchanges and aunt-and-uncle presents, and it is also where toy listings are most crowded. To cut through it we kept only toys that cost under $25, hold <b>4.7&#9733; or better</b> and have <b>more than 25,000 Amazon ratings</b>. Ten picks, sorted by age. Prices and ratings are from our September 24, 2026 catalog check.</p>'+
     '<h2>Ages 0&#8211;2: the two most-reviewed toys we track</h2><p><b>1. Mega Bloks First Builders Big Building Bag.</b> With <b>132,122 ratings</b> at 4.8&#9733;, this is the most-reviewed product in our whole catalog. It has 60 oversized blocks in 10 shapes, and the listing sells it as the No. 1 junior building set worldwide. The blocks are big enough that a one-year-old can pull them apart without help, and that is the reason parents buy it.</p>'+

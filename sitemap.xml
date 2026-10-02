@@ -109,6 +109,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.toyscout.net/post16</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.toyscout.net/contact</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
