@@ -17,6 +17,8 @@ src = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
 raw = open(os.path.join(ROOT, 'js', 'data.js'), encoding='utf-8').read()
 D = json.loads(raw[raw.index('{'):raw.rindex('}') + 1])
 CAT = {m.group(1): m.group(2) for m in re.finditer(r'\["([a-z-]+)","([^"]+)","[^"]*"\]', src.split('var CATS')[1].split('];')[0])}
+# Kategori SEO metni index.html'deki tek satirlik CAT_SEO JSON'undan okunur (tek kaynak).
+SEO = json.loads(src.split('var CAT_SEO = ', 1)[1].split(';\n', 1)[0])
 E = html.escape
 
 
@@ -74,11 +76,15 @@ def main():
         # shop page
         lis = ''.join(f'<li><a href="/product/{cat}/{i}">{E(p["name"])}</a> — {(p.get("rating") or 0)}★ ({fmt((p.get("rc") or 0))} ratings)</li>'
                       for i, p in enumerate(items))
-        desc = f"Today's best-selling {cname.lower()} on Amazon with star ratings, review counts and age filters — updated from the official best-seller chart."
+        cs = SEO.get(cat)
+        desc = cs['d'] if cs else f"Today's best-selling {cname.lower()} on Amazon with star ratings, review counts and age filters — updated from the official best-seller chart."
+        h1 = cs['h'] if cs else f"{cname} — Today's Amazon Best Sellers"
+        intro = cs['i'] if cs else desc
+        title = cs['t'] + ' | ToyScout' if cs else f"{cname} — Today's Amazon Best Sellers | ToyScout"
         ld = {"@context": "https://schema.org", "@type": "ItemList", "name": f"{cname} — Amazon Best Sellers on ToyScout",
               "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": ldname(p['name']), "url": f"{BASE}/product/{cat}/{i}"} for i, p in enumerate(items)]}
-        body = f'<div style="font-family:sans-serif;padding:24px;max-width:900px;margin:auto"><h1>{E(cname)} — Today\'s Amazon Best Sellers</h1><p>{E(desc)}</p><ol>{lis}</ol><p><a href="/">ToyScout home</a></p></div>'
-        write(f'/shop/{cat}', page(f"{cname} — Today's Amazon Best Sellers | ToyScout", desc, f'/shop/{cat}', body, ld))
+        body = f'<div style="font-family:sans-serif;padding:24px;max-width:900px;margin:auto"><h1>{E(h1)}</h1><p>{E(intro)}</p><ol>{lis}</ol><p><a href="/">ToyScout home</a></p></div>'
+        write(f'/shop/{cat}', page(title, desc, f'/shop/{cat}', body, ld))
         nc += 1
         for i, p in enumerate(items):
             name = p['name']
