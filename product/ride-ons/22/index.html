@@ -134,6 +134,17 @@
       "blogPost": [
         {
           "@type": "BlogPosting",
+          "headline": "Best Action Figures for Kids in 2026, by Age",
+          "datePublished": "2026-10-07",
+          "author": {
+            "@type": "Organization",
+            "name": "ToyScout Editors"
+          },
+          "image": "https://www.toyscout.net/assets/products/B07PQFT83F.jpg",
+          "url": "https://www.toyscout.net/post18"
+        },
+        {
+          "@type": "BlogPosting",
           "headline": "Best Quiet Fidget Toys for School and Car Rides in 2026",
           "datePublished": "2026-10-04",
           "author": {
@@ -1200,17 +1211,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post17" data-go="post17" data-rv>
+      <a class="bpost" href="/post18" data-go="post18" data-rv>
+        <div class="bp-img"><img src="/assets/products/B07PQFT83F.jpg" width="1477" height="1500" alt="Buzz Lightyear interactive talking action figure" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Buying Guides · Oct 7, 2026</div><h3>Best action figures for kids in 2026, by age</h3><p>Little People and Bluey for toddlers, Spidey and Buzz Lightyear for preschoolers, Optimus Prime and Fortnite for big kids: nine play action figures, all 4.5★+.</p><div class="bp-read">Read the guide ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post17" data-go="post17" data-rv style="transition-delay:.12s">
         <div class="bp-img"><img src="/assets/products/B07W5QM4DP.jpg" width="982" height="1000" alt="Shashibo DODECA magnetic puzzle cube" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Buying Guides · Oct 4, 2026</div><h3>Best quiet fidget toys for school and car rides in 2026</h3><p>Shashibo, Rubik's Cube, Crayola Globbles and worry stones: eight fidget toys that stay quiet in a backpack. All 4.4★+.</p><div class="bp-read">Read the guide ⇢</div></div>
       </a>
-      <a class="bpost" href="/post16" data-go="post16" data-rv style="transition-delay:.12s">
+      <a class="bpost" href="/post16" data-go="post16" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/products/B06XZ9K244.jpg" width="869" height="1500" alt="SKYJO family card game box" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Gift Guides · Oct 2, 2026</div><h3>Best family card &amp; board games for game night in 2026</h3><p>SKYJO, UNO and Exploding Kittens for the whole table, Monopoly Deal and Five Crowns for a quick round — ten picks, all 4.6★+.</p><div class="bp-read">Read the guide ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post15" data-go="post15" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/products/B06XZ9K244.jpg" width="869" height="1500" alt="SKYJO family card game box" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Gift Guides · Sep 30, 2026</div><h3>Best Christmas gifts for kids under $25 in 2026, by age</h3><p>Ten toys under $25, each 4.7★+ with 25,000+ ratings — from Mega Bloks to SKYJO and Bananagrams, sorted by age.</p><div class="bp-read">Read the guide ⇢</div></div>
       </a>
     </div>
   </section>
@@ -1394,6 +1405,7 @@ function updateSeo(){
   else if(s.page==="post6"){title="Best Card & Board Games for Family Game Night in 2026 | ToyScout";desc="From a 4.9★ newcomer to the classics that never leave the shelf — the card and board games actually winning family game night this month.";}
   else if(s.page==="post7"){title="Best Building Toy Gifts for Kids in 2026 | ToyScout";desc="PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart right now, while the popular sets are still easy to find.";}
   else if(s.page==="post8"){title="Best Squishy & Fidget Toys Kids Can't Put Down in 2026 | ToyScout";desc="NeeDoh, kawaii squishy packs, and party-favor fidget bundles — what's actually topping the Novelty & Gag Toys chart this month.";}
+  else if(s.page==="post18"){title="Best Action Figures for Kids in 2026, by Age | ToyScout";desc="Nine toy action figures and action figurines sorted by age, from Little People and Bluey for toddlers to Spidey, Buzz Lightyear, Optimus Prime and collector figures. All rated 4.5★ or better on Amazon.";}
   else if(s.page==="post17"){title="Best Quiet Fidget Toys for School and Car Rides in 2026 | ToyScout";desc="Eight fidget toys that stay quiet in a backpack or a back seat, from Shashibo, Rubik's Cube and Crayola Globbles to magnetic balls and worry stones. All rated 4.4★ or better on Amazon.";}
   else if(s.page==="post16"){title="Best Family Card & Board Games for Game Night in 2026 | ToyScout";desc="Ten family games for game night, from SKYJO, UNO and Exploding Kittens to Monopoly Deal, Five Crowns and Bananagrams — all rated 4.6★ or better, with 19,000 to 76,000 Amazon ratings each.";}
   else if(s.page==="post15"){title="Best Christmas Gifts for Kids Under $25 in 2026, by Age | ToyScout";desc="Ten Christmas gifts for kids under $25, each rated 4.7★+ with 25,000+ Amazon ratings — Mega Bloks, LeapFrog, Bluey figures, SKYJO, Kanoodle and Bananagrams, sorted by age.";}
@@ -1476,7 +1488,7 @@ function applyRoute(){
   var catIds=stockedCats().map(function(c){return c[0]});
   if(p0==="shop"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; openView("shop",true); return; }
   if(p0==="product"){ state.shopCat=catIds.indexOf(parts[1])>=0?parts[1]:state.shopCat; state.prodIdx=Math.max(0,parseInt(parts[2],10)||0); state.galIdx=0; state.faqOpen=-1; openView("product",true); return; }
-  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","post11","post12","post13","post14","post15","post16","post17","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","post11","post12","post13","post14","post15","post16","post17","post18","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   goHome(true);
 }
 
@@ -1508,7 +1520,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10"||p==="post11"||p==="post12"||p==="post13"||p==="post14"||p==="post15"||p==="post16"||p==="post17") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10"||p==="post11"||p==="post12"||p==="post13"||p==="post14"||p==="post15"||p==="post16"||p==="post17"||p==="post18") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1644,6 +1656,7 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post18","Buying Guides · Oct 7, 2026","Best action figures for kids in 2026, by age","Little People and Bluey for toddlers, Spidey and Buzz Lightyear for preschoolers, Optimus Prime and Fortnite for big kids: nine play action figures, all 4.5★+.","/assets/products/B07PQFT83F.jpg")+
     bp("/post17","Buying Guides · Oct 4, 2026","Best quiet fidget toys for school and car rides in 2026","Shashibo, Rubik's Cube, Crayola Globbles and worry stones: eight fidget toys that stay quiet in a backpack. All 4.4★+.","/assets/products/B07W5QM4DP.jpg")+
     bp("/post16","Gift Guides · Oct 2, 2026","Best family card & board games for game night in 2026","SKYJO, UNO and Exploding Kittens for the whole table, Monopoly Deal and Five Crowns for a quick round — ten picks, all 4.6★+.","/assets/products/B06XZ9K244.jpg")+
     bp("/post15","Gift Guides · Sep 30, 2026","Best Christmas gifts for kids under $25 in 2026, by age","Ten toys under $25, each 4.7★+ with 25,000+ ratings — from Mega Bloks to SKYJO and Bananagrams, sorted by age.","/assets/products/B06XZ9K244.jpg")+
@@ -1667,6 +1680,40 @@ function aProd(name,meta,url){
   return '<div class="a-prod"><div class="t"><b>'+esc(name)+'</b><span>'+esc(meta)+'</span></div><a class="btn btn-blue" style="padding:11px 22px;font-size:14px" target="_blank" rel="noopener sponsored" href="'+esc(url)+'">View on Amazon</a></div>';
 }
 var POSTS={
+  post18:{meta:"Buying Guides · Oct 7, 2026 · By ToyScout Editors",h:"Best action figures for kids in 2026, by age",
+    body:function(){return '<p class="a-lede">Action figures are not one category. A chunky figure that survives a toddler is a very different toy from a 6-inch figure with 28 joints, and a collector figure with swappable hands is not built for the sandpit. So we sorted the play action figures in our <a href="/shop/action-figures" data-cat="action-figures">Action Figures</a> chart by age and kept nine, each rated <b>4.5&#9733; or better</b> on Amazon. Ratings and ranks are from our September 24, 2026 catalog check; the age bands are the ones on each ToyScout product page.</p>'+
+    '<h2>The quick answer</h2><ul>'+
+    '<li><b>Under 3:</b> Fisher-Price Little People Disney Princess Story Duos, 4.8&#9733; with 5,376 ratings.</li>'+
+    '<li><b>Ages 3 to 5:</b> the Spidey and his Amazing Friends Friends &amp; Foes Pack, 4.9&#9733;, or the Bluey Family 4-Pack, 4.8&#9733; with 25,043 ratings.</li>'+
+    '<li><b>Most-reviewed:</b> Disney Store Buzz Lightyear Interactive Talking Action Figure, 4.7&#9733; across 49,775 ratings and <b>#1 in Action Figures</b>.</li>'+
+    '<li><b>Ages 6 to 8:</b> Transformers Heroic Optimus Prime, 4.6&#9733; with 11,601 ratings.</li></ul>'+
+    '<h2>Toddlers: figures for small hands</h2>'+
+    '<p><b>1. Fisher-Price Little People Disney Princess Story Duos.</b> Four pairs of figures: Moana and Pua, Belle and Mrs. Potts, Tiana and Naveen, and Snow White and Dopey. The listing says they are sized for small hands and recommends them from 18 months to 5 years. They also fit any Little People playset you already have. <a href="/product/action-figures/6" data-prod="action-figures:6">See its full ToyScout page</a>.</p>'+
+    aProd("Fisher-Price Little People Disney Princess Story Duos","★★★★★ 5,376 ratings","https://www.amazon.com/dp/B0BLJT568Q?tag=kolico-20")+
+    '<p><b>2. Bluey Family Figure 4-Pack.</b> Bluey, Bingo, Chilli and Bandit, with movable arms and legs. They are small enough for a bag or a coat pocket, which makes them a good travel toy. With more than 25,000 ratings it is one of the most-reviewed figure sets in our catalog. Our product page lists it for ages 3 to 5.</p>'+
+    aProd("Bluey Family Figure 4-Pack","★★★★★ 25,043 ratings","https://www.amazon.com/dp/B083XNCRS3?tag=kolico-20")+
+    '<h2>Preschoolers (3 to 5): first superhero and movie figures</h2>'+
+    '<p><b>3. Spidey and his Amazing Friends Friends &amp; Foes Pack.</b> Five 4-inch figures: Spidey, Iron Man, Doc Ock, Green Goblin and Electro. Heroes and villains in one box means a child has a whole story ready to play, and the listing describes them as durable for preschool play, for ages 3 and up. At <b>4.9&#9733;</b> it is the highest-rated pick on this list.</p>'+
+    aProd("Spidey and his Amazing Friends Friends & Foes Pack (5 figures)","★★★★★ 2,733 ratings","https://www.amazon.com/dp/B0CP481DTZ?tag=kolico-20")+
+    '<p><b>4. Marvel Super Hero Adventures 5-Inch Action Figure 5-Pack.</b> Captain America, Spider-Man, Black Panther, Hulk and Iron Spider, each with four points of articulation and an accessory. It is the step up from Spidey for a child who already knows the Avengers, and the listing says it is sized for younger heroes, ages 3 and up.</p>'+
+    aProd("Marvel Super Hero Adventures 5-Inch Action Figure 5-Pack","★★★★★ 3,088 ratings","https://www.amazon.com/dp/B07ZHS1L15?tag=kolico-20")+
+    '<p><b>5. Disney Store Buzz Lightyear Interactive Talking Action Figure.</b> The most-reviewed action figure we track and <b>#1 in Action Figures</b> at our last check. Buttons trigger more than 10 phrases, a wing release, a karate-chop arm and laser lights, and the listing says it unlocks extra phrases with other Toy Story figures. For a preschool Toy Story fan, it is the easy gift. <a href="/product/action-figures/0" data-prod="action-figures:0">See its full ToyScout page</a>.</p>'+
+    aProd("Disney Store Buzz Lightyear Interactive Talking Action Figure","★★★★★ 49,775 ratings","https://www.amazon.com/dp/B07PQFT83F?tag=kolico-20")+
+    '<h2>Ages 6 to 8: bigger, more poseable action &amp; toy figures</h2>'+
+    '<p><b>6. Transformers Heroic Optimus Prime (11-inch).</b> A large robot that changes into the red and blue Optimus Prime truck in six steps. The listing calls it an easy conversion for kids 6 years old and up, so it is a good first Transformer. Two toys in one also means it gets played with for longer.</p>'+
+    aProd("Transformers Heroic Optimus Prime Action Figure (11-inch)","★★★★★ 11,601 ratings","https://www.amazon.com/dp/B077YYP739?tag=kolico-20")+
+    '<p><b>7. Fortnite Legendary Tomatohead (6-inch).</b> A 6-inch figure with 28 points of articulation, a harvesting tool, back bling and a code for a virtual item in the game. For a child who plays Fortnite, the code is a big part of the appeal. It has fewer ratings than the others here (283), but they average <b>4.8&#9733;</b>.</p>'+
+    aProd("Fortnite Legendary Tomatohead 6-inch Figure","★★★★★ 283 ratings","https://www.amazon.com/dp/B0G1PZ8P5F?tag=kolico-20")+
+    '<h2>Older kids and collectors: anime action figurines</h2>'+
+    '<p><b>8. Total Anime Izuku Midoriya (6.5-inch).</b> Deku from My Hero Academia, with more than 30 points of articulation, swappable faceplates, alternate hands, a removable backpack and energy effects. It sits between a play figure and a display figure, which suits a school-age anime fan. Our product page lists it for ages 6 to 8. Rated <b>4.5&#9733;</b> with 2,106 ratings.</p>'+
+    aProd("Total Anime Izuku Midoriya 6.5-inch Figure","★★★★☆ 2,106 ratings","https://www.amazon.com/dp/B0G1ZDJS2Q?tag=kolico-20")+
+    '<p><b>9. S.H.Figuarts Super Saiyan God Son Goku (God Aura).</b> A detailed Dragon Ball Super figure from Tamashii Nations with interchangeable hands, faces and head parts. This is a collector piece for teens and adults, not a toy for rough play, so keep it on the shelf and away from younger siblings. Rated <b>4.5&#9733;</b> with 851 ratings.</p>'+
+    aProd("S.H.Figuarts Super Saiyan God Son Goku (God Aura)","★★★★☆ 851 ratings","https://www.amazon.com/dp/B0G4TJQ7CV?tag=kolico-20")+
+    '<h2>How to choose</h2><ul>'+
+    '<li><b>Check the age on the box.</b> Figures with small accessories, such as swappable hands or weapons, are a choking risk for children under 3.</li>'+
+    '<li><b>Count the joints.</b> Preschool figures move at the head, arms and legs. Figures for older children and collectors have 20 to 30 points of articulation, which look better on a shelf but break more easily in rough play.</li>'+
+    '<li><b>Buy the characters they already know.</b> A multipack of heroes and villains from one show gives a child a ready-made story.</li></ul>'+
+    '<h2>The bottom line</h2><p>For a toddler, buy the <b>Little People Story Duos</b> or the <b>Bluey Family 4-Pack</b>. For ages 3 to 5, the <b>Spidey Friends &amp; Foes Pack</b> or <b>Buzz Lightyear</b>. For ages 6 to 8, <b>Optimus Prime</b>. For an older anime fan, <b>Deku</b>. Check the price on Amazon before you buy, since it changes often. For more figures, see our full <a href="/shop/action-figures" data-cat="action-figures">Action Figures</a> page, and for building sets see our <a href="/post13" data-go="post13">building toys guide</a>.</p>';}},
   post17:{meta:"Buying Guides · Oct 4, 2026 · By ToyScout Editors",h:"Best quiet fidget toys for school and car rides in 2026",
     body:function(){return '<p class="a-lede">A fidget toy that clicks, rattles or rolls off the desk is a toy that gets taken away. For school bags, car seats and waiting rooms, the useful ones are quiet, small and hard to break. We went through the fidget and puzzle toys in our catalog and kept eight that fit, each rated <b>4.4&#9733; or better</b>, with ratings from 1,436 to 82,973. Ratings and ranks are from our September 24, 2026 catalog check.</p>'+
     '<h2>The quick answer</h2><ul>'+
