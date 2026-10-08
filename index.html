@@ -631,7 +631,6 @@ h1,h2,h3,.disp{font-family:var(--disp);font-weight:500;line-height:1.08;letter-s
 .serif-i{font-family:var(--disp);font-style:italic;font-weight:400}
 .ovl{font-size:11px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--red)}
 .ovl.blue{color:var(--blue)}
-@media(hover:hover) and (pointer:fine){ body.cursor-on, body.cursor-on a, body.cursor-on button{cursor:none} }
 
 /* ============ LOADER ============ */
 #loader{position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .7s var(--ease),filter .7s var(--ease)}
@@ -644,16 +643,8 @@ h1,h2,h3,.disp{font-family:var(--disp);font-weight:500;line-height:1.08;letter-s
 #loader .l-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--red));transition:width .25s ease}
 #loader .l-pct{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--ink-55)}
 
-/* ============ CURSOR ============ */
-#cur-dot,#cur-ring{position:fixed;top:0;left:0;pointer-events:none;border-radius:50%;z-index:9998;display:none}
-body.cursor-on #cur-dot,body.cursor-on #cur-ring{display:block}
-#cur-dot{width:6px;height:6px;background:var(--ink);transform:translate(-50%,-50%)}
-#cur-ring{width:34px;height:34px;border:1.5px solid rgba(20,34,90,.45);transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease),border-color .25s}
-#cur-ring.hov{width:56px;height:56px;border-color:var(--red);box-shadow:0 0 24px rgba(232,68,46,.25)}
-
-/* ============ GRAIN + PARTICLES ============ */
+/* ============ GRAIN ============ */
 #grain{position:fixed;inset:-100px;z-index:100;pointer-events:none;opacity:.05}
-#particles{position:fixed;inset:0;z-index:15;pointer-events:none;opacity:.5}
 
 /* ============ NAV ============ */
 #nav{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
@@ -687,7 +678,7 @@ body.menu-open #m-menu a{opacity:1;transform:none}
 }
 
 /* ============ HERO SCROLL STAGE ============ */
-#stage{position:relative;height:480vh}
+#stage{position:relative;height:200vh}
 #stage .sticky{position:sticky;top:0;height:100vh;overflow:hidden}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .stage-grad-l{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(100deg,rgba(250,243,231,.92) 0%,rgba(250,243,231,.55) 26%,rgba(250,243,231,0) 52%)}
@@ -732,6 +723,10 @@ body.menu-open #m-menu a{opacity:1;transform:none}
 .statbar .v{font-family:var(--disp);font-size:clamp(22px,2.2vw,30px);font-weight:600;white-space:nowrap}
 .statbar .v em{font-style:normal;color:var(--red)}
 .statbar .k{font-size:9.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-55);margin-top:2px}
+.age-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 22px}
+.age-row .age-lbl{font-size:10.5px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-55);margin-right:4px}
+.age-row a{display:inline-flex;align-items:center;min-height:38px;padding:7px 16px;border-radius:99px;background:var(--paper);border:1.5px solid var(--ink-22);color:var(--ink);font-weight:800;font-size:14px;text-decoration:none;transition:border-color .25s,background .25s,color .25s}
+.age-row a:hover,.age-row a:focus-visible{border-color:var(--red);background:var(--red);color:#FFFDF7}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:10px;border-radius:99px;font-weight:800;font-size:15.5px;padding:15px 30px;text-decoration:none;border:2px solid transparent;transition:transform .3s var(--ease),box-shadow .3s,background .3s,color .3s;will-change:transform}
@@ -795,6 +790,10 @@ body.menu-open #m-menu a{opacity:1;transform:none}
 .pcard .pc-rc{font-size:12.5px;color:var(--ink-55);font-weight:700}
 .pcard .pc-cta{margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#FFFDF7;font-weight:800;font-size:14px;padding:12px;border-radius:14px;transition:background .3s,transform .3s var(--ease)}
 .pcard:hover .pc-cta{background:var(--red)}
+.pcard .pc-link{display:flex;flex-direction:column;flex:1;color:inherit;text-decoration:none}
+.pcard .pc-body{padding-bottom:12px}
+.pcard .pc-amz{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 22px 22px;padding:11px 12px;border-radius:14px;border:2px solid var(--red);color:var(--red);background:transparent;font-weight:800;font-size:14px;text-decoration:none;text-align:center;transition:background .25s,color .25s}
+.pcard .pc-amz:hover,.pcard .pc-amz:focus-visible{background:var(--red);color:#FFFDF7}
 
 /* categories bento */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
@@ -859,21 +858,6 @@ body.menu-open #m-menu a{opacity:1;transform:none}
 .bpost p{font-size:14px;color:var(--ink-55);font-weight:600}
 .bpost .bp-read{margin-top:16px;font-weight:800;font-size:14px;color:var(--blue)}
 
-/* newsletter */
-.news{background:linear-gradient(120deg,var(--blue),#1530A0 60%,var(--ink));border-radius:34px;padding:70px 6vw;text-align:center;color:#FFFDF7;position:relative;overflow:hidden}
-.news::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(245,179,1,.25),transparent 45%),radial-gradient(circle at 15% 90%,rgba(232,68,46,.3),transparent 45%)}
-.news .n-in{position:relative;z-index:2;max-width:620px;margin:0 auto}
-.news h2{color:#FFFDF7;font-size:clamp(30px,3.6vw,46px)}
-.news h2 .it{font-style:italic;font-weight:400;color:var(--gold)}
-.news p{color:rgba(255,253,247,.78);font-weight:600;margin-top:12px}
-.news .n-form{display:flex;gap:12px;margin-top:30px;background:rgba(255,253,247,.1);border:1px solid rgba(255,253,247,.2);backdrop-filter:blur(10px);border-radius:99px;padding:7px}
-.news input{flex:1;border:0;outline:0;background:transparent;color:#FFFDF7;font-family:var(--body);font-size:15.5px;font-weight:600;padding:10px 20px}
-.news input::placeholder{color:rgba(255,253,247,.55)}
-.news .n-btn{background:var(--red);border:0;color:#FFFDF7;font-weight:800;font-size:15px;padding:13px 28px;border-radius:99px;transition:transform .3s var(--ease),box-shadow .3s}
-.news .n-btn:hover{transform:scale(1.04);box-shadow:0 8px 26px rgba(232,68,46,.5)}
-.news .n-err{margin-top:12px;color:#FFD9D2;font-weight:700;font-size:14px}
-.news .n-ok{margin-top:24px;font-size:19px;font-weight:800}
-@media(max-width:560px){.news .n-form{flex-direction:column;border-radius:22px}.news .n-btn{width:100%}}
 
 /* footer */
 footer{background:var(--ink);color:rgba(255,253,247,.85);margin-top:110px}
@@ -987,6 +971,10 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 .art p{margin:16px 0;font-size:16.5px;font-weight:600;color:var(--ink2)}
 .art .a-prod{display:flex;gap:20px;align-items:center;background:var(--paper);border:1.5px solid var(--ink-12);border-radius:20px;padding:20px 24px;margin:26px 0;flex-wrap:wrap}
 .art .a-prod .t{flex:1;min-width:200px}
+.art .a-prod .ap-img{flex:0 0 auto;width:88px;height:88px;object-fit:contain;background:#fff;border-radius:14px;border:1px solid var(--ink-12);padding:6px}
+.art .a-prod .ap-acts{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.art .a-prod .ap-det{font-weight:800;font-size:14px;text-decoration:none}
+.art .a-disc{font-size:13px;color:var(--ink-55);font-weight:700;margin:-6px 0 22px}
 .art .a-prod b{font-size:15.5px;display:block}
 .art .a-prod span{font-size:13.5px;color:var(--ink-55);font-weight:700}
 .art .back{display:inline-flex;gap:8px;font-weight:800;text-decoration:none;color:var(--blue);margin-bottom:30px}
@@ -1028,6 +1016,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 }
 
 @media(max-width:640px){
+  #stage{height:120vh}
   #nav .n-in{padding:12px 18px}
   .stx{align-items:flex-start;padding:96px 6vw 30px;overflow:hidden}
   .stx-center{align-items:center;text-align:center;padding-top:0}
@@ -1049,7 +1038,6 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
   .sec{padding:64px 6vw}
   .sec-head{margin-bottom:34px}
   .radar{padding:52px 7vw;border-radius:24px}
-  .news{padding:52px 7vw;border-radius:24px}
   .v-wrap{padding:96px 5vw 70px}
   .pd-imgbox{padding:20px}
   .cform{padding:26px 22px}
@@ -1065,22 +1053,22 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 <div id="loader" aria-hidden="true">
   <div class="l-line"></div>
   <div class="l-brand">Toy<span class="dot">·</span>Scout</div>
-  <div class="l-sub">Amazon Best Sellers · Curated Daily</div>
+  <div class="l-sub">Amazon Best Sellers · Curated</div>
   <div class="l-bar"><div class="l-fill" id="l-fill"></div></div>
   <div class="l-pct" id="l-pct">0%</div>
   <div class="l-line"></div>
 </div>
+<script>/* Loader + hero film only on the home route; other routes skip it from first paint. */
+(function(){var p=location.pathname;if(p!=="/"&&p!=="/index.html"){var l=document.getElementById("loader");if(l)l.style.display="none";}})();</script>
 
-<div id="cur-dot"></div><div id="cur-ring"></div>
 <svg id="grain" aria-hidden="true"><filter id="gf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#gf)"/></svg>
-<canvas id="particles" aria-hidden="true"></canvas>
 <div id="wipe" aria-hidden="true"></div>
 
 <nav id="nav">
   <div class="n-in">
     <a class="logo" href="/" data-go="home"><img src="/assets/logo-blocks.png" alt="ToyScout logo">ToyScout</a>
     <div class="links">
-      <a href="/shop/sports-outdoor" data-go="shop">Shop</a>
+      <a href="/#cats" data-anchor="cats">Shop</a>
       <a href="/#picks" data-anchor="picks">Top Picks</a>
       <a href="/#cats" data-anchor="cats">Categories</a>
       <a href="/#radar" data-anchor="radar">How We Rank</a>
@@ -1088,14 +1076,14 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a href="/contact" data-go="contact">Contact</a>
     </div>
     <div class="n-search">🔍<input id="nav-q" type="search" placeholder="Search toys…" aria-label="Search toys"></div>
-    <a class="n-cta" href="/shop/sports-outdoor" data-go="shop">Best of 2026</a>
+    <a class="n-cta" href="/#picks" data-anchor="picks">Best of 2026</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
 <div id="m-menu">
   <a href="/" data-go="home" style="transition-delay:.08s">Home</a>
-  <a href="/shop/sports-outdoor" data-go="shop" style="transition-delay:.14s">Shop</a>
+  <a href="/#cats" data-anchor="cats" style="transition-delay:.14s">Shop</a>
   <a href="/blog" data-go="blog" style="transition-delay:.2s">Blog</a>
   <a href="/contact" data-go="contact" style="transition-delay:.26s">Contact</a>
   <a href="/disclosure" data-go="disclosure" class="mm-small" style="transition-delay:.32s">Affiliate Disclosure</a>
@@ -1117,18 +1105,18 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 
       <div class="stx" data-show="0" data-hide="0.16">
         <div class="inner">
-          <div class="kicker">Amazon Best Sellers · Updated Weekly</div>
+          <div class="kicker">Amazon Best Sellers · Hand-Picked</div>
           <h1><span class="split" data-split>Toys worth</span><br><span class="split it" data-split>the hype.</span></h1>
+          <nav class="age-row" aria-label="Shop by age"><span class="age-lbl">Shop by age</span><a href="/shop/baby-toddler" data-age-home="0–2" data-age-cat="baby-toddler">0–2</a><a href="/shop/dolls" data-age-home="3–5" data-age-cat="dolls">3–5</a><a href="/shop/games" data-age-home="6–8" data-age-cat="games">6–8</a><a href="/shop/building-toys" data-age-home="9–12" data-age-cat="building-toys">9–12</a><a href="/shop/puzzles" data-age-home="Teen+" data-age-cat="puzzles">Teens</a></nav>
           <p class="lede">The best-selling, most-loved, and fastest-trending toys on Amazon — curated in one place, for every age.</p>
           <div style="display:flex;gap:14px;flex-wrap:wrap">
-            <a class="btn btn-red" href="/shop/sports-outdoor" data-go="shop">Shop top picks <span class="arr">→</span></a>
+            <a class="btn btn-red" href="/#picks" data-anchor="picks">Shop top picks <span class="arr">→</span></a>
             <a class="btn btn-ghost" href="/#radar" data-anchor="radar">How we rank</a>
           </div>
           <div class="statbar">
-            <div class="st"><div class="v"><span data-count="19">0</span></div><div class="k">Categories tracked</div></div>
-            <div class="st"><div class="v"><span data-count="1000">0</span><em>+</em></div><div class="k">Toys curated</div></div>
-            <div class="st"><div class="v"><span data-count="20">0</span></div><div class="k">Amazon lists scanned</div></div>
-            <div class="st"><div class="v"><span data-count="24">0</span>/7</div><div class="k">Chart scanning</div></div>
+            <div class="st"><div class="v"><span data-count="18">18</span></div><div class="k">Categories tracked</div></div>
+            <div class="st"><div class="v"><span data-count="1000">1,000</span><em>+</em></div><div class="k">Toys curated</div></div>
+            <div class="st"><div class="v"><span data-count="20">20</span></div><div class="k">Amazon lists scanned</div></div>
           </div>
         </div>
       </div>
@@ -1146,7 +1134,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
           <div class="kicker">How every pick earns its place</div>
           <h2>Scouted by data,<br><span class="serif-i" style="color:var(--blue)">not by ads.</span></h2>
           <div class="feat-list">
-            <div class="feat-item"><div class="num">01</div><div><b>Best-seller &amp; new-release charts scanned daily</b><span>Across all 19 Amazon Toys &amp; Games departments.</span></div></div>
+            <div class="feat-item"><div class="num">01</div><div><b>Best-seller &amp; new-release charts, checked by hand</b><span>Across Amazon's Toys &amp; Games departments.</span></div></div>
             <div class="feat-item"><div class="num">02</div><div><b>Amazon Best Sellers &amp; New Releases lists tracked</b><span>Rank movement tells us what's genuinely rising.</span></div></div>
             <div class="feat-item"><div class="num">03</div><div><b>Only well-reviewed picks with proven demand make the cut</b><span>No sponsored placements. No paid reviews. Ever.</span></div></div>
           </div>
@@ -1155,12 +1143,12 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 
       <div class="stx stx-center" data-show="0.78" data-hide="1.01">
         <div class="inner">
-          <div class="kicker">Week of July 6, 2026</div>
+          <div class="kicker">Hand-picked from Amazon's charts</div>
           <h2 style="font-size:clamp(38px,5vw,66px)">Ready to find<br><span class="serif-i" style="color:var(--red)">the one they'll love?</span></h2>
           <p class="lede" style="margin:18px auto 30px">Every trending chart, every age group, every budget — one scroll away.</p>
           <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-            <a class="btn btn-red" href="/shop/sports-outdoor" data-go="shop">Browse all best sellers <span class="arr">→</span></a>
-            <a class="btn btn-ghost" href="/#picks" data-anchor="picks">This week's picks</a>
+            <a class="btn btn-red" href="/#cats" data-anchor="cats">Browse all best sellers <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="/#picks" data-anchor="picks">Top picks</a>
           </div>
         </div>
       </div>
@@ -1176,10 +1164,10 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
   <section class="sec" id="picks">
     <div class="sec-head" data-rv>
       <div>
-        <div class="ovl">Week of July 6, 2026</div>
-        <h2>Trending <span class="it">this week</span></h2>
+        <div class="ovl">Editor's picks</div>
+        <h2>Trending <span class="it">right now</span></h2>
       </div>
-      <a class="more" href="/shop/sports-outdoor" data-go="shop">See all best sellers <span class="arr">→</span></a>
+      <a class="more" href="/#cats" data-anchor="cats">See all best sellers <span class="arr">→</span></a>
     </div>
     <div class="grid-3" id="picks-grid"></div>
     <p class="aff-note" data-rv>As an Amazon Associate, ToyScout earns from qualifying purchases. See the current price on Amazon.</p>
@@ -1202,9 +1190,9 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <div class="r-in">
         <div class="ovl" style="color:var(--gold)">The ToyScout Radar</div>
         <h2 style="margin-top:10px">We watch the charts so <span class="it">you don't have to.</span></h2>
-        <p class="lede">Best seller charts, review scores, and wish lists shift every day. We track them across all 19 toy categories and surface only what's genuinely rising.</p>
+        <p class="lede">Best seller charts, review scores, and wish lists shift constantly. We check them across 18 toy categories and surface only what's genuinely rising.</p>
         <div class="steps">
-          <div class="step"><div class="s-num">01</div><p>Best seller &amp; new-release charts scanned daily</p></div>
+          <div class="step"><div class="s-num">01</div><p>Best seller &amp; new-release charts checked by hand</p></div>
           <div class="step"><div class="s-num">02</div><p>Amazon Best Sellers &amp; New Releases lists tracked</p></div>
           <div class="step"><div class="s-num">03</div><p>Only well-reviewed picks with proven demand make the cut</p></div>
         </div>
@@ -1238,22 +1226,6 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section class="sec">
-    <div class="news" data-rv>
-      <div class="n-in">
-        <h2>Get the weekly <span class="it">trend drop.</span></h2>
-        <p>One email. The five hottest toys on Amazon. No spam.</p>
-        <div id="news-box">
-          <div class="n-form">
-            <input id="news-email" type="email" placeholder="you@example.com" aria-label="Email address">
-            <button class="n-btn" id="news-btn">Join the drop</button>
-          </div>
-          <div class="n-err" id="news-err" style="display:none">Please enter a valid email address.</div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer>
@@ -1265,8 +1237,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
     <div class="f-col"><b>Explore</b>
       <a href="/" data-go="home">Home</a>
       <a href="/#cats" data-anchor="cats">Categories</a>
-      <a href="/shop/sports-outdoor" data-go="shop">Best Sellers</a>
-      <a href="/#picks" data-anchor="picks">Trending Now</a>
+      <a href="/#picks" data-anchor="picks">Best Sellers</a>
       <!-- Gercek gezinme (data-go YOK): statik, taranabilir tam katalog sayfasi.
            Ham HTML'de urun sayfalarina baska link yok; Google'in kesif zinciri bu. -->
       <a href="/browse.html">All Toys</a>
@@ -1310,19 +1281,8 @@ function A(u){return u&&!/^(https?:)?\//.test(u)?"/"+u:u}
 function amazonSearchUrl(name){return "https://www.amazon.com/s?k="+encodeURIComponent(name)+"&i=toys-and-games&tag="+AFF}
 function cut(t,n){t=t||"";return t.length>n?t.slice(0,Math.max(20,t.lastIndexOf(" ",n)))+"…":t}
 
-// Returns a promise resolving true only when the row was actually stored.
-// Fire-and-forget callers (click tracking) can ignore it; the forms must not,
-// or they end up telling visitors "message sent" when nothing was written.
-function sbInsert(table,row){
-  try{
-    return fetch("https://vijagongnjfddhtlwecu.supabase.co/rest/v1/"+table,{
-      method:"POST",
-      headers:{"Content-Type":"application/json","apikey":"sb_publishable_3bra6T7gE_JBJ4Ff-_oX2w_CaHMpxmQ","Prefer":"return=minimal"},
-      body:JSON.stringify(row),keepalive:true
-    }).then(function(r){return r.ok;}).catch(function(){return false;});
-  }catch(e){return Promise.resolve(false);}
-}
-function isValidEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||"").trim())}
+/* Affiliate link: keep the kolico-20 tag on every Amazon URL. */
+function affUrl(u){u=u||"";if(!/amazon\./.test(u)||/[?&]tag=/.test(u))return u;return u+(u.indexOf("?")>=0?"&":"?")+"tag="+AFF}
 
 /* ---------- data layer (ported) ---------- */
 var CATS = [
@@ -1394,7 +1354,7 @@ function topPicks(){
 }
 
 /* ---------- state + routing ---------- */
-var state = { page:"home", shopCat:"sports-outdoor", shopSort:"featured", shopAge:null, searchQ:"", prodIdx:0, galIdx:0, faqOpen:-1 };
+var state = { page:"home", shopCat:"sports-outdoor", shopSort:"featured", shopAge:null, shopAll:false, searchQ:"", prodIdx:0, galIdx:0, faqOpen:-1 };
 
 function pathFor(){
   if(state.page==="home") return "/";
@@ -1516,6 +1476,7 @@ function goHome(silent){
   lockBody(false);
   if(!silent) pushRoute(); else updateSeo();
   $("#chapters").style.opacity="";
+  if(filmInit) startFilm(false);
 }
 function openView(page,silent){
   state.page=page; closeMenu();
@@ -1561,33 +1522,43 @@ function shopProducts(){
         if((pp.name||"").toLowerCase().indexOf(q)>=0||c[1].toLowerCase().indexOf(q)>=0) prods.push(pp);
       });
     });
+  } else if(s.shopAll&&s.shopAge){
+    // "Shop by age" from the home hero: every category, interleaved by rank
+    // (1st of each category, then 2nd, ...) so no single category dominates.
+    var lists=stockedCats().map(function(c){return productsFor(c[0]).filter(function(p){return p.age===s.shopAge})});
+    prods=[];
+    for(var r=0,more=true;more;r++){more=false;lists.forEach(function(l){if(r<l.length){prods.push(l[r]);more=true}})}
   } else prods=productsFor(s.shopCat);
   if(s.shopAge) prods=prods.filter(function(p){return p.age===s.shopAge});
   if(s.shopSort==="reviews") prods=prods.slice().sort(function(a,b){return b.rc-a.rc});
   return prods;
 }
 function cardHtml(p,withDesc){
-  return '<a class="pcard" href="/product/'+p.catId+'/'+p.idx+'" data-prod="'+p.catId+':'+p.idx+'" data-tilt3d>'+
+  /* The card is a <div>: the details link and the Amazon button are sibling <a>s
+     (nested anchors are invalid HTML and would break the card's click target). */
+  return '<div class="pcard" data-tilt3d><a class="pc-link" href="/product/'+p.catId+'/'+p.idx+'" data-prod="'+p.catId+':'+p.idx+'">'+
     '<div class="ph">'+(p.badge?'<span class="badge">'+esc(p.badge)+'</span>':"")+(p.age?'<span class="agechip">AGES '+esc(p.age)+'</span>':"")+'<img loading="lazy" src="'+esc(p.img)+'" alt="'+esc(cut(p.name,80))+'"></div>'+
     '<div class="pc-body"><div class="pc-name">'+esc(p.shortName||cut(p.name,70))+'</div>'+
     (withDesc&&p.desc?'<div class="pc-desc">'+esc(p.desc)+'</div>':'')+
     '<div class="pc-meta"><span class="pc-stars">'+p.stars+'</span><span class="pc-rc">'+p.ratings+'</span></div>'+
-    '<div class="pc-cta">View details <span class="arr">→</span></div></div></a>';
+    '<div class="pc-cta">View details <span class="arr">→</span></div></div></a>'+
+    '<a class="pc-amz" href="'+esc(affUrl(p.url))+'" target="_blank" rel="sponsored noopener" data-amz>Check price on Amazon <span class="arr">↗</span></a></div>';
 }
 function chipRow(items){return items.join("")}
 function vShop(){
   var s=state,q=(s.searchQ||"").trim(),prods=shopProducts();
-  var title=q?('Results for “'+esc(q)+'”'):(CAT_MAP[s.shopCat]||"");
-  var cs=q?null:CAT_SEO[s.shopCat];
+  var all=!q&&s.shopAll&&s.shopAge;
+  var title=q?('Results for “'+esc(q)+'”'):all?('Toys for '+(s.shopAge==="Teen+"?"teens":"ages "+esc(s.shopAge))):(CAT_MAP[s.shopCat]||"");
+  var cs=(q||all)?null:CAT_SEO[s.shopCat];
   var cats=stockedCats().map(function(c){
-    return '<a class="chip'+(c[0]===s.shopCat&&!q?" on":"")+'" href="/shop/'+c[0]+'" data-cat="'+c[0]+'">'+CAT_EMOJI[c[0]]+" "+esc(c[1])+'</a>';
+    return '<a class="chip'+(c[0]===s.shopCat&&!q&&!all?" on":"")+'" href="/shop/'+c[0]+'" data-cat="'+c[0]+'">'+CAT_EMOJI[c[0]]+" "+esc(c[1])+'</a>';
   });
   var sorts=[["featured","Featured"],["reviews","Most Reviewed"]].map(function(x){
     return '<button class="chip'+(s.shopSort===x[0]?" on-red":"")+'" data-sort="'+x[0]+'">'+x[1]+'</button>';});
   var ages=["0–2","3–5","6–8","9–12","Teen+"].map(function(v){
     return '<button class="chip'+(s.shopAge===v?" on-red":"")+'" data-age="'+v+'">'+v+' yrs</button>';});
   var relBlog=CAT_BLOG[s.shopCat];
-  var relRead=(relBlog&&!q)?'<div class="v-sub" style="margin-top:2px">📰 Related read: <a href="/'+relBlog[0]+'" data-go="'+relBlog[0]+'" style="color:var(--blue);font-weight:700">'+esc(relBlog[1])+'</a></div>':"";
+  var relRead=(relBlog&&!q&&!all)?'<div class="v-sub" style="margin-top:2px">📰 Related read: <a href="/'+relBlog[0]+'" data-go="'+relBlog[0]+'" style="color:var(--blue);font-weight:700">'+esc(relBlog[1])+'</a></div>':"";
   var grid=prods.length?
     '<div class="grid-3" style="margin-top:44px">'+prods.map(function(p){return cardHtml(p)}).join("")+'</div>':
     '<div class="empty"><h3>No picks match those filters.</h3><p>Try widening the age or price range.</p><button class="btn btn-blue" data-clearf>Clear filters</button>'+(q?' <a class="btn btn-ghost" target="_blank" rel="noopener" href="'+amazonSearchUrl(q+" toys")+'">Search “'+esc(q)+'” on Amazon →</a>':"")+'</div>';
@@ -1595,7 +1566,8 @@ function vShop(){
     '<div class="crumbs"><a href="/" data-go="home">Home</a> › <span>Toys &amp; Games</span> › <span style="color:var(--red)">'+title+'</span></div>'+
     '<h1 class="v-title">'+(cs?esc(cs.h):title)+'</h1>'+
     (cs?'<p class="v-intro">'+esc(cs.i)+'</p>':'')+
-    '<div class="v-sub">'+prods.length+' trending picks · Charts updated daily</div>'+
+    (all?'<p class="v-intro">The best-selling toys across every ToyScout category with a manufacturer age range of '+esc(s.shopAge==="Teen+"?"13 and up":s.shopAge+" years")+' on Amazon. Pick a category below to narrow it down.</p>':'')+
+    '<div class="v-sub">'+prods.length+' trending picks · From Amazon\'s best-seller charts</div>'+
     relRead+
     '<div class="shop-search">🔍<input id="shop-q" type="search" placeholder="Search all categories…" value="'+esc(s.searchQ)+'">'+(q?'<button class="clr" data-clearq>Clear ✕</button>':'')+'</div>'+
     '<div class="f-lbl">Category</div><div class="chips">'+chipRow(cats)+'</div>'+
@@ -1619,8 +1591,12 @@ function vProduct(){
     p.age?{q:"What age is this recommended for?",a:"Amazon lists the manufacturer's recommended age for this product in the "+p.age+" range. Always check the age grading and safety notes on the Amazon listing, and supervise younger children."}:null,
     p.badge?{q:"What does “"+p.badge+"” mean?",a:"It means at least one of this product's Amazon Best Sellers Ranks (see “Sales rank” above) is "+(p.badge==="TOP 10"?"10 or better":"100 or better in Toys & Games")+" at the time we last checked. Ranks change constantly."}:null,
     {q:"How much does it cost?",a:"Amazon sets the price and changes it often, so we don't list one here. Tap “See today's price on Amazon” for the current price, deals and delivery options."}].filter(Boolean);
-  var alt1=pool[0]||p, alt2=pool[1]||p;
-  var related=pool.slice(0,3);
+  // Neighbours by index (next 3, wrapping) so every product links to different products;
+  // tiny categories are topped up from the other categories.
+  var related=[];
+  for(var k=1;k<list.length&&related.length<3;k++) related.push(list[(i+k)%list.length]);
+  for(k=list.length-1;related.length<3&&k<pool.length;k++) if(related.indexOf(pool[k])<0) related.push(pool[k]);
+  var alt1=related[0]||p, alt2=related[1]||p;
   var gal=p.gallery, gi=Math.min(s.galIdx||0,gal.length-1);
   var bsrTxt=p.bsr.map(function(b){return "#"+fmt(b.rank)+" in "+b.cat}).join(" · ");
   var specs=[["AGE RANGE",p.age?p.age+" years":"—"],["RATING",p.rating?p.rating+" out of 5":"—"],["RATINGS",p.ratings+" global ratings"],["SALES RANK",p.bsr.length?"#"+fmt(p.bsr[0].rank)+" in "+p.bsr[0].cat:"—"],["TREND STATUS",p.badge||"—"],["DEPARTMENT",CAT_MAP[s.shopCat]||""]];
@@ -1667,7 +1643,7 @@ function vBlog(){
   return '<div class="v-wrap"><div class="crumbs"><a href="/" data-go="home">Home</a> › <span style="color:var(--red)">Blog</span></div>'+
     '<div class="ovl blue">The ToyScout Radar Blog</div>'+
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
-    '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our daily scan of Amazon\'s Toys &amp; Games department.</p>'+
+    '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our regular checks of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
     bp("/post19","Buying Guides · Oct 8, 2026","NeeDoh vs Slimygloop vs slow-rise squishies: which one should you buy?","Which NeeDoh to choose, how it compares with Slimygloop Gelli Gels and slow-rise squishies, and the best NeeDoh alternatives.","/assets/products/B0BQZFVJTB.jpg")+
     bp("/post18","Buying Guides · Oct 7, 2026","Best action figures for kids in 2026, by age","Little People and Bluey for toddlers, Spidey and Buzz Lightyear for preschoolers, Optimus Prime and Fortnite for big kids: nine play action figures, all 4.5★+.","/assets/products/B07PQFT83F.jpg")+
@@ -1690,8 +1666,19 @@ function vBlog(){
     bp("/post2","Charts · Jun 22, 2026","The 7 best-selling STEM kits on Amazon right now","Talking flash cards and word books are having a moment — these learning toys top the charts.","/assets/blog-stem.png")+
     '</div></div>';
 }
+/* Blog product box. Keep in sync with products/extract_posts.js (static post*.html). */
+var ASIN_IDX=null;
+function byAsin(a){
+  if(!ASIN_IDX){ASIN_IDX={};Object.keys(D).forEach(function(c){(D[c]||[]).forEach(function(p,i){if(p.asin&&!ASIN_IDX[p.asin])ASIN_IDX[p.asin]=[c,i,p.img]})})}
+  return ASIN_IDX[a]||null;
+}
 function aProd(name,meta,url){
-  return '<div class="a-prod"><div class="t"><b>'+esc(name)+'</b><span>'+esc(meta)+'</span></div><a class="btn btn-blue" style="padding:11px 22px;font-size:14px" target="_blank" rel="noopener sponsored" href="'+esc(url)+'">View on Amazon</a></div>';
+  var m=(url||"").match(/\/dp\/([A-Z0-9]{10})/), hit=m?byAsin(m[1]):null;
+  var img=hit&&hit[2]?A(hit[2]):"";
+  return '<div class="a-prod">'+(img?'<img class="ap-img" src="'+esc(img)+'" width="88" height="88" loading="lazy" alt="'+esc(name)+'">':'')+
+    '<div class="t"><b>'+esc(name)+'</b><span>'+esc(meta)+'</span></div>'+
+    '<div class="ap-acts">'+(hit?'<a class="ap-det" href="/product/'+hit[0]+'/'+hit[1]+'" data-prod="'+hit[0]+':'+hit[1]+'">Details</a>':'')+
+    '<a class="btn btn-blue" style="padding:11px 22px;font-size:14px" target="_blank" rel="sponsored noopener" href="'+esc(affUrl(url))+'">Check price on Amazon</a></div></div>';
 }
 var POSTS={
   post19:{meta:"Buying Guides · Oct 8, 2026 · By ToyScout Editors",h:"NeeDoh vs Slimygloop vs slow-rise squishies: which one should you buy?",
@@ -1931,7 +1918,7 @@ var POSTS={
     aProd("50+ Official Pokémon Cards with 5 Foils","★★★★★ 1,052 ratings",amazonSearchUrl("Official Pokemon Cards bundle foils"))+
     '<p><b>3. Balance bikes and ride-ons.</b> Peak outdoor season means peak demand — but Prime Day is when sellers clear spring inventory. Toddler balance bikes saw the deepest ride-on discounts last year, and early listings suggest a repeat.</p>'+
     '<h2>What to skip</h2><p><b>Licensed-character merchandise</b> rarely gets a genuine cut — demand is steady year-round, so sellers don\'t need to discount. And <b>this year\'s holiday hype toys</b> won\'t be discounted in July; if anything, they\'ll be cheaper in early December when retailers compete. Patience pays.</p>'+
-    '<h2>The bottom line</h2><p>Shop from a list, check the 90-day average, and treat Prime Day as a chance to buy the evergreen toys you already wanted — not to discover new ones at midnight. We\'ll flag live deals in the weekly trend drop as they go up.</p>';}},
+    '<h2>The bottom line</h2><p>Shop from a list, check the 90-day average, and treat Prime Day as a chance to buy the evergreen toys you already wanted — not to discover new ones at midnight.</p>';}},
   post2:{meta:"Charts · Jun 22, 2026 · By ToyScout Editors",h:"The 7 best-selling STEM kits on Amazon right now",
     body:function(){return '<p class="a-lede">Learning &amp; Education has been the fastest-growing toy department on our radar for three straight months. Summer-break boredom plus back-to-school anxiety is a powerful combination — and these seven kits are riding it to the top of the charts.</p>'+
     '<h2>Why STEM kits are surging</h2><p>Review velocity tells the story: STEM kit ratings are arriving 40% faster than this time last year, and "screen-free coding" appears in reviews more than any other phrase we track. Parents want the robotics without the tablet — and manufacturers have finally caught up.</p>'+
@@ -2117,7 +2104,8 @@ function vPost(id){
   var P=POSTS[id];
   return '<div class="v-wrap"><div class="art">'+
     '<a class="back" href="/blog" data-go="blog">← All articles</a>'+
-    '<div class="a-meta">'+P.meta+'</div><h1>'+P.h+'</h1>'+P.body()+
+    '<div class="a-meta">'+P.meta+'</div><h1>'+P.h+'</h1>'+
+    '<p class="a-disc">As an Amazon Associate, ToyScout earns from qualifying purchases. <a href="/disclosure" data-go="disclosure">Learn more</a></p>'+P.body()+
     '<p class="aff-note">As an Amazon Associate, ToyScout earns from qualifying purchases. See the current price on Amazon.</p></div></div>';
 }
 
@@ -2131,11 +2119,8 @@ function vContact(){
     '<div class="blk"><b>Email</b><p><a href="mailto:info@kolikshop.com">info@kolikshop.com</a><br><span style="color:var(--ink-55);font-size:14px">We reply within 2 business days.</span></p></div>'+
   '</div><div class="cform" id="cform">'+
     '<h3>Send us a message</h3>'+
-    '<label>Your name</label><input id="c-name" type="text" autocomplete="name">'+
-    '<label>Email</label><input id="c-email" type="email" autocomplete="email">'+
-    '<label>Message</label><textarea id="c-msg"></textarea>'+
-    '<div class="err" id="c-err" style="display:none">Please fill in your name, a valid email, and a message.</div>'+
-    '<button class="btn btn-red" id="c-send" style="margin-top:22px">Send message <span class="arr">→</span></button>'+
+    '<p style="color:var(--ink-55);font-weight:600">The quickest way to reach us is email. Tell us about a pick, a toy you\'d like us to look at, or a correction.</p>'+
+    '<a class="btn btn-red" style="margin-top:22px" href="mailto:info@kolikshop.com?subject=ToyScout">Email info@kolikshop.com <span class="arr">→</span></a>'+
   '</div></div></div>';
 }
 function legalWrap(h,upd,body){
@@ -2151,15 +2136,15 @@ function vDisclosure(){
   '<h2>Questions?</h2><p>If anything about how we earn money is unclear, write to us at <a href="mailto:info@kolikshop.com">info@kolikshop.com</a> — we\'re happy to explain.</p>');
 }
 function vPrivacy(){
-  return legalWrap("Privacy Policy","July 8, 2026",
+  return legalWrap("Privacy Policy","October 8, 2026",
   '<p>This Privacy Policy explains what information ToyScout ("we", "us") collects when you visit this website, how we use it, and the choices you have. We keep it simple: we collect as little as possible, and we never sell your personal information.</p>'+
-  '<h2>1. Information we collect</h2><p><b>Information you give us.</b> If you subscribe to our newsletter or contact us, we collect the email address, name, and message content you provide.</p><p><b>Information collected automatically.</b> Like most websites, we receive standard technical data when you visit: IP address, browser type, device type, pages viewed, and referring URL. This is used in aggregate to understand how the site is used and to keep it fast and secure.</p>'+
+  '<h2>1. Information we collect</h2><p><b>Information you give us.</b> If you email us, we receive your email address, name, and the content of your message.</p><p><b>Information collected automatically.</b> Like most websites, we receive standard technical data when you visit: IP address, browser type, device type, pages viewed, and referring URL. This is used in aggregate to understand how the site is used and to keep it fast and secure.</p>'+
   '<h2>2. Cookies &amp; analytics</h2><p>We use a small number of cookies for site functionality and privacy-respecting analytics that help us see which guides are useful. Amazon may also set cookies when you click an affiliate link so that qualifying purchases can be attributed; this is governed by Amazon\'s own privacy policy. You can block or delete cookies in your browser settings at any time — the site will keep working.</p>'+
   '<h2>3. Affiliate links &amp; third parties</h2><p>ToyScout links to Amazon.com through the Amazon Associates Program. When you leave our site via those links, Amazon\'s terms and privacy practices apply. We do not share your personal information with Amazon or any other third party for their marketing purposes.</p>'+
-  '<h2>4. The newsletter</h2><p>The weekly trend drop is one email per week. We use your address only to send it — never for anything else — and every email includes a one-click unsubscribe link. Unsubscribing removes your address from our list permanently.</p>'+
+  '<h2>4. Email</h2><p>We do not run a mailing list or newsletter. If you email us, we use your address only to reply to you.</p>'+
   '<h2>5. Children\'s privacy</h2><p>ToyScout is written for parents, gift-givers, and educators — not for children. We do not knowingly collect personal information from anyone under 13. If you believe a child has provided us information, contact us and we will delete it promptly.</p>'+
   '<h2>6. Your rights &amp; choices</h2><p>You may request a copy of the personal information we hold about you, ask us to correct it, or ask us to delete it. Depending on where you live (including the EU/EEA, UK, and California), you may have additional statutory rights. To exercise any of these, email us — no forms, no hoops.</p>'+
-  '<h2>7. Changes to this policy</h2><p>If we change this policy, we\'ll update the date at the top of this page. Material changes will be noted in the newsletter.</p>'+
+  '<h2>7. Changes to this policy</h2><p>If we change this policy, we\'ll update the date at the top of this page. Material changes will be noted on this page.</p>'+
   '<h2>8. Contact</h2><p>Privacy questions? Email <a href="mailto:info@kolikshop.com">info@kolikshop.com</a> or write to ToyScout, 34 N Franklin Ave, Ste 687 2564, Pinedale, WY 82941.</p>');
 }
 function vTerms(){
@@ -2178,10 +2163,10 @@ function vTerms(){
 
 /* ---------- view event binding ---------- */
 function bindView(){
-  $$("#view [data-cat]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();state.shopCat=a.getAttribute("data-cat");state.searchQ="";state.shopAge=null;state.shopSort="featured";if(state.page!=="shop"){openView("shop")}else{render();pushRoute();view.scrollTop=0}})});
+  $$("#view [data-cat]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();state.shopCat=a.getAttribute("data-cat");state.searchQ="";state.shopAge=null;state.shopAll=false;state.shopSort="featured";if(state.page!=="shop"){openView("shop")}else{render();pushRoute();view.scrollTop=0}})});
   $$("#view [data-sort]").forEach(function(b){b.addEventListener("click",function(){state.shopSort=b.getAttribute("data-sort");render(true)})});
-  $$("#view [data-age]").forEach(function(b){b.addEventListener("click",function(){var v=b.getAttribute("data-age");state.shopAge=state.shopAge===v?null:v;render(true)})});
-  var clearf=$("#view [data-clearf]"); if(clearf) clearf.addEventListener("click",function(){state.shopAge=null;state.shopSort="featured";state.searchQ="";render(true)});
+  $$("#view [data-age]").forEach(function(b){b.addEventListener("click",function(){var v=b.getAttribute("data-age");state.shopAge=state.shopAge===v?null:v;if(!state.shopAge)state.shopAll=false;render(true)})});
+  var clearf=$("#view [data-clearf]"); if(clearf) clearf.addEventListener("click",function(){state.shopAge=null;state.shopAll=false;state.shopSort="featured";state.searchQ="";render(true)});
   var clearq=$("#view [data-clearq]"); if(clearq) clearq.addEventListener("click",function(){state.searchQ="";render(true)});
   var sq=$("#shop-q");
   if(sq){sq.addEventListener("input",function(){state.searchQ=sq.value;var pos=sq.selectionStart;render(true);var nq=$("#shop-q");if(nq){nq.focus();try{nq.setSelectionRange(pos,pos)}catch(e){}}})}
@@ -2194,25 +2179,6 @@ function bindView(){
       if(!open){it.classList.add("open");var fb=it.querySelector(".fb");fb.style.maxHeight=fb.scrollHeight+"px"}
     });
   });
-  var cs=$("#c-send");
-  if(cs){cs.addEventListener("click",function(){
-    var n=$("#c-name").value,em=$("#c-email").value,m=$("#c-msg").value;
-    var err=$("#c-err"), errDefault=err.innerHTML, btnDefault=cs.innerHTML;
-    if(n.trim()&&isValidEmail(em)&&m.trim()){
-      err.style.display="none";
-      cs.disabled=true; cs.innerHTML="Sending…";
-      sbInsert("contact_messages",{name:n.trim().slice(0,120),email:em.trim().slice(0,254),message:m.trim().slice(0,5000)})
-        .then(function(ok){
-          if(ok){ $("#cform").innerHTML='<div class="ok">✓ Message sent — thanks for writing in!</div>'; }
-          else {
-            cs.disabled=false; cs.innerHTML=btnDefault;
-            err.textContent="Sorry — we couldn't send that. Please email us directly at info@kolikshop.com.";
-            err.style.display="block";
-          }
-        });
-    } else { err.innerHTML=errDefault; err.style.display="block"; }
-  })}
-  hookCursorTargets();
 }
 
 /* ---------- global nav / links ---------- */
@@ -2230,16 +2196,9 @@ document.addEventListener("click",function(e){
     }
     var go=a.getAttribute("data-go");
     if(go==="home"){goHome();window.scrollTo({top:0,behavior:"auto"});}
-    else if(go==="shop"){state.searchQ="";openView("shop")}
+    else if(go==="shop"){state.searchQ="";state.shopAll=false;openView("shop")}
     else openView(go);
     return;
-  }
-  // amazon click log
-  var az=e.target.closest?e.target.closest('a[href*="amazon.com"]'):null;
-  if(az){
-    var href=az.href||"", m=href.match(/\/dp\/([A-Z0-9]{10})/);
-    var onShop=state.page==="shop"||state.page==="product";
-    sbInsert("amazon_clicks",{page:(location.pathname+location.hash).slice(0,200),category:(onShop?state.shopCat:state.page).slice(0,80),asin:m?m[1]:null,url:href.slice(0,500),referrer:(document.referrer||"").slice(0,300)});
   }
 },true);
 
@@ -2256,23 +2215,6 @@ window.addEventListener("keydown",function(e){
 var navQ=$("#nav-q");
 navQ.addEventListener("keydown",function(e){
   if(e.key==="Enter"&&navQ.value.trim()){state.searchQ=navQ.value;openView("shop");navQ.value=""}
-});
-
-/* newsletter */
-$("#news-btn").addEventListener("click",function(){
-  var em=$("#news-email").value;
-  var nerr=$("#news-err"), nerrDefault=nerr.innerHTML;
-  if(isValidEmail(em)){
-    nerr.style.display="none";
-    sbInsert("newsletter_signups",{email:em.trim().slice(0,254),source_page:(location.pathname+location.hash).slice(0,200)})
-      .then(function(ok){
-        if(ok){ $("#news-box").innerHTML='<div class="n-ok">✓ You\'re in! First drop lands Monday.</div>'; }
-        else {
-          nerr.textContent="Sorry — signup failed. Please try again in a moment.";
-          nerr.style.display="block";
-        }
-      });
-  } else { nerr.innerHTML=nerrDefault; nerr.style.display="block"; }
 });
 
 /* ---------- home dynamic content ---------- */
@@ -2298,7 +2240,8 @@ $("#news-btn").addEventListener("click",function(){
     html+='<a class="bcard b-2" href="/shop/'+c[0]+'" data-cat-home="'+c[0]+'" data-rv style="transition-delay:.'+(k%4)*8+'s"><div class="b-emoji">'+c[2]+'</div><h3>'+c[1]+'</h3><div class="b-cnt">'+counts[c[0]]+' TRENDING PICKS</div><div class="b-arr">→</div></a>';
   });
   $("#bento").innerHTML=html;
-  $$("[data-cat-home]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();state.shopCat=a.getAttribute("data-cat-home");state.searchQ="";state.shopAge=null;openView("shop")})});
+  $$("[data-cat-home]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();state.shopCat=a.getAttribute("data-cat-home");state.searchQ="";state.shopAge=null;state.shopAll=false;openView("shop")})});
+  $$("[data-age-home]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();state.shopCat=a.getAttribute("data-age-cat")||state.shopCat;state.searchQ="";state.shopSort="featured";state.shopAge=a.getAttribute("data-age-home");state.shopAll=true;openView("shop")})});
   $$("#picks-grid [data-prod]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();var pr=a.getAttribute("data-prod").split(":");state.shopCat=pr[0];state.prodIdx=parseInt(pr[1],10)||0;state.galIdx=0;openView("product")})});
 })();
 
@@ -2339,43 +2282,6 @@ if(!touch&&!reduced){
     var c=e.target.closest?e.target.closest("[data-tilt3d]"):null;
     if(c&&(!e.relatedTarget||!c.contains(e.relatedTarget))){c.classList.remove("tilting");c.style.transform=""}
   },true);
-}
-
-/* ---------- custom cursor ---------- */
-var ringX=0,ringY=0,mx=0,my=0;
-function hookCursorTargets(){}
-if(false){
-  document.body.classList.add("cursor-on");
-  var dot=$("#cur-dot"),ring=$("#cur-ring");
-  document.addEventListener("mousemove",function(e){
-    mx=e.clientX;my=e.clientY;
-    dot.style.transform="translate("+(mx-3)+"px,"+(my-3)+"px)";
-    var t=e.target.closest?e.target.closest("a,button,[data-tilt3d],input,textarea"):null;
-    ring.classList.toggle("hov",!!t);
-  },{passive:true});
-  (function ringLoop(){
-    ringX+=(mx-ringX)*.16; ringY+=(my-ringY)*.16;
-    ring.style.transform="translate("+(ringX-17)+"px,"+(ringY-17)+"px)";
-    requestAnimationFrame(ringLoop);
-  })();
-}
-
-/* ---------- particles ---------- */
-if(!reduced){
-  var pc=$("#particles"),px=pc.getContext("2d"),parts=[];
-  var COLS=["rgba(20,34,90,","rgba(232,68,46,","rgba(29,63,196,","rgba(245,179,1,"];
-  function pcSize(){pc.width=innerWidth;pc.height=innerHeight}
-  pcSize(); addEventListener("resize",pcSize);
-  for(var i=0;i<34;i++){parts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:.5+Math.random()*1.8,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.18,o:.06+Math.random()*.2,c:COLS[i%4]})}
-  (function pLoop(){
-    px.clearRect(0,0,pc.width,pc.height);
-    parts.forEach(function(p){
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0)p.x=pc.width;if(p.x>pc.width)p.x=0;if(p.y<0)p.y=pc.height;if(p.y>pc.height)p.y=0;
-      px.beginPath();px.arc(p.x,p.y,p.r,0,7);px.fillStyle=p.c+p.o+")";px.fill();
-    });
-    requestAnimationFrame(pLoop);
-  })();
 }
 
 /* ---------- nav scrolled state ---------- */
@@ -2453,7 +2359,7 @@ function runCounters(){
     var t0=performance.now(),dur=1500;
     (function tick(now){
       var p=Math.min(1,(now-t0)/dur); p=1-Math.pow(1-p,3);
-      el.textContent=(target*p).toFixed(dec);
+      el.textContent=dec?(target*p).toFixed(dec):fmt(Math.round(target*p));
       if(p<1) requestAnimationFrame(tick);
     })(t0);
   });
@@ -2490,9 +2396,15 @@ function loadFrame(i,cb){
   im.onerror=function(){loaded++;cb&&cb()};
   im.src=framePath(i);
 }
-function boot(){
+/* The film (and its ~120 frames) only runs for the home page. On first load of
+   another route the loader is skipped and nothing is fetched; if the visitor
+   later navigates to home, goHome() starts it lazily without the loader. */
+var filmStarted=false, filmInit=false;
+function startFilm(withLoader){
+  if(filmStarted) return; filmStarted=true;
+  if(!withLoader) finishLoader(true);
   if(reduced){
-    // static: draw middle frame once
+    // static: draw first frame once
     sizeCanvas();
     loadFrame(0,function(){drawFrame(0);finishLoader(true)});
     return;
@@ -2524,7 +2436,7 @@ function boot(){
 var loaderClosed=false;
 function finishLoader(instant){
   if(loaderClosed)return; loaderClosed=true;
-  var l=$("#loader");
+  var l=$("#loader"); if(!l) return;
   var fill=$("#l-fill"),pct=$("#l-pct");
   if(fill)fill.style.width="100%"; if(pct)pct.textContent="100%";
   setTimeout(function(){l.classList.add("done")},instant?0:350);
@@ -2534,7 +2446,8 @@ setTimeout(function(){finishLoader()},6000); // fail-safe
 
 /* ---------- init route ---------- */
 applyRoute();
-boot();
+filmInit=true;
+if(state.page==="home") startFilm(true); else finishLoader(true);
 })();
 </script>
 <!-- Vercel Web Analytics. Ziyaretci/sayfa goruntuleme olcumu; GSC yalnizca organik

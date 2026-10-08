@@ -68,7 +68,14 @@ article li{margin:0 0 .5em}
 .a-prod{background:#fff;border:1px solid var(--ink-08);border-radius:14px;
 padding:16px 18px;margin:1.4em 0;display:flex;gap:16px;align-items:center;
 justify-content:space-between;flex-wrap:wrap}
+.a-prod .t{flex:1;min-width:180px}
 .a-prod .t b{display:block;font-size:1.02rem}
+.a-prod .ap-img{flex:0 0 auto;width:88px;height:88px;object-fit:contain;background:#fff;
+border-radius:10px;border:1px solid var(--ink-08);padding:5px}
+.a-prod .ap-acts{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.a-prod .ap-det{color:var(--blue);font-weight:800;font-size:.92rem;text-decoration:none}
+.a-disc{font-size:.86rem;color:var(--ink-55);font-weight:700;margin:-14px 0 22px}
+.a-disc a{color:var(--blue)}
 .a-prod .t span{color:var(--ink-55);font-size:.88rem}
 .btn{display:inline-block;text-decoration:none;border-radius:999px;font-weight:800}
 .btn-blue{background:var(--blue);color:#fff}
@@ -208,6 +215,7 @@ def main():
 <article>
   <h1>{esc(title)}</h1>
   <p class="pmeta">{esc(H.unescape(p['meta']))}</p>
+  <p class="a-disc">As an Amazon Associate, ToyScout earns from qualifying purchases. <a href="/disclosure">Learn more</a></p>
   <img class="hero" src="{esc(image)}" alt="{esc(title)}" width="760" height="428" loading="eager">
 
 {p['body']}
