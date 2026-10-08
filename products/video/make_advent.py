@@ -1,4 +1,4 @@
-"""Motion-graphic Short (9:16) for post20 (kids' advent calendars 2026, by age), built from real product photos.
+"""Motion-graphic Short (9:16, ~17 s) for post20 (kids' advent calendars 2026, by age), built from real product photos.
 Renders PNG frames with Pillow, then encodes with ffmpeg. No AI generation. Style copied from make_needoh_v2.py.
 Products and ratings come from js/data.js (catalog check, early October 2026). No prices anywhere (owner rule)."""
 import math, os, shutil, subprocess
@@ -8,8 +8,8 @@ SLUG = 'advent'
 OUT = os.path.expanduser('~/Downloads/toyscout-video')  # frames + mp4 go here, outside the repo
 SITE = '/Users/ahmet/Downloads/Toyscout/assets'
 W, H, FPS = 1080, 1920, 30
-DUR = 11.0
-WARP = 12.5 / 11.0
+DUR = 17.4
+WARP = 1.0
 FR = os.path.join(OUT, f'frames_{SLUG}'); os.makedirs(FR, exist_ok=True)
 
 CREAM = (255, 246, 232); NAVY = (27, 42, 74); RED = (232, 64, 42); BLUE = (40, 120, 220)
@@ -44,7 +44,8 @@ SW = card(f'{P}/B0G5QKD8ZS.jpg', 760)                         # LEGO Star Wars A
 SW_FIGS = rounded(Image.open(f'{P}/B0G5QKD8ZS_2.jpg').convert('RGB').crop((0, 420, 1500, 1500)).resize((600, 432), Image.LANCZOS), 40)
 SES = card(f'{P}/0794448828.jpg', 330)                       # Sesame Street storybook calendar
 CITY = card(f'{P}/B0G5QJP2BW.jpg', 330)                      # LEGO City Advent Calendar 2026
-GEM = card(f'{P}/B0B75R26QM.jpg', 330)                       # National Geographic Gemstone
+GEM = card(f'{P}/B0B75R26QM.jpg', 330)
+SES_BOOKS = card(f'{P}/0794448828_1.jpg', 720, pad=0.0)       # real photo of the 24 mini books                       # National Geographic Gemstone
 HOOK = [card(f'{P}/0794448828.jpg', 420), card(f'{P}/B0G1TZTY5K.jpg', 420), card(f'{P}/B0B75R26QM.jpg', 420)]
 logo = cutout_white(Image.open(f'{SITE}/logo-blocks.png'), 245)
 logo = logo.crop(logo.getbbox()); logo = logo.resize((200, int(logo.height * 200 / logo.width)), Image.LANCZOS)
@@ -89,8 +90,13 @@ def soft_shadow(canvas, box, alpha=0.22, r=44):
     ImageDraw.Draw(sh).rounded_rectangle(box, r, fill=(60, 40, 20, int(255 * alpha)))
     sh = sh.filter(ImageFilter.GaussianBlur(24)); canvas.paste(sh, (0, 14), sh)
 
-def scene_alpha(t, a, b, fade=0.25):
+FADE = 0.2
+def scene_alpha(t, a, b, fade=FADE):
+    # old scene fades out over [b-fade, b], next fades in over [b, b+fade]: never two at full strength
     return clamp((t - a) / fade) * clamp((b - t) / fade)
+
+# scene boundaries (seconds)
+T_HOOK, T_PICK, T_DOORS, T_AGE, T_BOOKS, T_CHECK, T_CTA = 0.0, 3.0, 6.6, 9.0, 12.4, 14.4, 15.9
 
 # ---------- scenes ----------
 ROWS = [  # (card, age pill, colour, name, rating line) — real catalog numbers
@@ -102,9 +108,9 @@ ROWS = [  # (card, age pill, colour, name, rating line) — real catalog numbers
 def frame(t):
     im = bg(t).convert('RGBA'); d = ImageDraw.Draw(im)
 
-    # S1 hook 0–2.8: title visible from frame 0, three calendars fan in
-    if t < 2.8:
-        A = scene_alpha(t, -1, 2.8)
+    # S1 hook: title + cards visible from frame 0
+    if t < T_PICK:
+        A = scene_alpha(t, -1, T_PICK)
         y = 300 + 6 * math.sin(t * 3)
         text_c(d, y, 'THE ADVENT', font(112), NAVY + (int(255 * A),))
         text_c(d, y + 130, 'CALENDAR', font(112), NAVY + (int(255 * A),))
@@ -112,42 +118,42 @@ def frame(t):
         for i, (dx, rot) in enumerate([(-270, 9), (270, -9), (0, 0)]):
             p = ease_back(prog(t, -0.45 + i * 0.12, 0.15 + i * 0.12))
             if p <= 0: continue
-            cy = 1150 + (1 - clamp(p)) * 500
+            cy = 1150 + (1 - clamp(p)) * 500 + 8 * math.sin(t * 2 + i)
             paste_c(im, HOOK[i], W / 2 + dx, cy, 0.9 * max(p, 0.01), A * clamp(p * 2), rot)
         pill(im, W / 2, 1460, 'Sorted by age – 2026', font(54), WHITE, GREEN, A * ease_out(prog(t, 0.9, 1.3)))
 
-    # S2 #1 pick 2.6–5.8: LEGO Star Wars, rating count-up
-    if 2.55 < t < 5.85:
-        A = scene_alpha(t, 2.55, 5.85)
+    # S2 #1 pick: LEGO Star Wars, rating count-up
+    if T_PICK < t < T_DOORS:
+        A = scene_alpha(t, T_PICK, T_DOORS); u = t - T_PICK
         pill(im, W / 2, 320, '#1 PICK – AGES 6+', font(58), WHITE, RED, A)
         text_c(d, 395, 'LEGO Star Wars', font(98), NAVY + (int(255 * A),))
         text_c(d, 510, 'Advent Calendar 2026', font(62), (90, 90, 90, int(255 * A)))
-        z = 0.86 + 0.06 * ease_out(prog(t, 2.6, 5.8))
+        z = 0.86 + 0.06 * ease_out(prog(u, 0, 3.6))
         s = 760 * z; soft_shadow(im, (W / 2 - s / 2, 970 - s / 2, W / 2 + s / 2, 970 + s / 2), 0.2 * A)
         paste_c(im, SW, W / 2, 970, z, A)
-        n = int(74 * ease_out(prog(t, 3.0, 4.2))); r = 4.9 * ease_out(prog(t, 3.0, 4.2))
+        k = ease_out(prog(u, 0.4, 1.6)); n = int(74 * k); r = 4.9 * k
         d2 = ImageDraw.Draw(im)
         text_c(d2, 1335, f'{r:.1f} ★  ·  {n} ratings', font(70, F_UNI), (40, 40, 40, int(255 * A)))
-        sub = ease_out(prog(t, 4.2, 4.7))
+        sub = ease_out(prog(u, 1.7, 2.2))
         text_c(d2, 1425, 'Best-rated calendar in our guide', font(52), (90, 90, 90, int(255 * A * sub)))
 
-    # S2b inside the doors 5.7–6.9: real minifigure photo
-    if 5.65 < t < 7.0:
-        A = scene_alpha(t, 5.65, 7.0)
+    # S2b behind the doors: real minifigure photo
+    if T_DOORS < t < T_AGE:
+        A = scene_alpha(t, T_DOORS, T_AGE); u = t - T_DOORS
         text_c(d, 330, 'Behind the doors:', font(82), NAVY + (int(255 * A),))
         text_c(d, 440, 'Mando + Grogu in', font(70), RED + (int(255 * A),))
         text_c(d, 525, 'holiday sweaters', font(70), RED + (int(255 * A),))
-        p = ease_back(prog(t, 5.7, 6.2))
+        p = ease_back(prog(u, 0.0, 0.5))
         soft_shadow(im, (W / 2 - 300, 1000 - 216, W / 2 + 300, 1000 + 216), 0.2 * A, 40)
-        paste_c(im, SW_FIGS, W / 2, 1000, 0.85 + 0.15 * max(p, 0), A)
-        text_c(d, 1330, '+ 8 mini vehicles', font(66), NAVY + (int(255 * A * ease_out(prog(t, 6.1, 6.5))),))
+        paste_c(im, SW_FIGS, W / 2, 1000, 0.85 + 0.15 * max(p, 0) + 0.03 * prog(u, 0.5, 2.4), A)
+        text_c(d, 1330, '+ 8 mini vehicles', font(66), NAVY + (int(255 * A * ease_out(prog(u, 0.7, 1.1))),))
 
-    # S3 by age 6.9–9.6: three rows slide in
-    if 6.85 < t < 9.7:
-        A = scene_alpha(t, 6.85, 9.7)
+    # S3 by age: three rows slide in
+    if T_AGE < t < T_BOOKS:
+        A = scene_alpha(t, T_AGE, T_BOOKS); u = t - T_AGE
         text_c(d, 270, 'Pick by age', font(92), NAVY + (int(255 * A),))
         for i, (cimg, age, col, name, rate, what) in enumerate(ROWS):
-            p = ease_out(prog(t, 7.0 + i * 0.35, 7.5 + i * 0.35))
+            p = ease_out(prog(u, 0.15 + i * 0.4, 0.65 + i * 0.4))
             if p <= 0: continue
             cy = 560 + i * 365; off = (1 - p) * 500
             soft_shadow(im, (60 + off, cy - 165, 390 + off, cy + 165), 0.18 * A * p)
@@ -159,22 +165,33 @@ def frame(t):
             dd.text((x, cy + 25), what, font=font(44), fill=(90, 90, 90, a))
             dd.text((x, cy + 85), rate, font=font(46, F_UNI), fill=(40, 40, 40, a))
 
-    # S4 checklist 9.6–11.0
-    if 9.55 < t < 11.05:
-        A = scene_alpha(t, 9.55, 11.05)
-        text_c(d, 420, 'Before you buy', font(96), NAVY + (int(255 * A),))
-        for i, s in enumerate(['✓  Check the age on the box', '✓  Under 3? Pick a book one', '✓  New 2026 sets: fewer ratings']):
-            p = ease_back(prog(t, 9.7 + i * 0.25, 10.1 + i * 0.25))
-            if p > 0: pill(im, W / 2 + (1 - p) * 300, 760 + i * 230, s, font(56, F_UNI), WHITE, [GREEN, PINK, BLUE][i], A * clamp(p))
+    # S3b toddler detail: real photo of the 24 Sesame Street mini books
+    if T_BOOKS < t < T_CHECK:
+        A = scene_alpha(t, T_BOOKS, T_CHECK); u = t - T_BOOKS
+        pill(im, W / 2, 320, 'UNDER 3?', font(58), WHITE, PINK, A)
+        text_c(d, 395, 'Pick a book calendar', font(84), NAVY + (int(255 * A),))
+        z = 0.94 + 0.06 * ease_out(prog(u, 0, 2.0))
+        s = 720 * z; soft_shadow(im, (W / 2 - s / 2, 900 - s / 2, W / 2 + s / 2, 900 + s / 2), 0.2 * A)
+        paste_c(im, SES_BOOKS, W / 2, 900, z, A)
+        text_c(d, 1300, '24 mini books, one a day', font(62), NAVY + (int(255 * A * ease_out(prog(u, 0.4, 0.8))),))
+        text_c(d, 1395, 'A bedtime story every night', font(54), (90, 90, 90, int(255 * A * ease_out(prog(u, 0.8, 1.2)))))
 
-    # S5 CTA 11.0–12.5
-    if t > 10.95:
-        A = clamp((t - 10.95) / 0.25)
+    # S4 checklist
+    if T_CHECK < t < T_CTA:
+        A = scene_alpha(t, T_CHECK, T_CTA); u = t - T_CHECK
+        text_c(d, 420, 'Before you buy', font(96), NAVY + (int(255 * A),))
+        for i, s in enumerate(['✓  Check the age on the box', '✓  New 2026 sets: fewer ratings', '✓  LEGO pieces fit other sets']):
+            p = ease_back(prog(u, 0.1 + i * 0.25, 0.5 + i * 0.25))
+            if p > 0: pill(im, W / 2 + (1 - p) * 300, 760 + i * 230, s, font(56, F_UNI), WHITE, [GREEN, BLUE, RED][i], A * clamp(p))
+
+    # S5 CTA
+    if t > T_CTA:
+        A = clamp((t - T_CTA) / FADE); u = t - T_CTA
         text_c(d, 360, '9 advent calendars', font(88), NAVY + (int(255 * A),))
         text_c(d, 470, 'sorted by age', font(70), (90, 90, 90, int(255 * A)))
-        b = 1 + 0.04 * math.sin((t - 11.0) * 6)
+        b = 1 + 0.04 * math.sin(u * 6)
         pill(im, W / 2, 760, 'Full guide on toyscout.net', font(70), WHITE, RED, A, pad=(56 * b, 30 * b))
-        paste_c(im, logo, W / 2, 1040, ease_back(prog(t, 11.1, 11.6)) + 0.001, alpha=A)
+        paste_c(im, logo, W / 2, 1040, ease_back(prog(u, 0.15, 0.65)) + 0.001, alpha=A)
         d5 = ImageDraw.Draw(im)
         text_c(d5, 1260, 'toyscout.net', font(76), NAVY + (int(255 * A),))
     return im.convert('RGB')
@@ -194,7 +211,7 @@ def cover():
 if __name__ == '__main__':
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == 'preview':   # render a few check frames only
-        for ts in [0.0, 1.5, 4.5, 6.4, 8.8, 10.4, 12.2]:
+        for ts in [0.0, 2.9, 5.0, 7.8, 10.8, 12.5, 13.5, 15.2, 17.2]:
             frame(ts).save(os.path.join(OUT, f'preview_{SLUG}_{ts:.1f}.png'))
         cover().save(os.path.join(OUT, f'cover_{SLUG}.jpg'), quality=92); sys.exit()
     n = int(DUR * FPS)

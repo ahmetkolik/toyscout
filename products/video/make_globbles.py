@@ -9,7 +9,7 @@ SLUG = 'globbles'
 OUT = os.path.expanduser('~/Downloads/toyscout-video')  # frames + mp4 go here, outside the repo
 SITE = '/Users/ahmet/Downloads/Toyscout/assets'
 W, H, FPS = 1080, 1920, 30
-DUR = 12.5
+DUR = 17.4
 FR = os.path.join(OUT, f'frames_{SLUG}'); os.makedirs(FR, exist_ok=True)
 
 CREAM = (255, 246, 232); NAVY = (27, 42, 74); RED = (232, 64, 42); BLUE = (40, 120, 220)
@@ -63,6 +63,7 @@ def card(im, w, r=44, border=10):
 pack = card(P('B07HDX46HS'), 660)
 wall = card(P('B07HDX46HS_5'), 460)
 squish = card(P('B07HDX46HS_2'), 460)
+travel = card(P('B07HDX46HS_3'), 760)
 gum = cutout_white(P('B0C6XBP4CW').crop((640, 10, 1270, 720)))       # NeeDoh Gumdrop (blue)
 gum = gum.resize((360, int(gum.height * 360 / gum.width)), Image.LANCZOS)
 mochi = card(P('B0HDBBT31F'), 400, r=36, border=8)
@@ -87,7 +88,14 @@ def bg(t):
     return im.filter(ImageFilter.GaussianBlur(90))
 
 def text_c(d, y, s, f, fill, stroke=0, sf=None, cx=W / 2):
-    w = d.textlength(s, font=f); d.text((cx - w / 2, y), s, font=f, fill=fill, stroke_width=stroke, stroke_fill=sf)
+    """Centered text that really fades: ImageDraw ignores alpha on RGBA canvases, so draw a mask and paste."""
+    w = d.textlength(s, font=f); x = cx - w / 2
+    alpha = fill[3] if len(fill) == 4 else 255
+    if alpha <= 0: return
+    canvas = d._image
+    m = Image.new('L', canvas.size, 0); ImageDraw.Draw(m).text((x, y), s, font=f, fill=255)
+    if alpha < 255: m = m.point(lambda v: v * alpha // 255)
+    canvas.paste(Image.new('RGBA', canvas.size, tuple(fill[:3]) + (255,)), (0, 0), m)
 
 def paste_c(canvas, im, cx, cy, scale=1.0, sx=1.0, sy=1.0, alpha=1.0, rot=0):
     w = max(1, int(im.width * scale * sx)); h = max(1, int(im.height * scale * sy))
@@ -145,52 +153,72 @@ def hook(im, t, A, static=False):
             cy = CEIL + r * sy * 0.92
             paste_c(im, b, x, cy, sc, sx, sy, A)
 
+# scene windows (start, end): contiguous, each fades out 0.2 s before its end and the next fades in 0.2 s after,
+# so two scenes' text is never on screen at full strength together
+SC = {'hook': (-1.0, 3.0), 'pick': (3.0, 6.0), 'feat': (6.0, 8.9), 'go': (8.9, 11.3),
+      'more': (11.3, 13.6), 'check': (13.6, 15.4), 'cta': (15.4, 99)}
+FADE = 0.2
+
 def frame(t):
     im = bg(t).convert('RGBA'); d = ImageDraw.Draw(im)
+    def on(k):
+        a, b = SC[k]; return (a < t < b), scene_alpha(t, a, b, FADE), t - max(a, 0)
 
-    # S1 hook 0–2.6
-    if t < 2.65:
-        A = scene_alpha(t, -1, 2.65)
+    # S1 hook (fully visible from frame 0)
+    ok, A, u = on('hook')
+    if ok:
         hook(im, t, A)
-        a2 = ease_back(prog(t, 1.6, 2.0))
+        a2 = ease_back(prog(u, 1.6, 2.0))
         if a2 > 0:
             pill(im, W / 2, 1300, 'Crayola Globbles', font(76), WHITE, PURPLE, A * clamp(a2))
         d1 = ImageDraw.Draw(im)
         text_c(d1, 1420, 'Stick. Stack. Squish. Sling.', font(52), (90, 90, 90, int(255 * A * clamp(a2))))
 
-    # S2 #1 pick 2.5–5.0: pack photo + rating count-up
-    if 2.45 < t < 5.05:
-        A = scene_alpha(t, 2.45, 5.05)
+    # S2 #1 pick: pack photo + rating count-up
+    ok, A, u = on('pick')
+    if ok:
         pill(im, W / 2, 320, '#1 STICKY PICK', font(60), WHITE, RED, A)
         text_c(d, 410, 'Crayola Globbles', font(100), NAVY + (int(255 * A),))
         text_c(d, 535, '6-pack sticky squish balls', font(54), (90, 90, 90, int(255 * A)))
-        z = 0.94 + 0.06 * ease_out(prog(t, 2.5, 5.0))
+        z = 0.94 + 0.06 * ease_out(prog(u, 0, 3.0))
         paste_c(im, pack, W / 2, 975, z, alpha=A, rot=-2)
-        n = int(21037 * ease_out(prog(t, 2.8, 4.1)))
+        n = int(21037 * ease_out(prog(u, 0.3, 1.6)))
         d2 = ImageDraw.Draw(im)
         text_c(d2, 1345, f'4.5 ★  ·  {n:,} ratings', font(70, F_UNI), (40, 40, 40, int(255 * A)))
-        sub = ease_out(prog(t, 3.9, 4.3))
+        sub = ease_out(prog(u, 1.5, 1.9))
         text_c(d2, 1440, 'Most-reviewed squishy we track', font(54), (90, 90, 90, int(255 * A * sub)))
 
-    # S3 feature 4.9–7.4: real listing photos slide in
-    if 4.85 < t < 7.45:
-        A = scene_alpha(t, 4.85, 7.45)
-        pl = ease_out(prog(t, 4.9, 5.5)); pr = ease_out(prog(t, 5.8, 6.4))
+    # S3 feature: real listing photos slide in
+    ok, A, u = on('feat')
+    if ok:
+        pl = ease_out(prog(u, 0.05, 0.6)); pr = ease_out(prog(u, 0.9, 1.5))
         paste_c(im, wall, -300 + pl * 600, 735, 1.0, alpha=A, rot=-4)
         paste_c(im, squish, W + 300 - pr * 600, 1065, 1.0, alpha=A, rot=4)
         d3 = ImageDraw.Draw(im)
-        a1 = ease_out(prog(t, 5.1, 5.5)); a2 = ease_out(prog(t, 6.0, 6.4))
+        a1 = ease_out(prog(u, 0.2, 0.6)); a2 = ease_out(prog(u, 1.1, 1.5))
         text_c(d3, 290, 'Sticks to walls', font(80), NAVY + (int(255 * A * a1),))
         text_c(d3, 385, 'and windows.', font(80), BLUE + (int(255 * A * a1),))
         text_c(d3, 1345, 'Squish it, stretch it,', font(76), NAVY + (int(255 * A * a2),))
         text_c(d3, 1430, 'stack it.', font(76), PINK + (int(255 * A * a2),))
 
-    # S4 other picks 7.3–9.4
-    if 7.25 < t < 9.45:
-        A = scene_alpha(t, 7.25, 9.45)
+    # S4 on the go: real lifestyle gallery photo, slow zoom
+    ok, A, u = on('go')
+    if ok:
+        a1 = ease_out(prog(u, 0.05, 0.45))
+        text_c(d, 290, 'Home, school', font(84), NAVY + (int(255 * A * a1),))
+        text_c(d, 390, 'or road trips', font(84), GREEN + (int(255 * A * a1),))
+        z = 0.92 + 0.08 * ease_out(prog(u, 0, 2.4))
+        paste_c(im, travel, W / 2, 930, z, alpha=A * ease_out(prog(u, 0, 0.35)), rot=2)
+        a2 = ease_out(prog(u, 0.8, 1.2))
+        d4 = ImageDraw.Draw(im)
+        text_c(d4, 1400, 'Washable and easy to pack', font(58), (90, 90, 90, int(255 * A * a2)))
+
+    # S5 other picks
+    ok, A, u = on('more')
+    if ok:
         text_c(d, 300, 'Also in our', font(80), NAVY + (int(255 * A),))
         text_c(d, 395, 'squishy guide', font(80), RED + (int(255 * A),))
-        p1 = ease_back(prog(t, 7.4, 7.9)); p2 = ease_back(prog(t, 7.8, 8.3))
+        p1 = ease_back(prog(u, 0.1, 0.6)); p2 = ease_back(prog(u, 0.5, 1.0))
         d4 = ImageDraw.Draw(im)
         if p1 > 0:
             a = A * clamp(p1)
@@ -207,28 +235,28 @@ def frame(t):
             text_c(d4, 1060, 'JOYIN Mini', font(62), NAVY + (int(255 * a),), cx=790)
             text_c(d4, 1135, 'Mochi 200-pack', font(56), NAVY + (int(255 * a),), cx=790)
             text_c(d4, 1225, '4.7 ★ · 3,008', font(50, F_UNI), (60, 60, 60, int(255 * a)), cx=790)
-        a3 = ease_out(prog(t, 8.4, 8.8))
+        a3 = ease_out(prog(u, 1.1, 1.5))
         text_c(d4, 1370, 'Dough, mochi or sticky?', font(58), (90, 90, 90, int(255 * A * a3)))
 
-    # S5 checklist 9.3–11.0
-    if 9.25 < t < 11.05:
-        A = scene_alpha(t, 9.25, 11.05)
+    # S6 checklist
+    ok, A, u = on('check')
+    if ok:
         text_c(d, 400, 'Why parents like them', font(84), NAVY + (int(255 * A),))
         for i, s in enumerate(['✓  No sticky residue', '✓  Washes with soap & water', '✓  Ages 3 and up']):
-            p = ease_back(prog(t, 9.45 + i * 0.3, 9.85 + i * 0.3))
+            p = ease_back(prog(u, 0.1 + i * 0.25, 0.5 + i * 0.25))
             if p > 0: pill(im, W / 2 + (1 - p) * 300, 720 + i * 220, s, font(58, F_UNI), WHITE, [GREEN, BLUE, PURPLE][i], A * clamp(p))
         for k, (bi, x) in enumerate([(1, 250), (0, 540), (4, 830)]):
-            bp = ease_back(prog(t, 10.3 + k * 0.1, 10.6 + k * 0.1))
+            bp = ease_back(prog(u, 0.9 + k * 0.1, 1.2 + k * 0.1))
             if bp > 0: paste_c(im, BALLS[bi], x, 1380, 0.55 * bp + 0.001, alpha=A)
 
-    # S6 CTA 10.9–12.5
-    if t > 10.9:
-        A = clamp((t - 10.9) / 0.25)
+    # S7 CTA
+    ok, A, u = on('cta')
+    if ok:
         text_c(d, 360, 'Best squishy toys 2026', font(80), NAVY + (int(255 * A),))
         text_c(d, 470, 'NeeDoh · mochi · Globbles', font(62, F_UNI), (90, 90, 90, int(255 * A)))
-        b = 1 + 0.04 * math.sin((t - 10.9) * 6)
+        b = 1 + 0.04 * math.sin(u * 6)
         pill(im, W / 2, 760, 'Full guide on toyscout.net', font(70), WHITE, RED, A, pad=(56 * b, 30 * b))
-        paste_c(im, logo, W / 2, 1040, ease_back(prog(t, 11.1, 11.6)) + 0.001, alpha=A)
+        paste_c(im, logo, W / 2, 1040, ease_back(prog(u, 0.2, 0.7)) + 0.001, alpha=A)
         d5 = ImageDraw.Draw(im)
         text_c(d5, 1260, 'toyscout.net', font(76), NAVY + (int(255 * A),))
     return im.convert('RGB')
@@ -254,8 +282,8 @@ def cover():
 if __name__ == '__main__':
     cover()
     if '--preview' in sys.argv:
-        for tt in [0.0, 1.0, 2.2, 4.4, 6.8, 8.9, 10.6, 12.2]:
-            frame(tt).save(os.path.join(FR, f'check_{tt:04.1f}.png'))
+        for tt in [0.0, 2.6, 2.9, 3.1, 5.0, 7.8, 10.5, 13.0, 14.9, 16.8]:
+            frame(tt).save(os.path.join(FR, f'check_{tt:05.2f}.png'))
         print('preview frames in', FR); sys.exit()
     n = int(DUR * FPS)
     for i in range(n):

@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 OUT = os.path.expanduser('~/Downloads/toyscout-video')
 SITE = '/Users/ahmet/Downloads/Toyscout/assets'
 W, H, FPS = 1080, 1920, 30
-DUR = 12.0
+DUR = 17.0
 FR = os.path.join(OUT, 'frames_cardgames'); os.makedirs(FR, exist_ok=True)
 
 CREAM = (255, 246, 232); NAVY = (27, 42, 74); RED = (232, 64, 42); BLUE = (40, 120, 220)
@@ -30,7 +30,7 @@ def rounded(im, r=40):
 
 def photo_card(path, size, pad=0.07, r=44):
     """Product photo (white background) centred on a white rounded card with a soft shadow."""
-    src = Image.open(path).convert('RGB')
+    src = (path if isinstance(path, Image.Image) else Image.open(path)).convert('RGB')
     inner = int(size * (1 - 2 * pad)); s = inner / max(src.size)
     src = src.resize((max(1, int(src.width * s)), max(1, int(src.height * s))), Image.LANCZOS)
     card = Image.new('RGB', (size, size), WHITE); card.paste(src, ((size - src.width) // 2, (size - src.height) // 2))
@@ -46,6 +46,8 @@ def P(asin, suf=''): return f'{SITE}/products/{asin}{suf}.jpg'
 hook_cards = [photo_card(P(PICKS[k]['asin']), 360) for k in ('uno', 'taco', 'kit', 'skyjo')]
 sky_big = photo_card(P(PICKS['skyjo']['asin']), 640)
 row_cards = {k: photo_card(P(PICKS[k]['asin']), 290, r=36) for k in ('uno', 'taco', 'kit')}
+INSIDE = [(photo_card(Image.open(P('B07P6MZPK3', '_3')).crop((0, 0, 1500, 880)), 420, pad=0.04, r=40), 'UNO: 3 blank cards for house rules', RED),
+          (photo_card(P('B010TQY7A8', '_1'), 420, pad=0.0, r=40), 'Exploding Kittens: 56 cards', PINK)]
 cta_cards = [photo_card(P(PICKS[k]['asin']), 230, r=30) for k in ('skyjo', 'uno', 'taco', 'kit')]
 
 def cutout_white(im, thr=245):
@@ -67,15 +69,24 @@ def prog(t, a, b): return clamp((t - a) / (b - a))
 
 # ---------- drawing helpers ----------
 def bg(t):
-    im = Image.new('RGB', (W, H), CREAM); d = ImageDraw.Draw(im)
+    im = Image.new('RGB', (W, H), CREAM); d = ImageDraw.Draw(im, 'RGBA')
     for i, (c, r, sp) in enumerate([((255, 214, 224), 520, 0.35), ((214, 232, 255), 600, 0.25), ((255, 236, 190), 420, 0.45)]):
         cx = W * (0.2 + 0.6 * i / 2) + 120 * math.sin(t * sp + i)
         cy = H * (0.25 + 0.3 * i) + 140 * math.cos(t * sp * 1.3 + i)
         d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=c)
     return im.filter(ImageFilter.GaussianBlur(90))
 
+def draw_text(canvas, xy, s, f, fill):
+    """Text with real alpha (ImageDraw.text ignores alpha on RGB), via a transparent layer."""
+    fill = tuple(fill) + ((255,) if len(fill) == 3 else ())
+    if fill[3] <= 0: return
+    l, tp, r, b = f.getbbox(s); pad = 4
+    layer = Image.new('RGBA', (r + 2 * pad, b + 2 * pad), (0, 0, 0, 0))
+    ImageDraw.Draw(layer).text((pad, pad), s, font=f, fill=fill)
+    canvas.paste(layer, (int(xy[0]) - pad, int(xy[1]) - pad), layer)
+
 def text_c(d, y, s, f, fill, cx=W / 2):
-    w = d.textlength(s, font=f); d.text((cx - w / 2, y), s, font=f, fill=fill)
+    w = d.textlength(s, font=f); draw_text(d._image, (cx - w / 2, y), s, f, fill)
 
 def fit(d, s, size, maxw, f=F_ROUND):
     while size > 20 and d.textlength(s, font=font(size, f)) > maxw: size -= 2
@@ -87,27 +98,28 @@ def paste_c(canvas, im, cx, cy, scale=1.0, alpha=1.0, rot=0):
     if rot: p = p.rotate(rot, resample=Image.BICUBIC, expand=True)
     if alpha < 1:
         a = p.split()[3].point(lambda v: int(v * alpha)); p.putalpha(a)
-    canvas.alpha_composite(p, (int(cx - p.width / 2), int(cy - p.height / 2)))
+    canvas.paste(p, (int(cx - p.width / 2), int(cy - p.height / 2)), p)
 
 def pill(canvas, cx, cy, s, f, fg, bgc, alpha=1.0, pad=(44, 22), left=None):
     d0 = ImageDraw.Draw(canvas); tw = d0.textlength(s, font=f); th = f.size
     layer = Image.new('RGBA', (int(tw + pad[0] * 2), int(th + pad[1] * 2)), (0, 0, 0, 0))
-    ld = ImageDraw.Draw(layer); ld.rounded_rectangle((0, 0, layer.width - 1, layer.height - 1), layer.height // 2, fill=bgc + (int(255 * alpha),))
-    ld.text((pad[0], pad[1] - th * 0.12), s, font=f, fill=fg + (int(255 * alpha),))
+    ld = ImageDraw.Draw(layer); ld.rounded_rectangle((0, 0, layer.width - 1, layer.height - 1), layer.height // 2, fill=bgc + (255,))
+    ld.text((pad[0], pad[1] - th * 0.12), s, font=f, fill=fg + (255,))
+    if alpha < 1: layer.putalpha(layer.split()[3].point(lambda v: int(v * alpha)))
     x = left if left is not None else int(cx - layer.width / 2)
-    canvas.alpha_composite(layer, (int(x), int(cy - layer.height / 2)))
+    canvas.paste(layer, (int(x), int(cy - layer.height / 2)), layer)
     return layer.width
 
-def scene_alpha(t, a, b, fade=0.25):
+def scene_alpha(t, a, b, fade=0.2):
     return clamp((t - a) / fade) * clamp((b - t) / fade)
 
 # ---------- scenes ----------
 def frame(t):
-    im = bg(t).convert('RGBA'); d = ImageDraw.Draw(im)
+    im = bg(t); d = ImageDraw.Draw(im, 'RGBA')
 
     # S1 hook 0–2.7: title visible from frame 0, four real boxes fan in
-    if t < 2.8:
-        A = scene_alpha(t, -1, 2.8)
+    if t < 3.2:
+        A = scene_alpha(t, -1, 3.2)
         y = 270 + 6 * math.sin(t * 3)
         text_c(d, y, 'CARD GAMES', font(118), NAVY + (int(255 * A),))
         text_c(d, y + 140, 'YOUR FAMILY WILL', font(84), NAVY + (int(255 * A),))
@@ -121,66 +133,76 @@ def frame(t):
         pill(im, W / 2, 1400, 'All rated 4.6★ or higher', font(54, F_UNI), WHITE, NAVY, A * ease_out(prog(t, 0.9, 1.3)))
 
     # S2 #1 pick 2.7–5.7: SKYJO + rating count-up + players/age
-    if 2.65 < t < 5.85:
-        A = scene_alpha(t, 2.65, 5.85)
+    if 3.2 < t < 6.6:
+        A = scene_alpha(t, 3.2, 6.6); u = t - 0.5
         pill(im, W / 2, 330, '#1 PICK', font(62), WHITE, RED, A)
         text_c(d, 410, 'SKYJO', font(120), NAVY + (int(255 * A),))
-        z = 0.94 + 0.06 * ease_out(prog(t, 2.7, 5.7))
+        z = 0.94 + 0.06 * ease_out(prog(u, 2.7, 5.7))
         paste_c(im, sky_big, W / 2, 900, z, A)
-        n = int(PICKS['skyjo']['rc'] * ease_out(prog(t, 3.0, 4.3)))
-        d2 = ImageDraw.Draw(im)
+        n = int(PICKS['skyjo']['rc'] * ease_out(prog(u, 3.0, 4.3)))
+        d2 = ImageDraw.Draw(im, 'RGBA')
         text_c(d2, 1250, f'4.8 ★  ·  {n:,} ratings', font(68, F_UNI), (40, 40, 40, int(255 * A)))
-        s = ease_out(prog(t, 4.2, 4.6))
+        s = ease_out(prog(u, 4.2, 4.6))
         pill(im, W / 2 - 190, 1405, '2–8 players', font(54, F_UNI), WHITE, TEAL, A * s)
         pill(im, W / 2 + 210, 1405, 'Ages 8+', font(54, F_UNI), WHITE, BLUE, A * s)
 
     # S3 three more picks 5.7–9.1: rows slide in
-    if 5.65 < t < 9.25:
-        A = scene_alpha(t, 5.65, 9.25)
+    # S2b what's in the box 6.6–9.8: real gallery photos + facts from the bullets
+    if 6.6 < t < 9.8:
+        A = scene_alpha(t, 6.6, 9.8)
+        text_c(d, 280, "What's in the box", font(92), NAVY + (int(255 * A),))
+        for i, (img, l1, col) in enumerate(INSIDE):
+            p = ease_out(prog(t, 6.75 + i * 0.9, 7.25 + i * 0.9))
+            if p <= 0: continue
+            a = A * p; cy = 640 + i * 560; side = -1 if i == 0 else 1
+            paste_c(im, img, W / 2 + side * (1 - p) * 700, cy, 1.0, a, -3 * side)
+            pill(im, W / 2, cy + 255, l1, font(46, F_UNI), WHITE, col, a, pad=(32, 16))
+    if 9.8 < t < 13.6:
+        A = scene_alpha(t, 9.8, 13.6); u = t - 4.1
         text_c(d, 280, 'Also on the table', font(84), NAVY + (int(255 * A),))
         for i, k in enumerate(('uno', 'taco', 'kit')):
-            pk = PICKS[k]; p = ease_out(prog(t, 5.8 + i * 0.45, 6.3 + i * 0.45))
+            pk = PICKS[k]; p = ease_out(prog(u, 5.8 + i * 0.45, 6.3 + i * 0.45))
             if p <= 0: continue
             a = A * p; off = (1 - p) * 700; cy = 590 + i * 330
             paste_c(im, row_cards[k], 225 - off, cy, 1.0, a)
-            dd = ImageDraw.Draw(im); x0 = 400 + off * 0.3
+            dd = ImageDraw.Draw(im, 'RGBA'); x0 = 400 + off * 0.3
             nm = pk['name']; f = fit(dd, nm, 66, 610)
             ty = cy - 120 if pk.get('name2') else cy - 95
-            dd.text((x0, ty), nm, font=f, fill=NAVY + (int(255 * a),))
+            draw_text(im, (x0, ty), nm, f, NAVY + (int(255 * a),))
             if pk.get('name2'):
-                dd.text((x0, ty + 70), pk['name2'], font=f, fill=NAVY + (int(255 * a),)); ry = ty + 160
+                draw_text(im, (x0, ty + 70), pk['name2'], f, NAVY + (int(255 * a),)); ry = ty + 160
             else:
                 ry = ty + 85
-            dd.text((x0, ry), f"{pk['rating']} ★  ·  {pk['rc']:,} ratings", font=font(42, F_UNI), fill=(40, 40, 40, int(255 * a)))
+            draw_text(im, (x0, ry), f"{pk['rating']} ★  ·  {pk['rc']:,} ratings", font(42, F_UNI), (40, 40, 40, int(255 * a)))
             xx = x0
             for j, tg in enumerate(pk['tags']):
                 xx += pill(im, 0, ry + 95, tg, font(38, F_UNI), WHITE, [TEAL, BLUE][j], a, pad=(26, 14), left=xx) + 14
 
     # S4 checklist 9.1–10.7 (from post16 "What to skip")
-    if 9.05 < t < 10.75:
-        A = scene_alpha(t, 9.05, 10.75)
+    if 13.6 < t < 15.4:
+        A = scene_alpha(t, 13.6, 15.4); u = t - 4.5
         text_c(d, 420, 'Before you buy', font(96), NAVY + (int(255 * A),))
         for i, s in enumerate(['✓  Rules you can teach fast', '✓  Check the age on the box', '✓  Pick the original, not a clone']):
-            p = ease_back(prog(t, 9.25 + i * 0.25, 9.65 + i * 0.25))
+            p = ease_back(prog(u, 9.25 + i * 0.25, 9.65 + i * 0.25))
             if p > 0: pill(im, W / 2 + (1 - p) * 300, 740 + i * 220, s, font(54, F_UNI), WHITE, [GREEN, BLUE, RED][i], A * clamp(p))
 
     # S5 CTA 10.7–12
-    if t > 10.65:
-        A = clamp((t - 10.65) / 0.25)
+    if t > 15.4:
+        A = clamp((t - 15.4) / 0.2); u = t - 4.7
         text_c(d, 330, '10 family games', font(92), NAVY + (int(255 * A),))
         text_c(d, 445, 'compared side by side', font(64), GREY + (int(255 * A),))
         for i, c in enumerate(cta_cards):
-            p = ease_back(prog(t, 10.75 + i * 0.08, 11.15 + i * 0.08))
+            p = ease_back(prog(u, 10.75 + i * 0.08, 11.15 + i * 0.08))
             if p > 0: paste_c(im, c, 165 + i * 250, 690, 0.95 * max(p, 0.01), A, [-5, 3, -3, 5][i])
-        b = 1 + 0.04 * math.sin((t - 10.7) * 6)
+        b = 1 + 0.04 * math.sin((u - 10.7) * 6)
         pill(im, W / 2, 920, 'Full guide on toyscout.net', font(70), WHITE, RED, A, pad=(56 * b, 30 * b))
-        paste_c(im, logo, W / 2, 1140, 0.55 * (ease_back(prog(t, 10.9, 11.4)) + 0.001), A)
-        d5 = ImageDraw.Draw(im)
+        paste_c(im, logo, W / 2, 1140, 0.55 * (ease_back(prog(u, 10.9, 11.4)) + 0.001), A)
+        d5 = ImageDraw.Draw(im, 'RGBA')
         text_c(d5, 1290, 'toyscout.net', font(76), NAVY + (int(255 * A),))
     return im.convert('RGB')
 
 def cover():
-    im = bg(1.0).convert('RGBA'); d = ImageDraw.Draw(im)
+    im = bg(1.0); d = ImageDraw.Draw(im, 'RGBA')
     text_c(d, 440, 'CARD GAMES', font(124), NAVY)
     text_c(d, 590, 'YOUR FAMILY WILL', font(86), NAVY)
     text_c(d, 700, 'ACTUALLY PLAY', font(112), RED)
