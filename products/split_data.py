@@ -10,7 +10,8 @@ Bu betik ondan sunlari uretir:
 Neden: detay alanlari data.js'in ~%85'i; her ilk ziyarette 2.9 MB (950 KB gzip) inmesin.
 Dogrudan calistirmaya gerek yok: stamp_data_version.py bunu cagirir.
 """
-import hashlib, json, os, re, shutil
+import hashlib, json, os, re, shutil, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DETAIL_KEYS = ('gallery', 'bullets', 'reviews')
@@ -66,7 +67,12 @@ def main():
         open(os.path.join(ddir, cat + '.json'), 'w', encoding='utf-8').write(body)
         ver[cat] = hashlib.md5(body.encode('utf-8')).hexdigest()[:8]
     # TS_SRC: hangi data.js'ten uretildigi (.claude/hooks/data-js-reminder.sh bayatligi buna bakar)
-    out = 'window.TS_SRC="' + src + '";window.TS_DATA=' + dump(light) + ';window.TS_DETAIL_V=' + dump(ver) + ';\n'
+    # TS_INDEXABLE: product paths allowed in Google's index (seo_index.py); updateSeo() sets
+    # noindex,follow on every other product page, matching prerender.py and sitemap.xml.
+    import seo_index
+    idx = seo_index.indexable_products(data)
+    out = ('window.TS_SRC="' + src + '";window.TS_DATA=' + dump(light) + ';window.TS_DETAIL_V=' + dump(ver)
+           + ';window.TS_INDEXABLE=' + dump(idx) + ';\n')
     open(os.path.join(ROOT, 'js', 'catalog.js'), 'w', encoding='utf-8').write(out)
     print(f'catalog.js {len(out.encode()) // 1024} KB, {len(ver)} detay dosyasi')
 

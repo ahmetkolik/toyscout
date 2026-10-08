@@ -22,17 +22,14 @@
       ],
       "destination": "https://www.toyscout.net/:path",
       "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [
-    {
-      "source": "/shop/:path*",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/product/:path*",
-      "destination": "/index.html"
-    },
     {
       "source": "/blog",
       "destination": "/index.html"
