@@ -63,6 +63,10 @@ article h2{font-family:Fraunces,Georgia,serif;font-size:1.42rem;margin:1.9em 0 .
 line-height:1.25}
 article p{margin:0 0 1.15em}
 article .a-lede{font-size:1.12rem;color:var(--ink)}
+article h3{font-size:1.1rem;margin:1.4em 0 .3em}
+.a-tbl{overflow-x:auto;margin:1.2em 0}.a-tbl table{width:100%;border-collapse:collapse;min-width:520px}
+.a-tbl th,.a-tbl td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid #e5e0d6;font-size:.95rem}
+.a-tbl th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:#6b6457}
 article ul,article ol{margin:0 0 1.2em;padding-left:1.3em}
 article li{margin:0 0 .5em}
 .a-prod{background:#fff;border:1px solid var(--ink-08);border-radius:14px;
@@ -121,6 +125,15 @@ def load_ld_meta():
             r'"image"\s*:\s*"(.*?)".*?"url"\s*:\s*"https://www\.toyscout\.net/(post\d+)"',
             src, re.S):
         out[m.group(4)] = {'headline': m.group(1), 'date': m.group(2), 'image': m.group(3)}
+    # Optional "dateModified" right after datePublished (set when a post is refreshed).
+    for m in re.finditer(r'"datePublished"\s*:\s*"[^"]*"\s*,\s*"dateModified"\s*:\s*"(.*?)".*?'
+                         r'"url"\s*:\s*"https://www\.toyscout\.net/(post\d+)"', src, re.S):
+        if m.group(2) in out:
+            out[m.group(2)]['modified'] = m.group(1)
+    # Hand-written meta descriptions from updateSeo(): else if(s.page==="postN"){title="...";desc="...";}
+    for m in re.finditer(r's\.page==="(post\d+)"\)\{title="[^"]*";desc="([^"]*)";', src):
+        if m.group(1) in out:
+            out[m.group(1)]['desc'] = m.group(2)
     return out
 
 
@@ -138,8 +151,8 @@ def main():
         image = info.get('image', 'https://www.toyscout.net/assets/hero-flying-blue.png')
         url = f'https://www.toyscout.net/{key}'
 
-        desc = text_of(p['body'], 300)
-        desc = (desc[:152].rsplit(' ', 1)[0] + '…') if len(desc) > 155 else desc
+        desc = info.get('desc') or text_of(p['body'], 300)
+        desc = (desc[:152].rsplit(' ', 1)[0] + '…') if len(desc) > 160 else desc
 
         # ilgili yazilar — onceki/sonraki uc yazi
         others = [k for k in keys if k != key]
@@ -156,7 +169,7 @@ def main():
             "@graph": [
                 {"@type": "BlogPosting", "headline": title,
                  "description": desc, "image": image,
-                 "datePublished": date, "dateModified": date,
+                 "datePublished": date, "dateModified": info.get('modified', date),
                  "author": {"@type": "Organization", "name": "ToyScout Editors"},
                  "publisher": {"@type": "Organization", "name": "ToyScout",
                                "url": "https://www.toyscout.net/"},
