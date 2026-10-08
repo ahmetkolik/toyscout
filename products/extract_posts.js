@@ -33,11 +33,32 @@ function amazonSearchUrl(name) {
   return 'https://www.amazon.com/s?k=' + encodeURIComponent(name) +
          '&i=toys-and-games&tag=' + AFF;
 }
+// Catalog lookup by ASIN (js/data.js is the source of truth) for the product
+// photo and the /product/<cat>/<idx> details link.
+const dataSrc = fs.readFileSync(path.join(SITE, 'js', 'data.js'), 'utf8');
+const D = JSON.parse(dataSrc.slice(dataSrc.indexOf('{'), dataSrc.lastIndexOf('}') + 1));
+const BY_ASIN = {};
+for (const c of Object.keys(D)) {
+  (D[c] || []).forEach((p, i) => { if (p.asin && !BY_ASIN[p.asin]) BY_ASIN[p.asin] = [c, i, p.img]; });
+}
+function affUrl(u) {
+  u = u || '';
+  if (!/amazon\./.test(u) || /[?&]tag=/.test(u)) return u;
+  return u + (u.indexOf('?') >= 0 ? '&' : '?') + 'tag=' + AFF;
+}
+function A(u) { return u && !/^(https?:)?\//.test(u) ? '/' + u : u; }
 function aProd(name, meta, url) {
-  return '<div class="a-prod"><div class="t"><b>' + esc(name) + '</b><span>' +
-    esc(meta) + '</span></div><a class="btn btn-blue" style="padding:11px 22px;' +
-    'font-size:14px" target="_blank" rel="noopener sponsored" href="' + esc(url) +
-    '">View on Amazon</a></div>';
+  const m = (url || '').match(/\/dp\/([A-Z0-9]{10})/);
+  const hit = m ? BY_ASIN[m[1]] : null;
+  let img = hit && hit[2] ? A(hit[2]) : '';
+  if (img && !fs.existsSync(path.join(SITE, img.replace(/^\//, '')))) img = '';
+  return '<div class="a-prod">' +
+    (img ? '<img class="ap-img" src="' + esc(img) + '" width="88" height="88" loading="lazy" alt="' + esc(name) + '">' : '') +
+    '<div class="t"><b>' + esc(name) + '</b><span>' + esc(meta) + '</span></div>' +
+    '<div class="ap-acts">' +
+    (hit ? '<a class="ap-det" href="/product/' + hit[0] + '/' + hit[1] + '" data-prod="' + hit[0] + ':' + hit[1] + '">Details</a>' : '') +
+    '<a class="btn btn-blue" style="padding:11px 22px;font-size:14px" target="_blank" rel="sponsored noopener" href="' +
+    esc(affUrl(url)) + '">Check price on Amazon</a></div></div>';
 }
 
 const POSTS = eval('(' + block + ')');
