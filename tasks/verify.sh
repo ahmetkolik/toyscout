@@ -104,12 +104,14 @@ print(sum(len(v) for v in d.values()))
 PY
 )
 S=$(grep -c "<url>" sitemap-products.xml 2>/dev/null)
+# 2026-10-08: sitemap'ler sadece indekslenebilir urunleri tasir (products/seo_index.py whitelist'i).
+I=$(python3 -c 'import sys;sys.path.insert(0,"products");import seo_index;print(len(seo_index.indexable_products()))' 2>/dev/null)
 if [ -n "$N" ]; then
-  pass "js/data.js gecerli — $N urun"
-  if [ "$N" = "$S" ]; then
+  pass "js/data.js gecerli — $N urun ($I indekslenebilir)"
+  if [ -n "$I" ] && [ "$I" = "$S" ]; then
     pass "sitemap-products.xml eslesiyor — $S URL"
   else
-    fail "sitemap UYUMSUZ: katalog $N urun, sitemap $S URL -> sitemap yeniden uretilmeli"
+    fail "sitemap UYUMSUZ: $I indekslenebilir urun, sitemap-products.xml $S URL -> bestseller_sync.write_sitemap + build_sitemap.py calistir"
   fi
 else
   fail "js/data.js AYRISTIRILAMADI"

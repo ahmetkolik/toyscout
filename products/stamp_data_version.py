@@ -27,7 +27,10 @@ def main():
         raise SystemExit(f'katalog script etiketi bulunamadi/birden fazla ({k}) — index.html degismedi')
     open(p, 'w', encoding='utf-8').write(n)
     # prerender.py index.html'i kopyalar; hangi sirayla calistirilirsa calistirilsin surum ayni kalsin.
-    pages = glob.glob(os.path.join(ROOT, 'product', '*', '*', 'index.html')) + glob.glob(os.path.join(ROOT, 'shop', '*', 'index.html'))
+    pages = (glob.glob(os.path.join(ROOT, 'product', '*', '*', 'index.html')) + glob.glob(os.path.join(ROOT, 'shop', '*', 'index.html'))
+             + [os.path.join(ROOT, d, 'index.html') for d in ('blog', 'contact', 'privacy', 'terms', 'disclosure')
+                if os.path.exists(os.path.join(ROOT, d, 'index.html'))]
+             + [f for f in [os.path.join(ROOT, '404.html')] if os.path.exists(f)])
     for f in pages:
         s = open(f, encoding='utf-8').read()
         n = TAG.sub(tag, s, count=1)

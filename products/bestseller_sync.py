@@ -310,21 +310,21 @@ def download_images(asin, urls):
 
 
 def write_sitemap(d):
-    order = ['action-figures', 'arts-crafts', 'baby-toddler', 'building-toys', 'games',
-             'learning-education', 'novelty', 'party', 'sports-outdoor', 'plush', 'ride-ons']
-    cats = [c for c in order if c in d] + [c for c in d if c not in order]
-    today = dt.date.today().isoformat()
+    # Same rule as sitemap.xml (build_sitemap.py): only indexable product pages
+    # (seo_index.indexable_products); the rest are noindex,follow. lastmod = data.js git date.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import seo_index
+    day = seo_index.data_date()
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     n = 0
-    for c in cats:
-        for i in range(len(d[c])):
-            out += ['  <url>',
-                    f'    <loc>https://www.toyscout.net/product/{c}/{i}</loc>',
-                    f'    <lastmod>{today}</lastmod>',
-                    '    <changefreq>weekly</changefreq>',
-                    '    <priority>0.8</priority>', '  </url>']
-            n += 1
+    for path in seo_index.indexable_products(d):
+        out += ['  <url>',
+                f'    <loc>https://www.toyscout.net{path}</loc>',
+                f'    <lastmod>{day}</lastmod>',
+                '    <changefreq>weekly</changefreq>',
+                '    <priority>0.8</priority>', '  </url>']
+        n += 1
     out.append('</urlset>')
     open(SITEMAP, 'w', encoding='utf-8').write('\n'.join(out) + '\n')
     return n
