@@ -28,6 +28,8 @@ IMPRESSION_WHITELIST = [
     '/product/arts-crafts/24', '/product/arts-crafts/25', '/product/arts-crafts/8',
     '/product/ride-ons/4', '/product/sports-outdoor/16', '/product/learning-education/0',
     '/product/plush/0',
+    # Rattlebacks added 2026-10-08 for the GSC query "rattleback amazon" (31 impressions).
+    '/product/learning-education/39', '/product/learning-education/40',
 ]
 
 PROD_RE = re.compile(r'/product/([a-z-]+)/(\d+)')

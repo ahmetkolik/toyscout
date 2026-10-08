@@ -110,6 +110,9 @@ def page(title, desc, path, body, ld_nodes, img=None, robots=ROBOTS_IDX):
     if ld_nodes:
         s = s.replace('</head>', ldjson(ld_nodes, 'ts-ldjson-dynamic') + '\n</head>', 1)
     s = re.sub(r'<noscript>.*?</noscript>', lambda m: '<noscript>' + body + '</noscript>', s, count=1, flags=re.S)
+    # Sub-pages: the home hero headline must not be a second <h1> (the page's own title is the H1).
+    s = re.sub(r'<h1>(<span class="split" data-split>Toys worth</span>.*?)</h1>',
+               lambda m: '<div class="hero-h" role="presentation">' + m.group(1) + '</div>', s, count=1, flags=re.S)
     return s
 
 
