@@ -626,17 +626,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post19" data-go="post19" data-rv>
+      <a class="bpost" href="/post20" data-go="post20" data-rv>
+        <div class="bp-img"><img src="/assets/products/B0G5QKD8ZS.jpg" width="1484" height="1500" alt="LEGO Star Wars Advent Calendar 2026" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Gift Guides · Oct 8, 2026</div><h3>Best advent calendars for kids in 2026, by age</h3><p>Book calendars for toddlers, LEGO and Hot Wheels for ages 5 to 8, gemstones and magic for older kids, and a Clue mystery for the family.</p><div class="bp-read">Read the guide ⇢</div></div>
+      </a>
+      <a class="bpost" href="/post19" data-go="post19" data-rv style="transition-delay:.12s">
         <div class="bp-img"><img src="/assets/products/B0BQZFVJTB.jpg" width="1000" height="732" alt="NeeDoh Nice Cube squishy toy" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Buying Guides · Oct 8, 2026</div><h3>NeeDoh vs Slimygloop vs slow-rise squishies: which one should you buy?</h3><p>Which NeeDoh to choose, how it compares with Slimygloop and slow-rise squishies, and the NeeDoh alternatives worth buying when it is sold out.</p><div class="bp-read">Read the guide ⇢</div></div>
       </a>
-      <a class="bpost" href="/post18" data-go="post18" data-rv style="transition-delay:.12s">
+      <a class="bpost" href="/post18" data-go="post18" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/products/B07PQFT83F.jpg" width="1477" height="1500" alt="Buzz Lightyear interactive talking action figure" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Buying Guides · Oct 7, 2026</div><h3>Best action figures for kids in 2026, by age</h3><p>Little People and Bluey for toddlers, Spidey and Buzz Lightyear for preschoolers, Optimus Prime and Fortnite for big kids: nine play action figures, all 4.5★+.</p><div class="bp-read">Read the guide ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post17" data-go="post17" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/products/B07W5QM4DP.jpg" width="982" height="1000" alt="Shashibo DODECA magnetic puzzle cube" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Buying Guides · Oct 4, 2026</div><h3>Best quiet fidget toys for school and car rides in 2026</h3><p>Shashibo, Rubik's Cube, Crayola Globbles and worry stones: eight fidget toys that stay quiet in a backpack. All 4.4★+.</p><div class="bp-read">Read the guide ⇢</div></div>
       </a>
     </div>
   </section>
@@ -676,7 +676,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 
 <div id="view" role="region" aria-live="polite"></div>
 
-<script src="/js/catalog.js?v=59b9f1d2"></script>
+<script src="/js/catalog.js?v=b049ebfa"></script>
 <script>
 /* ================= ToyScout — award build ================= */
 (function(){
@@ -793,6 +793,7 @@ function updateSeo(){
   else if(s.page==="post6"){title="Best Card & Board Games for Family Game Night in 2026 | ToyScout";desc="From a 4.9★ newcomer to the classics that never leave the shelf — the card and board games actually winning family game night this month.";}
   else if(s.page==="post7"){title="Best Building Toy Gifts for Kids in 2026 | ToyScout";desc="PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart right now, while the popular sets are still easy to find.";}
   else if(s.page==="post8"){title="Best Squishy Toys for Kids in 2026: NeeDoh, Mochi & Slow-Rise Picks | ToyScout";desc="The 10 best squishy toys for kids, by type and age: NeeDoh Gumdrop and Nice Cube, Slimygloop Gelli Gels, a jumbo squishy cube, Crayola Globbles and mochi packs for party favors. Updated October 2026.";}
+  else if(s.page==="post20"){title="Best Advent Calendars for Kids 2026, by Age: LEGO, Hot Wheels & More | ToyScout";desc="The best kids' advent calendars for 2026, sorted by age: Sesame Street and Bluey book calendars for toddlers, LEGO City, Star Wars and Hot Wheels, National Geographic gemstones and magic, and a Clue mystery.";}
   else if(s.page==="post19"){title="NeeDoh vs Slimygloop vs Slow-Rise Squishies: Which to Buy (2026) | ToyScout";desc="Which NeeDoh is best, how NeeDoh compares with Slimygloop Gelli Gels and slow-rise squishies, and the NeeDoh alternatives worth buying when it is sold out. Comparison table, safety notes and FAQ.";}
   else if(s.page==="post18"){title="Best Action Figures for Kids in 2026, by Age | ToyScout";desc="Nine toy action figures and action figurines sorted by age, from Little People and Bluey for toddlers to Spidey, Buzz Lightyear, Optimus Prime and collector figures. All rated 4.5★ or better on Amazon.";}
   else if(s.page==="post17"){title="Best Quiet Fidget Toys for School and Car Rides in 2026 | ToyScout";desc="Eight fidget toys that stay quiet in a backpack or a back seat, from Shashibo, Rubik's Cube and Crayola Globbles to magnetic balls and worry stones. All rated 4.4★ or better on Amazon.";}
@@ -904,7 +905,7 @@ function applyRoute(){
     if(parts.length!==3||catIds.indexOf(parts[1])<0||pi<0||pi>=(D[parts[1]]||[]).length){ openView("notfound",true); return; }
     state.shopCat=parts[1]; state.prodIdx=pi; state.galIdx=0; state.faqOpen=-1; openView("product",true); return;
   }
-  if(parts.length===1&&["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","post11","post12","post13","post14","post15","post16","post17","post18","post19","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(parts.length===1&&["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","post11","post12","post13","post14","post15","post16","post17","post18","post19","post20","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   if(p0==="home"||fromHash){ goHome(true); return; } // an unknown #anchor on "/" stays home
   openView("notfound",true);
 }
@@ -938,7 +939,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10"||p==="post11"||p==="post12"||p==="post13"||p==="post14"||p==="post15"||p==="post16"||p==="post17"||p==="post18"||p==="post19") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10"||p==="post11"||p==="post12"||p==="post13"||p==="post14"||p==="post15"||p==="post16"||p==="post17"||p==="post18"||p==="post19"||p==="post20") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1090,6 +1091,7 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our regular checks of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post20","Gift Guides · Oct 8, 2026","Best advent calendars for kids in 2026, by age","Book calendars for toddlers, LEGO and Hot Wheels for ages 5 to 8, gemstones and magic for older kids, and a Clue mystery for the family.","/assets/products/B0G5QKD8ZS.jpg")+
     bp("/post19","Buying Guides · Oct 8, 2026","NeeDoh vs Slimygloop vs slow-rise squishies: which one should you buy?","Which NeeDoh to choose, how it compares with Slimygloop Gelli Gels and slow-rise squishies, and the best NeeDoh alternatives.","/assets/products/B0BQZFVJTB.jpg")+
     bp("/post18","Buying Guides · Oct 7, 2026","Best action figures for kids in 2026, by age","Little People and Bluey for toddlers, Spidey and Buzz Lightyear for preschoolers, Optimus Prime and Fortnite for big kids: nine play action figures, all 4.5★+.","/assets/products/B07PQFT83F.jpg")+
     bp("/post17","Buying Guides · Oct 4, 2026","Best quiet fidget toys for school and car rides in 2026","Shashibo, Rubik's Cube, Crayola Globbles and worry stones: eight fidget toys that stay quiet in a backpack. All 4.4★+.","/assets/products/B07W5QM4DP.jpg")+
@@ -1126,6 +1128,63 @@ function aProd(name,meta,url){
     '<a class="btn btn-blue" style="padding:11px 22px;font-size:14px" target="_blank" rel="sponsored noopener" href="'+esc(affUrl(url))+'">Check price on Amazon</a></div></div>';
 }
 var POSTS={
+  post20:{meta:"Gift Guides · Oct 8, 2026 · By ToyScout Editors",h:"Best advent calendars for kids in 2026, by age",
+    body:function(){return '<p class="a-lede">A toy advent calendar turns December into 24 small presents, and the 2026 calendars are already selling. The catch is that the same word covers very different things: picture books for toddlers, LEGO mini builds for school-age kids, gemstones, magic tricks and a one-time Clue mystery for the whole family. We sorted the advent calendars in our catalog by age and kept the ones that buyers rate well. Ratings are from our catalog check in early October 2026; the newest 2026 calendars have fewer ratings so far, and we say so where it matters.</p>'+
+    '<h2>The quick answer</h2><ul>'+
+    '<li><b>Toddlers and preschoolers:</b> the Sesame Street Advent Calendar Storybook Collection, 4.8&#9733; with 680 ratings, or the Bluey Awesome Advent Calendar Book Bundle, 4.5&#9733; with more than 1,100.</li>'+
+    '<li><b>Ages 5 and up:</b> the LEGO City Advent Calendar 2026, 4.7&#9733;, with a fold-out Santa&#8217;s Workshop playmat.</li>'+
+    '<li><b>Ages 6 and up:</b> the LEGO Star Wars Advent Calendar 2026, 4.9&#9733;, the best-rated calendar on this list.</li>'+
+    '<li><b>Most-reviewed:</b> the National Geographic Gemstone Advent Calendar, 4.6&#9733; across 3,727 ratings.</li>'+
+    '<li><b>Ages 10 and up and the whole family:</b> the Clue Advent Calendar, a 24-day mystery, 4.4&#9733; with 562 ratings.</li></ul>'+
+    '<h2>Advent calendars compared</h2>'+
+    '<div class="a-tbl"><table><thead><tr><th>Calendar</th><th>Behind the doors</th><th>Age on the box</th><th>Rating</th></tr></thead><tbody>'+
+    '<tr><td>Sesame Street Storybook Collection</td><td>24 mini books</td><td>Picture-book age</td><td>4.8&#9733; (680)</td></tr>'+
+    '<tr><td>Bluey Awesome Advent Calendar</td><td>24 mini books</td><td>Picture-book age</td><td>4.5&#9733; (1,166)</td></tr>'+
+    '<tr><td>LEGO City 2026</td><td>Mini builds and minifigures</td><td>5+</td><td>4.7&#9733; (52)</td></tr>'+
+    '<tr><td>Hot Wheels 2026</td><td>10 cars and 14 accessories</td><td>See listing</td><td>4.6&#9733; (68)</td></tr>'+
+    '<tr><td>LEGO Star Wars 2026</td><td>Mini builds and Mandalorian figures</td><td>6+</td><td>4.9&#9733; (74)</td></tr>'+
+    '<tr><td>LEGO Marvel 2026</td><td>Mini builds and 6 minifigures</td><td>6+</td><td>4.4&#9733; (22)</td></tr>'+
+    '<tr><td>National Geographic Magic</td><td>15 magic tricks and 9 science experiments</td><td>See listing</td><td>4.6&#9733; (501)</td></tr>'+
+    '<tr><td>National Geographic Gemstone</td><td>24 gems and jewelry settings</td><td>See listing</td><td>4.6&#9733; (3,727)</td></tr>'+
+    '<tr><td>Clue: Secrets Under Snowfall</td><td>22 puzzles and one mystery</td><td>10+</td><td>4.4&#9733; (562)</td></tr>'+
+    '</tbody></table></div>'+
+    '<h2>Toddlers and preschoolers: book advent calendars</h2>'+
+    '<p>For children under 3, skip calendars full of small toys. A book calendar gives the same daily surprise with nothing to choke on, and it doubles as a bedtime story every night of December.</p>'+
+    '<p><b>1. Sesame Street: Advent Calendar Storybook Collection.</b> Twenty-four mini books with Elmo, Cookie Monster, Abby Cadabby and friends, one for each day of December up to Christmas. At <b>4.8&#9733;</b> with 680 ratings it is the best-rated book calendar we track, and the publisher pitches it as one families bring out every year. <a href="/product/learning-education/42" data-prod="learning-education:42">See its full ToyScout page</a>.</p>'+
+    aProd("Sesame Street: Advent Calendar Storybook Collection","★★★★★ 680 ratings","https://www.amazon.com/dp/0794448828?tag=kolico-20")+
+    '<p><b>2. Bluey: Awesome Advent Calendar Book Bundle.</b> Twenty-four mini Bluey books, with a special holiday story for Christmas, based on the series on Disney+. For a preschool Bluey fan it is the obvious choice. Rated <b>4.5&#9733;</b> with 1,166 ratings. <a href="/product/learning-education/41" data-prod="learning-education:41">See its full ToyScout page</a>.</p>'+
+    aProd("Bluey: Awesome Advent Calendar Book Bundle","★★★★☆ 1,166 ratings","https://www.amazon.com/dp/0241699819?tag=kolico-20")+
+    '<h2>Ages 5 to 8: LEGO and Hot Wheels</h2>'+
+    '<p><b>3. LEGO City Advent Calendar 2026 (60510).</b> Twenty-four small gifts: mini builds and minifigures including Santa, Mrs. Claus, three elves, a snowman and a baby reindeer. The box folds out into a Santa&#8217;s Workshop playmat, and each build has its instructions printed inside the window, so a new LEGO builder can manage alone. For ages 5 and up. Rated <b>4.7&#9733;</b>. <a href="/product/building-toys/62" data-prod="building-toys:62">See its full ToyScout page</a>.</p>'+
+    aProd("LEGO City Advent Calendar 2026 (60510)","★★★★★ 52 ratings","https://www.amazon.com/dp/B0G5QJP2BW?tag=kolico-20")+
+    '<p><b>4. Hot Wheels 2026 Advent Calendar.</b> Ten doors hide a 1:64-scale Hot Wheels car, including an exclusive snow-globe car with a yeti driver, and the other fourteen hide accessories such as a reindeer and a sleigh. Ten ornament clips let the cars hang on the tree. Rated <b>4.6&#9733;</b> with 68 ratings. Check the age on the listing, because the small accessories are not for toddlers. <a href="/product/rc-vehicles/83" data-prod="rc-vehicles:83">See its full ToyScout page</a>.</p>'+
+    aProd("Hot Wheels 2026 Advent Calendar","★★★★★ 68 ratings","https://www.amazon.com/dp/B0G1TZTY5K?tag=kolico-20")+
+    '<p><b>5. LEGO Star Wars Advent Calendar 2026 (75456).</b> A Mandalorian calendar: Mando and Grogu in holiday sweaters, Moff Gideon, Carson Teva and a Jawa, plus eight mini vehicles including the Razor Crest, an X-wing and a Sandcrawler. The pieces work with other LEGO Star Wars sets afterwards. For ages 6 and up. At <b>4.9&#9733;</b> it is the best-rated calendar here, from 74 ratings so far. <a href="/product/building-toys/64" data-prod="building-toys:64">See its full ToyScout page</a>.</p>'+
+    aProd("LEGO Star Wars Advent Calendar 2026 (75456)","★★★★★ 74 ratings","https://www.amazon.com/dp/B0G5QKD8ZS?tag=kolico-20")+
+    '<p><b>6. LEGO Marvel Advent Calendar 2026 (76340).</b> A 317-piece calendar with six Marvel minifigures in holiday outfits, such as Spider-Man on skis and Wolverine in an X-Men Christmas sweater, plus builds like a snowball cannon and an X-Jet sleigh. For ages 6 and up. It has only 22 ratings so far (<b>4.4&#9733;</b>), so pick the Star Wars calendar unless the child is a Marvel fan. <a href="/product/building-toys/63" data-prod="building-toys:63">See its full ToyScout page</a>.</p>'+
+    aProd("LEGO Marvel Advent Calendar 2026 (76340)","★★★★☆ 22 ratings","https://www.amazon.com/dp/B0G5QL2HBQ?tag=kolico-20")+
+    '<h2>Ages 8 to 12: science, magic and gemstones</h2>'+
+    '<p><b>7. National Geographic Gemstone Advent Calendar.</b> A polished gemstone every day, from agate and tiger&#8217;s eye to sodalite and blue calcite, with a pouch to keep them in. On the last day the child digs a rose quartz out of a small dig brick, and five jewelry settings turn favourite stones into jewelry. With <b>3,727 ratings at 4.6&#9733;</b> it is the most-reviewed advent calendar we track. The gems are small, so keep it away from younger siblings. <a href="/product/learning-education/43" data-prod="learning-education:43">See its full ToyScout page</a>.</p>'+
+    aProd("National Geographic Gemstone Advent Calendar","★★★★★ 3,727 ratings","https://www.amazon.com/dp/B0B75R26QM?tag=kolico-20")+
+    '<p><b>8. National Geographic Magic Advent Calendar.</b> Fifteen classic magic tricks and nine science experiments, such as making a coin disappear, a square bubble and magic snow. Everything needed is in the box, and a link to videos from a professional magician helps with the performance. A good pick for a child who likes to put on a show for the family. Rated <b>4.6&#9733;</b> with 501 ratings. <a href="/product/learning-education/44" data-prod="learning-education:44">See its full ToyScout page</a>.</p>'+
+    aProd("National Geographic Magic Advent Calendar","★★★★★ 501 ratings","https://www.amazon.com/dp/B0CZPKH8GP?tag=kolico-20")+
+    '<h2>Ages 10 and up and the whole family: a mystery calendar</h2>'+
+    '<p><b>9. Clue Advent Calendar: Secrets Under Snowfall.</b> A 24-day mystery: who killed Boddy Black at his winter gala, where, and with which winter-themed weapon. Each day brings a puzzle and maybe a clue card, token or surprise, and the box opens into a crime board and a map of Tudor Mansion. It can only be played once, because some puzzles are cut, folded or written on. For ages 10 and up, with one or more players. Rated <b>4.4&#9733;</b> with 562 ratings. <a href="/product/games/75" data-prod="games:75">See its full ToyScout page</a>.</p>'+
+    aProd("Clue Advent Calendar: Secrets Under Snowfall","★★★★☆ 562 ratings","https://www.amazon.com/dp/B0DN32L3BC?tag=kolico-20")+
+    '<h2>Also worth a look</h2><ul>'+
+    '<li><b>Mini Axolotl Plush Advent Calendar.</b> Twenty-four small axolotl plush toys of about 2.5 inches, each with a loop for a backpack or the tree. Rated <b>4.7&#9733;</b> with 122 ratings. <a href="/product/plush/60" data-prod="plush:60">See its ToyScout page</a>.</li>'+
+    '<li><b>NeeDoh Squishmas Advent Calendar.</b> Twenty-four mini NeeDoh squishies of about 1.25 inches, for ages 3 and up. A good fit for a NeeDoh fan, but the minis are a choking risk for toddlers. See our <a href="/post19" data-go="post19">NeeDoh guide</a> or its <a href="/product/novelty/48" data-prod="novelty:48">ToyScout page</a>.</li></ul>'+
+    '<h2>How to choose an advent calendar</h2><ul>'+
+    '<li><b>Go by the age on the box.</b> Most toy calendars hold small parts. For under-3s, a book calendar is the safe choice.</li>'+
+    '<li><b>Count what is really inside.</b> Some calendars put a toy behind every door, others mix toys with stickers or accessories. The Hot Wheels calendar, for example, has 10 cars and 14 accessories.</li>'+
+    '<li><b>Think about what happens on December 25.</b> LEGO builds and Hot Wheels cars join the rest of the collection, the gemstone calendar becomes jewelry, and the books stay on the shelf. The Clue calendar is played once.</li>'+
+    '<li><b>Buy early.</b> Popular 2026 calendars can sell out before December, so order in October or November.</li></ul>'+
+    '<h2>Frequently asked questions</h2>'+
+    '<h3>What is the best advent calendar for kids in 2026?</h3><p>For ages 6 and up, the LEGO Star Wars Advent Calendar 2026 has the best rating on this list. For ages 5 and up, the LEGO City calendar. For toddlers, the Sesame Street or Bluey book calendars.</p>'+
+    '<h3>What advent calendar is good for a 3-year-old?</h3><p>A book calendar such as Sesame Street or Bluey. Most toy calendars contain small parts that are not suitable under age 3.</p>'+
+    '<h3>When should you start an advent calendar?</h3><p>On December 1, with door 24 opened on Christmas Eve. Buy it by November so it arrives in time.</p>'+
+    '<h3>Is there an advent calendar for the whole family?</h3><p>Yes. The Clue Advent Calendar is a 24-day mystery for ages 10 and up that a family can solve together.</p>'+
+    '<h2>The bottom line</h2><p>For a toddler, buy the <b>Sesame Street</b> or <b>Bluey</b> book calendar. For ages 5 to 8, <b>LEGO City</b>, <b>LEGO Star Wars</b> or <b>Hot Wheels</b>. For a curious 8- to 12-year-old, the <b>National Geographic Gemstone</b> or <b>Magic</b> calendar. For the whole family, <b>Clue</b>. Check the price on Amazon before you buy, since it changes often. For small gifts beyond the calendar, see our <a href="/post15" data-go="post15">Christmas gifts by age</a> guide.</p>';}},
   post19:{meta:"Buying Guides · Oct 8, 2026 · By ToyScout Editors",h:"NeeDoh vs Slimygloop vs slow-rise squishies: which one should you buy?",
     body:function(){return '<p class="a-lede">Every child seems to want &#8220;a NeeDoh&#8221; this year, but when you search for one you get NeeDoh Gumdrops, Nice Cubes and Nice Ice Babies, glittery Slimygloop Gelli Gels, foam butter sticks, dumplings and big gel cubes. They are not the same toy. This guide explains what each type feels like, which NeeDoh to choose, and which alternatives are worth buying when the NeeDoh you want is sold out. Every product here is in our <a href="/shop/novelty" data-cat="novelty">Novelty &amp; Gag Toys</a> chart, and ratings are from our latest catalog check in early October 2026.</p>'+
     '<h2>The quick answer</h2><ul>'+

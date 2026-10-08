@@ -133,6 +133,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.toyscout.net/post20</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.toyscout.net/shop/action-figures</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -523,6 +529,24 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.toyscout.net/product/building-toys/62</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/product/building-toys/63</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/product/building-toys/64</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.toyscout.net/product/games/0</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -613,6 +637,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.toyscout.net/product/games/75</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.toyscout.net/product/learning-education/0</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -626,6 +656,30 @@
   </url>
   <url>
     <loc>https://www.toyscout.net/product/learning-education/40</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/product/learning-education/41</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/product/learning-education/42</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/product/learning-education/43</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/product/learning-education/44</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -823,6 +877,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.toyscout.net/product/plush/60</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.toyscout.net/product/puzzles/4</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -830,6 +890,12 @@
   </url>
   <url>
     <loc>https://www.toyscout.net/product/puzzles/7</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/product/rc-vehicles/83</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
