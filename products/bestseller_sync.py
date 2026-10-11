@@ -332,36 +332,10 @@ def write_sitemap(d):
 
 # ---------------------------------------------------------------- ana akis
 
-SUPABASE_REST = ('https://vijagongnjfddhtlwecu.supabase.co/rest/v1/'
-                 'amazon_clicks?select=id&limit=1')
-SUPABASE_KEY = 'sb_publishable_3bra6T7gE_JBJ4Ff-_oX2w_CaHMpxmQ'
-
-
 def ping_supabase():
-    """Supabase'i uyanik tut.
-
-    Ucretsiz plan ~7 gun hareketsizlikten sonra projeyi DURAKLATIYOR. Duraklaminca
-    index.html'deki sbInsert() sessizce basarisiz olur: affiliate tiklamalari,
-    iletisim mesajlari ve bulten kayitlari kaybolur. 31 Tem 2026'da tam bu olmustu
-    (son kayit 14 Tem, arada 17 gun bosluk).
-
-    Bu tur 5 gunde bir calistigi icin (< 7 gun) tek basina duraklamayi onler.
-    Python'un HTTPS'i bu makinede bozuk (CERTIFICATE_VERIFY_FAILED), o yuzden curl.
-    """
-    try:
-        r = subprocess.run(
-            ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}',
-             '--max-time', '30', '-H', f'apikey: {SUPABASE_KEY}', SUPABASE_REST],
-            capture_output=True, text=True)
-        code = (r.stdout or '').strip()
-        if code == '200':
-            log('Supabase ping: 200 — proje uyanik')
-        else:
-            log(f'UYARI: Supabase ping {code or "yanit yok"} — proje duraklamis '
-                f'olabilir, analitik yazmalari kayboluyor olabilir. '
-                f'Kontrol: supabase.com panelinden projeyi Restore et.')
-    except Exception as e:
-        log(f'UYARI: Supabase ping yapilamadi ({type(e).__name__}: {e})')
+    """No-op: Supabase was cancelled by the owner (2026-10-08) and the site no longer
+    calls it. Kept so the sync scripts that call bs.ping_supabase() keep working."""
+    return
 
 
 def main():
