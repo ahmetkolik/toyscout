@@ -115,6 +115,14 @@
       "destination": "/post20.html"
     },
     {
+      "source": "/post21",
+      "destination": "/post21.html"
+    },
+    {
+      "source": "/post22",
+      "destination": "/post22.html"
+    },
+    {
       "source": "/contact",
       "destination": "/index.html"
     },
