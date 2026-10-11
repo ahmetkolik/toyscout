@@ -1,5 +1,15 @@
 # ToyScout — Görev ve Hatırlatma Kaydı
 
+> **GÜNCEL DURUM — 11 Ekim 2026 (tam tarama sonrası).** Aşağıdaki başlık paragrafları ve §0 takvim tablosu
+> Ağustos/Eylül'den kalmadır ve **tarihsel kayıt** olarak okunmalı. Güncel ölçümler: `notes/2026-10-08-impact-check.md`,
+> `notes/2026-10-11-impact-check.md`; kurallar ve mimari: `CLAUDE.md`.
+> - Katalog 1.041 ürün (123 indekslenebilir), blog post1–post22, sitemap 166 URL. Fiyat gösterilmiyor (tarandı: catalog.js, prerender sayfaları, yazılar temiz).
+> - GSC 28g: 3 tıklama / 1.15K gösterim / konum 28.2 · Associates 30g: 46 tıklama / 0 sipariş.
+> - **Kullanıcıda açık:** Associates vergi bilgisi · 180 gün/3 satış (tahmini son: 4–7 Oca 2027) · eksik videolar (04-A, 09-A; Ağustos planı güncel değil).
+> - Supabase iptal edildi (8 Eki); `bestseller_sync.ping_supabase()` artık no-op. §A6 ve Supabase geçen tüm maddeler tarihsel.
+> - 11 Eki taramasında düzeltilenler: "only 4.5★+" ifadesi (145 üründe puan <4.5) editorial independence metninden çıkarıldı; `verify.sh` md5 taşınabilir yapıldı. `verify.sh`'teki launchd/GSC ajan kontrolleri yalnızca kullanıcının Mac'inde anlamlı.
+> - Doğrulanamayan ana sayfa iddiaları ("1M+ reviews", "Rachel S.") index.html'de artık yok. Kalan karar: 30 ürünün puanı <4.4 (Eylül'de eşik kaldırıldığında girdi) — çıkarılsın mı?
+
 **Bu dosya tek doğruluk kaynağıdır.** Tüm tekrarlayan görevler, hatırlatmalar ve
 açık işler burada. Oturum içi zamanlanmış işler (cron) Claude kapanınca siliniyordu;
 bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
