@@ -62,6 +62,26 @@ Deploy'lar: `26fb4f8` · `e1238bc` · `5f408b1` · `1c3f717` · `52cffbe`
 
 ---
 
+## G. 🔎 GSC (Search Console) — güncel durum ve yapılacaklar (11 Eki 2026)
+
+Mülk `https://www.toyscout.net/` (URL-prefix, `authuser=0`). Akış ve tuzaklar: `CLAUDE.md` "Search Console indexing requests". GSC işlemleri tarayıcı + Google oturumu gerektirir; bulut oturumundan yapılamaz, kullanıcının cihazında (Chrome) yapılır.
+
+**Son ölçüm (11 Eki):** 28g 3 tıklama / 1.15K gösterim / konum 28.2 · Page indexing 46 indeksli / ~1.03K değil (rapor 8 Eki noindex değişikliğini henüz yansıtmadı) · sitemap 166 URL gönderildi (son okuma 8 Eki: 141).
+**En güçlü sayfalar (28g):** `/post18` 202 gösterim ("best action figures for kids" 194) · `/shop/games` 178 · `/shop/action-figures` 108 · `/shop/puppets` 96 · `/post8` 90.
+
+**Yapılacaklar (sırayla):**
+- [ ] `/post21` indeksleme isteği sonucunu doğrula (11 Eki'de diyalog kendiliğinden kapandı, durum görülmedi) — gerekirse yeniden iste.
+- [ ] `/post8` indeksleme isteği (yeniden yazıldı, 8 Eki'de "Oops" hatasıyla durdu) — kota gününde.
+- [ ] `/post18` ve diğer en çok gösterim alan sayfaları (post19, post22) için istek; günlük kota ~10, "Oops/Quota Exceeded" çıkarsa o gün dur.
+- [ ] Sitemap'i her yeni yazı/katalog değişikliğinden sonra yeniden gönder (`/sitemap.xml`).
+- [ ] 2–3 gün sonra Page indexing raporunu yenile: noindex ürün sayfaları "Excluded by noindex"a geçti mi, indeksli sayı 46'dan artıyor mu.
+- [ ] Haftalık: Performance (28g) tıklama/gösterim/konum + üst sorgular → `notes/` altına yeni `impact-check` dosyası; yeni yazı konusu üst sorgulardan seçilir.
+- [ ] Crawl stats'te görsel oranı (%75–78) düştü mü bak.
+
+**Kurallar:** Ürün sayfası ancak bir yazıda linklenir veya `IMPRESSION_WHITELIST`'e girerse indekslenebilir (`products/seo_index.py`). Yazı yenilenince `dateModified` ekle. Her istek için URL'yi Overview'dan yazıp zoom ile doğrula; sonuç diyaloğu kapanınca tekrar Enter basma.
+
+---
+
 ## 0. ⏱ YAKIN TAKVİM — hangi gün ne yapılacak
 
 Tarihli her iş burada. Ayrıntı için parantezdeki bölüme bak. Bir işi bitirince
