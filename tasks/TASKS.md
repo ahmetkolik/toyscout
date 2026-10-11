@@ -70,10 +70,10 @@ Mülk `https://www.toyscout.net/` (URL-prefix, `authuser=0`). Akış ve tuzaklar
 **En güçlü sayfalar (28g):** `/post18` 202 gösterim ("best action figures for kids" 194) · `/shop/games` 178 · `/shop/action-figures` 108 · `/shop/puppets` 96 · `/post8` 90.
 
 **Yapılacaklar (sırayla):**
-- [ ] `/post21` indeksleme isteği sonucunu doğrula (11 Eki'de diyalog kendiliğinden kapandı, durum görülmedi) — gerekirse yeniden iste.
-- [ ] `/post8` indeksleme isteği (yeniden yazıldı, 8 Eki'de "Oops" hatasıyla durdu) — kota gününde.
-- [ ] `/post18` ve diğer en çok gösterim alan sayfaları (post19, post22) için istek; günlük kota ~10, "Oops/Quota Exceeded" çıkarsa o gün dur.
-- [ ] Sitemap'i her yeni yazı/katalog değişikliğinden sonra yeniden gönder (`/sitemap.xml`).
+- [x] `/post21` — 11 Eki akşam: denetimde "URL is not on Google" (henüz taranmadı), yeniden istendi → "Indexing requested".
+- [x] `/post8` — 11 Eki: zaten indeksli, yeniden yazım için "Indexing requested".
+- [x] `/post18`, `/post19` — 11 Eki: "Indexing requested". `/post22` zaten indeksli ve aynı gün istenmişti, tekrar istenmedi. Kota/Oops hatası çıkmadı (bugün toplam 5 istek: post22, post21 x2, post8, post18, post19).
+- [x] (11 Eki akşam yeniden gönderildi, "Sitemap submitted successfully"; son okuma hâlâ 8 Eki/141) Sitemap'i her yeni yazı/katalog değişikliğinden sonra yeniden gönder (`/sitemap.xml`).
 - [ ] 2–3 gün sonra Page indexing raporunu yenile: noindex ürün sayfaları "Excluded by noindex"a geçti mi, indeksli sayı 46'dan artıyor mu.
 - [ ] Haftalık: Performance (28g) tıklama/gösterim/konum + üst sorgular → `notes/` altına yeni `impact-check` dosyası; yeni yazı konusu üst sorgulardan seçilir.
 - [ ] Crawl stats'te görsel oranı (%75–78) düştü mü bak.

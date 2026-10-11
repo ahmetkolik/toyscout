@@ -15,3 +15,10 @@ Vercel top pages: / 16 · /post8 12 · /post14 10 · /shop/action-figures 6 · /
 ## Actions 2026-10-11
 - New posts: post21 (card games like SKYJO), post22 (walkie talkies for kids, by age). Sitemap 166 URLs, 123 indexable products.
 - GSC: sitemap re-submitted; /post22 "Indexing requested"; /post21 request sent (dialog closed by itself, status not seen).
+
+## GSC session 2026-10-11 (evening, Chrome)
+- Sitemap /sitemap.xml re-submitted again: "Sitemap submitted successfully" (GSC still shows last read Oct 8, 141 pages).
+- /post21: inspection says "URL is not on Google / URL is unknown to Google" (no sitemap referrer yet, never crawled) -> Request Indexing -> "Indexing requested".
+- /post8 (indexed): "Indexing requested". /post18 (indexed): "Indexing requested". /post19 (indexed): "Indexing requested".
+- /post22: already indexed, requested earlier today -> not re-requested.
+- No Quota Exceeded / Oops errors. Total requests today: ~6.
