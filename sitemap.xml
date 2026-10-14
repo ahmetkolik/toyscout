@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.toyscout.net/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://www.toyscout.net/blog</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -147,6 +147,12 @@
   <url>
     <loc>https://www.toyscout.net/post22</loc>
     <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/post25</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -493,6 +499,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.toyscout.net/product/building-toys/4</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.toyscout.net/product/building-toys/6</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -517,6 +529,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.toyscout.net/product/building-toys/34</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.toyscout.net/product/building-toys/36</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -524,6 +542,12 @@
   </url>
   <url>
     <loc>https://www.toyscout.net/product/building-toys/38</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.toyscout.net/product/building-toys/40</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
