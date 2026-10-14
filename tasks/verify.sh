@@ -113,7 +113,7 @@ else
 fi
 
 C=$(head -c 40 js/catalog.js 2>/dev/null | grep -o 'TS_SRC="[0-9a-f]*' | cut -d'"' -f2)
-if [ "$C" = "$(md5 -q js/data.js | cut -c1-8)" ]; then
+if [ "$C" = "$( (md5 -q js/data.js 2>/dev/null || md5sum js/data.js | cut -d" " -f1) | cut -c1-8)" ]; then
   pass "js/catalog.js + js/detail/ data.js ile guncel"
 else
   fail "js/catalog.js BAYAT -> python3 products/stamp_data_version.py calistir"

@@ -1,5 +1,15 @@
 # ToyScout — Görev ve Hatırlatma Kaydı
 
+> **GÜNCEL DURUM — 11 Ekim 2026 (tam tarama sonrası).** Aşağıdaki başlık paragrafları ve §0 takvim tablosu
+> Ağustos/Eylül'den kalmadır ve **tarihsel kayıt** olarak okunmalı. Güncel ölçümler: `notes/2026-10-08-impact-check.md`,
+> `notes/2026-10-11-impact-check.md`; kurallar ve mimari: `CLAUDE.md`.
+> - Katalog 1.041 ürün (123 indekslenebilir), blog post1–post22, sitemap 166 URL. Fiyat gösterilmiyor (tarandı: catalog.js, prerender sayfaları, yazılar temiz).
+> - GSC 28g: 3 tıklama / 1.15K gösterim / konum 28.2 · Associates 30g: 46 tıklama / 0 sipariş.
+> - **Kullanıcıda açık:** Associates vergi bilgisi · 180 gün/3 satış (tahmini son: 4–7 Oca 2027) · eksik videolar (04-A, 09-A; Ağustos planı güncel değil).
+> - Supabase iptal edildi (8 Eki); `bestseller_sync.ping_supabase()` artık no-op. §A6 ve Supabase geçen tüm maddeler tarihsel.
+> - 11 Eki taramasında düzeltilenler: "only 4.5★+" ifadesi (145 üründe puan <4.5) editorial independence metninden çıkarıldı; `verify.sh` md5 taşınabilir yapıldı. `verify.sh`'teki launchd/GSC ajan kontrolleri yalnızca kullanıcının Mac'inde anlamlı.
+> - Doğrulanamayan ana sayfa iddiaları ("1M+ reviews", "Rachel S.") index.html'de artık yok. Kalan karar: 30 ürünün puanı <4.4 (Eylül'de eşik kaldırıldığında girdi) — çıkarılsın mı?
+
 **Bu dosya tek doğruluk kaynağıdır.** Tüm tekrarlayan görevler, hatırlatmalar ve
 açık işler burada. Oturum içi zamanlanmış işler (cron) Claude kapanınca siliniyordu;
 bu yüzden her şey ya `launchd` ajanına ya da bu dosyaya bağlandı.
@@ -49,6 +59,30 @@ Onceki: 31 Tem 2026 — GSC turu · A4 kapanışı · **Supabase analitik kesint
 düzeltildi (A6)** · **blog kaldıraç verisi (A7)** · post10 yayında ·
 **video tam denetimi + Sheet yeniden düzenlendi (A5, A5-B)**.
 Deploy'lar: `26fb4f8` · `e1238bc` · `5f408b1` · `1c3f717` · `52cffbe`
+
+---
+
+## G. 🔎 GSC (Search Console) — güncel durum ve yapılacaklar (11 Eki 2026)
+
+Mülk `https://www.toyscout.net/` (URL-prefix, `authuser=0`). Akış ve tuzaklar: `CLAUDE.md` "Search Console indexing requests". GSC işlemleri tarayıcı + Google oturumu gerektirir; bulut oturumundan yapılamaz, kullanıcının cihazında (Chrome) yapılır.
+
+**Son ölçüm (11 Eki):** 28g 3 tıklama / 1.15K gösterim / konum 28.2 · Page indexing 46 indeksli / ~1.03K değil (rapor 8 Eki noindex değişikliğini henüz yansıtmadı) · sitemap 166 URL gönderildi (son okuma 8 Eki: 141).
+**En güçlü sayfalar (28g):** `/post18` 202 gösterim ("best action figures for kids" 194) · `/shop/games` 178 · `/shop/action-figures` 108 · `/shop/puppets` 96 · `/post8` 90.
+
+**Yapılacaklar (sırayla):**
+- [x] `/post21` — 11 Eki akşam: denetimde "URL is not on Google" (henüz taranmadı), yeniden istendi → "Indexing requested".
+- [x] `/post8` — 11 Eki: zaten indeksli, yeniden yazım için "Indexing requested".
+- [x] `/post18`, `/post19` — 11 Eki: "Indexing requested". `/post22` zaten indeksli ve aynı gün istenmişti, tekrar istenmedi. Kota/Oops hatası çıkmadı (bugün toplam 5 istek: post22, post21 x2, post8, post18, post19).
+- [x] (11 Eki akşam yeniden gönderildi, "Sitemap submitted successfully"; son okuma hâlâ 8 Eki/141) Sitemap'i her yeni yazı/katalog değişikliğinden sonra yeniden gönder (`/sitemap.xml`).
+- [x] **13 Eki:** `/post23` (kucuk cocuklar icin yasa gore yapboz rehberi, `puzzles` kategorisi) yayina hazirlandi; sitemap 175 URL, 131 indekslenebilir urun. Kullanicida: deploy sonrasi sitemap'i yeniden gonder + `/post23` icin indeksleme iste.
+- [x] **14 Eki:** `/post24` (puppets rehberi: el, parmak, kendin yap; `puppets` kategorisi daha once hicbir yazidan linklenmiyordu, /shop/puppets 96 gosterim) hazirlandi; sitemap 186 URL, 141 indekslenebilir urun. Kullanicida: birlestirme + deploy sonrasi sitemap yeniden gonder, `/post23` ve `/post24` icin indeksleme iste.
+- [ ] **14 Eki civarı:** `/post21` indekslendi mi (URL Inspection) — hâlâ "not on Google" ise bir kez daha iste. Sitemap "son okuma" 8 Eki'de kaldı; tarihi 166 URL'ye güncellendi mi bak.
+- [ ] **Sonraki kota gününde:** en çok gösterim alan ama henüz istenmemiş sayfalar (`/shop/games`, `/shop/action-figures`, `/post7`, `/post14`, `/post17`) + yeni yazılar için indeksleme isteği.
+- [ ] 2–3 gün sonra Page indexing raporunu yenile: noindex ürün sayfaları "Excluded by noindex"a geçti mi, indeksli sayı 46'dan artıyor mu.
+- [ ] Haftalık: Performance (28g) tıklama/gösterim/konum + üst sorgular → `notes/` altına yeni `impact-check` dosyası; yeni yazı konusu üst sorgulardan seçilir.
+- [ ] Crawl stats'te görsel oranı (%75–78) düştü mü bak.
+
+**Kurallar:** Ürün sayfası ancak bir yazıda linklenir veya `IMPRESSION_WHITELIST`'e girerse indekslenebilir (`products/seo_index.py`). Yazı yenilenince `dateModified` ekle. Her istek için URL'yi Overview'dan yazıp zoom ile doğrula; sonuç diyaloğu kapanınca tekrar Enter basma.
 
 ---
 
