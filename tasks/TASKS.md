@@ -75,6 +75,7 @@ Mülk `https://www.toyscout.net/` (URL-prefix, `authuser=0`). Akış ve tuzaklar
 - [x] `/post18`, `/post19` — 11 Eki: "Indexing requested". `/post22` zaten indeksli ve aynı gün istenmişti, tekrar istenmedi. Kota/Oops hatası çıkmadı (bugün toplam 5 istek: post22, post21 x2, post8, post18, post19).
 - [x] (11 Eki akşam yeniden gönderildi, "Sitemap submitted successfully"; son okuma hâlâ 8 Eki/141) Sitemap'i her yeni yazı/katalog değişikliğinden sonra yeniden gönder (`/sitemap.xml`).
 - [x] **13 Eki:** `/post23` (kucuk cocuklar icin yasa gore yapboz rehberi, `puzzles` kategorisi) yayina hazirlandi; sitemap 175 URL, 131 indekslenebilir urun. Kullanicida: deploy sonrasi sitemap'i yeniden gonder + `/post23` icin indeksleme iste.
+- [x] **14 Eki:** `/post24` (puppets rehberi: el, parmak, kendin yap; `puppets` kategorisi daha once hicbir yazidan linklenmiyordu, /shop/puppets 96 gosterim) hazirlandi; sitemap 186 URL, 141 indekslenebilir urun. Kullanicida: birlestirme + deploy sonrasi sitemap yeniden gonder, `/post23` ve `/post24` icin indeksleme iste.
 - [ ] **14 Eki civarı:** `/post21` indekslendi mi (URL Inspection) — hâlâ "not on Google" ise bir kez daha iste. Sitemap "son okuma" 8 Eki'de kaldı; tarihi 166 URL'ye güncellendi mi bak.
 - [ ] **Sonraki kota gününde:** en çok gösterim alan ama henüz istenmemiş sayfalar (`/shop/games`, `/shop/action-figures`, `/post7`, `/post14`, `/post17`) + yeni yazılar için indeksleme isteği.
 - [ ] 2–3 gün sonra Page indexing raporunu yenile: noindex ürün sayfaları "Excluded by noindex"a geçti mi, indeksli sayı 46'dan artıyor mu.

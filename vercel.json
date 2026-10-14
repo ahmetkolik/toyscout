@@ -127,6 +127,10 @@
       "destination": "/post23.html"
     },
     {
+      "source": "/post24",
+      "destination": "/post24.html"
+    },
+    {
       "source": "/contact",
       "destination": "/index.html"
     },

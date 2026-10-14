@@ -627,17 +627,17 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
       <a class="more" href="/blog" data-go="blog">All articles <span class="arr">→</span></a>
     </div>
     <div class="blog-grid">
-      <a class="bpost" href="/post23" data-go="post23" data-rv>
+      <a class="bpost" href="/post24" data-go="post24" data-rv>
+        <div class="bp-img"><img src="/assets/products/B0CPMX764D.jpg" width="1500" height="1356" alt="Bluey Bob Bilby and Unicorse hand puppets" loading="lazy"></div>
+        <div class="bp-body"><div class="bp-tag">Gift Guides · Oct 14, 2026</div><h3>Best puppets for kids in 2026</h3><p>Soft hand puppets, finger puppets for the bath and a make-your-own kit.</p></div>
+      </a>
+      <a class="bpost" href="/post23" data-go="post23" data-rv style="transition-delay:.12s">
         <div class="bp-img"><img src="/assets/products/B000E9DPCW.jpg" width="1500" height="1215" alt="Melissa and Doug farm animals chunky wooden puzzle" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Gift Guides · Oct 13, 2026</div><h3>Best puzzles for kids in 2026, by age</h3><p>Chunky pegs for toddlers, dress-up and pattern puzzles for preschoolers, Kanoodle and a 100-piece jigsaw for ages 6 to 8.</p></div>
       </a>
-      <a class="bpost" href="/post22" data-go="post22" data-rv style="transition-delay:.12s">
+      <a class="bpost" href="/post22" data-go="post22" data-rv style="transition-delay:.24s">
         <div class="bp-img"><img src="/assets/products/B07PZCQLJY.jpg" width="1000" height="981" alt="Kids walkie talkies two pack" loading="lazy"></div>
         <div class="bp-body"><div class="bp-tag">Gift Guides · Oct 11, 2026</div><h3>Best walkie talkies for kids in 2026, by age</h3><p>One-button character sets for preschoolers, 22-channel and hands-free radios for older kids, and the new video walkie talkies with a screen.</p><div class="bp-read">Read the guide ⇢</div></div>
-      </a>
-      <a class="bpost" href="/post21" data-go="post21" data-rv style="transition-delay:.24s">
-        <div class="bp-img"><img src="/assets/products/B000M0P2RE.jpg" width="1000" height="875" alt="Play Nine card game of golf" loading="lazy"></div>
-        <div class="bp-body"><div class="bp-tag">Game Night · Oct 11, 2026</div><h3>Card games like SKYJO: 6 picks for families</h3><p>Play Nine for the same hidden-card grid, Flip 7 for press-your-luck, Five Crowns for longer nights and Sleeping Queens for younger players.</p><div class="bp-read">Read the guide ⇢</div></div>
       </a>
     </div>
   </section>
@@ -677,7 +677,7 @@ footer .f-bot{border-top:1px solid rgba(255,253,247,.12);padding:24px 6vw;displa
 
 <div id="view" role="region" aria-live="polite"></div>
 
-<script src="/js/catalog.js?v=e485a6c4"></script>
+<script src="/js/catalog.js?v=748c06e4"></script>
 <script>
 /* ================= ToyScout — award build ================= */
 (function(){
@@ -794,6 +794,7 @@ function updateSeo(){
   else if(s.page==="post6"){title="Best Card & Board Games for Family Game Night in 2026 | ToyScout";desc="From a 4.9★ newcomer to the classics that never leave the shelf — the card and board games actually winning family game night this month.";}
   else if(s.page==="post7"){title="Best Building Toy Gifts for Kids in 2026 | ToyScout";desc="PicassoTiles, LEGO Classic and MAGNA-TILES — what's topping our Building Toys chart right now, while the popular sets are still easy to find.";}
   else if(s.page==="post8"){title="Best Squishy Toys for Kids in 2026: NeeDoh, Mochi & Slow-Rise Picks | ToyScout";desc="The 10 best squishy toys for kids, by type and age: NeeDoh Gumdrop and Nice Cube, Slimygloop Gelli Gels, a jumbo squishy cube, Crayola Globbles and mochi packs for party favors. Updated October 2026.";}
+  else if(s.page==="post24"){title="Best Puppets for Kids 2026: Hand, Finger & Make-Your-Own | ToyScout";desc="The best puppets for kids: soft Bluey and Melissa & Doug hand puppets, GUND Cookie Monster, Baby Shark finger puppets for the bath and a puppet making kit.";}
   else if(s.page==="post23"){title="Best Puzzles for Kids 2026, by Age: Toddler to Age 8 | ToyScout";desc="The best puzzles for kids by age: chunky wooden peg puzzles for toddlers, dress-up and pattern puzzles for preschoolers, Kanoodle, Rubik's Cube and 100-piece jigsaws for ages 6 to 8.";}
   else if(s.page==="post22"){title="Best Walkie Talkies for Kids 2026, by Age (Video Too) | ToyScout";desc="The best walkie talkies for kids by age: one-button Spidey and Paw Patrol sets, Selieve and Retevis radios, and video walkie talkies with a screen.";}
   else if(s.page==="post21"){title="Card Games Like SKYJO: 6 Picks for Families (2026) | ToyScout";desc="Love SKYJO? Play Nine, Flip 7, Five Crowns and Sleeping Queens share its hidden cards, low scores or press-your-luck flips. Ages, ratings and what to skip.";}
@@ -909,7 +910,7 @@ function applyRoute(){
     if(parts.length!==3||catIds.indexOf(parts[1])<0||pi<0||pi>=(D[parts[1]]||[]).length){ openView("notfound",true); return; }
     state.shopCat=parts[1]; state.prodIdx=pi; state.galIdx=0; state.faqOpen=-1; openView("product",true); return;
   }
-  if(parts.length===1&&["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","post11","post12","post13","post14","post15","post16","post17","post18","post19","post20","post21","post22","post23","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
+  if(parts.length===1&&["blog","post1","post2","post3","post4","post5","post6","post7","post8","post9","post10","post11","post12","post13","post14","post15","post16","post17","post18","post19","post20","post21","post22","post23","post24","contact","privacy","terms","disclosure"].indexOf(p0)>=0){ openView(p0,true); return; }
   if(p0==="home"||fromHash){ goHome(true); return; } // an unknown #anchor on "/" stays home
   openView("notfound",true);
 }
@@ -943,7 +944,7 @@ function render(keepScroll){
   if(p==="shop") html=vShop();
   else if(p==="product") html=vProduct();
   else if(p==="blog") html=vBlog();
-  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10"||p==="post11"||p==="post12"||p==="post13"||p==="post14"||p==="post15"||p==="post16"||p==="post17"||p==="post18"||p==="post19"||p==="post20"||p==="post21"||p==="post22"||p==="post23") html=vPost(p);
+  else if(p==="post1"||p==="post2"||p==="post3"||p==="post4"||p==="post5"||p==="post6"||p==="post7"||p==="post8"||p==="post9"||p==="post10"||p==="post11"||p==="post12"||p==="post13"||p==="post14"||p==="post15"||p==="post16"||p==="post17"||p==="post18"||p==="post19"||p==="post20"||p==="post21"||p==="post22"||p==="post23"||p==="post24") html=vPost(p);
   else if(p==="contact") html=vContact();
   else if(p==="privacy") html=vPrivacy();
   else if(p==="terms") html=vTerms();
@@ -1095,6 +1096,7 @@ function vBlog(){
     '<h1 class="v-title" style="margin-top:8px">What\'s moving <span class="serif-i" style="color:var(--blue)">the charts.</span></h1>'+
     '<p style="max-width:560px;color:var(--ink-55);font-weight:600;margin-top:14px">Deal alerts, chart analysis, and seasonal picks — written from our regular checks of Amazon\'s Toys &amp; Games department.</p>'+
     '<div class="blog-grid" style="margin-top:48px">'+
+    bp("/post24","Gift Guides · Oct 14, 2026","Best puppets for kids in 2026: hand, finger and make-your-own","Soft Bluey and Melissa & Doug hand puppets, GUND Cookie Monster, Baby Shark finger puppets for the bath and a felt puppet making kit.","/assets/products/B0CPMX764D.jpg")+
     bp("/post23","Gift Guides · Oct 13, 2026","Best puzzles for kids in 2026, by age","Chunky wooden peg puzzles for toddlers, dress-up and pattern puzzles for preschoolers, and Kanoodle, Rubik's Cube and a 100-piece jigsaw for ages 6 to 8.","/assets/products/B000E9DPCW.jpg")+
     bp("/post22","Gift Guides · Oct 11, 2026","Best walkie talkies for kids in 2026, by age","One-button character sets for preschoolers, 22-channel and hands-free radios for older kids, and the new video walkie talkies with a screen.","/assets/products/B07PZCQLJY.jpg")+
     bp("/post21","Game Night · Oct 11, 2026","Card games like SKYJO: 6 picks for families","Play Nine for the same hidden-card grid, Flip 7 for press-your-luck, Five Crowns for longer nights and Sleeping Queens for younger players.","/assets/products/B000M0P2RE.jpg")+
@@ -1135,6 +1137,67 @@ function aProd(name,meta,url){
     '<a class="btn btn-blue" style="padding:11px 22px;font-size:14px" target="_blank" rel="sponsored noopener" href="'+esc(affUrl(url))+'">Check price on Amazon</a></div></div>';
 }
 var POSTS={
+  post24:{meta:"Gift Guides · Oct 14, 2026 · By ToyScout Editors",h:"Best puppets for kids in 2026: hand puppets, finger puppets and a make-your-own kit",
+    body:function(){return '<p class="a-lede">A puppet gets a shy child talking, turns story time into a show and costs less than most toys. The hard part is choosing between a soft hand puppet, a set of finger puppets and a bigger character puppet. We sorted the puppets in our <a href="/shop/puppets" data-cat="puppets">Puppets</a> chart by type and kept the ones buyers rate well. Ratings and review counts are from our latest catalog check in October 2026. Sizes, materials and age lines come from each product&#8217;s Amazon listing, not from our own testing.</p>'+
+    '<h2>The quick answer</h2><ul>'+
+    '<li><b>Best for a young toddler:</b> the Bluey Bob Bilby and Unicorse hand puppet 2-pack, 4.8&#9733; with 17,564 ratings. At 8 to 9 inches, it fits a toddler&#8217;s hand.</li>'+
+    '<li><b>A set for a puppet show:</b> the Melissa &amp; Doug Safari Buddies 6-piece set, 4.6&#9733; with 5,442 ratings.</li>'+
+    '<li><b>A single character puppet:</b> the GUND Sesame Street Cookie Monster, 4.8&#9733; with 1,637 ratings.</li>'+
+    '<li><b>Bath and travel:</b> the Baby Shark finger puppet set, 4.8&#9733; with 3,685 ratings, which the listing calls waterproof.</li>'+
+    '<li><b>Craft afternoon:</b> the WATINC hand puppet making kit, 4.4&#9733; with 7,060 ratings.</li></ul>'+
+    '<h2>Puppets compared</h2>'+
+    '<div class="a-tbl"><table><thead><tr><th>Puppet</th><th>Type</th><th>What is in the box</th><th>Rating</th></tr></thead><tbody>'+
+    '<tr><td>Bluey Bob Bilby and Unicorse</td><td>Plush hand puppets</td><td>2 puppets, 8 to 9 in</td><td>4.8&#9733; (17,564)</td></tr>'+
+    '<tr><td>M&amp;D Safari Buddies</td><td>Plush hand puppets</td><td>6 safari animals</td><td>4.6&#9733; (5,442)</td></tr>'+
+    '<tr><td>M&amp;D Farm Friends</td><td>Plush hand puppets</td><td>4: cow, horse, sheep, pig</td><td>4.6&#9733; (2,798)</td></tr>'+
+    '<tr><td>JOYIN 6-piece set</td><td>Hand puppets, moving mouths</td><td>6 animals</td><td>4.5&#9733; (3,445)</td></tr>'+
+    '<tr><td>GUND Cookie Monster</td><td>Plush hand puppet</td><td>1 puppet, 11 in</td><td>4.8&#9733; (1,637)</td></tr>'+
+    '<tr><td>M&amp;D Chef Puppet</td><td>Hand-and-rod puppet</td><td>1 puppet, 15 in, removable clothes</td><td>4.7&#9733; (4,153)</td></tr>'+
+    '<tr><td>Baby Shark finger puppets</td><td>Finger puppets</td><td>5 pieces</td><td>4.8&#9733; (3,685)</td></tr>'+
+    '<tr><td>Mickey Mouse and Friends finger puppets</td><td>Finger puppets</td><td>5 characters</td><td>4.8&#9733; (3,096)</td></tr>'+
+    '<tr><td>WATINC making kit</td><td>Craft kit</td><td>6 unfinished felt puppets, decorations</td><td>4.4&#9733; (7,060)</td></tr>'+
+    '<tr><td>Yolococa shark puppet</td><td>Rubber hand puppet</td><td>1 puppet, about 5.5 in tall</td><td>4.5&#9733; (6,277)</td></tr>'+
+    '</tbody></table></div>'+
+    '<h2>What to look for</h2><ul>'+
+    '<li><b>Size.</b> A hand puppet has to fit the child&#8217;s hand. The Bluey puppets are 8 to 9 inches, made to fit a toddler. The Melissa &amp; Doug sets say they fit kids and most adults, so a parent can join the show.</li>'+
+    '<li><b>Soft plush or hard rubber.</b> Plush puppets are for cuddling and storytelling. The rubber shark is a play toy, not a cuddly one.</li>'+
+    '<li><b>One puppet or a set.</b> A set gives you enough characters for a show with a story, and one character puppet suits a child who has a favorite.</li>'+
+    '<li><b>Washable.</b> The Melissa &amp; Doug and GUND listings say surface-washable. Check the care line on the listing for any puppet that will go in the car or the bath.</li>'+
+    '<li><b>Finger puppets for water and travel.</b> The Baby Shark and Mickey sets are plastic and slip onto fingers. Their listings pitch them for bath time, party favors and stocking stuffers.</li></ul>'+
+    '<h2>Soft hand puppets</h2>'+
+    '<p>These are the best starting point: a soft puppet that doubles as a stuffed toy.</p>'+
+    '<p><b>1. Bluey Unicorse and Bob Bilby Hand Puppet Plush Toys, 2-pack.</b> Two embroidered plush puppets from the TV show, 8 to 9 inches tall, sized to fit a toddler&#8217;s hand. They are soft enough for cuddling and storytelling. The most-reviewed puppet we track, with <b>17,564 ratings at 4.8&#9733;</b>. <a href="/product/puppets/9" data-prod="puppets:9">See its full ToyScout page</a>.</p>'+
+    aProd("Bluey Unicorse & Bob Bilby Hand Puppet Plush Toys, 2-Pack","★★★★★ 17,564 ratings","https://www.amazon.com/dp/B0CPMX764D?tag=kolico-20")+
+    '<p><b>2. Melissa &amp; Doug Safari Buddies Plush Hand Puppets, 6-piece set.</b> Six safari animal puppets in bright patterned fabrics, surface-washable, for ages 2 and up. The listing says they are sized to fit children and most adults. Rated <b>4.6&#9733;</b> with 5,442 ratings. <a href="/product/puppets/1" data-prod="puppets:1">See its full ToyScout page</a>.</p>'+
+    aProd("Melissa & Doug Safari Buddies Plush Hand Puppets (6-Piece Set)","★★★★☆ 5,442 ratings","https://www.amazon.com/dp/B07J6TJR2G?tag=kolico-20")+
+    '<p><b>3. Melissa &amp; Doug Farm Friends Hand Puppets, set of 4.</b> A cow, a horse, a sheep and a pig in soft plush with washable fabric. A smaller set than the safari one, with an easy farm theme. Rated <b>4.6&#9733;</b> with 2,798 ratings. <a href="/product/puppets/15" data-prod="puppets:15">See its full ToyScout page</a>.</p>'+
+    aProd("Melissa & Doug Farm Friends Hand Puppets (Set of 4)","★★★★☆ 2,798 ratings","https://www.amazon.com/dp/B00JBIY0MG?tag=kolico-20")+
+    '<p><b>4. JOYIN 6-piece Hand Puppet Set with Working Mouth.</b> Six animal plush puppets with movable mouths, so the puppet can &#8220;talk&#8221; when a child opens and closes their hand. The listing calls the fabric washable and child-safe. Rated <b>4.5&#9733;</b> with 3,445 ratings. <a href="/product/puppets/0" data-prod="puppets:0">See its full ToyScout page</a>.</p>'+
+    aProd("JOYIN 6Pcs Kids Hand Puppet Set with Working Mouth","★★★★☆ 3,445 ratings","https://www.amazon.com/dp/B075KRKPQ7?tag=kolico-20")+
+    '<h2>Character puppets: one favorite</h2>'+
+    '<p><b>5. GUND Sesame Street Cookie Monster Plush Hand Puppet, 11 inches.</b> The classic blue Muppet with big googly eyes, in a soft surface-washable plush, sold for ages 1 and up. Rated <b>4.8&#9733;</b> with 1,637 ratings. <a href="/product/puppets/11" data-prod="puppets:11">See its full ToyScout page</a>.</p>'+
+    aProd("GUND Sesame Street Cookie Monster 11-Inch Plush Hand Puppet","★★★★★ 1,637 ratings","https://www.amazon.com/dp/B0006TPCSU?tag=kolico-20")+
+    '<p><b>6. Melissa &amp; Doug Chef Puppet.</b> A 15-inch hand-and-rod puppet: one hand moves the mouth and face, the other works a removable wooden arm rod. Removable chef&#8217;s coat, scarf and hat. A step up in size and detail from the soft sets. Rated <b>4.7&#9733;</b> with 4,153 ratings. <a href="/product/puppets/22" data-prod="puppets:22">See its full ToyScout page</a>.</p>'+
+    aProd("Melissa & Doug Chef Puppet (Al Dente)","★★★★★ 4,153 ratings","https://www.amazon.com/dp/B07KBNQXNN?tag=kolico-20")+
+    '<h2>Finger puppets for bath and travel</h2>'+
+    '<p><b>7. Nickelodeon Baby Shark Finger Puppet Set, 5 pieces.</b> Thick plastic, latex-free, and described on the listing as waterproof and quick-drying, so it works in the bath. It is also sold as a party favor and stocking stuffer. Rated <b>4.8&#9733;</b> with 3,685 ratings. <a href="/product/puppets/4" data-prod="puppets:4">See its full ToyScout page</a>.</p>'+
+    aProd("Nickelodeon Baby Shark 5 Pc Finger Puppet Set","★★★★★ 3,685 ratings","https://www.amazon.com/dp/B09JR9MCBX?tag=kolico-20")+
+    '<p><b>8. Disney Mickey Mouse and Friends Finger Puppets.</b> Five characters that slip over any finger, with a pitch for teaching colors and counting and for use as a stocking stuffer. Rated <b>4.8&#9733;</b> with 3,096 ratings. <a href="/product/puppets/2" data-prod="puppets:2">See its full ToyScout page</a>.</p>'+
+    aProd("Disney Mickey Mouse & Friends Finger Puppets","★★★★★ 3,096 ratings","https://www.amazon.com/dp/B07YQP4CST?tag=kolico-20")+
+    '<h2>Make your own, and a realistic shark</h2>'+
+    '<p><b>9. WATINC Hand Puppet Making Kit.</b> Six unfinished felt puppets plus pompoms, googly eyes and felt decorations, so kids decorate their own characters. It has <b>7,060 ratings at 4.4&#9733;</b>. <a href="/product/puppets/3" data-prod="puppets:3">See its full ToyScout page</a>.</p>'+
+    aProd("WATINC Hand Puppet Making Kit, Felt Sock Puppet Toys","★★★★☆ 7,060 ratings","https://www.amazon.com/dp/B081L8933P?tag=kolico-20")+
+    '<p><b>10. Yolococa Shark Hand Puppet.</b> A realistic rubber shark with a movable mouth, sharp teeth and hand-painted details, about 5.5 inches tall. A good fit for a child who prefers a toy to a stuffed animal. Rated <b>4.5&#9733;</b> with 6,277 ratings. <a href="/product/puppets/23" data-prod="puppets:23">See its full ToyScout page</a>.</p>'+
+    aProd("Yolococa Shark Hand Puppet, Realistic Latex Animal","★★★★☆ 6,277 ratings","https://www.amazon.com/dp/B07XKS4S2G?tag=kolico-20")+
+    '<h2>What to skip</h2><ul>'+
+    '<li><b>A puppet that is too big for the hand.</b> If a child cannot reach the mouth, the puppet will not talk and the show will not happen.</li>'+
+    '<li><b>Rubber puppets for the youngest.</b> The rubber shark has sharp-looking teeth and is a play toy, not a cuddly one. Check the age line on the listing.</li>'+
+    '<li><b>A craft kit for a toddler.</b> The glue, pompoms and googly eyes are small parts, so it is for older kids with an adult at the table.</li></ul>'+
+    '<h2>Frequently asked questions</h2>'+
+    '<h3>What age are hand puppets good for?</h3><p>From about 2. The Melissa &amp; Doug Safari set is sold for ages 2 and up and the GUND Cookie Monster for ages 1 and up.</p>'+
+    '<h3>Hand puppets or finger puppets?</h3><p>Hand puppets are better for storytelling and cuddling. Finger puppets are small, easy to pack and good for bath time and for songs.</p>'+
+    '<h3>Do puppets help shy kids?</h3><p>The Melissa &amp; Doug listings point to language development and confidence as benefits of puppet play. We have not tested this ourselves.</p>'+
+    '<h2>The bottom line</h2><p>For most families, start with the <b>Bluey hand puppet 2-pack</b> or the <b>Melissa &amp; Doug Safari set</b>. For a favorite character, <b>GUND Cookie Monster</b> or the <b>Melissa &amp; Doug Chef</b>. For the bath, the <b>Baby Shark finger puppets</b>. For a craft afternoon, the <b>WATINC kit</b>. Check the price on Amazon before you buy, since it changes often. For more ideas, see our <a href="/post15" data-go="post15">Christmas gifts by age</a> guide.</p>';}},
   post23:{meta:"Gift Guides · Oct 13, 2026 · By ToyScout Editors",h:"Best puzzles for kids in 2026, by age",
     body:function(){return '<p class="a-lede">A good kids&#8217; puzzle is one the child can finish: chunky pegs for a toddler, a few big pieces for a preschooler, and a brain teaser for a school-age kid. We sorted the kids&#8217; puzzles in our <a href="/shop/puzzles" data-cat="puzzles">Puzzles</a> chart by age and kept the ones buyers rate well. Ratings and review counts are from our latest catalog check in October 2026. Piece counts and materials come from each product&#8217;s Amazon listing, not from our own testing.</p>'+
     '<h2>The quick answer</h2><ul>'+
